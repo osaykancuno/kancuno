@@ -9,6 +9,15 @@ export default function Taskbar() {
   } = useWindowManager()
   const [time, setTime] = useState('')
   const [startOpen, setStartOpen] = useState(false)
+  const [dark, setDark] = useState(false)
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme')
+    if (saved === 'dark') {
+      setDark(true)
+      document.documentElement.setAttribute('data-theme', 'dark')
+    }
+  }, [])
 
   useEffect(() => {
     const tick = () => {
@@ -118,8 +127,24 @@ export default function Taskbar() {
         })}
       </div>
 
-      {/* Right: Twitter + clock */}
+      {/* Right: theme toggle + Twitter + clock */}
       <div className="flex items-center gap-3 ml-auto pl-2" style={{ borderLeft: '2px solid #48494b', paddingLeft: 8 }}>
+        <button
+          onClick={() => {
+            const next = !dark
+            setDark(next)
+            document.documentElement.setAttribute('data-theme', next ? 'dark' : 'light')
+            localStorage.setItem('theme', next ? 'dark' : 'light')
+          }}
+          title={dark ? 'Light mode' : 'Dark mode'}
+          style={{
+            fontFamily: "'Press Start 2P', monospace", fontSize: 8,
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: '#48494b', padding: '2px 4px',
+          }}
+        >
+          {dark ? '☀' : '☾'}
+        </button>
         <a
           href="https://x.com/OsayKancuno" target="_blank" rel="noopener noreferrer"
           title="Twitter / X"
