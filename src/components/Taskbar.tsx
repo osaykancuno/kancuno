@@ -9,12 +9,14 @@ export default function Taskbar() {
   } = useWindowManager()
   const [time, setTime] = useState('')
   const [startOpen, setStartOpen] = useState(false)
-  const [dark, setDark] = useState(false)
+  const [dark, setDark] = useState(true)
 
   useEffect(() => {
     const saved = localStorage.getItem('theme')
-    if (saved === 'dark') {
-      setDark(true)
+    if (saved === 'light') {
+      setDark(false)
+      document.documentElement.setAttribute('data-theme', 'light')
+    } else {
       document.documentElement.setAttribute('data-theme', 'dark')
     }
   }, [])
