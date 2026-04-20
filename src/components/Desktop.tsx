@@ -49,7 +49,7 @@ export default function Desktop() {
         </div>
 
         {/* Center: mascot */}
-        <div className="flex-1 flex items-end justify-center pb-10 pointer-events-none select-none">
+        <div className="flex-1 flex items-center justify-center pointer-events-none select-none">
           <div style={{
             border: '3px solid #48494b',
             boxShadow: '6px 6px 0px #48494b',
