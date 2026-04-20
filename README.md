@@ -1,6 +1,6 @@
 # kancuno.com
 
-Portfolio website for **@osaykancuno** — styled as a retro Windows 95/98 desktop OS, themed around [The Normies](https://www.normies.app/) NFT community.
+Portfolio website for **@osaykancuno** — styled as a retro Windows 95/98 desktop OS, themed around [The Normies](https://www.normies.art/) NFT community.
 
 ## What it is
 
