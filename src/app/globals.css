@@ -120,6 +120,14 @@ html, body {
   background-size: 20px 20px;
 }
 
+/* Dark mode — invert entire page, re-invert images */
+html[data-theme="dark"] {
+  filter: invert(1);
+}
+html[data-theme="dark"] img {
+  filter: invert(1);
+}
+
 /* Mobile: allow scroll */
 @media (max-width: 768px) {
   html, body {
