@@ -9,8 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        'normie-bg':    '#e3e5e4',
+        'normie-dark':  '#48494b',
+        'normie-white': '#ffffff',
+        'normie-black': '#000000',
+        'normie-gray':  '#c8cac9',
+        'normie-mid':   '#9a9c9b',
+      },
+      fontFamily: {
+        pixel: ['"Press Start 2P"', 'monospace'],
+        vt: ['"VT323"', 'monospace'],
       },
     },
   },
