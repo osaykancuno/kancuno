@@ -34,6 +34,34 @@ export default function ContactWindow() {
           <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 10 }}>▶</span>
         </a>
 
+        {/* Telegram */}
+        <a
+          href="https://t.me/kancuno"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pixel-border flex items-center gap-3 p-4"
+          style={{ background: '#ffffff', textDecoration: 'none', color: '#48494b' }}
+          onMouseEnter={e => {
+            (e.currentTarget as HTMLElement).style.background = '#48494b'
+            ;(e.currentTarget as HTMLElement).style.color = '#ffffff'
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLElement).style.background = '#ffffff'
+            ;(e.currentTarget as HTMLElement).style.color = '#48494b'
+          }}
+        >
+          <span style={{ fontSize: 22, width: 36, textAlign: 'center', flexShrink: 0 }}>✈</span>
+          <div className="flex-1">
+            <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, marginBottom: 6 }}>
+              TELEGRAM
+            </div>
+            <div style={{ fontFamily: "'VT323', monospace", fontSize: 17, opacity: 0.8 }}>
+              @kancuno — message me
+            </div>
+          </div>
+          <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 10 }}>▶</span>
+        </a>
+
         {/* Calendly placeholder */}
         <div
           className="pixel-border p-4"
