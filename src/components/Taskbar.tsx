@@ -75,11 +75,11 @@ export default function Taskbar() {
             style={{ zIndex: 10000 }}
           >
             {[
-              { id: 'about'    as const, label: 'PROFILE.EXE'  },
-              { id: 'works'    as const, label: 'WORKS.EXE'    },
-              { id: 'normies'  as const, label: 'NORMIES.EXE'  },
-              { id: 'khorafun' as const, label: 'KHORAFUN.EXE' },
-              { id: 'contact'  as const, label: 'CONTACT.EXE'  },
+              { id: 'about'    as const, label: 'PROFILE'  },
+              { id: 'works'    as const, label: 'WORKS'    },
+              { id: 'normies'  as const, label: 'NORMIES'  },
+              { id: 'khorafun' as const, label: 'KHORAFUN' },
+              { id: 'contact'  as const, label: 'CONTACT'  },
             ].map(item => (
               <button
                 key={item.id}
@@ -97,7 +97,7 @@ export default function Taskbar() {
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
               onClick={() => setStartOpen(false)}
             >
-              TWITTER.EXE
+              TWITTER
             </a>
           </div>
         )}

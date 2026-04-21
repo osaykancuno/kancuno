@@ -15,12 +15,12 @@ import {
 } from './PixelIcons'
 
 const ICONS = [
-  { id: 'about'    as const, label: 'PROFILE.EXE',  Icon: IconProfile  },
-  { id: 'works'    as const, label: 'WORKS.EXE',    Icon: IconWorks    },
-  { id: 'normies'  as const, label: 'NORMIES.EXE',  Icon: IconNormies  },
-  { id: 'khorafun' as const, label: 'KHORAFUN.EXE', Icon: IconKhorafun },
-  { id: 'contact'  as const, label: 'CONTACT.EXE',  Icon: IconContact  },
-  { id: 'twitter'  as const, label: 'TWITTER.EXE',  Icon: IconTwitter, href: 'https://x.com/OsayKancuno' },
+  { id: 'about'    as const, label: 'PROFILE',   Icon: IconProfile  },
+  { id: 'works'    as const, label: 'WORKS',     Icon: IconWorks    },
+  { id: 'normies'  as const, label: 'NORMIES',   Icon: IconNormies  },
+  { id: 'khorafun' as const, label: 'KHORAFUN',  Icon: IconKhorafun },
+  { id: 'contact'  as const, label: 'CONTACT',   Icon: IconContact  },
+  { id: 'twitter'  as const, label: 'TWITTER',   Icon: IconTwitter, href: 'https://x.com/OsayKancuno' },
 ]
 
 export default function Desktop() {
@@ -110,11 +110,11 @@ export default function Desktop() {
       </div>
 
       {/* Static windows */}
-      <Window id="about"    title="PROFILE.EXE"  width={540} height={320}><AboutWindow /></Window>
-      <Window id="works"    title="WORKS.EXE"    width={480} height={420}><WorksWindow /></Window>
-      <Window id="normies"  title="NORMIES.EXE"  width={460} height={480}><NormiesWindow /></Window>
-      <Window id="khorafun" title="KHORAFUN.EXE" width={460} height={460}><KhorafunWindow /></Window>
-      <Window id="contact"  title="CONTACT.EXE"  width={380} height={320}><ContactWindow /></Window>
+      <Window id="about"    title="PROFILE"   width={540} height={320}><AboutWindow /></Window>
+      <Window id="works"    title="WORKS"     width={480} height={420}><WorksWindow /></Window>
+      <Window id="normies"  title="NORMIES"   width={460} height={480}><NormiesWindow /></Window>
+      <Window id="khorafun" title="KHORAFUN"  width={460} height={460}><KhorafunWindow /></Window>
+      <Window id="contact"  title="CONTACT"   width={380} height={320}><ContactWindow /></Window>
 
       <Taskbar />
     </div>

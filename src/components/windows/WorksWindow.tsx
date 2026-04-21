@@ -27,7 +27,7 @@ const WORKS: WorkItem[] = [
   {
     name: 'VIRALLIA',
     type: 'SERVICE',
-    desc: 'AI consultancy for professional firms or small and medium-sized enterprises.',
+    desc: 'AI consultancy for professional firms or small and medium-sized enterprises — Italian market.',
     url: 'https://virallia.com/',
     status: 'LIVE',
     cta: 'VISIT SITE',
