@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import AboutWindow from './windows/AboutWindow'
 import WorksWindow from './windows/WorksWindow'
@@ -8,6 +8,14 @@ import NormiesWindow from './windows/NormiesWindow'
 import KhorafunWindow from './windows/KhorafunWindow'
 import ContactWindow from './windows/ContactWindow'
 import { IconProfile, IconWorks, IconNormies, IconKhorafun, IconContact } from './PixelIcons'
+
+const STATIONS = [
+  { name: 'LO-FI',   url: 'https://ice1.somafm.com/groovesalad-128-mp3'   },
+  { name: 'AMBIENT',  url: 'https://ice1.somafm.com/dronezone-128-mp3'     },
+  { name: 'INDIE',    url: 'https://ice1.somafm.com/indiepop-128-mp3'      },
+  { name: 'SPACE',    url: 'https://ice1.somafm.com/spacestation-128-mp3'  },
+  { name: 'JAZZ',     url: 'https://ice1.somafm.com/sonicuniverse-128-mp3' },
+]
 
 const APPS = [
   { id: 'about',    label: 'PROFILE',  Icon: IconProfile,  Component: AboutWindow   },
@@ -20,7 +28,26 @@ const APPS = [
 export default function MobileLayout() {
   const [activeApp, setActiveApp] = useState<string | null>(null)
   const [time, setTime] = useState('')
-  const [dark, setDark] = useState(true)
+  const [dark, setDark]             = useState(true)
+  const [playing, setPlaying]       = useState(false)
+  const [stationIdx, setStationIdx] = useState(0)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  const togglePlay = () => {
+    if (!audioRef.current) audioRef.current = new Audio(STATIONS[stationIdx].url)
+    if (playing) { audioRef.current.pause(); setPlaying(false) }
+    else { audioRef.current.play().catch(() => {}); setPlaying(true) }
+  }
+
+  const nextStation = () => {
+    const next = (stationIdx + 1) % STATIONS.length
+    setStationIdx(next)
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current = new Audio(STATIONS[next].url)
+      if (playing) audioRef.current.play().catch(() => {})
+    }
+  }
 
   useEffect(() => {
     const tick = () => {
@@ -244,14 +271,38 @@ export default function MobileLayout() {
           K4NCUN0
         </span>
 
-        <a
-          href="https://x.com/OsayKancuno"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontSize: 20, color: '#e3e5e4', textDecoration: 'none' }}
-        >
-          𝕏
-        </a>
+        {/* Radio player */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <button
+            onClick={togglePlay}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontFamily: "'Press Start 2P', monospace",
+              fontSize: 12, color: '#e3e5e4',
+              WebkitTapHighlightColor: 'transparent', padding: '2px 4px',
+            }}
+          >
+            {playing ? '■' : '▶'}
+          </button>
+          <span style={{
+            fontFamily: "'Press Start 2P', monospace",
+            fontSize: 6, color: playing ? '#e3e5e4' : '#9a9c9b',
+            minWidth: 40,
+          }}>
+            {STATIONS[stationIdx].name}
+          </span>
+          <button
+            onClick={nextStation}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontFamily: "'Press Start 2P', monospace",
+              fontSize: 12, color: '#e3e5e4',
+              WebkitTapHighlightColor: 'transparent', padding: '2px 4px',
+            }}
+          >
+            »
+          </button>
+        </div>
       </div>
     </div>
   )
