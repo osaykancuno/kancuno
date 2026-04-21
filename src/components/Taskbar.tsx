@@ -1,15 +1,24 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useWindowManager } from './WindowManager'
 
+const STATIONS = [
+  { name: 'LO-FI',   url: 'https://ice1.somafm.com/groovesalad-128-mp3'   },
+  { name: 'AMBIENT',  url: 'https://ice1.somafm.com/dronezone-128-mp3'     },
+  { name: 'INDIE',    url: 'https://ice1.somafm.com/indiepop-128-mp3'      },
+  { name: 'SPACE',    url: 'https://ice1.somafm.com/spacestation-128-mp3'  },
+  { name: 'JAZZ',     url: 'https://ice1.somafm.com/sonicuniverse-128-mp3' },
+]
+
 export default function Taskbar() {
-  const {
-    windows, openWindow, restoreWindow, minimizeWindow, focusWindow,
-  } = useWindowManager()
-  const [time, setTime] = useState('')
+  const { windows, openWindow, restoreWindow, minimizeWindow, focusWindow } = useWindowManager()
+  const [time, setTime]         = useState('')
   const [startOpen, setStartOpen] = useState(false)
-  const [dark, setDark] = useState(true)
+  const [dark, setDark]         = useState(true)
+  const [playing, setPlaying]   = useState(false)
+  const [stationIdx, setStationIdx] = useState(0)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
     const saved = localStorage.getItem('theme')
@@ -31,20 +40,45 @@ export default function Taskbar() {
     return () => clearInterval(id)
   }, [])
 
-  const openStaticWindows = windows.filter(w => w.isOpen)
+  const togglePlay = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(STATIONS[stationIdx].url)
+    }
+    if (playing) {
+      audioRef.current.pause()
+      setPlaying(false)
+    } else {
+      audioRef.current.play().catch(() => {})
+      setPlaying(true)
+    }
+  }
 
+  const nextStation = () => {
+    const next = (stationIdx + 1) % STATIONS.length
+    setStationIdx(next)
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current = new Audio(STATIONS[next].url)
+      if (playing) audioRef.current.play().catch(() => {})
+    }
+  }
+
+  const openStaticWindows = windows.filter(w => w.isOpen)
   const maxZ = Math.max(
     ...openStaticWindows.filter(w => !w.isMinimized).map(w => w.zIndex),
     0,
   )
 
-  // Smart click: if window is minimized → restore+focus
-  //              if open but not top → focus
-  //              if open and top → minimize
   const handleStaticClick = (id: typeof windows[0]['id']) => {
     const w = windows.find(x => x.id === id)!
     if (w.isMinimized) { restoreWindow(id); return }
     if (w.zIndex === maxZ) { minimizeWindow(id) } else { focusWindow(id) }
+  }
+
+  const btnStyle = {
+    background: 'none', border: 'none', cursor: 'pointer',
+    fontFamily: "'Press Start 2P', monospace",
+    color: '#48494b', padding: '2px 4px',
   }
 
   return (
@@ -129,8 +163,29 @@ export default function Taskbar() {
         })}
       </div>
 
-      {/* Right: theme toggle + Twitter + clock */}
-      <div className="flex items-center gap-3 ml-auto pl-2" style={{ borderLeft: '2px solid #48494b', paddingLeft: 8 }}>
+      {/* Right: radio + theme toggle + clock */}
+      <div className="flex items-center gap-2 ml-auto" style={{ borderLeft: '2px solid #48494b', paddingLeft: 8 }}>
+
+        {/* Radio player */}
+        <div className="flex items-center gap-1">
+          <button onClick={togglePlay} title={playing ? 'Pause' : 'Play radio'} style={{ ...btnStyle, fontSize: 8 }}>
+            {playing ? '■' : '▶'}
+          </button>
+          <span style={{
+            fontFamily: "'Press Start 2P', monospace", fontSize: 6,
+            color: playing ? '#48494b' : '#9a9c9b',
+            minWidth: 44, letterSpacing: 0,
+          }}>
+            {STATIONS[stationIdx].name}
+          </span>
+          <button onClick={nextStation} title="Next station" style={{ ...btnStyle, fontSize: 8 }}>
+            »
+          </button>
+        </div>
+
+        <div style={{ width: 1, height: 20, background: '#48494b' }} />
+
+        {/* Theme toggle */}
         <button
           onClick={() => {
             const next = !dark
@@ -139,20 +194,15 @@ export default function Taskbar() {
             localStorage.setItem('theme', next ? 'dark' : 'light')
           }}
           title={dark ? 'Light mode' : 'Dark mode'}
-          style={{
-            fontFamily: "'Press Start 2P', monospace", fontSize: 8,
-            background: 'none', border: 'none', cursor: 'pointer',
-            color: '#48494b', padding: '2px 4px',
-          }}
+          style={{ ...btnStyle, fontSize: 8 }}
         >
           {dark ? '☀' : '☾'}
         </button>
-        <a
-          href="https://x.com/OsayKancuno" target="_blank" rel="noopener noreferrer"
-          title="Twitter / X"
-          style={{ fontSize: 16, color: '#48494b', textDecoration: 'none' }}
-        >𝕏</a>
-        <span style={{ fontSize: 9, color: '#48494b', letterSpacing: 1, whiteSpace: 'nowrap' }}>{time}</span>
+
+        {/* Clock */}
+        <span style={{ fontSize: 9, color: '#48494b', letterSpacing: 1, whiteSpace: 'nowrap' }}>
+          {time}
+        </span>
       </div>
     </div>
   )
