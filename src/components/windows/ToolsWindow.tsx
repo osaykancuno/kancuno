@@ -8,7 +8,7 @@ interface Tool {
 
 const TOOLS: Tool[] = [
   // Normies
-  { name: 'MESSAGE FROM NORMIES', tag: 'Community Wall',    community: 'NORMIES', url: 'http://rom-normies-production.up.railway.app',  desc: 'Leave your mark, your message, your Normie.' },
+  { name: 'MESSAGE FROM NORMIES', tag: 'Community Wall',    community: 'NORMIES', url: 'https://messages-from-normies-production.up.railway.app/',  desc: 'Leave your mark, your message, your Normie.' },
   { name: 'NORMSKY',              tag: 'GIF Generator',     community: 'NORMIES', url: 'http://normski-generator.vercel.app',            desc: 'Your Normie with a Banksy-style effect.' },
   { name: 'NORMIEMAP',            tag: '3D Map',            community: 'NORMIES', url: 'http://normie-map-production.up.railway.app',    desc: 'Place your NFT, listen to music, chat live.' },
   { name: 'SUPER NORMIE',         tag: 'Platformer Game',   community: 'NORMIES', url: 'http://super-normie-production.up.railway.app',  desc: 'On-chain traits become real gameplay abilities.' },
