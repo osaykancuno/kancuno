@@ -54,8 +54,8 @@ export default function ContactWindow() {
         </div>
       </div>
 
-      <div className="mt-6 text-center" style={{ fontFamily: "'VT323', monospace", fontSize: 14, color: '#9a9c9b' }}>
-        Normie #8362 — kancuno.com
+      <div className="mt-6 text-center" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: '#9a9c9b' }}>
+        K4NCUN0
       </div>
     </div>
   )
