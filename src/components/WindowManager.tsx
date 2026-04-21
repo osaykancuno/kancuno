@@ -26,11 +26,11 @@ interface WindowManagerCtx {
 }
 
 const INITIAL_WINDOWS: WindowState[] = [
-  { id: 'about',    title: 'PROFILE.EXE',  isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 80,  y: 60  } },
-  { id: 'works',    title: 'WORKS.EXE',    isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 130, y: 90  } },
-  { id: 'normies',  title: 'NORMIES.EXE',  isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 180, y: 80  } },
-  { id: 'khorafun', title: 'KHORAFUN.EXE', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 160, y: 100 } },
-  { id: 'contact',  title: 'CONTACT.EXE',  isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 200, y: 120 } },
+  { id: 'about',    title: 'PROFILE',  isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 80,  y: 60  } },
+  { id: 'works',    title: 'WORKS',    isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 130, y: 90  } },
+  { id: 'normies',  title: 'NORMIES',  isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 180, y: 80  } },
+  { id: 'khorafun', title: 'KHORAFUN', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 160, y: 100 } },
+  { id: 'contact',  title: 'CONTACT',  isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10, position: { x: 200, y: 120 } },
 ]
 
 const WindowManagerContext = createContext<WindowManagerCtx | null>(null)

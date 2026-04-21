@@ -10,11 +10,11 @@ import ContactWindow from './windows/ContactWindow'
 import { IconProfile, IconWorks, IconNormies, IconKhorafun, IconContact } from './PixelIcons'
 
 const SECTIONS = [
-  { id: 'about',    label: 'PROFILE.EXE',  Icon: IconProfile,  Component: AboutWindow },
-  { id: 'works',    label: 'WORKS.EXE',    Icon: IconWorks,    Component: WorksWindow },
-  { id: 'normies',  label: 'NORMIES.EXE',  Icon: IconNormies,  Component: NormiesWindow },
-  { id: 'khorafun', label: 'KHORAFUN.EXE', Icon: IconKhorafun, Component: KhorafunWindow },
-  { id: 'contact',  label: 'CONTACT.EXE',  Icon: IconContact,  Component: ContactWindow },
+  { id: 'about',    label: 'PROFILE',  Icon: IconProfile,  Component: AboutWindow },
+  { id: 'works',    label: 'WORKS',    Icon: IconWorks,    Component: WorksWindow },
+  { id: 'normies',  label: 'NORMIES',  Icon: IconNormies,  Component: NormiesWindow },
+  { id: 'khorafun', label: 'KHORAFUN', Icon: IconKhorafun, Component: KhorafunWindow },
+  { id: 'contact',  label: 'CONTACT',  Icon: IconContact,  Component: ContactWindow },
 ]
 
 export default function MobileLayout() {
