@@ -37,7 +37,7 @@ export default function AboutWindow() {
           fontFamily: "'VT323', monospace", fontSize: 17, color: '#48494b',
           borderLeft: '3px solid #48494b', paddingLeft: 10, lineHeight: 1.5, fontStyle: 'italic',
         }}>
-          "Culture belongs to the people who create it."
+          &ldquo;Culture belongs to the people who create it.&rdquo;
         </div>
 
         <div className="mb-5" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#48494b', lineHeight: 1.6 }}>
