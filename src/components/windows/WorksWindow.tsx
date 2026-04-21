@@ -96,8 +96,21 @@ export default function WorksWindow() {
         ))}
       </div>
 
-      <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 7, color: '#c8cac9', marginTop: 20, lineHeight: 2.2, textAlign: 'center' }}>
-        MORE COMING SOON
+      {/* More works placeholder */}
+      <div className="pixel-border mt-4" style={{ background: '#ffffff', opacity: 0.5 }}>
+        <div
+          className="px-3 py-2"
+          style={{ background: '#48494b', borderBottom: '2px solid #000' }}
+        >
+          <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#e3e5e4' }}>
+            MORE ON THE WAY
+          </span>
+        </div>
+        <div className="p-3">
+          <p style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: '#48494b', lineHeight: 1.4 }}>
+            New projects in progress — stay tuned.
+          </p>
+        </div>
       </div>
     </div>
   )

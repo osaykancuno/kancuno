@@ -32,6 +32,14 @@ export default function AboutWindow() {
           @osaykancuno
         </div>
 
+        {/* Personal quote */}
+        <div className="mb-4" style={{
+          fontFamily: "'VT323', monospace", fontSize: 17, color: '#48494b',
+          borderLeft: '3px solid #48494b', paddingLeft: 10, lineHeight: 1.5, fontStyle: 'italic',
+        }}>
+          "Culture belongs to the people who create it."
+        </div>
+
         <div className="mb-5" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#48494b', lineHeight: 1.6 }}>
           Community builder & Web3 creator.
           <br /><br />
