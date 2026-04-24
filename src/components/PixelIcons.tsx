@@ -108,6 +108,32 @@ export function IconTwitter({ size = 48 }: { size?: number }) {
   )
 }
 
+export function IconLine({ size = 48 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ imageRendering: 'pixelated' }}>
+      {/* Frame */}
+      <rect x="1" y="1"  width="14" height="1" fill="currentColor"/>
+      <rect x="1" y="14" width="14" height="1" fill="currentColor"/>
+      <rect x="1" y="1"  width="1"  height="14" fill="currentColor"/>
+      <rect x="14" y="1" width="1"  height="14" fill="currentColor"/>
+      {/* Line chart going up */}
+      <rect x="3"  y="11" width="1" height="1" fill="currentColor"/>
+      <rect x="4"  y="10" width="1" height="1" fill="currentColor"/>
+      <rect x="5"  y="9"  width="1" height="1" fill="currentColor"/>
+      <rect x="6"  y="9"  width="1" height="1" fill="currentColor"/>
+      <rect x="7"  y="8"  width="1" height="1" fill="currentColor"/>
+      <rect x="8"  y="7"  width="1" height="1" fill="currentColor"/>
+      <rect x="9"  y="6"  width="1" height="1" fill="currentColor"/>
+      <rect x="10" y="5"  width="1" height="1" fill="currentColor"/>
+      <rect x="11" y="4"  width="1" height="1" fill="currentColor"/>
+      <rect x="12" y="4"  width="1" height="1" fill="currentColor"/>
+      {/* Arrow tip */}
+      <rect x="11" y="3"  width="2" height="1" fill="currentColor"/>
+      <rect x="12" y="5"  width="1" height="1" fill="currentColor"/>
+    </svg>
+  )
+}
+
 export function IconWorks({ size = 48 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ imageRendering: 'pixelated' }}>

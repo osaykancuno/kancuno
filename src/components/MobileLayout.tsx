@@ -7,7 +7,7 @@ import WorksWindow from './windows/WorksWindow'
 import NormiesWindow from './windows/NormiesWindow'
 import KhorafunWindow from './windows/KhorafunWindow'
 import ContactWindow from './windows/ContactWindow'
-import { IconProfile, IconWorks, IconNormies, IconKhorafun, IconContact } from './PixelIcons'
+import { IconProfile, IconWorks, IconNormies, IconKhorafun, IconContact, IconLine } from './PixelIcons'
 
 const STATIONS = [
   { name: 'LO-FI',   url: 'https://ice1.somafm.com/groovesalad-128-mp3'   },
@@ -17,12 +17,21 @@ const STATIONS = [
   { name: 'JAZZ',     url: 'https://ice1.somafm.com/sonicuniverse-128-mp3' },
 ]
 
-const APPS = [
-  { id: 'about',    label: 'PROFILE',  Icon: IconProfile,  Component: AboutWindow   },
-  { id: 'works',    label: 'WORKS',    Icon: IconWorks,    Component: WorksWindow   },
-  { id: 'normies',  label: 'NORMIES',  Icon: IconNormies,  Component: NormiesWindow },
-  { id: 'khorafun', label: 'KHORAFUN', Icon: IconKhorafun, Component: KhorafunWindow},
-  { id: 'contact',  label: 'CONTACT',  Icon: IconContact,  Component: ContactWindow },
+type AppEntry = {
+  id: string
+  label: string
+  Icon: React.ComponentType<{ size?: number }>
+  Component?: React.ComponentType
+  href?: string
+}
+
+const APPS: AppEntry[] = [
+  { id: 'about',    label: 'PROFILE',    Icon: IconProfile,  Component: AboutWindow   },
+  { id: 'works',    label: 'WORKS',      Icon: IconWorks,    Component: WorksWindow   },
+  { id: 'normies',  label: 'NORMIES',    Icon: IconNormies,  Component: NormiesWindow },
+  { id: 'khorafun', label: 'KHORAFUN',   Icon: IconKhorafun, Component: KhorafunWindow},
+  { id: 'contact',  label: 'CONTACT',    Icon: IconContact,  Component: ContactWindow },
+  { id: 'line',     label: 'ATB / LINE', Icon: IconLine,     href: 'https://line.kancuno.com/' },
 ]
 
 export default function MobileLayout() {
@@ -123,7 +132,7 @@ export default function MobileLayout() {
       </div>
 
       {/* ── Content ────────────────────────────────────── */}
-      {activeApp && current ? (
+      {activeApp && current && current.Component ? (
 
         /* Open app: full-screen */
         <div style={{ flex: 1, overflow: 'auto' }}>
@@ -159,7 +168,7 @@ export default function MobileLayout() {
                 <div style={{ width: 4, height: 4, background: '#48494b' }} />
               </div>
               <Image
-                src="/8362.png"
+                src="/desk8362.png"
                 alt="Normie #8362"
                 width={68}
                 height={68}
@@ -194,10 +203,16 @@ export default function MobileLayout() {
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: 14,
             }}>
-              {APPS.map(({ id, label, Icon }) => (
+              {APPS.map(({ id, label, Icon, href }) => (
                 <button
                   key={id}
-                  onClick={() => setActiveApp(id)}
+                  onClick={() => {
+                    if (href) {
+                      window.open(href, '_blank', 'noopener')
+                    } else {
+                      setActiveApp(id)
+                    }
+                  }}
                   style={{
                     background: 'none', border: 'none', cursor: 'pointer',
                     display: 'flex', flexDirection: 'column',

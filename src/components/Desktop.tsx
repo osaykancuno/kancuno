@@ -11,7 +11,7 @@ import KhorafunWindow from './windows/KhorafunWindow'
 import ContactWindow from './windows/ContactWindow'
 import {
   IconProfile, IconWorks, IconNormies,
-  IconKhorafun, IconContact, IconTwitter,
+  IconKhorafun, IconContact, IconTwitter, IconLine,
 } from './PixelIcons'
 
 const ICONS = [
@@ -20,6 +20,7 @@ const ICONS = [
   { id: 'normies'  as const, label: 'NORMIES',   Icon: IconNormies  },
   { id: 'khorafun' as const, label: 'KHORAFUN',  Icon: IconKhorafun },
   { id: 'contact'  as const, label: 'CONTACT',   Icon: IconContact  },
+  { id: 'line'     as const, label: 'ATB / LINE', Icon: IconLine,    href: 'https://line.kancuno.com/' },
   { id: 'twitter'  as const, label: 'TWITTER',   Icon: IconTwitter, href: 'https://x.com/OsayKancuno' },
 ]
 
@@ -65,7 +66,7 @@ export default function Desktop() {
               <div style={{ width: 6, height: 6, background: '#e3e5e4' }} />
             </div>
             <Image
-              src="/8362.png"
+              src="/desk8362.png"
               alt="Normie #8362"
               width={260}
               height={260}
