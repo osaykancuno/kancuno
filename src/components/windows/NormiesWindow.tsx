@@ -52,8 +52,8 @@ export default function NormiesWindow() {
       {/* Official links */}
       <div className="flex flex-wrap gap-2 mb-6">
         {[
-          { label: 'WEBSITE', href: 'https://www.normies.app/' },
-          { label: 'OPENSEA', href: 'https://opensea.io/collection/thenormiesnft' },
+          { label: 'WEBSITE', href: 'https://normies.art' },
+          { label: 'OPENSEA', href: 'https://opensea.io/collection/normies' },
           { label: 'TWITTER', href: 'https://twitter.com/normiesART' },
           { label: 'RARITY',  href: 'https://rarity.normies.art/' },
         ].map(l => (
