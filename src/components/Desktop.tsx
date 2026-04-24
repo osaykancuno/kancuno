@@ -11,7 +11,7 @@ import KhorafunWindow from './windows/KhorafunWindow'
 import ContactWindow from './windows/ContactWindow'
 import {
   IconProfile, IconWorks, IconNormies,
-  IconKhorafun, IconContact, IconTwitter, IconLine,
+  IconKhorafun, IconContact, IconLine,
 } from './PixelIcons'
 
 const ICONS = [
@@ -21,7 +21,6 @@ const ICONS = [
   { id: 'khorafun' as const, label: 'KHORAFUN',  Icon: IconKhorafun },
   { id: 'contact'  as const, label: 'CONTACT',   Icon: IconContact  },
   { id: 'line'     as const, label: 'ATB / LINE', Icon: IconLine,    href: 'https://line.kancuno.com/' },
-  { id: 'twitter'  as const, label: 'TWITTER',   Icon: IconTwitter, href: 'https://x.com/OsayKancuno' },
 ]
 
 export default function Desktop() {
@@ -85,14 +84,21 @@ export default function Desktop() {
           }}>
             NORMIE<br />#8362
           </div>
-          <div style={{
-            fontFamily: "'Press Start 2P', monospace",
-            fontSize: 14, color: '#e3e5e4', background: '#48494b',
-            padding: '6px 10px', border: '2px solid #000',
-            boxShadow: '3px 3px 0 #000', letterSpacing: 2, marginTop: 6,
-          }}>
+          <a
+            href="https://x.com/OsayKancuno"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="@OsayKancuno on X / Twitter"
+            style={{
+              fontFamily: "'Press Start 2P', monospace",
+              fontSize: 14, color: '#e3e5e4', background: '#48494b',
+              padding: '6px 10px', border: '2px solid #000',
+              boxShadow: '3px 3px 0 #000', letterSpacing: 2, marginTop: 6,
+              textDecoration: 'none', cursor: 'pointer', display: 'inline-block',
+            }}
+          >
             K4NCUN0
-          </div>
+          </a>
           <div style={{
             fontFamily: "'Press Start 2P', monospace",
             fontSize: 7, color: '#c8cac9', textAlign: 'right',
