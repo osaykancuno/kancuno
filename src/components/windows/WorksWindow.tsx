@@ -11,7 +11,7 @@ const WORKS: WorkItem[] = [
   {
     name: 'WE ARE ALL NORMIES',
     type: 'TRIBUTE',
-    desc: 'A tribute NFT collection celebrating The Normies community. Free to claim for holders.',
+    desc: 'A tribute NFT collection celebrating The Normies community. A collaborative 69x69 canvas.',
     url: 'https://opensea.io/collection/we-are-all-normies',
     status: 'LIVE',
     cta: 'VIEW ON OPENSEA',
