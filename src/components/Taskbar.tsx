@@ -126,6 +126,14 @@ export default function Taskbar() {
             ))}
             <div style={{ borderTop: '1px solid #48494b', margin: '2px 0' }} />
             <a
+              href="https://line.kancuno.com/" target="_blank" rel="noopener noreferrer"
+              className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
+              style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
+              onClick={() => setStartOpen(false)}
+            >
+              ATB / LINE
+            </a>
+            <a
               href="https://x.com/OsayKancuno" target="_blank" rel="noopener noreferrer"
               className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
