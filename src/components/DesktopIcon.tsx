@@ -38,11 +38,12 @@ export default function DesktopIcon({ id, label, Icon, href }: DesktopIconProps)
         style={{
           background: selected ? '#48494b' : 'transparent',
           border: selected ? '1px dashed #9a9c9b' : '1px dashed transparent',
-          padding: 8,
+          padding: id === 'line' ? 0 : 8,
+          overflow: 'hidden',
           color: selected ? '#e3e5e4' : '#48494b',
         }}
       >
-        <Icon size={44} />
+        <Icon size={id === 'line' ? 62 : 44} />
       </div>
 
       <span

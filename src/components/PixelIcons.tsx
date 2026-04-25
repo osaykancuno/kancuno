@@ -112,7 +112,13 @@ export function IconLine({ size = 48 }: { size?: number }) {
       alt="ATB / LINE"
       width={size}
       height={size}
-      style={{ imageRendering: 'pixelated', display: 'block', objectFit: 'contain' }}
+      style={{
+        imageRendering: 'pixelated',
+        display: 'block',
+        width: size,
+        height: size,
+        objectFit: 'cover',
+      }}
     />
   )
 }

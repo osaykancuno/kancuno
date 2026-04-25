@@ -103,31 +103,46 @@ export default function MobileLayout() {
         background: '#48494b',
         height: 32,
         flexShrink: 0,
+        position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 14px',
         borderBottom: '2px solid #000',
       }}>
-        {activeApp ? (
-          <button
-            onClick={() => setActiveApp(null)}
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer',
-              fontFamily: "'Press Start 2P', monospace",
-              fontSize: 7, color: '#e3e5e4', padding: 0,
-            }}
-          >
-            ◀ HOME
-          </button>
-        ) : (
-          <span style={{ fontSize: 8, color: '#e3e5e4', letterSpacing: 2 }}>K4NCUN0</span>
-        )}
+        {/* Left slot */}
+        <div style={{ display: 'flex', alignItems: 'center', minWidth: 70 }}>
+          {activeApp ? (
+            <button
+              onClick={() => setActiveApp(null)}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                fontFamily: "'Press Start 2P', monospace",
+                fontSize: 7, color: '#e3e5e4', padding: 0,
+              }}
+            >
+              ◀ HOME
+            </button>
+          ) : (
+            <span style={{ fontSize: 8, color: '#e3e5e4', letterSpacing: 2 }}>K4NCUN0</span>
+          )}
+        </div>
+
+        {/* Center: app label (absolute so it doesn't shift other slots) */}
         {activeApp && (
-          <span style={{ fontSize: 7, color: '#c8cac9', letterSpacing: 1 }}>
+          <span style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            fontSize: 7, color: '#c8cac9', letterSpacing: 1,
+            whiteSpace: 'nowrap', pointerEvents: 'none',
+          }}>
             {current?.label}
           </span>
         )}
+
+        {/* Right slot */}
         <span style={{ fontSize: 8, color: '#e3e5e4', letterSpacing: 1 }}>{time}</span>
       </div>
 
@@ -203,7 +218,9 @@ export default function MobileLayout() {
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: 14,
             }}>
-              {APPS.map(({ id, label, Icon, href }) => (
+              {APPS.map(({ id, label, Icon, href }) => {
+                const fillTile = id === 'line'
+                return (
                 <button
                   key={id}
                   onClick={() => {
@@ -228,8 +245,10 @@ export default function MobileLayout() {
                     boxShadow: '3px 3px 0 #000',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: '#e3e5e4',
+                    overflow: 'hidden',
+                    padding: fillTile ? 0 : undefined,
                   }}>
-                    <Icon size={28} />
+                    <Icon size={fillTile ? 54 : 28} />
                   </div>
                   <span style={{
                     fontFamily: "'Press Start 2P', monospace",
@@ -239,7 +258,8 @@ export default function MobileLayout() {
                     {label}
                   </span>
                 </button>
-              ))}
+                )
+              })}
             </div>
           </div>
 
