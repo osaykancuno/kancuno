@@ -2,11 +2,11 @@ import Image from 'next/image'
 
 export default function AboutWindow() {
   return (
-    <div className="flex gap-0 h-full">
-      {/* Left: NFT image panel */}
+    <div className="flex flex-col sm:flex-row gap-0 h-full">
+      {/* Left (or top on mobile): NFT image panel */}
       <div
-        className="flex-shrink-0 flex flex-col items-center justify-center gap-3 p-4"
-        style={{ background: '#48494b', minWidth: 160 }}
+        className="flex-shrink-0 flex flex-col items-center justify-center gap-3 p-4 w-full sm:w-auto sm:min-w-[160px]"
+        style={{ background: '#48494b' }}
       >
         <div style={{ border: '3px solid #e3e5e4', boxShadow: '4px 4px 0 #000' }}>
           <Image
