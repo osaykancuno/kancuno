@@ -22,8 +22,16 @@ export default function Window({ id, title, children, width = 480, height = 400 
   const isMax = win.isMaximized
 
   const posStyle = isMax
-    ? { left: 0, top: 0, width: '100vw', height: 'calc(100vh - 40px)' }
-    : { left: win.position.x, top: win.position.y, width, maxWidth: 'calc(100vw - 20px)', height: height + 28, maxHeight: 'calc(100vh - 60px)' }
+    ? { left: 0, top: 0, x: 0, y: 0, width: '100vw', height: 'calc(100vh - 40px)' }
+    : {
+        left: 0, top: 0,
+        x: win.position.x,
+        y: win.position.y,
+        width,
+        maxWidth: 'calc(100vw - 20px)',
+        height: height + 28,
+        maxHeight: 'calc(100vh - 60px)',
+      }
 
   return (
     <AnimatePresence>
@@ -34,6 +42,7 @@ export default function Window({ id, title, children, width = 480, height = 400 
           dragControls={dragControls}
           dragMomentum={false}
           dragListener={false}
+          dragElastic={0}
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.88 }}
