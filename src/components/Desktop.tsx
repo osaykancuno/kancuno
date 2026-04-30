@@ -11,7 +11,7 @@ import KhorafunWindow from './windows/KhorafunWindow'
 import ContactWindow from './windows/ContactWindow'
 import {
   IconProfile, IconWorks, IconNormies,
-  IconKhorafun, IconContact, IconLine,
+  IconKhorafun, IconContact, IconLine, IconCoffee,
 } from './PixelIcons'
 
 const ICONS = [
@@ -21,6 +21,7 @@ const ICONS = [
   { id: 'khorafun' as const, label: 'KHORAFUN',  Icon: IconKhorafun },
   { id: 'contact'  as const, label: 'CONTACT',   Icon: IconContact  },
   { id: 'line'     as const, label: 'ATB / LINE', Icon: IconLine,    href: 'https://line.kancuno.com/' },
+  { id: 'coffee'   as const, label: 'NEED A COFFEE?', Icon: IconCoffee, href: 'https://8362coffee.com/' },
 ]
 
 export default function Desktop() {
