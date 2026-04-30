@@ -255,6 +255,11 @@ export default function MobileLayout() {
                     fontFamily: "'Press Start 2P', monospace",
                     fontSize: 6, color: '#48494b',
                     textAlign: 'center', lineHeight: 1.9,
+                    minHeight: 26,
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    justifyContent: 'center',
+                    width: '100%',
                   }}>
                     {label}
                   </span>
