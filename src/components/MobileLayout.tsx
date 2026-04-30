@@ -7,7 +7,7 @@ import WorksWindow from './windows/WorksWindow'
 import NormiesWindow from './windows/NormiesWindow'
 import KhorafunWindow from './windows/KhorafunWindow'
 import ContactWindow from './windows/ContactWindow'
-import { IconProfile, IconWorks, IconNormies, IconKhorafun, IconContact, IconLine } from './PixelIcons'
+import { IconProfile, IconWorks, IconNormies, IconKhorafun, IconContact, IconLine, IconCoffee } from './PixelIcons'
 
 const STATIONS = [
   { name: 'LO-FI',   url: 'https://ice1.somafm.com/groovesalad-128-mp3'   },
@@ -32,6 +32,7 @@ const APPS: AppEntry[] = [
   { id: 'khorafun', label: 'KHORAFUN',   Icon: IconKhorafun, Component: KhorafunWindow},
   { id: 'contact',  label: 'CONTACT',    Icon: IconContact,  Component: ContactWindow },
   { id: 'line',     label: 'ATB / LINE', Icon: IconLine,     href: 'https://line.kancuno.com/' },
+  { id: 'coffee',   label: 'NEED A COFFEE?', Icon: IconCoffee, href: 'https://8362coffee.com/' },
 ]
 
 export default function MobileLayout() {

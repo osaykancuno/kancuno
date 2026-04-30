@@ -134,6 +134,14 @@ export default function Taskbar() {
               ATB / LINE
             </a>
             <a
+              href="https://8362coffee.com/" target="_blank" rel="noopener noreferrer"
+              className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
+              style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
+              onClick={() => setStartOpen(false)}
+            >
+              NEED A COFFEE?
+            </a>
+            <a
               href="https://x.com/OsayKancuno" target="_blank" rel="noopener noreferrer"
               className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
