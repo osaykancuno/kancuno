@@ -54,8 +54,11 @@ export default function DesktopIcon({ id, label, Icon, href }: DesktopIconProps)
           background: selected ? '#48494b' : 'transparent',
           padding: '1px 3px',
           textAlign: 'center',
-          display: 'block',
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
           width: '100%',
+          minHeight: 28,
           wordBreak: 'break-word',
           lineHeight: 1.7,
         }}
