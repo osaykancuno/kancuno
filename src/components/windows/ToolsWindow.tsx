@@ -14,6 +14,7 @@ const TOOLS: Tool[] = [
   { name: 'SUPER NORMIE',         tag: 'Platformer Game',   community: 'NORMIES', url: 'http://super-normie-production.up.railway.app',  desc: 'On-chain traits become real gameplay abilities.' },
   { name: 'VIDEO NORMIFIER',      tag: 'Video Editor',      community: 'NORMIES', url: 'http://video-normifier.vercel.app',              desc: 'Turn your videos (and REC) into pixel art.' },
   { name: 'NORMIE STICKER',       tag: 'AR + Stickers',     community: 'NORMIES', url: 'https://normie-sticker.vercel.app',              desc: 'View your Normie in AR, download stickers, share animated GIFs.' },
+  { name: 'THE NORMIES CITY',     tag: 'Pixel Metropolis',  community: 'NORMIES', url: 'https://the-normies-city.vercel.app/',           desc: 'Step inside a living pixel city built by and for The Normies.' },
   // BOOA
   { name: 'SKILL SYNERGY',        tag: 'Agent Matcher',     community: 'BOOA',    url: 'http://booa-skill-synergy.vercel.app',           desc: 'Find the right match: complementary skills of on-chain AI agents.' },
   { name: 'MOLTBOOA LAB',         tag: 'Agent Simulator',   community: 'BOOA',    url: 'http://moltbooa-lab.vercel.app',                 desc: 'Simulate, chat, battle, and export your BOOA to production.' },
