@@ -1,6 +1,6 @@
 const BOOA_TOOLS = [
-  { name: 'SKILL SYNERGY', tag: 'Agent Matcher',   url: 'http://booa-skill-synergy.vercel.app', desc: 'Find the right match: the complementary skills of on-chain AI agents.' },
   { name: 'MOLTBOOA LAB',  tag: 'Agent Simulator', url: 'http://moltbooa-lab.vercel.app',       desc: 'Your agent has a life now: simulate, chat, battle, and export your BOOA to production.' },
+  { name: 'SKILL SYNERGY', tag: 'Agent Matcher',   url: 'http://booa-skill-synergy.vercel.app', desc: 'Find the right match: the complementary skills of on-chain AI agents.' },
 ]
 
 export default function KhorafunWindow() {

@@ -1,11 +1,11 @@
 const NORMIE_TOOLS = [
-  { name: 'MESSAGE FROM NORMIES', tag: 'Community Wall',  url: 'https://messages-from-normies-production.up.railway.app/',  desc: 'Leave your mark, your message, your Normie.' },
-  { name: 'NORMSKY',              tag: 'GIF Generator',   url: 'http://normski-generator.vercel.app',           desc: 'Your Normie with a Banksy-style effect.' },
-  { name: 'NORMIEMAP',            tag: '3D Interactive Map', url: 'http://normie-map-production.up.railway.app', desc: 'Place your NFT, listen to music, chat live.' },
-  { name: 'SUPER NORMIE',         tag: 'Platformer Game', url: 'http://super-normie-production.up.railway.app', desc: 'On-chain traits become real gameplay abilities.' },
-  { name: 'VIDEO NORMIFIER',      tag: 'Video Editor',    url: 'http://video-normifier.vercel.app',             desc: 'Turn your videos (and REC) into pixel art.' },
-  { name: 'NORMIE STICKER',       tag: 'AR + Stickers',   url: 'https://normie-sticker.vercel.app',             desc: 'View your Normie in AR, download stickers, share animated GIFs.' },
   { name: 'THE NORMIES CITY',     tag: 'Pixel Metropolis',url: 'https://the-normies-city.vercel.app/',          desc: 'Step inside a living pixel city built by and for The Normies.' },
+  { name: 'NORMIE STICKER',       tag: 'AR + Stickers',   url: 'https://normie-sticker.vercel.app',             desc: 'View your Normie in AR, download stickers, share animated GIFs.' },
+  { name: 'VIDEO NORMIFIER',      tag: 'Video Editor',    url: 'http://video-normifier.vercel.app',             desc: 'Turn your videos (and REC) into pixel art.' },
+  { name: 'SUPER NORMIE',         tag: 'Platformer Game', url: 'http://super-normie-production.up.railway.app', desc: 'On-chain traits become real gameplay abilities.' },
+  { name: 'NORMIEMAP',            tag: '3D Interactive Map', url: 'http://normie-map-production.up.railway.app', desc: 'Place your NFT, listen to music, chat live.' },
+  { name: 'NORMSKY',              tag: 'GIF Generator',   url: 'http://normski-generator.vercel.app',           desc: 'Your Normie with a Banksy-style effect.' },
+  { name: 'MESSAGE FROM NORMIES', tag: 'Community Wall',  url: 'https://messages-from-normies-production.up.railway.app/',  desc: 'Leave your mark, your message, your Normie.' },
 ]
 
 export default function NormiesWindow() {
