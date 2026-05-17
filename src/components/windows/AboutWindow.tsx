@@ -32,24 +32,20 @@ export default function AboutWindow() {
           @osaykancuno
         </div>
 
+        {/* Bio */}
+        <div className="mb-4" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#48494b', lineHeight: 1.6 }}>
+          I make Web3 communities feel alive.
+          <br /><br />
+          On-chain traits → real experiences.
+          Games, tools, frameworks.
+        </div>
+
         {/* Personal quote */}
-        <div className="mb-4" style={{
+        <div className="mb-5" style={{
           fontFamily: "'VT323', monospace", fontSize: 17, color: '#48494b',
           borderLeft: '3px solid #48494b', paddingLeft: 10, lineHeight: 1.5, fontStyle: 'italic',
         }}>
           &ldquo;Culture belongs to the people who create it.&rdquo;
-        </div>
-
-        <div className="mb-5" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#48494b', lineHeight: 1.6 }}>
-          Community builder & Web3 creator.
-          <br /><br />
-          I build tools, games and experiences
-          for NFT communities — turning on-chain
-          traits into real interactions.
-          <br /><br />
-          6 tools for The Normies.
-          2 tools for Khôra / BOOA.
-          Free frameworks for fellow builders.
         </div>
 
         {/* Tags */}

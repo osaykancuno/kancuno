@@ -28,19 +28,25 @@ export default function NormiesWindow() {
       {/* Description */}
       <div className="pixel-border p-3 mb-4" style={{ background: '#ffffff' }}>
         <p style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#48494b', lineHeight: 1.5 }}>
-          The first fully customizable on-chain ERC-1155 NFT.
-          Each Normie is a 40×40 monochrome bitmap stored entirely
-          on the Ethereum blockchain — 64 traits, infinitely customizable,
-          100% community-driven.
+          10,000 fully on-chain, CC0 generative faces — humans, cats,
+          agents and aliens. Each Normie is a 40×40 monochrome bitmap
+          (1,600 pixels) packed into just 200 bytes of contract storage
+          on Ethereum.
+          <br /><br />
+          7 guaranteed traits + 3 optional rare traits per Normie.
+          Supply is <strong>deflationary</strong>: ~8,150 left, the rest
+          burned forever. 100% community-driven, builder-friendly.
         </p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-2 mb-4">
         {[
-          { label: 'STANDARD', value: 'ERC-1155' },
+          { label: 'STANDARD', value: 'ERC-721' },
+          { label: 'LICENSE',  value: 'CC0'      },
+          { label: 'MINTED',   value: '10,000'   },
+          { label: 'CURRENT',  value: '~8,150 *' },
           { label: 'SIZE',     value: '40×40 PX' },
-          { label: 'TRAITS',   value: '64+' },
           { label: 'CHAIN',    value: 'ETHEREUM' },
         ].map(s => (
           <div key={s.label} className="pixel-border p-2 text-center" style={{ background: '#ffffff' }}>
