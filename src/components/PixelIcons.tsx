@@ -133,20 +133,47 @@ export function IconCoffee({ size = 48 }: { size?: number }) {
 }
 
 export function IconLine({ size = 48 }: { size?: number }) {
+  const bannerFont = Math.max(5, Math.round(size * 0.09))
+  const bannerPadV = Math.max(1, Math.round(size * 0.035))
+  const bannerPadH = Math.max(2, Math.round(size * 0.05))
   return (
-    <img
-      src="/line.png"
-      alt="ATB / LINE"
-      width={size}
-      height={size}
-      style={{
-        imageRendering: 'pixelated',
-        display: 'block',
-        width: size,
-        height: size,
-        objectFit: 'cover',
-      }}
-    />
+    <div style={{ position: 'relative', width: size, height: size, overflow: 'hidden' }}>
+      <img
+        src="/NYC.png"
+        alt="Normies Yacht Club"
+        width={size}
+        height={size}
+        style={{
+          imageRendering: 'pixelated',
+          display: 'block',
+          width: size,
+          height: size,
+          objectFit: 'cover',
+        }}
+      />
+      <div
+        className="noinvert"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%) rotate(-22deg)',
+          background: '#d4af37',
+          color: '#000000',
+          fontFamily: "'Press Start 2P', monospace",
+          fontSize: bannerFont,
+          padding: `${bannerPadV}px ${bannerPadH}px`,
+          whiteSpace: 'nowrap',
+          border: '1px solid #000',
+          boxShadow: '1px 1px 0 #000',
+          letterSpacing: 0,
+          pointerEvents: 'none',
+          textAlign: 'center',
+        }}
+      >
+        COMING SOON
+      </div>
+    </div>
   )
 }
 
