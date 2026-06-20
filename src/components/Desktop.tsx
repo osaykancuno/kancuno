@@ -20,8 +20,8 @@ const ICONS = [
   { id: 'normies'  as const, label: 'NORMIES',   Icon: IconNormies  },
   { id: 'khorafun' as const, label: 'KHORAFUN',  Icon: IconKhorafun },
   { id: 'contact'  as const, label: 'CONTACT',   Icon: IconContact  },
-  { id: 'line'     as const, label: 'ATB / LINE', Icon: IconLine,    href: 'https://line.kancuno.com/' },
-  { id: 'coffee'   as const, label: 'NEED A COFFEE?', Icon: IconCoffee, href: 'https://8362coffee.com/' },
+  { id: 'coffee'   as const, label: 'NORMIES COFFEE',     Icon: IconCoffee, href: 'https://8362coffee.com/' },
+  { id: 'line'     as const, label: 'NORMIES YACHT CLUB', Icon: IconLine    },
 ]
 
 export default function Desktop() {

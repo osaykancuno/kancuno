@@ -124,7 +124,8 @@ html, body {
 html[data-theme="dark"] {
   filter: invert(1);
 }
-html[data-theme="dark"] img {
+html[data-theme="dark"] img,
+html[data-theme="dark"] .noinvert {
   filter: invert(1);
 }
 

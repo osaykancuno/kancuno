@@ -31,8 +31,8 @@ const APPS: AppEntry[] = [
   { id: 'normies',  label: 'NORMIES',    Icon: IconNormies,  Component: NormiesWindow },
   { id: 'khorafun', label: 'KHORAFUN',   Icon: IconKhorafun, Component: KhorafunWindow},
   { id: 'contact',  label: 'CONTACT',    Icon: IconContact,  Component: ContactWindow },
-  { id: 'line',     label: 'ATB / LINE', Icon: IconLine,     href: 'https://line.kancuno.com/' },
-  { id: 'coffee',   label: 'NEED A COFFEE?', Icon: IconCoffee, href: 'https://8362coffee.com/' },
+  { id: 'coffee',   label: 'NORMIES COFFEE',     Icon: IconCoffee, href: 'https://8362coffee.com/' },
+  { id: 'line',     label: 'NORMIES YACHT CLUB', Icon: IconLine    },
 ]
 
 export default function MobileLayout() {
@@ -219,20 +219,23 @@ export default function MobileLayout() {
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: 14,
             }}>
-              {APPS.map(({ id, label, Icon, href }) => {
+              {APPS.map(({ id, label, Icon, Component, href }) => {
                 const fillTile = id === 'line'
+                const isClickable = Boolean(href || Component)
                 return (
                 <button
                   key={id}
+                  disabled={!isClickable}
                   onClick={() => {
                     if (href) {
                       window.open(href, '_blank', 'noopener')
-                    } else {
+                    } else if (Component) {
                       setActiveApp(id)
                     }
                   }}
                   style={{
-                    background: 'none', border: 'none', cursor: 'pointer',
+                    background: 'none', border: 'none',
+                    cursor: isClickable ? 'pointer' : 'default',
                     display: 'flex', flexDirection: 'column',
                     alignItems: 'center', gap: 8,
                     padding: '8px 4px',
