@@ -1,6 +1,6 @@
 const NORMIE_TOOLS = [
   { name: 'AIR NORMIES',          tag: 'Gesture Suite',   url: 'https://air-normies.netlify.app/',              desc: 'Touchless app suite: point and pinch with your fingers to control Normies tools — no keyboard, no mouse.' },
-  { name: 'THE NORMIES CITY',     tag: 'Pixel Metropolis',url: 'https://the-normies-city.vercel.app/',          desc: 'Step inside a living pixel city built by and for The Normies.' },
+  { name: 'THE NORMIES CITY',     tag: '3D Cityscape',    url: 'https://the-normies-city.vercel.app/',          desc: 'Every Normie is a building in a 3D city — orbit from above, fly through, or drop into street view and walk.' },
   { name: 'NORMIE STICKER',       tag: 'AR + Stickers',   url: 'https://normie-sticker.vercel.app',             desc: 'View your Normie in AR, download stickers, share animated GIFs.' },
   { name: 'VIDEO NORMIFIER',      tag: 'Video Editor',    url: 'http://video-normifier.vercel.app',             desc: 'Turn your videos (and REC) into pixel art.' },
   { name: 'SUPER NORMIE',         tag: 'Platformer Game', url: 'http://super-normie-production.up.railway.app', desc: 'On-chain traits become real gameplay abilities.' },
