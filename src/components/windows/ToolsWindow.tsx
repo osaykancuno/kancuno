@@ -8,13 +8,13 @@ interface Tool {
 
 const TOOLS: Tool[] = [
   // Normies — newest first
+  { name: 'AIR NORMIES',          tag: 'Gesture Suite',     community: 'NORMIES', url: 'https://air-normies.netlify.app/',               desc: 'Touchless app suite: point and pinch with your fingers to control Normies tools — no keyboard, no mouse.' },
   { name: 'THE NORMIES CITY',     tag: 'Pixel Metropolis',  community: 'NORMIES', url: 'https://the-normies-city.vercel.app/',           desc: 'Step inside a living pixel city built by and for The Normies.' },
   { name: 'NORMIE STICKER',       tag: 'AR + Stickers',     community: 'NORMIES', url: 'https://normie-sticker.vercel.app',              desc: 'View your Normie in AR, download stickers, share animated GIFs.' },
   { name: 'VIDEO NORMIFIER',      tag: 'Video Editor',      community: 'NORMIES', url: 'http://video-normifier.vercel.app',              desc: 'Turn your videos (and REC) into pixel art.' },
   { name: 'SUPER NORMIE',         tag: 'Platformer Game',   community: 'NORMIES', url: 'http://super-normie-production.up.railway.app',  desc: 'On-chain traits become real gameplay abilities.' },
   { name: 'NORMIEMAP',            tag: '3D Map',            community: 'NORMIES', url: 'http://normie-map-production.up.railway.app',    desc: 'Place your NFT, listen to music, chat live.' },
   { name: 'NORMSKY',              tag: 'GIF Generator',     community: 'NORMIES', url: 'http://normski-generator.vercel.app',            desc: 'Your Normie with a Banksy-style effect.' },
-  { name: 'MESSAGE FROM NORMIES', tag: 'Community Wall',    community: 'NORMIES', url: 'https://messages-from-normies-production.up.railway.app/',  desc: 'Leave your mark, your message, your Normie.' },
   // BOOA — newest first
   { name: 'MOLTBOOA LAB',         tag: 'Agent Simulator',   community: 'BOOA',    url: 'http://moltbooa-lab.vercel.app',                 desc: 'Simulate, chat, battle, and export your BOOA to production.' },
   { name: 'SKILL SYNERGY',        tag: 'Agent Matcher',     community: 'BOOA',    url: 'http://booa-skill-synergy.vercel.app',           desc: 'Find the right match: complementary skills of on-chain AI agents.' },
