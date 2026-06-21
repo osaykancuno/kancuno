@@ -5,9 +5,8 @@ import Image from 'next/image'
 import AboutWindow from './windows/AboutWindow'
 import WorksWindow from './windows/WorksWindow'
 import NormiesWindow from './windows/NormiesWindow'
-import KhorafunWindow from './windows/KhorafunWindow'
 import ContactWindow from './windows/ContactWindow'
-import { IconProfile, IconWorks, IconNormies, IconKhorafun, IconContact, IconLine, IconCoffee } from './PixelIcons'
+import { IconProfile, IconWorks, IconNormies, IconContact, IconLine, IconCoffee } from './PixelIcons'
 
 const STATIONS = [
   { name: 'LO-FI',   url: 'https://ice1.somafm.com/groovesalad-128-mp3'   },
@@ -29,7 +28,6 @@ const APPS: AppEntry[] = [
   { id: 'about',    label: 'PROFILE',    Icon: IconProfile,  Component: AboutWindow   },
   { id: 'works',    label: 'WORKS',      Icon: IconWorks,    Component: WorksWindow   },
   { id: 'normies',  label: 'NORMIES',    Icon: IconNormies,  Component: NormiesWindow },
-  { id: 'khorafun', label: 'KHORAFUN',   Icon: IconKhorafun, Component: KhorafunWindow},
   { id: 'contact',  label: 'CONTACT',    Icon: IconContact,  Component: ContactWindow },
   { id: 'coffee',   label: 'NORMIES COFFEE',     Icon: IconCoffee, href: 'https://8362coffee.com/' },
   { id: 'line',     label: 'NORMIES YACHT CLUB', Icon: IconLine    },

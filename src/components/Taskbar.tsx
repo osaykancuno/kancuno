@@ -112,7 +112,6 @@ export default function Taskbar() {
               { id: 'about'    as const, label: 'PROFILE'  },
               { id: 'works'    as const, label: 'WORKS'    },
               { id: 'normies'  as const, label: 'NORMIES'  },
-              { id: 'khorafun' as const, label: 'KHORAFUN' },
               { id: 'contact'  as const, label: 'CONTACT'  },
             ].map(item => (
               <button

@@ -7,18 +7,16 @@ import Window from './Window'
 import AboutWindow from './windows/AboutWindow'
 import WorksWindow from './windows/WorksWindow'
 import NormiesWindow from './windows/NormiesWindow'
-import KhorafunWindow from './windows/KhorafunWindow'
 import ContactWindow from './windows/ContactWindow'
 import {
   IconProfile, IconWorks, IconNormies,
-  IconKhorafun, IconContact, IconLine, IconCoffee,
+  IconContact, IconLine, IconCoffee,
 } from './PixelIcons'
 
 const ICONS = [
   { id: 'about'    as const, label: 'PROFILE',   Icon: IconProfile  },
   { id: 'works'    as const, label: 'WORKS',     Icon: IconWorks    },
   { id: 'normies'  as const, label: 'NORMIES',   Icon: IconNormies  },
-  { id: 'khorafun' as const, label: 'KHORAFUN',  Icon: IconKhorafun },
   { id: 'contact'  as const, label: 'CONTACT',   Icon: IconContact  },
   { id: 'coffee'   as const, label: 'NORMIES COFFEE',     Icon: IconCoffee, href: 'https://8362coffee.com/' },
   { id: 'line'     as const, label: 'NORMIES YACHT CLUB', Icon: IconLine    },
@@ -119,9 +117,8 @@ export default function Desktop() {
 
       {/* Static windows */}
       <Window id="about"    title="PROFILE"   width={540} height={320}><AboutWindow /></Window>
-      <Window id="works"    title="WORKS"     width={480} height={420}><WorksWindow /></Window>
+      <Window id="works"    title="WORKS"     width={500} height={520}><WorksWindow /></Window>
       <Window id="normies"  title="NORMIES"   width={460} height={480}><NormiesWindow /></Window>
-      <Window id="khorafun" title="KHORAFUN"  width={460} height={460}><KhorafunWindow /></Window>
       <Window id="contact"  title="CONTACT"   width={380} height={320}><ContactWindow /></Window>
 
       <Taskbar />
