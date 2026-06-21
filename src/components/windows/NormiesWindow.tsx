@@ -1,11 +1,11 @@
 const NORMIE_TOOLS = [
-  { name: 'AIR NORMIES',          tag: 'Gesture Suite',   url: 'https://air-normies.netlify.app/',              desc: 'Touchless app suite: point and pinch with your fingers to control Normies tools — no keyboard, no mouse.' },
-  { name: 'THE NORMIES CITY',     tag: '3D Cityscape',    url: 'https://the-normies-city.vercel.app/',          desc: 'Every Normie is a building in a 3D city — orbit from above, fly through, or drop into street view and walk.' },
-  { name: 'NORMIE STICKER',       tag: 'AR + Stickers',   url: 'https://normie-sticker.vercel.app',             desc: 'View your Normie in AR, download stickers, share animated GIFs.' },
-  { name: 'VIDEO NORMIFIER',      tag: 'Video Editor',    url: 'http://video-normifier.vercel.app',             desc: 'Turn your videos (and REC) into pixel art.' },
-  { name: 'SUPER NORMIE',         tag: 'Platformer Game', url: 'http://super-normie-production.up.railway.app', desc: 'On-chain traits become real gameplay abilities.' },
-  { name: 'NORMIEMAP',            tag: '3D Interactive Map', url: 'http://normie-map-production.up.railway.app', desc: 'Place your NFT, listen to music, chat live.' },
-  { name: 'NORMSKY',              tag: 'GIF Generator',   url: 'http://normski-generator.vercel.app',           desc: 'Your Normie with a Banksy-style effect.' },
+  { name: 'AIR NORMIES',          tag: 'Gesture Suite',     url: 'https://air-normies.netlify.app/',              desc: 'Touchless app suite: point and pinch with your fingers to control Normies tools — no keyboard, no mouse.' },
+  { name: 'THE NORMIES CITY',     tag: '3D Cityscape',      url: 'https://the-normies-city.vercel.app/',          desc: 'Every Normie is a building in a 3D city — orbit from above, fly through, or drop into street view and walk.' },
+  { name: 'NORMIE STICKER',       tag: 'AR Studio',         url: 'https://normie-sticker.vercel.app',             desc: 'See your Normie in AR through your camera, pose it in the real world and export stickers or animated GIFs to share.' },
+  { name: 'VIDEO NORMIFIER',      tag: 'Video → Pixel',     url: 'http://video-normifier.vercel.app',             desc: 'Upload a clip or record from your camera and turn it into pixel art. Pick aspect ratio, color mode, resolution and frame rate, then download.' },
+  { name: 'SUPER NORMIE',         tag: 'Platformer',        url: 'http://super-normie-production.up.railway.app', desc: 'Run, jump and stomp enemies in a community platformer. Daily challenges, multiplayer mode and a global leaderboard.' },
+  { name: 'NORMIEMAP',            tag: '3D Globe + Chat',   url: 'http://normie-map-production.up.railway.app',   desc: 'Pin your Normie on a 3D globe as resident or traveler, link your X, chat in Normchat and watch the worldwide holder heatmap.' },
+  { name: 'NORMSKY',              tag: 'Street Art Frames', url: 'http://normski-generator.vercel.app',           desc: 'Type a Token ID and frame your Normie on a concrete, brick or plaster wall. Export still images or animated GIFs at any resolution.' },
 ]
 
 export default function NormiesWindow() {
