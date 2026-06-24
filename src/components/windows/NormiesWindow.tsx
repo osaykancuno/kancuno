@@ -1,4 +1,5 @@
 const NORMIE_TOOLS = [
+  { name: 'NORMIES UNIVERSITY',   tag: 'Agent Academy',     url: 'https://normie-university.vercel.app/',         desc: 'Enroll your Normie as a learning agent: buy skill modules in USDC and earn on-chain soulbound credentials that build a composable reputation other protocols can read.' },
   { name: 'AIR NORMIES',          tag: 'Gesture Suite',     url: 'https://air-normies.netlify.app/',              desc: 'Touchless app suite: point and pinch with your fingers to control Normies tools — no keyboard, no mouse.' },
   { name: 'THE NORMIES CITY',     tag: '3D Cityscape',      url: 'https://the-normies-city.vercel.app/',          desc: 'Every Normie is a building in a 3D city — orbit from above, fly through, or drop into street view and walk.' },
   { name: 'NORMIE STICKER',       tag: 'AR Studio',         url: 'https://normie-sticker.vercel.app',             desc: 'See your Normie in AR through your camera, pose it in the real world and export stickers or animated GIFs to share.' },
