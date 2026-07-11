@@ -133,9 +133,9 @@ export function IconCoffee({ size = 48 }: { size?: number }) {
 }
 
 export function IconLine({ size = 48 }: { size?: number }) {
-  const bannerFont = Math.max(5, Math.round(size * 0.09))
-  const bannerPadV = Math.max(1, Math.round(size * 0.035))
-  const bannerPadH = Math.max(2, Math.round(size * 0.05))
+  const bannerFont = Math.max(6, Math.round(size * 0.13))
+  const bannerPadV = Math.max(1, Math.round(size * 0.04))
+  const bannerPadH = Math.max(3, Math.round(size * 0.08))
   return (
     <div style={{ position: 'relative', width: size, height: size, overflow: 'hidden' }}>
       <img
@@ -171,7 +171,7 @@ export function IconLine({ size = 48 }: { size?: number }) {
           textAlign: 'center',
         }}
       >
-        COMING SOON
+        PREVIEW
       </div>
     </div>
   )

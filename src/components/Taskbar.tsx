@@ -124,27 +124,27 @@ export default function Taskbar() {
               </button>
             ))}
             <div style={{ borderTop: '1px solid #48494b', margin: '2px 0' }} />
-            <div
-              className="w-full text-left px-3 py-2 block"
+            <a
+              href="https://normies-yacht-club.netlify.app/" target="_blank" rel="noopener noreferrer"
+              className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
               style={{
                 fontFamily: "'Press Start 2P', monospace",
                 fontSize: 8,
-                color: '#9a9c9b',
-                cursor: 'default',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 gap: 6,
               }}
-              title="Coming Soon"
+              title="Preview build"
+              onClick={() => setStartOpen(false)}
             >
               <span>NORMIES YACHT CLUB</span>
               <span style={{
                 background: '#d4af37', color: '#000',
                 fontSize: 6, padding: '1px 4px',
                 border: '1px solid #000', letterSpacing: 1,
-              }}>SOON</span>
-            </div>
+              }}>PREVIEW</span>
+            </a>
             <a
               href="https://8362coffee.com/" target="_blank" rel="noopener noreferrer"
               className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"

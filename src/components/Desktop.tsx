@@ -19,7 +19,7 @@ const ICONS = [
   { id: 'normies'  as const, label: 'NORMIES',   Icon: IconNormies  },
   { id: 'contact'  as const, label: 'CONTACT',   Icon: IconContact  },
   { id: 'coffee'   as const, label: 'NORMIES COFFEE',     Icon: IconCoffee, href: 'https://8362coffee.com/' },
-  { id: 'line'     as const, label: 'NORMIES YACHT CLUB', Icon: IconLine    },
+  { id: 'line'     as const, label: 'NORMIES YACHT CLUB', Icon: IconLine, href: 'https://normies-yacht-club.netlify.app/' },
 ]
 
 export default function Desktop() {

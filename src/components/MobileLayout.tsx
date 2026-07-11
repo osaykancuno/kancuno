@@ -30,7 +30,7 @@ const APPS: AppEntry[] = [
   { id: 'normies',  label: 'NORMIES',    Icon: IconNormies,  Component: NormiesWindow },
   { id: 'contact',  label: 'CONTACT',    Icon: IconContact,  Component: ContactWindow },
   { id: 'coffee',   label: 'NORMIES COFFEE',     Icon: IconCoffee, href: 'https://8362coffee.com/' },
-  { id: 'line',     label: 'NORMIES YACHT CLUB', Icon: IconLine    },
+  { id: 'line',     label: 'NORMIES YACHT CLUB', Icon: IconLine,  href: 'https://normies-yacht-club.netlify.app/' },
 ]
 
 export default function MobileLayout() {
