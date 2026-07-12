@@ -127,23 +127,10 @@ export default function Taskbar() {
             <a
               href="https://normiesyachtclub.com/" target="_blank" rel="noopener noreferrer"
               className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
-              style={{
-                fontFamily: "'Press Start 2P', monospace",
-                fontSize: 8,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: 6,
-              }}
-              title="Preview build"
+              style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
               onClick={() => setStartOpen(false)}
             >
-              <span>NORMIES YACHT CLUB</span>
-              <span style={{
-                background: '#d4af37', color: '#000',
-                fontSize: 6, padding: '1px 4px',
-                border: '1px solid #000', letterSpacing: 1,
-              }}>PREVIEW</span>
+              NORMIES YACHT CLUB
             </a>
             <a
               href="https://8362coffee.com/" target="_blank" rel="noopener noreferrer"
