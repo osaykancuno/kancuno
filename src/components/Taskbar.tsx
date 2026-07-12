@@ -125,7 +125,7 @@ export default function Taskbar() {
             ))}
             <div style={{ borderTop: '1px solid #48494b', margin: '2px 0' }} />
             <a
-              href="https://normies-yacht-club.netlify.app/" target="_blank" rel="noopener noreferrer"
+              href="https://normiesyachtclub.com/" target="_blank" rel="noopener noreferrer"
               className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
               style={{
                 fontFamily: "'Press Start 2P', monospace",
