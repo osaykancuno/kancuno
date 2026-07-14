@@ -43,11 +43,6 @@ export default function AboutWindow() {
         {/* Bio */}
         <div className="mb-4" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#48494b', lineHeight: 1.6 }}>
           We will change the world one pixel at a time.
-          <br /><br />
-          Eight apps shipped for The Normies, two for
-          Kh&ocirc;ra / BOOA, plus a free framework library
-          for fellow builders. Everything you see here
-          started as an on-chain trait.
         </div>
 
         {/* Personal quote */}
