@@ -18,7 +18,7 @@ const ICONS = [
   { id: 'works'    as const, label: 'WORKS',     Icon: IconWorks    },
   { id: 'normies'  as const, label: 'NORMIES',   Icon: IconNormies  },
   { id: 'contact'  as const, label: 'CONTACT',   Icon: IconContact  },
-  { id: 'coffee'   as const, label: 'NORMIES COFFEE',     Icon: IconCoffee, href: 'https://8362coffee.com/' },
+  { id: 'coffee'   as const, label: '8362 COFFEE',        Icon: IconCoffee, href: 'https://8362coffee.com/' },
   { id: 'line'     as const, label: 'NORMIES YACHT CLUB', Icon: IconLine, href: 'https://normiesyachtclub.com/' },
 ]
 
@@ -103,7 +103,7 @@ export default function Desktop() {
             fontSize: 7, color: '#c8cac9', textAlign: 'right',
             marginTop: 10, lineHeight: 2.2,
           }}>
-            BUILDER<br />NORMIES COMMUNITY<br />BOOA HOLDER
+            BUILDER<br />NORMIES COMMUNITY<br />OPEN SOURCE
           </div>
           <div className="mt-auto" style={{
             fontFamily: "'Press Start 2P', monospace",
