@@ -103,7 +103,7 @@ export default function Desktop() {
             fontSize: 7, color: '#c8cac9', textAlign: 'right',
             marginTop: 10, lineHeight: 2.2,
           }}>
-            BUILDER<br />NORMIES COMMUNITY<br />OPEN SOURCE
+            VIBECODER<br />NORMIES COMMUNITY<br />THE100
           </div>
           <div className="mt-auto" style={{
             fontFamily: "'Press Start 2P', monospace",
