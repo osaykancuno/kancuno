@@ -9,6 +9,14 @@ interface WorkItem {
 
 const WORKS: WorkItem[] = [
   {
+    name: 'NORMIES YACHT CLUB',
+    type: 'NFT COLLECTION',
+    desc: 'Every yacht is born from a burned Normie. A deflationary collection paired with a private marina: explore the harbour, chat in The Lounge, and earn Anchor points.',
+    url: 'https://normiesyachtclub.com/',
+    status: 'LIVE',
+    cta: 'ENTER THE MARINA',
+  },
+  {
     name: 'WE ARE ALL NORMIES',
     type: 'TRIBUTE',
     desc: 'A tribute NFT collection celebrating The Normies community. A collaborative 69x69 canvas.',
@@ -23,14 +31,6 @@ const WORKS: WorkItem[] = [
     url: 'https://kancuno.notion.site/THE-FRAMEWORK-LIBRARY-2e54fed9de0b80dcb5e3df60fb00432c',
     status: 'LIVE',
     cta: 'OPEN FRAMEWORK',
-  },
-  {
-    name: 'NORMIES YACHT CLUB',
-    type: 'NFT COLLECTION',
-    desc: 'Every yacht is born from a burned Normie. A deflationary collection paired with a private marina: explore the harbour, chat in The Lounge, and earn Anchor points.',
-    url: 'https://normiesyachtclub.com/',
-    status: 'LIVE',
-    cta: 'ENTER THE MARINA',
   },
 ]
 
@@ -119,33 +119,6 @@ export default function WorksWindow() {
               @khorafun — khora.fun
             </div>
           </div>
-        </div>
-
-        {/* Description */}
-        <div className="pixel-border p-3 mb-4" style={{ background: '#ffffff' }}>
-          <p style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: '#48494b', lineHeight: 1.5 }}>
-            Khôra is an open-source studio building tools for autonomous agents,
-            generative NFTs, and on-chain games.
-            <br /><br />
-            <strong>BOOA</strong> (Born On-chain Owned Agents) is their flagship collection:
-            3,333 AI agent identities fully stored on Shape Network as 64×64 pixel art.
-            Each agent has unique Skill, Domain, Meme Core and more — all on-chain.
-          </p>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 gap-2 mb-4">
-          {[
-            { label: 'SUPPLY',  value: '3,333' },
-            { label: 'SIZE',    value: '64×64 PX' },
-            { label: 'SKILLS',  value: '73 VARS' },
-            { label: 'CHAIN',   value: 'SHAPE L2' },
-          ].map(s => (
-            <div key={s.label} className="pixel-border p-2 text-center" style={{ background: '#ffffff' }}>
-              <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 7, color: '#9a9c9b', marginBottom: 4 }}>{s.label}</div>
-              <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 10, color: '#48494b' }}>{s.value}</div>
-            </div>
-          ))}
         </div>
 
         {/* Official links */}
