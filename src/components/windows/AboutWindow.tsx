@@ -32,15 +32,22 @@ export default function AboutWindow() {
           @osaykancuno
         </div>
 
+        {/* Tagline */}
+        <div className="mb-4" style={{
+          fontFamily: "'Press Start 2P', monospace", fontSize: 8,
+          color: '#48494b', lineHeight: 2,
+        }}>
+          ON-CHAIN VIBECODING<br />&rarr; OFF-CHAIN EXPERIENCES
+        </div>
+
         {/* Bio */}
         <div className="mb-4" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#48494b', lineHeight: 1.6 }}>
-          I make Web3 communities feel alive.
+          We will change the world one pixel at a time.
           <br /><br />
-          On-chain traits become real experiences:
-          games, tools, 3D worlds, agent academies.
-          Eight apps shipped for The Normies,
-          two for Kh&ocirc;ra / BOOA, plus a free
-          framework library for fellow builders.
+          Eight apps shipped for The Normies, two for
+          Kh&ocirc;ra / BOOA, plus a free framework library
+          for fellow builders. Everything you see here
+          started as an on-chain trait.
         </div>
 
         {/* Personal quote */}
@@ -53,7 +60,7 @@ export default function AboutWindow() {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-5">
-          {['NORMIE #8362', 'BUILDER', 'WEB3', 'OPEN SOURCE'].map(tag => (
+          {['NORMIE #8362', 'THE100', 'BUILDER', 'WEB3'].map(tag => (
             <span key={tag} style={{
               fontFamily: "'Press Start 2P', monospace", fontSize: 7,
               padding: '3px 6px', background: '#48494b', color: '#e3e5e4', border: '1px solid #000',
