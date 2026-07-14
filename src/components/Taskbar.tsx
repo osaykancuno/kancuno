@@ -138,7 +138,7 @@ export default function Taskbar() {
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
               onClick={() => setStartOpen(false)}
             >
-              NORMIES COFFEE
+              8362 COFFEE
             </a>
             <a
               href="https://x.com/OsayKancuno" target="_blank" rel="noopener noreferrer"

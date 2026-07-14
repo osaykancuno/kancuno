@@ -25,12 +25,12 @@ const WORKS: WorkItem[] = [
     cta: 'OPEN FRAMEWORK',
   },
   {
-    name: 'VIRALLIA',
-    type: 'SERVICE',
-    desc: 'AI consultancy for professional firms or small and medium-sized enterprises — Italian market.',
-    url: 'https://virallia.com/',
+    name: 'NORMIES YACHT CLUB',
+    type: 'NFT COLLECTION',
+    desc: 'Every yacht is born from a burned Normie. A deflationary collection paired with a private marina: explore the harbour, chat in The Lounge, and earn Anchor points.',
+    url: 'https://normiesyachtclub.com/',
     status: 'LIVE',
-    cta: 'VISIT SITE',
+    cta: 'ENTER THE MARINA',
   },
 ]
 

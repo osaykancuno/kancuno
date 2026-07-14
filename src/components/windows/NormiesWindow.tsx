@@ -32,11 +32,13 @@ export default function NormiesWindow() {
           10,000 fully on-chain, CC0 generative faces — humans, cats,
           agents and aliens. Each Normie is a 40×40 monochrome bitmap
           (1,600 pixels) packed into just 200 bytes of contract storage
-          on Ethereum.
+          on Ethereum. Nothing lives on a server: burn the website and
+          the art is still there.
           <br /><br />
-          7 guaranteed traits + 3 optional rare traits per Normie.
-          Supply is <strong>deflationary</strong>: ~8,150 left, the rest
-          burned forever. 100% community-driven, builder-friendly.
+          7 guaranteed traits + 3 optional rare ones per Normie.
+          Supply is <strong>deflationary</strong> — every burn is permanent,
+          and burned Normies are what mint the Yacht Club fleet.
+          CC0 means anyone can build on them. That is what this desktop is.
         </p>
       </div>
 
@@ -46,7 +48,7 @@ export default function NormiesWindow() {
           { label: 'STANDARD', value: 'ERC-721' },
           { label: 'LICENSE',  value: 'CC0'      },
           { label: 'MINTED',   value: '10,000'   },
-          { label: 'CURRENT',  value: '~8,150 *' },
+          { label: 'SUPPLY',   value: '7,359 *'  },
           { label: 'SIZE',     value: '40×40 PX' },
           { label: 'CHAIN',    value: 'ETHEREUM' },
         ].map(s => (
@@ -55,6 +57,11 @@ export default function NormiesWindow() {
             <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 10, color: '#48494b' }}>{s.value}</div>
           </div>
         ))}
+      </div>
+
+      {/* Supply footnote */}
+      <div className="mb-4" style={{ fontFamily: "'VT323', monospace", fontSize: 15, color: '#9a9c9b', lineHeight: 1.4 }}>
+        * Supply shrinks with every burn — check OpenSea for the live count.
       </div>
 
       {/* Official links */}

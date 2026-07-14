@@ -29,7 +29,7 @@ const APPS: AppEntry[] = [
   { id: 'works',    label: 'WORKS',      Icon: IconWorks,    Component: WorksWindow   },
   { id: 'normies',  label: 'NORMIES',    Icon: IconNormies,  Component: NormiesWindow },
   { id: 'contact',  label: 'CONTACT',    Icon: IconContact,  Component: ContactWindow },
-  { id: 'coffee',   label: 'NORMIES COFFEE',     Icon: IconCoffee, href: 'https://8362coffee.com/' },
+  { id: 'coffee',   label: '8362 COFFEE',        Icon: IconCoffee, href: 'https://8362coffee.com/' },
   { id: 'line',     label: 'NORMIES YACHT CLUB', Icon: IconLine,  href: 'https://normiesyachtclub.com/' },
 ]
 
