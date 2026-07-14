@@ -54,7 +54,7 @@ export default function AboutWindow() {
         </div>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-5">
+        <div className="flex flex-wrap gap-2 mb-4">
           {['NORMIE #8362', 'THE100', 'BUILDER', 'WEB3'].map(tag => (
             <span key={tag} style={{
               fontFamily: "'Press Start 2P', monospace", fontSize: 7,
@@ -62,6 +62,35 @@ export default function AboutWindow() {
             }}>
               {tag}
             </span>
+          ))}
+        </div>
+
+        {/* Founder of */}
+        <div style={{
+          fontFamily: "'Press Start 2P', monospace", fontSize: 6,
+          color: '#9a9c9b', letterSpacing: 2, marginBottom: 8,
+        }}>
+          FOUNDER OF
+        </div>
+        <div className="flex flex-wrap gap-2 mb-5">
+          {[
+            { label: 'NORMIES YACHT CLUB', href: 'https://normiesyachtclub.com/' },
+            { label: '8362 COFFEE',        href: 'https://8362coffee.com/' },
+          ].map(t => (
+            <a
+              key={t.label}
+              href={t.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "'Press Start 2P', monospace", fontSize: 7,
+                padding: '3px 6px', background: '#ffffff', color: '#48494b',
+                border: '1px solid #000', boxShadow: '2px 2px 0 #48494b',
+                textDecoration: 'none',
+              }}
+            >
+              {t.label}
+            </a>
           ))}
         </div>
 
