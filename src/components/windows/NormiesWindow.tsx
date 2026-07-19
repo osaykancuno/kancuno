@@ -26,43 +26,26 @@ export default function NormiesWindow() {
         </div>
       </div>
 
-      {/* Description */}
-      <div className="pixel-border p-3 mb-4" style={{ background: '#ffffff' }}>
-        <p style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#48494b', lineHeight: 1.5 }}>
-          10,000 fully on-chain, CC0 generative faces — humans, cats,
-          agents and aliens. Each Normie is a 40×40 monochrome bitmap
-          (1,600 pixels) packed into just 200 bytes of contract storage
-          on Ethereum. Nothing lives on a server: burn the website and
-          the art is still there.
-          <br /><br />
-          7 guaranteed traits + 3 optional rare ones per Normie.
-          Supply is <strong>deflationary</strong> — every burn is permanent,
-          and burned Normies are what mint the Yacht Club fleet.
-          CC0 means anyone can build on them. That is what this desktop is.
-        </p>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-2 gap-2 mb-4">
-        {[
-          { label: 'STANDARD', value: 'ERC-721' },
-          { label: 'LICENSE',  value: 'CC0'      },
-          { label: 'MINTED',   value: '10,000'   },
-          { label: 'SUPPLY',   value: '7,359 *'  },
-          { label: 'SIZE',     value: '40×40 PX' },
-          { label: 'CHAIN',    value: 'ETHEREUM' },
-        ].map(s => (
-          <div key={s.label} className="pixel-border p-2 text-center" style={{ background: '#ffffff' }}>
-            <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 7, color: '#9a9c9b', marginBottom: 4 }}>{s.label}</div>
-            <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 10, color: '#48494b' }}>{s.value}</div>
+      {/* Normifesto */}
+      <a
+        href="https://normifesto.netlify.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="pixel-border block mb-6"
+        style={{ background: '#48494b', textDecoration: 'none' }}
+      >
+        <div className="p-4 text-center">
+          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 14, color: '#e3e5e4', letterSpacing: 3, lineHeight: 1.6 }}>
+            THE NORMIFESTO
           </div>
-        ))}
-      </div>
-
-      {/* Supply footnote */}
-      <div className="mb-4" style={{ fontFamily: "'VT323', monospace", fontSize: 15, color: '#9a9c9b', lineHeight: 1.4 }}>
-        * Supply shrinks with every burn — check OpenSea for the live count.
-      </div>
+          <div style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: '#c8cac9', marginTop: 8, lineHeight: 1.4 }}>
+            What The Normies stand for, on-chain and forever.
+          </div>
+          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#e3e5e4', marginTop: 12 }}>
+            ▶ READ IT
+          </div>
+        </div>
+      </a>
 
       {/* Official links */}
       <div className="flex flex-wrap gap-2 mb-6">
