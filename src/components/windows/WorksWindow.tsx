@@ -9,14 +9,6 @@ interface WorkItem {
 
 const WORKS: WorkItem[] = [
   {
-    name: 'NORMIES YACHT CLUB',
-    type: 'NFT COLLECTION',
-    desc: 'Every yacht is born from a burned Normie. A deflationary collection paired with a private marina: explore the harbour, chat in The Lounge, and earn Anchor points.',
-    url: 'https://normiesyachtclub.com/',
-    status: 'LIVE',
-    cta: 'ENTER THE MARINA',
-  },
-  {
     name: 'WE ARE ALL NORMIES',
     type: 'TRIBUTE',
     desc: 'A tribute NFT collection celebrating The Normies community. A collaborative 69x69 canvas.',
@@ -53,7 +45,7 @@ export default function WorksWindow() {
         WORKS
       </div>
       <div style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: '#9a9c9b', marginBottom: 20 }}>
-        Collections, frameworks &amp; services — by @osaykancuno
+        Built for the communities — by @osaykancuno
       </div>
 
       {/* Personal works */}
