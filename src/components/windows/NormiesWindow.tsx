@@ -47,21 +47,6 @@ export default function NormiesWindow() {
         </div>
       </a>
 
-      {/* Official links */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {[
-          { label: 'WEBSITE', href: 'https://normies.art' },
-          { label: 'OPENSEA', href: 'https://opensea.io/collection/normies' },
-          { label: 'TWITTER', href: 'https://twitter.com/normiesART' },
-          { label: 'RARITY',  href: 'https://rarity.normies.art/' },
-        ].map(l => (
-          <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-            className="pixel-btn" style={{ fontSize: 7, textDecoration: 'none' }}>
-            ▶ {l.label}
-          </a>
-        ))}
-      </div>
-
       <div style={{ borderTop: '2px solid #48494b', marginBottom: 16 }} />
 
       {/* Tools */}
