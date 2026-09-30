@@ -94,7 +94,7 @@ export default function Taskbar() {
       }}
     >
       {/* Start button */}
-      <div className="relative">
+      <div className="relative flex" style={{ marginBottom: 2 }}>
         <button
           className="pixel-btn flex items-center gap-1"
           style={{ fontSize: 9, padding: '4px 8px' }}
