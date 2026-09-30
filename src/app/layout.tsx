@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   keywords: [
     'NEONFACES', 'neonfaces.xyz', 'NEONFACES founder', 'Osay Kancuno', 'K4NCUN0', 'Kancuno',
     'The Normies', 'THE100', 'Normies THE100', 'Normie #8362', 'Robinhood Chain', 'on-chain NFT',
-    'pixel art NFT', 'Normies Yacht Club', '8362 Coffee', 'vibecoder',
+    'pixel art NFT', 'Normies Yacht Club', '8362 Coffee',
   ],
   alternates: { canonical: '/' },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large' } },

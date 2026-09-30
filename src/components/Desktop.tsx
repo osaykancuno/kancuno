@@ -137,7 +137,7 @@ export default function Desktop() {
             fontSize: 7, color: 'var(--nf-mute)', textAlign: 'right',
             marginTop: 6, lineHeight: 2.2,
           }}>
-            THE100 MEMBER + HOLDER<br />THE NORMIES<br />VIBECODER
+            THE100 MEMBER + HOLDER<br />THE NORMIES
           </div>
           <div className="mt-auto" style={{
             fontFamily: "'Press Start 2P', monospace",

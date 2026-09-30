@@ -61,25 +61,6 @@ export default function ContactWindow() {
           </div>
           <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 10 }}>▶</span>
         </a>
-
-        {/* Calendly placeholder */}
-        <div
-          className="pixel-border p-4"
-          style={{ background: 'var(--nf-card)', opacity: 0.6 }}
-        >
-          <div className="flex items-center gap-3">
-            <span style={{ fontSize: 28, width: 36, textAlign: 'center', flexShrink: 0 }}>📅</span>
-            <div className="flex-1">
-              <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: 'var(--nf-ink)', marginBottom: 6 }}>
-                BOOK A CALL
-              </div>
-              <div style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: 'var(--nf-mute)' }}>
-                Calendly — coming soon
-              </div>
-            </div>
-            <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-soft)' }}>SOON</span>
-          </div>
-        </div>
       </div>
 
       <div className="mt-6 text-center" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: 'var(--nf-mute)' }}>
