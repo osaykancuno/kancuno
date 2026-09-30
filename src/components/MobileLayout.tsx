@@ -88,9 +88,11 @@ export default function MobileLayout() {
   const current = APPS.find(a => a.id === activeApp)
 
   return (
-    <div style={{
-      width: '100vw',
-      height: '100dvh',
+    // Pinned to the visible viewport: on Android the URL bar makes 100vh/100dvh
+    // unreliable, and a scrolling document drags the status bar and dock along.
+    <div className="nf-shell" style={{
+      position: 'fixed',
+      inset: 0,
       display: 'flex',
       flexDirection: 'column',
       background: 'var(--nf-bg)',
@@ -150,19 +152,19 @@ export default function MobileLayout() {
       {activeApp && current && current.Component ? (
 
         /* Open app: full-screen */
-        <div style={{ flex: 1, overflow: 'auto' }}>
+        <div style={{ flex: 1, overflow: 'auto', overscrollBehavior: 'contain' }}>
           <current.Component />
         </div>
 
       ) : (
 
         /* Home screen */
-        <div className="desktop-bg" style={{ flex: 1, overflow: 'auto' }}>
+        <div className="desktop-bg" style={{ flex: 1, overflow: 'auto', overscrollBehavior: 'contain' }}>
 
           {/* Hero strip */}
           <div style={{
             background: 'var(--nf-ink)',
-            padding: '18px 20px 16px',
+            padding: '12px 20px',
             display: 'flex',
             alignItems: 'center',
             gap: 16,
@@ -228,17 +230,17 @@ export default function MobileLayout() {
           </div>
 
           {/* App icon grid */}
-          <div style={{ padding: '22px 20px 16px' }}>
+          <div style={{ padding: '14px 20px 8px' }}>
             <div style={{
               fontFamily: "'Press Start 2P', monospace",
-              fontSize: 7, color: 'var(--nf-mute)', marginBottom: 18, letterSpacing: 2,
+              fontSize: 7, color: 'var(--nf-mute)', marginBottom: 10, letterSpacing: 2,
             }}>
               APPS
             </div>
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 14,
+              gap: '6px 14px',
             }}>
               {APPS.map(({ id, label, Icon, Component, href }) => {
                 const fillTile = id === 'neonfaces'
@@ -259,7 +261,7 @@ export default function MobileLayout() {
                     cursor: isClickable ? 'pointer' : 'default',
                     display: 'flex', flexDirection: 'column',
                     alignItems: 'center', gap: 8,
-                    padding: '8px 4px',
+                    padding: '4px',
                     WebkitTapHighlightColor: 'transparent',
                   }}
                 >
@@ -295,7 +297,7 @@ export default function MobileLayout() {
 
           {/* Hint */}
           <div style={{
-            textAlign: 'center', padding: '4px 0 20px',
+            textAlign: 'center', padding: '4px 0 12px',
             fontFamily: "'Press Start 2P', monospace",
             fontSize: 6, color: 'var(--nf-soft)', lineHeight: 2.4,
           }}>

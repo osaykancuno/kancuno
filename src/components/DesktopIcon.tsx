@@ -4,7 +4,7 @@ import { useState, ComponentType } from 'react'
 import { useWindowManager, WindowId } from './WindowManager'
 
 interface DesktopIconProps {
-  id: WindowId | 'twitter' | 'line' | 'coffee' | 'neonfaces'
+  id: WindowId | 'line' | 'coffee' | 'neonfaces'
   label: string
   Icon: ComponentType<{ size?: number }>
   href?: string
@@ -19,7 +19,7 @@ export default function DesktopIcon({ id, label, Icon, href }: DesktopIconProps)
   const handleDoubleClick = () => {
     if (href) {
       window.open(href, '_blank', 'noopener')
-    } else if (id !== 'twitter' && id !== 'line' && id !== 'coffee' && id !== 'neonfaces') {
+    } else {
       openWindow(id as WindowId)
     }
     setSelected(false)
