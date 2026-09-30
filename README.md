@@ -11,7 +11,7 @@ A fully interactive desktop environment in the browser:
 - Dark mode toggle (default) with localStorage persistence
 - NEONFACES neon palette (#CCFF00 on black) with a Normie → neon glitch intro on every visit
 - Pixel art aesthetic (Press Start 2P + VT323 fonts)
-- Tools and projects built for The Normies and Khôra/BOOA communities
+- Tools and projects built for The Normies and BOOA communities
 
 ## Stack
 
@@ -24,11 +24,12 @@ A fully interactive desktop environment in the browser:
 
 | App | Content |
 |-----|---------|
-| `PROFILE.EXE` | Bio and social links |
-| `WORKS.EXE` | NFT collections, frameworks, services |
-| `NORMIES.EXE` | The Normies community + 6 tools |
-| `KHORAFUN.EXE` | Khôra / BOOA community + 2 tools |
-| `CONTACT.EXE` | Contact and booking |
+| `NEONFACES` | Link to neonfaces.xyz (main project) |
+| `PROFILE.EXE` | Bio, founder of NEONFACES, THE100 member + holder |
+| `WORKS.EXE` | Personal works + tools built with BOOA (formerly Khôra) |
+| `NORMIES.EXE` | The Normies community, Normifesto + 8 tools |
+| `CONTACT.EXE` | X / Twitter and Telegram |
+| `8362 COFFEE` / `NORMIES YACHT CLUB` | External links |
 
 ## Local development
 
