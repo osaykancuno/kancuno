@@ -81,11 +81,6 @@ html, body {
   box-shadow: 4px 4px 0px var(--nf-edge);
 }
 
-.pixel-border-inset {
-  border: 2px solid var(--nf-ink);
-  box-shadow: inset 2px 2px 0px var(--nf-soft), inset -2px -2px 0px var(--nf-edge);
-}
-
 /* Pixel button */
 .pixel-btn {
   font-family: 'Press Start 2P', monospace;
@@ -171,8 +166,10 @@ html, body {
 
 /* ── Neon mutation ──────────────────────────────────────────────────────────
    Played once per visit: the page boots in the Normies palette, glitches,
-   and settles on NEONFACES. MutationIntro drives html[data-mutating]. */
-html[data-mutating] body > * {
+   and settles on NEONFACES. MutationIntro drives html[data-mutating].
+   Applied to the layout shells (not body > *) so the fixed mobile shell
+   keeps its viewport box while it jitters. */
+html[data-mutating] .nf-shell {
   animation: nf-jitter 0.16s steps(2, jump-none) infinite;
 }
 
@@ -244,10 +241,7 @@ html:not([data-palette="normie"]) .nf-normie-only {
   text-shadow: -2px 0 #ff2bd6, 2px 0 #00e5ff;
 }
 
-/* Mobile: allow scroll */
-@media (max-width: 768px) {
-  html, body {
-    overflow: auto;
-    height: auto;
-  }
+/* No page-level scroll or bounce: each layout scrolls inside its own panels */
+html, body {
+  overscroll-behavior: none;
 }

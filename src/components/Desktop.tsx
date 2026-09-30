@@ -27,7 +27,7 @@ export default function Desktop() {
   return (
     <div
       id="desktop-area"
-      className="desktop-bg"
+      className="desktop-bg nf-shell"
       style={{ width: '100vw', height: '100vh', position: 'relative', overflow: 'hidden', paddingBottom: 40 }}
     >
       <div className="flex h-full">
