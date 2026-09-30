@@ -9,12 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'normie-bg':    '#e3e5e4',
-        'normie-dark':  '#48494b',
-        'normie-white': '#ffffff',
-        'normie-black': '#000000',
-        'normie-gray':  '#c8cac9',
-        'normie-mid':   '#9a9c9b',
+        // Palette tokens live in globals.css (NEONFACES + Normies intro palette)
+        'nf-bg':   'var(--nf-bg)',
+        'nf-ink':  'var(--nf-ink)',
+        'nf-text': 'var(--nf-text)',
+        'nf-card': 'var(--nf-card)',
+        'nf-edge': 'var(--nf-edge)',
+        'nf-soft': 'var(--nf-soft)',
+        'nf-mute': 'var(--nf-mute)',
       },
       fontFamily: {
         pixel: ['"Press Start 2P"', 'monospace'],

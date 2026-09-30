@@ -11,16 +11,16 @@ const NORMIE_TOOLS = [
 
 export default function NormiesWindow() {
   return (
-    <div className="p-4 h-full overflow-auto" style={{ background: '#e3e5e4' }}>
+    <div className="p-4 h-full overflow-auto" style={{ background: 'var(--nf-bg)' }}>
 
       {/* Header */}
       <div className="w-full flex items-center justify-center mb-4"
-        style={{ background: '#48494b', padding: '16px 8px', border: '2px solid #000' }}>
+        style={{ background: 'var(--nf-ink)', padding: '16px 8px', border: '2px solid var(--nf-edge)' }}>
         <div className="text-center">
-          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 18, color: '#e3e5e4', letterSpacing: 4, lineHeight: 1.5 }}>
+          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 18, color: 'var(--nf-bg)', letterSpacing: 4, lineHeight: 1.5 }}>
             THE NORMIES
           </div>
-          <div style={{ fontFamily: "'VT323', monospace", fontSize: 14, color: '#c8cac9', marginTop: 4 }}>
+          <div style={{ fontFamily: "'VT323', monospace", fontSize: 14, color: 'var(--nf-soft)', marginTop: 4 }}>
             @normiesART
           </div>
         </div>
@@ -32,44 +32,44 @@ export default function NormiesWindow() {
         target="_blank"
         rel="noopener noreferrer"
         className="pixel-border block mb-6"
-        style={{ background: '#48494b', textDecoration: 'none' }}
+        style={{ background: 'var(--nf-ink)', textDecoration: 'none' }}
       >
         <div className="p-4 text-center">
-          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 14, color: '#e3e5e4', letterSpacing: 3, lineHeight: 1.6 }}>
+          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 14, color: 'var(--nf-bg)', letterSpacing: 3, lineHeight: 1.6 }}>
             THE NORMIFESTO
           </div>
-          <div style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: '#c8cac9', marginTop: 8, lineHeight: 1.4 }}>
+          <div style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: 'var(--nf-soft)', marginTop: 8, lineHeight: 1.4 }}>
             What The Normies stand for, on-chain and forever.
           </div>
-          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#e3e5e4', marginTop: 12 }}>
+          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-bg)', marginTop: 12 }}>
             ▶ READ IT
           </div>
         </div>
       </a>
 
-      <div style={{ borderTop: '2px solid #48494b', marginBottom: 16 }} />
+      <div style={{ borderTop: '2px solid var(--nf-ink)', marginBottom: 16 }} />
 
       {/* Tools */}
-      <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#48494b', marginBottom: 12, lineHeight: 2 }}>
+      <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-ink)', marginBottom: 12, lineHeight: 2 }}>
         TOOLS BUILT FOR THIS COMMUNITY
       </div>
 
       <div className="flex flex-col gap-3">
         {NORMIE_TOOLS.map(tool => (
-          <div key={tool.name} className="pixel-border p-3" style={{ background: '#ffffff' }}>
+          <div key={tool.name} className="pixel-border p-3" style={{ background: 'var(--nf-card)' }}>
             <div className="flex items-start justify-between gap-2 mb-1">
-              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#48494b' }}>
+              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-ink)' }}>
                 {tool.name}
               </span>
               <span style={{
                 fontFamily: "'Press Start 2P', monospace", fontSize: 6,
-                padding: '2px 4px', background: '#48494b', color: '#ffffff',
-                border: '1px solid #000', flexShrink: 0,
+                padding: '2px 4px', background: 'var(--nf-ink)', color: 'var(--nf-card)',
+                border: '1px solid var(--nf-edge)', flexShrink: 0,
               }}>
                 {tool.tag}
               </span>
             </div>
-            <p style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: '#48494b', marginBottom: 8, lineHeight: 1.3 }}>
+            <p style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: 'var(--nf-text)', marginBottom: 8, lineHeight: 1.3 }}>
               {tool.desc}
             </p>
             <a
@@ -85,10 +85,10 @@ export default function NormiesWindow() {
         ))}
       </div>
 
-      <div className="mt-4 pixel-border p-3" style={{ background: '#48494b' }}>
-        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#e3e5e4', marginBottom: 6 }}>MY NORMIE</div>
-        <div style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#c8cac9', lineHeight: 1.4 }}>
-          Normie #8362 — my on-chain PFP. Part of the community since day 1.
+      <div className="mt-4 pixel-border p-3" style={{ background: 'var(--nf-ink)' }}>
+        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-bg)', marginBottom: 6 }}>MY NORMIE</div>
+        <div style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: 'var(--nf-soft)', lineHeight: 1.4 }}>
+          Normie #8362: my on-chain PFP. THE100 member and holder, part of the community since day 1.
         </div>
       </div>
     </div>

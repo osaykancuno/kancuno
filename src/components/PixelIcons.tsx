@@ -172,3 +172,18 @@ export function IconWorks({ size = 48 }: { size?: number }) {
     </svg>
   )
 }
+
+// NEONFACES brand mark (neonfaces.xyz favicon): a staring neon eye on black.
+// Keeps its own colours so it reads the same in every theme and palette.
+export function IconNeonfaces({ size = 48 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shapeRendering="crispEdges" role="img" aria-label="NEONFACES">
+      <rect width="16" height="16" fill="#000000"/>
+      <path fill="#ccff00" d="M5 3h6v1h-6zM3 4h2v1h-2zM11 4h2v1h-2zM2 5h1v1h-1zM13 5h1v1h-1zM1 6h1v1h-1zM14 6h1v1h-1zM0 7h1v1h-1zM15 7h1v1h-1zM0 8h1v1h-1zM15 8h1v1h-1zM1 9h1v1h-1zM14 9h1v1h-1zM2 10h1v1h-1zM13 10h1v1h-1zM3 11h2v1h-2zM11 11h2v1h-2zM5 12h6v1h-6z"/>
+      <path fill="#94b21d" d="M5 4h6v1h-6zM3 5h3v1h-3zM10 5h3v1h-3zM2 6h3v1h-3zM11 6h3v1h-3zM1 7h3v1h-3zM12 7h3v1h-3zM1 8h3v1h-3zM12 8h3v1h-3zM2 9h3v1h-3zM11 9h3v1h-3zM3 10h3v1h-3zM10 10h3v1h-3zM5 11h6v1h-6z"/>
+      <path fill="#414d12" d="M6 5h1v1h-1zM9 5h1v1h-1zM5 6h1v1h-1zM10 6h1v1h-1zM4 7h1v1h-1zM11 7h1v1h-1zM4 8h1v1h-1zM11 8h1v1h-1zM5 9h1v1h-1zM10 9h1v1h-1zM6 10h1v1h-1zM9 10h1v1h-1z"/>
+      <path fill="#000000" d="M7 5h2v1h-2zM6 6h4v1h-4zM5 7h1v1h-1zM8 7h3v1h-3zM5 8h1v1h-1zM7 8h4v1h-4zM6 9h4v1h-4zM7 10h2v1h-2z"/>
+      <path fill="#f2ffc8" d="M6 7h2v1h-2zM6 8h1v1h-1z"/>
+    </svg>
+  )
+}

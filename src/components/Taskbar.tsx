@@ -78,7 +78,7 @@ export default function Taskbar() {
   const btnStyle = {
     background: 'none', border: 'none', cursor: 'pointer',
     fontFamily: "'Press Start 2P', monospace",
-    color: '#48494b', padding: '2px 4px',
+    color: 'var(--nf-ink)', padding: '2px 4px',
   }
 
   return (
@@ -86,9 +86,9 @@ export default function Taskbar() {
       className="fixed bottom-0 left-0 right-0 flex items-center gap-2 px-2"
       style={{
         height: 40,
-        background: '#e3e5e4',
-        borderTop: '2px solid #48494b',
-        boxShadow: '0 -2px 0 #000',
+        background: 'var(--nf-bg)',
+        borderTop: '2px solid var(--nf-ink)',
+        boxShadow: '0 -2px 0 var(--nf-edge)',
         zIndex: 9999,
         fontFamily: "'Press Start 2P', monospace",
       }}
@@ -105,7 +105,7 @@ export default function Taskbar() {
 
         {startOpen && (
           <div
-            className="absolute bottom-full left-0 mb-1 pixel-border bg-[#e3e5e4] min-w-[160px]"
+            className="absolute bottom-full left-0 mb-1 pixel-border bg-[var(--nf-bg)] min-w-[160px]"
             style={{ zIndex: 10000 }}
           >
             {[
@@ -116,17 +116,25 @@ export default function Taskbar() {
             ].map(item => (
               <button
                 key={item.id}
-                className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors"
+                className="w-full text-left px-3 py-2 hover:bg-[var(--nf-ink)] hover:text-[var(--nf-bg)] transition-colors"
                 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, display: 'block' }}
                 onClick={() => { openWindow(item.id); setStartOpen(false) }}
               >
                 {item.label}
               </button>
             ))}
-            <div style={{ borderTop: '1px solid #48494b', margin: '2px 0' }} />
+            <div style={{ borderTop: '1px solid var(--nf-ink)', margin: '2px 0' }} />
+            <a
+              href="https://neonfaces.xyz/" target="_blank" rel="noopener noreferrer"
+              className="w-full text-left px-3 py-2 hover:bg-[var(--nf-ink)] hover:text-[var(--nf-bg)] transition-colors block"
+              style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
+              onClick={() => setStartOpen(false)}
+            >
+              NEONFACES
+            </a>
             <a
               href="https://normiesyachtclub.com/" target="_blank" rel="noopener noreferrer"
-              className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
+              className="w-full text-left px-3 py-2 hover:bg-[var(--nf-ink)] hover:text-[var(--nf-bg)] transition-colors block"
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
               onClick={() => setStartOpen(false)}
             >
@@ -134,7 +142,7 @@ export default function Taskbar() {
             </a>
             <a
               href="https://8362coffee.com/" target="_blank" rel="noopener noreferrer"
-              className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
+              className="w-full text-left px-3 py-2 hover:bg-[var(--nf-ink)] hover:text-[var(--nf-bg)] transition-colors block"
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
               onClick={() => setStartOpen(false)}
             >
@@ -142,7 +150,7 @@ export default function Taskbar() {
             </a>
             <a
               href="https://x.com/OsayKancuno" target="_blank" rel="noopener noreferrer"
-              className="w-full text-left px-3 py-2 hover:bg-[#48494b] hover:text-white transition-colors block"
+              className="w-full text-left px-3 py-2 hover:bg-[var(--nf-ink)] hover:text-[var(--nf-bg)] transition-colors block"
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
               onClick={() => setStartOpen(false)}
             >
@@ -153,7 +161,7 @@ export default function Taskbar() {
       </div>
 
       {/* Separator */}
-      <div style={{ width: 2, height: 28, background: '#48494b', flexShrink: 0 }} />
+      <div style={{ width: 2, height: 28, background: 'var(--nf-ink)', flexShrink: 0 }} />
 
       {/* Open windows */}
       <div className="flex gap-1 flex-1 overflow-x-auto">
@@ -166,8 +174,8 @@ export default function Taskbar() {
               title={w.title}
               style={{
                 fontSize: 7, padding: '3px 6px', maxWidth: 130,
-                background: isFocused ? '#48494b' : w.isMinimized ? 'transparent' : '#9a9c9b',
-                color: isFocused ? '#ffffff' : '#48494b',
+                background: isFocused ? 'var(--nf-ink)' : w.isMinimized ? 'transparent' : 'var(--nf-soft)',
+                color: isFocused ? 'var(--nf-card)' : 'var(--nf-ink)',
                 borderStyle: w.isMinimized ? 'dashed' : 'solid',
               }}
               onClick={() => handleStaticClick(w.id)}
@@ -179,7 +187,7 @@ export default function Taskbar() {
       </div>
 
       {/* Right: radio + theme toggle + clock */}
-      <div className="flex items-center gap-2 ml-auto" style={{ borderLeft: '2px solid #48494b', paddingLeft: 8 }}>
+      <div className="flex items-center gap-2 ml-auto" style={{ borderLeft: '2px solid var(--nf-ink)', paddingLeft: 8 }}>
 
         {/* Radio player */}
         <div className="flex items-center gap-1">
@@ -188,7 +196,7 @@ export default function Taskbar() {
           </button>
           <span style={{
             fontFamily: "'Press Start 2P', monospace", fontSize: 6,
-            color: playing ? '#48494b' : '#9a9c9b',
+            color: playing ? 'var(--nf-ink)' : 'var(--nf-mute)',
             minWidth: 44, letterSpacing: 0,
           }}>
             {STATIONS[stationIdx].name}
@@ -198,7 +206,7 @@ export default function Taskbar() {
           </button>
         </div>
 
-        <div style={{ width: 1, height: 20, background: '#48494b' }} />
+        <div style={{ width: 1, height: 20, background: 'var(--nf-ink)' }} />
 
         {/* Theme toggle */}
         <button
@@ -215,7 +223,7 @@ export default function Taskbar() {
         </button>
 
         {/* Clock */}
-        <span style={{ fontSize: 9, color: '#48494b', letterSpacing: 1, whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: 9, color: 'var(--nf-ink)', letterSpacing: 1, whiteSpace: 'nowrap' }}>
           {time}
         </span>
       </div>

@@ -6,9 +6,9 @@ export default function AboutWindow() {
       {/* Left (or top on mobile): NFT image panel */}
       <div
         className="flex-shrink-0 flex flex-col items-center justify-center gap-3 p-4 w-full sm:w-auto sm:min-w-[160px]"
-        style={{ background: '#48494b' }}
+        style={{ background: 'var(--nf-ink)' }}
       >
-        <div style={{ border: '3px solid #e3e5e4', boxShadow: '4px 4px 0 #000' }}>
+        <div style={{ border: '3px solid var(--nf-bg)', boxShadow: '4px 4px 0 var(--nf-edge)' }}>
           <Image
             src="/8362.png"
             alt="Normie #8362"
@@ -20,45 +20,47 @@ export default function AboutWindow() {
         </div>
         <div style={{
           fontFamily: "'Press Start 2P', monospace",
-          fontSize: 8, color: '#e3e5e4', textAlign: 'center', lineHeight: 1.8,
+          fontSize: 8, color: 'var(--nf-bg)', textAlign: 'center', lineHeight: 1.8,
         }}>
           NORMIE<br />#8362
         </div>
       </div>
 
       {/* Right: info */}
-      <div className="flex-1 p-4 overflow-auto" style={{ background: '#e3e5e4' }}>
-        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 10, color: '#48494b', marginBottom: 14 }}>
+      <div className="flex-1 p-4 overflow-auto" style={{ background: 'var(--nf-bg)' }}>
+        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 10, color: 'var(--nf-ink)', marginBottom: 14 }}>
           @osaykancuno
         </div>
 
         {/* Tagline */}
         <div className="mb-4" style={{
           fontFamily: "'Press Start 2P', monospace", fontSize: 8,
-          color: '#48494b', lineHeight: 2,
+          color: 'var(--nf-ink)', lineHeight: 2,
         }}>
           ON-CHAIN VIBECODING<br />&rarr; OFF-CHAIN EXPERIENCES
         </div>
 
         {/* Bio */}
-        <div className="mb-4" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: '#48494b', lineHeight: 1.6 }}>
+        <div className="mb-4" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: 'var(--nf-text)', lineHeight: 1.6 }}>
+          Founder of <strong>NEONFACES</strong>: 5555 fully on-chain pixel faces on
+          Robinhood Chain. Member and holder of <strong>THE100</strong> in The Normies.
           We will change the world one pixel at a time.
         </div>
 
         {/* Personal quote */}
         <div className="mb-5" style={{
-          fontFamily: "'VT323', monospace", fontSize: 17, color: '#48494b',
-          borderLeft: '3px solid #48494b', paddingLeft: 10, lineHeight: 1.5, fontStyle: 'italic',
+          fontFamily: "'VT323', monospace", fontSize: 17, color: 'var(--nf-text)',
+          borderLeft: '3px solid var(--nf-ink)', paddingLeft: 10, lineHeight: 1.5, fontStyle: 'italic',
         }}>
           &ldquo;Culture belongs to the people who create it.&rdquo;
         </div>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {['NORMIE #8362', 'THE100', 'BUILDER', 'WEB3'].map(tag => (
+          {['FOUNDER · NEONFACES', 'THE100 HOLDER', 'NORMIE #8362', 'VIBECODER'].map(tag => (
             <span key={tag} style={{
               fontFamily: "'Press Start 2P', monospace", fontSize: 7,
-              padding: '3px 6px', background: '#48494b', color: '#e3e5e4', border: '1px solid #000',
+              padding: '3px 6px', background: 'var(--nf-ink)', color: 'var(--nf-bg)', border: '1px solid var(--nf-edge)',
             }}>
               {tag}
             </span>
@@ -68,12 +70,13 @@ export default function AboutWindow() {
         {/* Founder of */}
         <div style={{
           fontFamily: "'Press Start 2P', monospace", fontSize: 6,
-          color: '#9a9c9b', letterSpacing: 2, marginBottom: 8,
+          color: 'var(--nf-mute)', letterSpacing: 2, marginBottom: 8,
         }}>
           FOUNDER OF
         </div>
         <div className="flex flex-wrap gap-2 mb-5">
           {[
+            { label: 'NEONFACES',          href: 'https://neonfaces.xyz/' },
             { label: 'NORMIES YACHT CLUB', href: 'https://normiesyachtclub.com/' },
             { label: '8362 COFFEE',        href: 'https://8362coffee.com/' },
           ].map(t => (
@@ -84,8 +87,8 @@ export default function AboutWindow() {
               rel="noopener noreferrer"
               style={{
                 fontFamily: "'Press Start 2P', monospace", fontSize: 7,
-                padding: '3px 6px', background: '#ffffff', color: '#48494b',
-                border: '1px solid #000', boxShadow: '2px 2px 0 #48494b',
+                padding: '3px 6px', background: 'var(--nf-card)', color: 'var(--nf-text)',
+                border: '1px solid var(--nf-edge)', boxShadow: '2px 2px 0 var(--nf-ink)',
                 textDecoration: 'none',
               }}
             >

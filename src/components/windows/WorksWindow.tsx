@@ -27,10 +27,10 @@ const WORKS: WorkItem[] = [
 ]
 
 const TYPE_BG: Record<WorkItem['type'], string> = {
-  'NFT COLLECTION': '#48494b',
-  'TRIBUTE':        '#48494b',
-  'SERVICE':        '#48494b',
-  'FRAMEWORK':      '#48494b',
+  'NFT COLLECTION': 'var(--nf-ink)',
+  'TRIBUTE':        'var(--nf-ink)',
+  'SERVICE':        'var(--nf-ink)',
+  'FRAMEWORK':      'var(--nf-ink)',
 }
 
 const BOOA_TOOLS = [
@@ -40,36 +40,36 @@ const BOOA_TOOLS = [
 
 export default function WorksWindow() {
   return (
-    <div className="p-4 h-full overflow-auto" style={{ background: '#e3e5e4' }}>
-      <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#48494b', marginBottom: 4, lineHeight: 2 }}>
+    <div className="p-4 h-full overflow-auto" style={{ background: 'var(--nf-bg)' }}>
+      <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-ink)', marginBottom: 4, lineHeight: 2 }}>
         WORKS
       </div>
-      <div style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: '#9a9c9b', marginBottom: 20 }}>
+      <div style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: 'var(--nf-mute)', marginBottom: 20 }}>
         Built for the communities — by @osaykancuno
       </div>
 
       {/* Personal works */}
       <div className="flex flex-col gap-4">
         {WORKS.map(work => (
-          <div key={work.name} className="pixel-border" style={{ background: '#ffffff' }}>
+          <div key={work.name} className="pixel-border" style={{ background: 'var(--nf-card)' }}>
             {/* Header strip */}
             <div
               className="flex items-center justify-between px-3 py-2"
-              style={{ background: TYPE_BG[work.type], borderBottom: '2px solid #000' }}
+              style={{ background: TYPE_BG[work.type], borderBottom: '2px solid var(--nf-edge)' }}
             >
-              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#e3e5e4' }}>
+              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-bg)' }}>
                 {work.name}
               </span>
               <div className="flex gap-1">
                 <span style={{
                   fontFamily: "'Press Start 2P', monospace", fontSize: 6,
-                  padding: '2px 5px', background: '#e3e5e4', color: '#48494b', border: '1px solid #000',
+                  padding: '2px 5px', background: 'var(--nf-bg)', color: 'var(--nf-ink)', border: '1px solid var(--nf-edge)',
                 }}>
                   {work.type}
                 </span>
                 <span style={{
                   fontFamily: "'Press Start 2P', monospace", fontSize: 6,
-                  padding: '2px 5px', background: '#000', color: '#e3e5e4',
+                  padding: '2px 5px', background: 'var(--nf-edge)', color: 'var(--nf-bg)',
                 }}>
                   {work.status}
                 </span>
@@ -77,7 +77,7 @@ export default function WorksWindow() {
             </div>
 
             <div className="p-3">
-              <p style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: '#48494b', lineHeight: 1.4, marginBottom: 10 }}>
+              <p style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: 'var(--nf-text)', lineHeight: 1.4, marginBottom: 10 }}>
                 {work.desc}
               </p>
               <a
@@ -95,19 +95,19 @@ export default function WorksWindow() {
       </div>
 
       {/* ─── KHÔRA section — distinct from personal works ─── */}
-      <div className="mt-8" style={{ borderTop: '3px double #48494b', paddingTop: 20 }}>
-        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#9a9c9b', marginBottom: 4, letterSpacing: 2 }}>
+      <div className="mt-8" style={{ borderTop: '3px double var(--nf-ink)', paddingTop: 20 }}>
+        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-mute)', marginBottom: 4, letterSpacing: 2 }}>
           / STUDIO COLLABORATION
         </div>
 
         {/* Khôra header banner */}
         <div className="w-full flex items-center justify-center mb-4 mt-2"
-          style={{ background: '#48494b', padding: '14px 8px', border: '2px solid #000' }}>
+          style={{ background: 'var(--nf-ink)', padding: '14px 8px', border: '2px solid var(--nf-edge)' }}>
           <div className="text-center">
-            <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 16, color: '#e3e5e4', letterSpacing: 3, lineHeight: 1.5 }}>
+            <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 16, color: 'var(--nf-bg)', letterSpacing: 3, lineHeight: 1.5 }}>
               KHÔRA
             </div>
-            <div style={{ fontFamily: "'VT323', monospace", fontSize: 14, color: '#c8cac9', marginTop: 4 }}>
+            <div style={{ fontFamily: "'VT323', monospace", fontSize: 14, color: 'var(--nf-soft)', marginTop: 4 }}>
               @khorafun — khora.fun
             </div>
           </div>
@@ -128,26 +128,26 @@ export default function WorksWindow() {
         </div>
 
         {/* BOOA tools built by Kancuno */}
-        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#48494b', marginBottom: 12, lineHeight: 2 }}>
+        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-ink)', marginBottom: 12, lineHeight: 2 }}>
           TOOLS BUILT FOR THIS COMMUNITY
         </div>
 
         <div className="flex flex-col gap-3">
           {BOOA_TOOLS.map(tool => (
-            <div key={tool.name} className="pixel-border p-3" style={{ background: '#ffffff' }}>
+            <div key={tool.name} className="pixel-border p-3" style={{ background: 'var(--nf-card)' }}>
               <div className="flex items-start justify-between gap-2 mb-1">
-                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#48494b' }}>
+                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-ink)' }}>
                   {tool.name}
                 </span>
                 <span style={{
                   fontFamily: "'Press Start 2P', monospace", fontSize: 6,
-                  padding: '2px 4px', background: '#48494b', color: '#ffffff',
-                  border: '1px solid #000', flexShrink: 0,
+                  padding: '2px 4px', background: 'var(--nf-ink)', color: 'var(--nf-card)',
+                  border: '1px solid var(--nf-edge)', flexShrink: 0,
                 }}>
                   {tool.tag}
                 </span>
               </div>
-              <p style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: '#48494b', marginBottom: 8, lineHeight: 1.3 }}>
+              <p style={{ fontFamily: "'VT323', monospace", fontSize: 16, color: 'var(--nf-text)', marginBottom: 8, lineHeight: 1.3 }}>
                 {tool.desc}
               </p>
               <a
@@ -165,17 +165,17 @@ export default function WorksWindow() {
       </div>
 
       {/* More works placeholder */}
-      <div className="pixel-border mt-6" style={{ background: '#ffffff', opacity: 0.5 }}>
+      <div className="pixel-border mt-6" style={{ background: 'var(--nf-card)', opacity: 0.5 }}>
         <div
           className="px-3 py-2"
-          style={{ background: '#48494b', borderBottom: '2px solid #000' }}
+          style={{ background: 'var(--nf-ink)', borderBottom: '2px solid var(--nf-edge)' }}
         >
-          <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#e3e5e4' }}>
+          <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-bg)' }}>
             MORE ON THE WAY
           </span>
         </div>
         <div className="p-3">
-          <p style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: '#48494b', lineHeight: 1.4 }}>
+          <p style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: 'var(--nf-text)', lineHeight: 1.4 }}>
             New projects in progress — stay tuned.
           </p>
         </div>

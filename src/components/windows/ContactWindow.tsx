@@ -1,7 +1,7 @@
 export default function ContactWindow() {
   return (
-    <div className="p-4 h-full overflow-auto" style={{ background: '#e3e5e4' }}>
-      <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: '#48494b', marginBottom: 16 }}>
+    <div className="p-4 h-full overflow-auto" style={{ background: 'var(--nf-bg)' }}>
+      <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: 'var(--nf-ink)', marginBottom: 16 }}>
         GET IN TOUCH
       </div>
 
@@ -12,14 +12,14 @@ export default function ContactWindow() {
           target="_blank"
           rel="noopener noreferrer"
           className="pixel-border flex items-center gap-3 p-4"
-          style={{ background: '#ffffff', textDecoration: 'none', color: '#48494b' }}
+          style={{ background: 'var(--nf-card)', textDecoration: 'none', color: 'var(--nf-ink)' }}
           onMouseEnter={e => {
-            (e.currentTarget as HTMLElement).style.background = '#48494b'
-            ;(e.currentTarget as HTMLElement).style.color = '#ffffff'
+            (e.currentTarget as HTMLElement).style.background = 'var(--nf-ink)'
+            ;(e.currentTarget as HTMLElement).style.color = 'var(--nf-card)'
           }}
           onMouseLeave={e => {
-            (e.currentTarget as HTMLElement).style.background = '#ffffff'
-            ;(e.currentTarget as HTMLElement).style.color = '#48494b'
+            (e.currentTarget as HTMLElement).style.background = 'var(--nf-card)'
+            ;(e.currentTarget as HTMLElement).style.color = 'var(--nf-ink)'
           }}
         >
           <span style={{ fontSize: 28, width: 36, textAlign: 'center', flexShrink: 0 }}>𝕏</span>
@@ -40,14 +40,14 @@ export default function ContactWindow() {
           target="_blank"
           rel="noopener noreferrer"
           className="pixel-border flex items-center gap-3 p-4"
-          style={{ background: '#ffffff', textDecoration: 'none', color: '#48494b' }}
+          style={{ background: 'var(--nf-card)', textDecoration: 'none', color: 'var(--nf-ink)' }}
           onMouseEnter={e => {
-            (e.currentTarget as HTMLElement).style.background = '#48494b'
-            ;(e.currentTarget as HTMLElement).style.color = '#ffffff'
+            (e.currentTarget as HTMLElement).style.background = 'var(--nf-ink)'
+            ;(e.currentTarget as HTMLElement).style.color = 'var(--nf-card)'
           }}
           onMouseLeave={e => {
-            (e.currentTarget as HTMLElement).style.background = '#ffffff'
-            ;(e.currentTarget as HTMLElement).style.color = '#48494b'
+            (e.currentTarget as HTMLElement).style.background = 'var(--nf-card)'
+            ;(e.currentTarget as HTMLElement).style.color = 'var(--nf-ink)'
           }}
         >
           <span style={{ fontSize: 22, width: 36, textAlign: 'center', flexShrink: 0 }}>✈</span>
@@ -65,24 +65,24 @@ export default function ContactWindow() {
         {/* Calendly placeholder */}
         <div
           className="pixel-border p-4"
-          style={{ background: '#ffffff', opacity: 0.6 }}
+          style={{ background: 'var(--nf-card)', opacity: 0.6 }}
         >
           <div className="flex items-center gap-3">
             <span style={{ fontSize: 28, width: 36, textAlign: 'center', flexShrink: 0 }}>📅</span>
             <div className="flex-1">
-              <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: '#48494b', marginBottom: 6 }}>
+              <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: 'var(--nf-ink)', marginBottom: 6 }}>
                 BOOK A CALL
               </div>
-              <div style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: '#9a9c9b' }}>
+              <div style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: 'var(--nf-mute)' }}>
                 Calendly — coming soon
               </div>
             </div>
-            <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: '#c8cac9' }}>SOON</span>
+            <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-soft)' }}>SOON</span>
           </div>
         </div>
       </div>
 
-      <div className="mt-6 text-center" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: '#9a9c9b' }}>
+      <div className="mt-6 text-center" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: 'var(--nf-mute)' }}>
         K4NCUN0
       </div>
     </div>

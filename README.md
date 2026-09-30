@@ -9,13 +9,14 @@ A fully interactive desktop environment in the browser:
 - Draggable, resizable windows with minimize / maximize / close controls
 - START menu and taskbar with smart focus/minimize/restore logic
 - Dark mode toggle (default) with localStorage persistence
-- Monochrome pixel art aesthetic (Press Start 2P + VT323 fonts)
+- NEONFACES neon palette (#CCFF00 on black) with a Normie → neon glitch intro on every visit
+- Pixel art aesthetic (Press Start 2P + VT323 fonts)
 - Tools and projects built for The Normies and Khôra/BOOA communities
 
 ## Stack
 
 - **Next.js 14** — App Router, TypeScript, static export
-- **Tailwind CSS** — custom Normies palette
+- **Tailwind CSS** — palette tokens (`--nf-*`) defined in `globals.css`
 - **Framer Motion** — draggable windows
 - **Google Fonts** — Press Start 2P, VT323
 

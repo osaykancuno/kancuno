@@ -55,13 +55,13 @@ export default function Window({ id, title, children, width = 480, height = 400 
               y: win.position.y + info.offset.y,
             })
           }}
-          className="pixel-border bg-[#e3e5e4] flex flex-col"
+          className="pixel-border bg-[var(--nf-bg)] flex flex-col"
         >
           {/* Title bar */}
           <div
             className="flex items-center justify-between px-2 select-none flex-shrink-0"
             style={{
-              background: '#48494b',
+              background: 'var(--nf-ink)',
               minHeight: 28,
               cursor: isMax ? 'default' : 'grab',
             }}
@@ -69,7 +69,7 @@ export default function Window({ id, title, children, width = 480, height = 400 
             onDoubleClick={() => toggleMaximize(id)}
           >
             <span
-              className="text-white truncate flex-1 mr-2"
+              className="text-[var(--nf-bg)] truncate flex-1 mr-2"
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, letterSpacing: 1 }}
             >
               {title}
