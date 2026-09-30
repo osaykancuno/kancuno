@@ -101,7 +101,7 @@ export default function Desktop() {
             fontSize: 26, color: 'var(--nf-ink)', lineHeight: 1.5,
             textAlign: 'right', textShadow: '4px 4px 0 var(--nf-soft)',
           }}>
-            NORMIE<br />#8362
+            <span className="nf-normie-only">NORMIE</span><span className="nf-neon-only">NEONFACE</span><br />#8362
           </div>
           <a
             href="https://x.com/OsayKancuno"
