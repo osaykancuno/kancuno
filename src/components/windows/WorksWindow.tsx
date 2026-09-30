@@ -94,38 +94,14 @@ export default function WorksWindow() {
         ))}
       </div>
 
-      {/* ─── KHÔRA section — distinct from personal works ─── */}
+      {/* ─── BOOA collaboration: cited only, the tools are the work ─── */}
       <div className="mt-8" style={{ borderTop: '3px double var(--nf-ink)', paddingTop: 20 }}>
-        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-mute)', marginBottom: 4, letterSpacing: 2 }}>
+        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-mute)', marginBottom: 8, letterSpacing: 2 }}>
           / STUDIO COLLABORATION
         </div>
-
-        {/* Khôra header banner */}
-        <div className="w-full flex items-center justify-center mb-4 mt-2"
-          style={{ background: 'var(--nf-ink)', padding: '14px 8px', border: '2px solid var(--nf-edge)' }}>
-          <div className="text-center">
-            <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 16, color: 'var(--nf-bg)', letterSpacing: 3, lineHeight: 1.5 }}>
-              KHÔRA
-            </div>
-            <div style={{ fontFamily: "'VT323', monospace", fontSize: 14, color: 'var(--nf-soft)', marginTop: 4 }}>
-              @khorafun — khora.fun
-            </div>
-          </div>
-        </div>
-
-        {/* Official links */}
-        <div className="flex flex-wrap gap-2 mb-5">
-          {[
-            { label: 'WEBSITE', href: 'https://www.khora.fun/booa' },
-            { label: 'OPENSEA', href: 'https://opensea.io/collection/booa' },
-            { label: 'TWITTER', href: 'https://twitter.com/khorafun' },
-          ].map(l => (
-            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-              className="pixel-btn" style={{ fontSize: 7, textDecoration: 'none' }}>
-              ▶ {l.label}
-            </a>
-          ))}
-        </div>
+        <p style={{ fontFamily: "'VT323', monospace", fontSize: 17, color: 'var(--nf-text)', lineHeight: 1.4, marginBottom: 16 }}>
+          In collaboration with BOOA (formerly Khôra, @khorafun).
+        </p>
 
         {/* BOOA tools built by Kancuno */}
         <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: 'var(--nf-ink)', marginBottom: 12, lineHeight: 2 }}>
