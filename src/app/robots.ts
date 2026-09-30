@@ -5,7 +5,7 @@ import type { MetadataRoute } from 'next'
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [{ userAgent: '*', allow: '/' }],
-    sitemap: 'https://kancuno.com/sitemap.xml',
-    host: 'https://kancuno.com',
+    sitemap: 'https://www.kancuno.com/sitemap.xml',
+    host: 'https://www.kancuno.com',
   }
 }

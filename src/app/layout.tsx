@@ -4,7 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import MutationIntro from '@/components/MutationIntro'
 import './globals.css'
 
-const SITE = 'https://kancuno.com'
+const SITE = 'https://www.kancuno.com'
 const DESCRIPTION =
   'Osay Kancuno (K4NCUN0, @OsayKancuno) is the founder of NEONFACES: 5555 fully on-chain pixel faces on Robinhood Chain, ' +
   'where every Face is a wallet. Member and holder of THE100 in The Normies (Normie #8362). ' +
