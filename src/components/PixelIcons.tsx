@@ -134,19 +134,39 @@ export function IconCoffee({ size = 48 }: { size?: number }) {
 
 export function IconLine({ size = 48 }: { size?: number }) {
   return (
-    <img
-      src="/NYC.png"
-      alt="Normies Yacht Club"
-      width={size}
-      height={size}
-      style={{
-        imageRendering: 'pixelated',
-        display: 'block',
-        width: size,
-        height: size,
-        objectFit: 'cover',
-      }}
-    />
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ imageRendering: 'pixelated' }}>
+      {/* Normies Yacht Club — sailboat on the waves */}
+      {/* Pennant + mast */}
+      <rect x="8"  y="0"  width="2"  height="1" fill="currentColor"/>
+      <rect x="8"  y="1"  width="1"  height="1" fill="currentColor"/>
+      <rect x="7"  y="0"  width="1"  height="10" fill="currentColor"/>
+      {/* Main sail (left) */}
+      <rect x="5"  y="2"  width="1"  height="1" fill="currentColor"/>
+      <rect x="4"  y="3"  width="2"  height="1" fill="currentColor"/>
+      <rect x="3"  y="4"  width="3"  height="1" fill="currentColor"/>
+      <rect x="2"  y="5"  width="4"  height="1" fill="currentColor"/>
+      <rect x="1"  y="6"  width="5"  height="2" fill="currentColor"/>
+      {/* Jib (right) */}
+      <rect x="9"  y="3"  width="1"  height="1" fill="currentColor"/>
+      <rect x="9"  y="4"  width="2"  height="1" fill="currentColor"/>
+      <rect x="9"  y="5"  width="3"  height="1" fill="currentColor"/>
+      <rect x="9"  y="6"  width="4"  height="1" fill="currentColor"/>
+      <rect x="9"  y="7"  width="5"  height="1" fill="currentColor"/>
+      {/* Hull with portholes */}
+      <rect x="0"  y="9"  width="16" height="1" fill="currentColor"/>
+      <rect x="1"  y="10" width="3"  height="1" fill="currentColor"/>
+      <rect x="5"  y="10" width="2"  height="1" fill="currentColor"/>
+      <rect x="8"  y="10" width="2"  height="1" fill="currentColor"/>
+      <rect x="11" y="10" width="4"  height="1" fill="currentColor"/>
+      <rect x="2"  y="11" width="12" height="1" fill="currentColor"/>
+      {/* Waves */}
+      <rect x="0"  y="13" width="2"  height="1" fill="currentColor"/>
+      <rect x="5"  y="13" width="2"  height="1" fill="currentColor"/>
+      <rect x="10" y="13" width="2"  height="1" fill="currentColor"/>
+      <rect x="2"  y="14" width="3"  height="1" fill="currentColor"/>
+      <rect x="7"  y="14" width="3"  height="1" fill="currentColor"/>
+      <rect x="12" y="14" width="3"  height="1" fill="currentColor"/>
+    </svg>
   )
 }
 
