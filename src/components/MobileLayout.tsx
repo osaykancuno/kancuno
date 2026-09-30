@@ -207,7 +207,7 @@ export default function MobileLayout() {
                 fontFamily: "'Press Start 2P', monospace",
                 fontSize: 13, color: 'var(--nf-bg)', lineHeight: 1.8,
               }}>
-                <span className="nf-normie-only">NORMIE</span><span className="nf-neon-only">NEONFACE</span><br />#8362
+                <span className="nf-normie-only">NORMIE<br />#8362</span><span className="nf-neon-only">NEONFACER</span>
               </div>
               <div style={{ fontFamily: "'VT323', monospace", fontSize: 15, color: 'var(--nf-soft)', marginTop: 4 }}>
                 @osaykancuno

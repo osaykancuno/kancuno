@@ -67,7 +67,8 @@ export default function Desktop() {
             <div style={{
               width: 260,
               fontFamily: "'Press Start 2P', monospace",
-              fontSize: 8, lineHeight: 1.9, color: 'var(--nf-ink)',
+              fontSize: 8, lineHeight: 1.9, color: 'var(--nf-bg)',
+              background: 'var(--nf-ink)',
               textAlign: 'center', padding: '10px 12px',
             }}>
               CULTURE BELONGS TO THE<br />PEOPLE WHO CREATE IT
@@ -101,7 +102,7 @@ export default function Desktop() {
             fontSize: 26, color: 'var(--nf-ink)', lineHeight: 1.5,
             textAlign: 'right', textShadow: '4px 4px 0 var(--nf-soft)',
           }}>
-            <span className="nf-normie-only">NORMIE</span><span className="nf-neon-only">NEONFACE</span><br />#8362
+            <span className="nf-normie-only">NORMIE<br />#8362</span><span className="nf-neon-only">NEONFACER</span>
           </div>
           <a
             href="https://x.com/OsayKancuno"
