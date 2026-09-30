@@ -57,7 +57,7 @@ export default function AboutWindow() {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {['FOUNDER · NEONFACES', 'THE100 HOLDER', 'NORMIE #8362', 'VIBECODER'].map(tag => (
+          {['FOUNDER · NEONFACES', 'THE100 HOLDER', 'NORMIE #8362'].map(tag => (
             <span key={tag} style={{
               fontFamily: "'Press Start 2P', monospace", fontSize: 7,
               padding: '3px 6px', background: 'var(--nf-ink)', color: 'var(--nf-bg)', border: '1px solid var(--nf-edge)',
