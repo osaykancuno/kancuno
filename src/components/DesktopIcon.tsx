@@ -4,7 +4,7 @@ import { useState, ComponentType } from 'react'
 import { useWindowManager, WindowId } from './WindowManager'
 
 interface DesktopIconProps {
-  id: WindowId | 'twitter' | 'line' | 'coffee'
+  id: WindowId | 'twitter' | 'line' | 'coffee' | 'neonfaces'
   label: string
   Icon: ComponentType<{ size?: number }>
   href?: string
@@ -13,11 +13,13 @@ interface DesktopIconProps {
 export default function DesktopIcon({ id, label, Icon, href }: DesktopIconProps) {
   const { openWindow } = useWindowManager()
   const [selected, setSelected] = useState(false)
+  // Image-style icons fill the whole tile
+  const fillTile = id === 'line' || id === 'neonfaces'
 
   const handleDoubleClick = () => {
     if (href) {
       window.open(href, '_blank', 'noopener')
-    } else if (id !== 'twitter' && id !== 'line' && id !== 'coffee') {
+    } else if (id !== 'twitter' && id !== 'line' && id !== 'coffee' && id !== 'neonfaces') {
       openWindow(id as WindowId)
     }
     setSelected(false)
@@ -36,22 +38,22 @@ export default function DesktopIcon({ id, label, Icon, href }: DesktopIconProps)
       <div
         className="w-16 h-16 flex items-center justify-center"
         style={{
-          background: selected ? '#48494b' : 'transparent',
-          border: selected ? '1px dashed #9a9c9b' : '1px dashed transparent',
-          padding: id === 'line' ? 0 : 8,
+          background: selected ? 'var(--nf-ink)' : 'transparent',
+          border: selected ? '1px dashed var(--nf-mute)' : '1px dashed transparent',
+          padding: fillTile ? 0 : 8,
           overflow: 'hidden',
-          color: selected ? '#e3e5e4' : '#48494b',
+          color: selected ? 'var(--nf-bg)' : 'var(--nf-ink)',
         }}
       >
-        <Icon size={id === 'line' ? 62 : 44} />
+        <Icon size={fillTile ? 62 : 44} />
       </div>
 
       <span
         style={{
           fontFamily: "'Press Start 2P', monospace",
           fontSize: 7,
-          color: selected ? '#ffffff' : '#48494b',
-          background: selected ? '#48494b' : 'transparent',
+          color: selected ? 'var(--nf-card)' : 'var(--nf-ink)',
+          background: selected ? 'var(--nf-ink)' : 'transparent',
           padding: '1px 3px',
           textAlign: 'center',
           display: 'flex',

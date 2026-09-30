@@ -10,10 +10,11 @@ import NormiesWindow from './windows/NormiesWindow'
 import ContactWindow from './windows/ContactWindow'
 import {
   IconProfile, IconWorks, IconNormies,
-  IconContact, IconLine, IconCoffee,
+  IconContact, IconLine, IconCoffee, IconNeonfaces,
 } from './PixelIcons'
 
 const ICONS = [
+  { id: 'neonfaces' as const, label: 'NEONFACES', Icon: IconNeonfaces, href: 'https://neonfaces.xyz/' },
   { id: 'about'    as const, label: 'PROFILE',   Icon: IconProfile  },
   { id: 'works'    as const, label: 'WORKS',     Icon: IconWorks    },
   { id: 'normies'  as const, label: 'NORMIES',   Icon: IconNormies  },
@@ -50,22 +51,41 @@ export default function Desktop() {
         {/* Center: mascot */}
         <div className="flex-1 flex items-center justify-center pointer-events-none select-none">
           <div style={{
-            border: '3px solid #48494b',
-            boxShadow: '6px 6px 0px #48494b',
+            border: '3px solid var(--nf-ink)',
+            boxShadow: '6px 6px 0px var(--nf-ink)',
             display: 'inline-block',
-            background: '#e3e5e4',
+            background: 'var(--nf-bg)',
           }}>
             <div style={{
-              background: '#48494b', height: 12,
+              background: 'var(--nf-ink)', height: 12,
               display: 'flex', alignItems: 'center', paddingLeft: 6, gap: 4,
             }}>
-              <div style={{ width: 6, height: 6, background: '#e3e5e4' }} />
-              <div style={{ width: 6, height: 6, background: '#e3e5e4' }} />
-              <div style={{ width: 6, height: 6, background: '#e3e5e4' }} />
+              <div style={{ width: 6, height: 6, background: 'var(--nf-bg)' }} />
+              <div style={{ width: 6, height: 6, background: 'var(--nf-bg)' }} />
+              <div style={{ width: 6, height: 6, background: 'var(--nf-bg)' }} />
             </div>
+            <div style={{
+              width: 260,
+              fontFamily: "'Press Start 2P', monospace",
+              fontSize: 8, lineHeight: 1.9, color: 'var(--nf-ink)',
+              textAlign: 'center', padding: '10px 12px',
+            }}>
+              CULTURE BELONGS TO THE<br />PEOPLE WHO CREATE IT
+            </div>
+            {/* On-chain Normie during the intro, neon face once the mutation settles */}
             <Image
-              src="/desk8362.png"
+              className="nf-normie-only"
+              src="/8362.png"
               alt="Normie #8362"
+              width={260}
+              height={260}
+              style={{ imageRendering: 'pixelated', display: 'block' }}
+              priority
+            />
+            <Image
+              className="nf-neon-only"
+              src="/neon8362.png"
+              alt="Normie #8362 mutated into NEONFACES neon"
               width={260}
               height={260}
               style={{ imageRendering: 'pixelated', display: 'block' }}
@@ -78,8 +98,8 @@ export default function Desktop() {
         <div className="flex-shrink-0 p-6 pt-8 flex flex-col items-end gap-2" style={{ minWidth: 210 }}>
           <div style={{
             fontFamily: "'Press Start 2P', monospace",
-            fontSize: 26, color: '#48494b', lineHeight: 1.5,
-            textAlign: 'right', textShadow: '4px 4px 0 #c8cac9',
+            fontSize: 26, color: 'var(--nf-ink)', lineHeight: 1.5,
+            textAlign: 'right', textShadow: '4px 4px 0 var(--nf-soft)',
           }}>
             NORMIE<br />#8362
           </div>
@@ -90,24 +110,37 @@ export default function Desktop() {
             title="@OsayKancuno on X / Twitter"
             style={{
               fontFamily: "'Press Start 2P', monospace",
-              fontSize: 14, color: '#e3e5e4', background: '#48494b',
-              padding: '6px 10px', border: '2px solid #000',
-              boxShadow: '3px 3px 0 #000', letterSpacing: 2, marginTop: 6,
+              fontSize: 14, color: 'var(--nf-bg)', background: 'var(--nf-ink)',
+              padding: '6px 10px', border: '2px solid var(--nf-edge)',
+              boxShadow: '3px 3px 0 var(--nf-edge)', letterSpacing: 2, marginTop: 6,
               textDecoration: 'none', cursor: 'pointer', display: 'inline-block',
             }}
           >
             K4NCUN0
           </a>
+          <a
+            href="https://neonfaces.xyz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="NEONFACES: neonfaces.xyz"
+            style={{
+              fontFamily: "'Press Start 2P', monospace",
+              fontSize: 8, color: 'var(--nf-ink)', textAlign: 'right',
+              marginTop: 12, lineHeight: 2, textDecoration: 'none',
+            }}
+          >
+            FOUNDER OF<br />NEONFACES ▶
+          </a>
           <div style={{
             fontFamily: "'Press Start 2P', monospace",
-            fontSize: 7, color: '#c8cac9', textAlign: 'right',
-            marginTop: 10, lineHeight: 2.2,
+            fontSize: 7, color: 'var(--nf-mute)', textAlign: 'right',
+            marginTop: 6, lineHeight: 2.2,
           }}>
-            VIBECODER<br />NORMIES COMMUNITY<br />THE100
+            THE100 MEMBER + HOLDER<br />THE NORMIES<br />VIBECODER
           </div>
           <div className="mt-auto" style={{
             fontFamily: "'Press Start 2P', monospace",
-            fontSize: 6, color: '#c8cac9', textAlign: 'right',
+            fontSize: 6, color: 'var(--nf-soft)', textAlign: 'right',
             lineHeight: 2.2, paddingBottom: 8,
           }}>
             DOUBLE-CLICK<br />AN ICON TO OPEN

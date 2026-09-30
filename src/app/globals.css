@@ -4,13 +4,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Palette ────────────────────────────────────────────────────────────────
+   NEONFACES (neonfaces.xyz) is the default. Every surface reads these tokens,
+   so a theme or palette switch is a single attribute on <html>.
+   --nf-bg    page / window surface      --nf-ink   fills, headings, borders
+   --nf-text  body copy                  --nf-card  cards and panels
+   --nf-edge  hard pixel shadows         --nf-soft  faint hints, text on fills
+   --nf-mute  secondary text             --nf-dot   desktop dot grid          */
 :root {
-  --normie-bg: #e3e5e4;
-  --normie-dark: #48494b;
-  --normie-white: #ffffff;
-  --normie-black: #000000;
-  --normie-gray: #c8cac9;
-  --normie-mid: #9a9c9b;
+  --nf-bg:   #000000;
+  --nf-ink:  #ccff00;
+  --nf-text: #e9f5c4;
+  --nf-card: #070900;
+  --nf-edge: #94b21d;
+  --nf-soft: #414d12;
+  --nf-mute: #8a9a5a;
+  --nf-dot:  #2a320a;
+}
+
+/* Light theme: the "neon page" from the NEONFACES art, black ink on #CCFF00 */
+html[data-theme="light"] {
+  --nf-bg:   #ccff00;
+  --nf-ink:  #000000;
+  --nf-text: #050600;
+  --nf-card: #f2ffc8;
+  --nf-edge: #000000;
+  --nf-soft: #94b21d;
+  --nf-mute: #556418;
+  --nf-dot:  #94b21d;
+}
+
+/* Pre-mutation palette: the original monochrome Normies look.
+   Only used for the first moments of each visit (see MutationIntro). */
+html[data-palette="normie"] {
+  --nf-bg:   #1c1a1b;
+  --nf-ink:  #b7b6b4;
+  --nf-text: #b7b6b4;
+  --nf-card: #000000;
+  --nf-edge: #ffffff;
+  --nf-soft: #373536;
+  --nf-mute: #656364;
+  --nf-dot:  #656364;
+}
+html[data-palette="normie"][data-theme="light"] {
+  --nf-bg:   #e3e5e4;
+  --nf-ink:  #48494b;
+  --nf-text: #48494b;
+  --nf-card: #ffffff;
+  --nf-edge: #000000;
+  --nf-soft: #c8cac9;
+  --nf-mute: #9a9c9b;
+  --nf-dot:  #9a9c9b;
 }
 
 * {
@@ -23,9 +67,9 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: var(--normie-bg);
+  background: var(--nf-bg);
   font-family: 'VT323', monospace;
-  color: var(--normie-dark);
+  color: var(--nf-text);
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   user-select: none;
@@ -33,33 +77,33 @@ html, body {
 
 /* Pixel border style */
 .pixel-border {
-  border: 2px solid var(--normie-dark);
-  box-shadow: 4px 4px 0px var(--normie-black);
+  border: 2px solid var(--nf-ink);
+  box-shadow: 4px 4px 0px var(--nf-edge);
 }
 
 .pixel-border-inset {
-  border: 2px solid var(--normie-dark);
-  box-shadow: inset 2px 2px 0px var(--normie-gray), inset -2px -2px 0px var(--normie-black);
+  border: 2px solid var(--nf-ink);
+  box-shadow: inset 2px 2px 0px var(--nf-soft), inset -2px -2px 0px var(--nf-edge);
 }
 
 /* Pixel button */
 .pixel-btn {
   font-family: 'Press Start 2P', monospace;
   font-size: 10px;
-  background: var(--normie-bg);
-  border: 2px solid var(--normie-dark);
-  box-shadow: 2px 2px 0px var(--normie-black);
+  background: var(--nf-bg);
+  border: 2px solid var(--nf-ink);
+  box-shadow: 2px 2px 0px var(--nf-edge);
   cursor: pointer;
   padding: 6px 10px;
-  color: var(--normie-dark);
+  color: var(--nf-ink);
   text-transform: uppercase;
   transition: all 0.05s;
   display: inline-block;
 }
 
 .pixel-btn:hover {
-  background: var(--normie-dark);
-  color: var(--normie-white);
+  background: var(--nf-ink);
+  color: var(--nf-bg);
 }
 
 .pixel-btn:active {
@@ -71,9 +115,9 @@ html, body {
 .win-btn {
   width: 16px;
   height: 14px;
-  background: var(--normie-bg);
-  border: 1px solid var(--normie-dark);
-  box-shadow: 1px 1px 0px var(--normie-black);
+  background: var(--nf-bg);
+  border: 1px solid var(--nf-ink);
+  box-shadow: 1px 1px 0px var(--nf-edge);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -84,8 +128,8 @@ html, body {
 }
 
 .win-btn:hover {
-  background: var(--normie-dark);
-  color: var(--normie-white);
+  background: var(--nf-ink);
+  color: var(--nf-bg);
 }
 
 .win-btn:active {
@@ -100,33 +144,104 @@ html, body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--normie-bg);
-  border: 1px solid var(--normie-dark);
+  background: var(--nf-bg);
+  border: 1px solid var(--nf-ink);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--normie-dark);
-  border: 1px solid var(--normie-black);
+  background: var(--nf-ink);
+  border: 1px solid var(--nf-edge);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--normie-black);
+  background: var(--nf-edge);
 }
 
 /* Desktop dot pattern background */
 .desktop-bg {
-  background-color: var(--normie-bg);
-  background-image: radial-gradient(var(--normie-mid) 1px, transparent 1px);
+  background-color: var(--nf-bg);
+  background-image: radial-gradient(var(--nf-dot) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
-/* Dark mode — invert entire page, re-invert images */
-html[data-theme="dark"] {
-  filter: invert(1);
+::selection {
+  background: var(--nf-ink);
+  color: var(--nf-bg);
 }
-html[data-theme="dark"] img,
-html[data-theme="dark"] .noinvert {
-  filter: invert(1);
+
+/* ── Neon mutation ──────────────────────────────────────────────────────────
+   Played once per visit: the page boots in the Normies palette, glitches,
+   and settles on NEONFACES. MutationIntro drives html[data-mutating]. */
+html[data-mutating] body > * {
+  animation: nf-jitter 0.16s steps(2, jump-none) infinite;
+}
+
+@keyframes nf-jitter {
+  0% {
+    transform: translate(0, 0) skewX(0deg);
+    filter: drop-shadow(-3px 0 #ff2bd6) drop-shadow(3px 0 #00e5ff);
+  }
+  25% {
+    transform: translate(-4px, 1px) skewX(-2deg);
+    filter: drop-shadow(4px 0 #ccff00) drop-shadow(-4px 0 #ff2bd6);
+  }
+  50% {
+    transform: translate(3px, -1px) skewX(1.5deg);
+    filter: drop-shadow(-2px 0 #00e5ff) drop-shadow(2px 0 #ccff00);
+  }
+  75% {
+    transform: translate(-1px, 2px) skewX(0deg);
+    filter: drop-shadow(5px 0 #ff2bd6) drop-shadow(-5px 0 #00e5ff);
+  }
+  100% {
+    transform: translate(2px, 0) skewX(-1deg);
+    filter: drop-shadow(-3px 0 #ccff00) drop-shadow(3px 0 #ff2bd6);
+  }
+}
+
+/* Swap artwork with the palette: grey Normie before the mutation, neon after */
+html[data-palette="normie"] .nf-neon-only,
+html:not([data-palette="normie"]) .nf-normie-only {
+  display: none !important;
+}
+
+.nf-mutation-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  pointer-events: none;
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(204, 255, 0, 0.08) 2px,
+    rgba(204, 255, 0, 0.08) 3px
+  );
+}
+
+.nf-mutation-bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: #ccff00;
+  mix-blend-mode: difference;
+}
+
+.nf-mutation-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #ccff00;
+  background: #000;
+  border: 2px solid #ccff00;
+  padding: 8px 12px;
+  white-space: nowrap;
+  text-shadow: -2px 0 #ff2bd6, 2px 0 #00e5ff;
 }
 
 /* Mobile: allow scroll */

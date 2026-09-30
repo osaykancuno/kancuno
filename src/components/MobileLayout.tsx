@@ -6,7 +6,7 @@ import AboutWindow from './windows/AboutWindow'
 import WorksWindow from './windows/WorksWindow'
 import NormiesWindow from './windows/NormiesWindow'
 import ContactWindow from './windows/ContactWindow'
-import { IconProfile, IconWorks, IconNormies, IconContact, IconLine, IconCoffee } from './PixelIcons'
+import { IconProfile, IconWorks, IconNormies, IconContact, IconLine, IconCoffee, IconNeonfaces } from './PixelIcons'
 
 const STATIONS = [
   { name: 'LO-FI',   url: 'https://ice1.somafm.com/groovesalad-128-mp3'   },
@@ -25,6 +25,7 @@ type AppEntry = {
 }
 
 const APPS: AppEntry[] = [
+  { id: 'neonfaces', label: 'NEONFACES', Icon: IconNeonfaces, href: 'https://neonfaces.xyz/' },
   { id: 'about',    label: 'PROFILE',    Icon: IconProfile,  Component: AboutWindow   },
   { id: 'works',    label: 'WORKS',      Icon: IconWorks,    Component: WorksWindow   },
   { id: 'normies',  label: 'NORMIES',    Icon: IconNormies,  Component: NormiesWindow },
@@ -92,14 +93,14 @@ export default function MobileLayout() {
       height: '100dvh',
       display: 'flex',
       flexDirection: 'column',
-      background: '#e3e5e4',
+      background: 'var(--nf-bg)',
       overflow: 'hidden',
       fontFamily: "'Press Start 2P', monospace",
     }}>
 
       {/* ── Status bar ─────────────────────────────────── */}
       <div style={{
-        background: '#48494b',
+        background: 'var(--nf-ink)',
         height: 32,
         flexShrink: 0,
         position: 'relative',
@@ -107,7 +108,7 @@ export default function MobileLayout() {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 14px',
-        borderBottom: '2px solid #000',
+        borderBottom: '2px solid var(--nf-edge)',
       }}>
         {/* Left slot */}
         <div style={{ display: 'flex', alignItems: 'center', minWidth: 70 }}>
@@ -117,13 +118,13 @@ export default function MobileLayout() {
               style={{
                 background: 'none', border: 'none', cursor: 'pointer',
                 fontFamily: "'Press Start 2P', monospace",
-                fontSize: 7, color: '#e3e5e4', padding: 0,
+                fontSize: 7, color: 'var(--nf-bg)', padding: 0,
               }}
             >
               ◀ HOME
             </button>
           ) : (
-            <span style={{ fontSize: 8, color: '#e3e5e4', letterSpacing: 2 }}>K4NCUN0</span>
+            <span style={{ fontSize: 8, color: 'var(--nf-bg)', letterSpacing: 2 }}>K4NCUN0</span>
           )}
         </div>
 
@@ -134,7 +135,7 @@ export default function MobileLayout() {
             left: '50%',
             top: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: 7, color: '#c8cac9', letterSpacing: 1,
+            fontSize: 7, color: 'var(--nf-soft)', letterSpacing: 1,
             whiteSpace: 'nowrap', pointerEvents: 'none',
           }}>
             {current?.label}
@@ -142,7 +143,7 @@ export default function MobileLayout() {
         )}
 
         {/* Right slot */}
-        <span style={{ fontSize: 8, color: '#e3e5e4', letterSpacing: 1 }}>{time}</span>
+        <span style={{ fontSize: 8, color: 'var(--nf-bg)', letterSpacing: 1 }}>{time}</span>
       </div>
 
       {/* ── Content ────────────────────────────────────── */}
@@ -160,30 +161,40 @@ export default function MobileLayout() {
 
           {/* Hero strip */}
           <div style={{
-            background: '#48494b',
+            background: 'var(--nf-ink)',
             padding: '18px 20px 16px',
             display: 'flex',
             alignItems: 'center',
             gap: 16,
-            borderBottom: '3px solid #000',
+            borderBottom: '3px solid var(--nf-edge)',
           }}>
             {/* Mascot frame */}
             <div style={{
-              border: '2px solid #e3e5e4',
-              boxShadow: '3px 3px 0 #000',
+              border: '2px solid var(--nf-bg)',
+              boxShadow: '3px 3px 0 var(--nf-edge)',
               flexShrink: 0,
             }}>
               <div style={{
-                background: '#e3e5e4', height: 8,
+                background: 'var(--nf-bg)', height: 8,
                 display: 'flex', alignItems: 'center', paddingLeft: 4, gap: 3,
               }}>
-                <div style={{ width: 4, height: 4, background: '#48494b' }} />
-                <div style={{ width: 4, height: 4, background: '#48494b' }} />
-                <div style={{ width: 4, height: 4, background: '#48494b' }} />
+                <div style={{ width: 4, height: 4, background: 'var(--nf-ink)' }} />
+                <div style={{ width: 4, height: 4, background: 'var(--nf-ink)' }} />
+                <div style={{ width: 4, height: 4, background: 'var(--nf-ink)' }} />
               </div>
               <Image
-                src="/desk8362.png"
+                className="nf-normie-only"
+                src="/8362.png"
                 alt="Normie #8362"
+                width={68}
+                height={68}
+                style={{ imageRendering: 'pixelated', display: 'block' }}
+                priority
+              />
+              <Image
+                className="nf-neon-only"
+                src="/neon8362.png"
+                alt="Normie #8362 mutated into NEONFACES neon"
                 width={68}
                 height={68}
                 style={{ imageRendering: 'pixelated', display: 'block' }}
@@ -194,13 +205,25 @@ export default function MobileLayout() {
             <div>
               <div style={{
                 fontFamily: "'Press Start 2P', monospace",
-                fontSize: 13, color: '#e3e5e4', lineHeight: 1.8,
+                fontSize: 13, color: 'var(--nf-bg)', lineHeight: 1.8,
               }}>
                 NORMIE<br />#8362
               </div>
-              <div style={{ fontFamily: "'VT323', monospace", fontSize: 15, color: '#9a9c9b', marginTop: 4 }}>
+              <div style={{ fontFamily: "'VT323', monospace", fontSize: 15, color: 'var(--nf-soft)', marginTop: 4 }}>
                 @osaykancuno
               </div>
+              <a
+                href="https://neonfaces.xyz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'block', marginTop: 6, textDecoration: 'none',
+                  fontFamily: "'Press Start 2P', monospace",
+                  fontSize: 6, color: 'var(--nf-bg)', lineHeight: 2,
+                }}
+              >
+                FOUNDER OF NEONFACES ▶<br />THE100 · THE NORMIES
+              </a>
             </div>
           </div>
 
@@ -208,7 +231,7 @@ export default function MobileLayout() {
           <div style={{ padding: '22px 20px 16px' }}>
             <div style={{
               fontFamily: "'Press Start 2P', monospace",
-              fontSize: 7, color: '#9a9c9b', marginBottom: 18, letterSpacing: 2,
+              fontSize: 7, color: 'var(--nf-mute)', marginBottom: 18, letterSpacing: 2,
             }}>
               APPS
             </div>
@@ -218,7 +241,7 @@ export default function MobileLayout() {
               gap: 14,
             }}>
               {APPS.map(({ id, label, Icon, Component, href }) => {
-                const fillTile = id === 'line'
+                const fillTile = id === 'line' || id === 'neonfaces'
                 const isClickable = Boolean(href || Component)
                 return (
                 <button
@@ -242,11 +265,11 @@ export default function MobileLayout() {
                 >
                   <div style={{
                     width: 58, height: 58,
-                    background: '#48494b',
-                    border: '2px solid #000',
-                    boxShadow: '3px 3px 0 #000',
+                    background: 'var(--nf-ink)',
+                    border: '2px solid var(--nf-edge)',
+                    boxShadow: '3px 3px 0 var(--nf-edge)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#e3e5e4',
+                    color: 'var(--nf-bg)',
                     overflow: 'hidden',
                     padding: fillTile ? 0 : undefined,
                   }}>
@@ -254,7 +277,7 @@ export default function MobileLayout() {
                   </div>
                   <span style={{
                     fontFamily: "'Press Start 2P', monospace",
-                    fontSize: 6, color: '#48494b',
+                    fontSize: 6, color: 'var(--nf-ink)',
                     textAlign: 'center', lineHeight: 1.9,
                     minHeight: 26,
                     display: 'flex',
@@ -274,7 +297,7 @@ export default function MobileLayout() {
           <div style={{
             textAlign: 'center', padding: '4px 0 20px',
             fontFamily: "'Press Start 2P', monospace",
-            fontSize: 6, color: '#c8cac9', lineHeight: 2.4,
+            fontSize: 6, color: 'var(--nf-soft)', lineHeight: 2.4,
           }}>
             TAP AN ICON TO OPEN
           </div>
@@ -283,9 +306,9 @@ export default function MobileLayout() {
 
       {/* ── Bottom dock ────────────────────────────────── */}
       <div style={{
-        background: '#48494b',
-        borderTop: '2px solid #000',
-        boxShadow: '0 -2px 0 #000',
+        background: 'var(--nf-ink)',
+        borderTop: '2px solid var(--nf-edge)',
+        boxShadow: '0 -2px 0 var(--nf-edge)',
         height: 54,
         flexShrink: 0,
         display: 'flex',
@@ -299,7 +322,7 @@ export default function MobileLayout() {
           style={{
             background: 'none', border: 'none', cursor: 'pointer',
             fontFamily: "'Press Start 2P', monospace",
-            fontSize: 15, color: '#e3e5e4',
+            fontSize: 15, color: 'var(--nf-bg)',
             WebkitTapHighlightColor: 'transparent',
           }}
         >
@@ -308,7 +331,7 @@ export default function MobileLayout() {
 
         <span style={{
           fontFamily: "'Press Start 2P', monospace",
-          fontSize: 8, color: '#c8cac9', letterSpacing: 2,
+          fontSize: 8, color: 'var(--nf-soft)', letterSpacing: 2,
         }}>
           K4NCUN0
         </span>
@@ -320,7 +343,7 @@ export default function MobileLayout() {
             style={{
               background: 'none', border: 'none', cursor: 'pointer',
               fontFamily: "'Press Start 2P', monospace",
-              fontSize: 12, color: '#e3e5e4',
+              fontSize: 12, color: 'var(--nf-bg)',
               WebkitTapHighlightColor: 'transparent', padding: '2px 4px',
             }}
           >
@@ -328,7 +351,7 @@ export default function MobileLayout() {
           </button>
           <span style={{
             fontFamily: "'Press Start 2P', monospace",
-            fontSize: 6, color: playing ? '#e3e5e4' : '#9a9c9b',
+            fontSize: 6, color: playing ? 'var(--nf-bg)' : 'var(--nf-soft)',
             minWidth: 40,
           }}>
             {STATIONS[stationIdx].name}
@@ -338,7 +361,7 @@ export default function MobileLayout() {
             style={{
               background: 'none', border: 'none', cursor: 'pointer',
               fontFamily: "'Press Start 2P', monospace",
-              fontSize: 12, color: '#e3e5e4',
+              fontSize: 12, color: 'var(--nf-bg)',
               WebkitTapHighlightColor: 'transparent', padding: '2px 4px',
             }}
           >
