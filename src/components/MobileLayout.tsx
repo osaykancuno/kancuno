@@ -241,7 +241,7 @@ export default function MobileLayout() {
               gap: 14,
             }}>
               {APPS.map(({ id, label, Icon, Component, href }) => {
-                const fillTile = id === 'line' || id === 'neonfaces'
+                const fillTile = id === 'neonfaces'
                 const isClickable = Boolean(href || Component)
                 return (
                 <button

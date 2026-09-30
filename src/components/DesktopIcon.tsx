@@ -13,8 +13,8 @@ interface DesktopIconProps {
 export default function DesktopIcon({ id, label, Icon, href }: DesktopIconProps) {
   const { openWindow } = useWindowManager()
   const [selected, setSelected] = useState(false)
-  // Image-style icons fill the whole tile
-  const fillTile = id === 'line' || id === 'neonfaces'
+  // The NEONFACES mark carries its own background, so it fills the tile
+  const fillTile = id === 'neonfaces'
 
   const handleDoubleClick = () => {
     if (href) {
