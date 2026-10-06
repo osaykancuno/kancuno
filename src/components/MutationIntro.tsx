@@ -69,7 +69,6 @@ export default function MutationIntro() {
           style={{ top: `${b.top}%`, height: b.height, opacity: b.opacity, transform: `translateX(${b.x}px)` }}
         />
       ))}
-      <div className="nf-mutation-label">NORMIE → NEON</div>
     </div>
   )
 }
