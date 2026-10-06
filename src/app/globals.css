@@ -225,22 +225,6 @@ html:not([data-palette="normie"]) .nf-normie-only {
   mix-blend-mode: difference;
 }
 
-.nf-mutation-label {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: #ccff00;
-  background: #000;
-  border: 2px solid #ccff00;
-  padding: 8px 12px;
-  white-space: nowrap;
-  text-shadow: -2px 0 #ff2bd6, 2px 0 #00e5ff;
-}
-
 /* No page-level scroll or bounce: each layout scrolls inside its own panels */
 html, body {
   overscroll-behavior: none;
