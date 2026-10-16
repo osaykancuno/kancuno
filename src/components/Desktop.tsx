@@ -63,14 +63,12 @@ export default function Desktop() {
               <div style={{ width: 6, height: 6, background: 'var(--nf-bg)' }} />
               <div style={{ width: 6, height: 6, background: 'var(--nf-bg)' }} />
             </div>
-            <div style={{ position: 'relative' }}>
-              {/* Quote printed on the art itself, outlined so it reads over light and dark pixels */}
-              <div style={{
-                position: 'absolute', top: 6, left: 0, right: 0, zIndex: 1,
+            <div>
+              {/* Quote in blank space above the figure, on the artwork's own background */}
+              <div className="nf-art-caption" style={{
                 fontFamily: "'Press Start 2P', monospace",
                 fontSize: 8, lineHeight: 1.9, color: '#000000',
-                textAlign: 'center', padding: '0 8px',
-                textShadow: '1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff',
+                textAlign: 'center', padding: '10px 8px 4px',
               }}>
                 CULTURE BELONGS TO THE<br />PEOPLE WHO CREATE IT
               </div>
