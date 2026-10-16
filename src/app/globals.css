@@ -202,6 +202,11 @@ html:not([data-palette="normie"]) .nf-normie-only {
   display: none !important;
 }
 
+/* Blank strip above the art that holds the quote: same colour as each artwork's
+   own background, so it reads as part of the image and not as a separate band */
+.nf-art-caption { background: #ffffff; }
+html[data-palette="normie"] .nf-art-caption { background: #e3e5e4; }
+
 .nf-mutation-overlay {
   position: fixed;
   inset: 0;
