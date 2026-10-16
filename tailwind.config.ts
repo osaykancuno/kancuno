@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Palette tokens live in globals.css (NEONFACES + Normies intro palette)
+        // Palette tokens live in globals.css (neon + Normies intro palette)
         'nf-bg':   'var(--nf-bg)',
         'nf-ink':  'var(--nf-ink)',
         'nf-text': 'var(--nf-text)',

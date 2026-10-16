@@ -8,11 +8,9 @@ export default function Home() {
       {/* Plain-text summary for screen readers, search engines and AI crawlers:
           the desktop UI keeps most content inside closed windows. */}
       <section className="sr-only">
-        <h1>Osay Kancuno: Founder of NEONFACES, member and holder of THE100 in The Normies</h1>
+        <h1>Osay Kancuno: building on Robinhood Chain, member and holder of THE100 in The Normies</h1>
         <p>
-          Osay Kancuno (K4NCUN0, @OsayKancuno on X) is the founder of NEONFACES
-          (neonfaces.xyz): 5555 close-up pixel faces, fully on-chain on Robinhood Chain.
-          Every Face is a wallet that holds a small piece of the market. Tagline: They don&apos;t blink.
+          Osay Kancuno (K4NCUN0, @OsayKancuno on X) is building interesting things on Robinhood Chain.
         </p>
         <p>
           Osay Kancuno is a member and holder of THE100 in The Normies community,

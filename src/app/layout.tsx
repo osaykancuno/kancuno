@@ -6,19 +6,19 @@ import './globals.css'
 
 const SITE = 'https://www.kancuno.com'
 const DESCRIPTION =
-  'Osay Kancuno (K4NCUN0, @OsayKancuno) is the founder of NEONFACES: 5555 fully on-chain pixel faces on Robinhood Chain, ' +
-  'where every Face is a wallet. Member and holder of THE100 in The Normies (Normie #8362). ' +
+  'Osay Kancuno (K4NCUN0, @OsayKancuno) is building interesting things on Robinhood Chain. ' +
+  'Member and holder of THE100 in The Normies (Normie #8362). ' +
   'Also founder of Normies Yacht Club and 8362 Coffee.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: 'Osay Kancuno: Founder of NEONFACES · Normies THE100',
+  title: 'Osay Kancuno: Building on Robinhood Chain · Normies THE100',
   description: DESCRIPTION,
   applicationName: 'Osay Kancuno',
   authors: [{ name: 'Osay Kancuno', url: SITE }],
   creator: 'Osay Kancuno',
   keywords: [
-    'NEONFACES', 'neonfaces.xyz', 'NEONFACES founder', 'Osay Kancuno', 'K4NCUN0', 'Kancuno',
+    'Osay Kancuno', 'K4NCUN0', 'Kancuno',
     'The Normies', 'THE100', 'Normies THE100', 'Normie #8362', 'Robinhood Chain', 'on-chain NFT',
     'pixel art NFT', 'Normies Yacht Club', '8362 Coffee',
   ],
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: 'profile',
     url: SITE,
     siteName: 'Osay Kancuno',
-    title: 'Osay Kancuno: Founder of NEONFACES · Normies THE100',
+    title: 'Osay Kancuno: Building on Robinhood Chain · Normies THE100',
     description: DESCRIPTION,
     images: [{ url: '/8362.png', alt: 'Normie #8362, the PFP of Osay Kancuno' }],
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary',
     site: '@OsayKancuno',
     creator: '@OsayKancuno',
-    title: 'Osay Kancuno: Founder of NEONFACES · Normies THE100',
+    title: 'Osay Kancuno: Building on Robinhood Chain · Normies THE100',
     description: DESCRIPTION,
   },
 }
@@ -59,28 +59,16 @@ const JSON_LD = {
       alternateName: ['K4NCUN0', 'Kancuno', '@OsayKancuno', 'osaykancuno', 'Normie #8362'],
       url: SITE,
       image: `${SITE}/8362.png`,
-      jobTitle: 'Founder of NEONFACES',
+      jobTitle: 'Builder on Robinhood Chain',
       description: DESCRIPTION,
-      worksFor: { '@id': 'https://neonfaces.xyz/#organization' },
       memberOf: {
         '@type': 'Organization',
         name: 'THE100 (The Normies)',
         description: 'THE100 group of The Normies community. Osay Kancuno is a member and holder.',
         parentOrganization: { '@type': 'Organization', name: 'The Normies', url: 'https://www.normies.art/' },
       },
-      knowsAbout: ['NEONFACES', 'The Normies', 'On-chain NFT art', 'Robinhood Chain', 'Pixel art', 'Vibecoding', 'Web3 community tools'],
+      knowsAbout: ['The Normies', 'On-chain NFT art', 'Robinhood Chain', 'Pixel art', 'Vibecoding', 'Web3 community tools'],
       sameAs: ['https://x.com/OsayKancuno', 'https://t.me/kancuno'],
-    },
-    {
-      '@type': 'Organization',
-      '@id': 'https://neonfaces.xyz/#organization',
-      name: 'NEONFACES',
-      url: 'https://neonfaces.xyz',
-      logo: 'https://neonfaces.xyz/favicon.svg',
-      slogan: "They don't blink.",
-      description:
-        '5555 fully on-chain pixel faces on Robinhood Chain. Every Face is a wallet that holds a small basket of Stock Tokens. Mint on OpenSea.',
-      founder: { '@id': PERSON_ID },
     },
     {
       '@type': 'Organization',
@@ -98,7 +86,7 @@ const JSON_LD = {
       '@type': 'ProfilePage',
       '@id': `${SITE}/#profile`,
       url: SITE,
-      name: 'Osay Kancuno: Founder of NEONFACES · Normies THE100',
+      name: 'Osay Kancuno: Building on Robinhood Chain · Normies THE100',
       mainEntity: { '@id': PERSON_ID },
     },
   ],

@@ -10,11 +10,10 @@ import NormiesWindow from './windows/NormiesWindow'
 import ContactWindow from './windows/ContactWindow'
 import {
   IconProfile, IconWorks, IconNormies,
-  IconContact, IconLine, IconCoffee, IconNeonfaces,
+  IconContact, IconLine, IconCoffee,
 } from './PixelIcons'
 
 const ICONS = [
-  { id: 'neonfaces' as const, label: 'NEONFACES', Icon: IconNeonfaces, href: 'https://neonfaces.xyz/' },
   { id: 'about'    as const, label: 'PROFILE',   Icon: IconProfile  },
   { id: 'works'    as const, label: 'WORKS',     Icon: IconWorks    },
   { id: 'normies'  as const, label: 'NORMIES',   Icon: IconNormies  },
@@ -64,34 +63,37 @@ export default function Desktop() {
               <div style={{ width: 6, height: 6, background: 'var(--nf-bg)' }} />
               <div style={{ width: 6, height: 6, background: 'var(--nf-bg)' }} />
             </div>
-            <div style={{
-              width: 260,
-              fontFamily: "'Press Start 2P', monospace",
-              fontSize: 8, lineHeight: 1.9, color: 'var(--nf-bg)',
-              background: 'var(--nf-ink)',
-              textAlign: 'center', padding: '10px 12px',
-            }}>
-              CULTURE BELONGS TO THE<br />PEOPLE WHO CREATE IT
+            <div style={{ position: 'relative' }}>
+              {/* Quote printed on the art itself, outlined so it reads over light and dark pixels */}
+              <div style={{
+                position: 'absolute', top: 6, left: 0, right: 0, zIndex: 1,
+                fontFamily: "'Press Start 2P', monospace",
+                fontSize: 8, lineHeight: 1.9, color: '#000000',
+                textAlign: 'center', padding: '0 8px',
+                textShadow: '1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff',
+              }}>
+                CULTURE BELONGS TO THE<br />PEOPLE WHO CREATE IT
+              </div>
+              {/* On-chain Normie during the intro, goggles Normie once the mutation settles */}
+              <Image
+                className="nf-normie-only"
+                src="/8362.png"
+                alt="Normie #8362"
+                width={260}
+                height={260}
+                style={{ imageRendering: 'pixelated', display: 'block' }}
+                priority
+              />
+              <Image
+                className="nf-neon-only"
+                src="/8362-goggles.png"
+                alt="Normie #8362 with glowing green goggles"
+                width={260}
+                height={260}
+                style={{ imageRendering: 'pixelated', display: 'block' }}
+                priority
+              />
             </div>
-            {/* On-chain Normie during the intro, neon face once the mutation settles */}
-            <Image
-              className="nf-normie-only"
-              src="/8362.png"
-              alt="Normie #8362"
-              width={260}
-              height={260}
-              style={{ imageRendering: 'pixelated', display: 'block' }}
-              priority
-            />
-            <Image
-              className="nf-neon-only"
-              src="/neon8362.png"
-              alt="Normie #8362 mutated into NEONFACES neon"
-              width={260}
-              height={260}
-              style={{ imageRendering: 'pixelated', display: 'block' }}
-              priority
-            />
           </div>
         </div>
 
@@ -102,8 +104,7 @@ export default function Desktop() {
             fontSize: 26, color: 'var(--nf-ink)', lineHeight: 1.5,
             textAlign: 'right', textShadow: '4px 4px 0 var(--nf-soft)',
           }}>
-            <span className="nf-normie-only">NORMIE<br />#8362</span><span className="nf-neon-only">NEONFACER</span>
-          </div>
+            <span className="nf-normie-only">NORMIE<br />#8362</span>          </div>
           <a
             href="https://x.com/OsayKancuno"
             target="_blank"
@@ -119,19 +120,13 @@ export default function Desktop() {
           >
             K4NCUN0
           </a>
-          <a
-            href="https://neonfaces.xyz/"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="NEONFACES: neonfaces.xyz"
-            style={{
-              fontFamily: "'Press Start 2P', monospace",
-              fontSize: 8, color: 'var(--nf-ink)', textAlign: 'right',
-              marginTop: 12, lineHeight: 2, textDecoration: 'none',
-            }}
-          >
-            FOUNDER OF<br />NEONFACES ▶
-          </a>
+          <div style={{
+            fontFamily: "'Press Start 2P', monospace",
+            fontSize: 8, color: 'var(--nf-ink)', textAlign: 'right',
+            marginTop: 12, lineHeight: 2,
+          }}>
+            BUILDING COOL THINGS<br />ON ROBINHOOD CHAIN
+          </div>
           <div style={{
             fontFamily: "'Press Start 2P', monospace",
             fontSize: 7, color: 'var(--nf-mute)', textAlign: 'right',

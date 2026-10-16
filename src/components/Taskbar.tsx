@@ -125,14 +125,6 @@ export default function Taskbar() {
             ))}
             <div style={{ borderTop: '1px solid var(--nf-ink)', margin: '2px 0' }} />
             <a
-              href="https://neonfaces.xyz/" target="_blank" rel="noopener noreferrer"
-              className="w-full text-left px-3 py-2 hover:bg-[var(--nf-ink)] hover:text-[var(--nf-bg)] transition-colors block"
-              style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}
-              onClick={() => setStartOpen(false)}
-            >
-              NEONFACES
-            </a>
-            <a
               href="https://normiesyachtclub.com/" target="_blank" rel="noopener noreferrer"
               className="w-full text-left px-3 py-2 hover:bg-[var(--nf-ink)] hover:text-[var(--nf-bg)] transition-colors block"
               style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8 }}

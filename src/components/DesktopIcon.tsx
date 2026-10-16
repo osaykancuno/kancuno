@@ -4,7 +4,7 @@ import { useState, ComponentType } from 'react'
 import { useWindowManager, WindowId } from './WindowManager'
 
 interface DesktopIconProps {
-  id: WindowId | 'line' | 'coffee' | 'neonfaces'
+  id: WindowId | 'line' | 'coffee'
   label: string
   Icon: ComponentType<{ size?: number }>
   href?: string
@@ -13,8 +13,6 @@ interface DesktopIconProps {
 export default function DesktopIcon({ id, label, Icon, href }: DesktopIconProps) {
   const { openWindow } = useWindowManager()
   const [selected, setSelected] = useState(false)
-  // The NEONFACES mark carries its own background, so it fills the tile
-  const fillTile = id === 'neonfaces'
 
   const handleDoubleClick = () => {
     if (href) {
@@ -40,12 +38,12 @@ export default function DesktopIcon({ id, label, Icon, href }: DesktopIconProps)
         style={{
           background: selected ? 'var(--nf-ink)' : 'transparent',
           border: selected ? '1px dashed var(--nf-mute)' : '1px dashed transparent',
-          padding: fillTile ? 0 : 8,
+          padding: 8,
           overflow: 'hidden',
           color: selected ? 'var(--nf-bg)' : 'var(--nf-ink)',
         }}
       >
-        <Icon size={fillTile ? 62 : 44} />
+        <Icon size={44} />
       </div>
 
       <span

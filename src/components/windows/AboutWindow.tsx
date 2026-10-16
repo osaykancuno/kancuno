@@ -42,8 +42,8 @@ export default function AboutWindow() {
 
         {/* Bio */}
         <div className="mb-4" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: 'var(--nf-text)', lineHeight: 1.6 }}>
-          Founder of <strong>NEONFACES</strong>: 5555 fully on-chain pixel faces on
-          Robinhood Chain. Member and holder of <strong>THE100</strong> in The Normies.
+          Building interesting things on <strong>Robinhood Chain</strong>.
+          Member and holder of <strong>THE100</strong> in The Normies.
           We will change the world one pixel at a time.
         </div>
 
@@ -57,7 +57,7 @@ export default function AboutWindow() {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {['FOUNDER · NEONFACES', 'THE100 HOLDER', 'NORMIE #8362'].map(tag => (
+          {['BUILDING ON ROBINHOOD CHAIN', 'THE100 HOLDER', 'NORMIE #8362'].map(tag => (
             <span key={tag} style={{
               fontFamily: "'Press Start 2P', monospace", fontSize: 7,
               padding: '3px 6px', background: 'var(--nf-ink)', color: 'var(--nf-bg)', border: '1px solid var(--nf-edge)',
@@ -76,7 +76,6 @@ export default function AboutWindow() {
         </div>
         <div className="flex flex-wrap gap-2 mb-5">
           {[
-            { label: 'NEONFACES',          href: 'https://neonfaces.xyz/' },
             { label: 'NORMIES YACHT CLUB', href: 'https://normiesyachtclub.com/' },
             { label: '8362 COFFEE',        href: 'https://8362coffee.com/' },
           ].map(t => (
