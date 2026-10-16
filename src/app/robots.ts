@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 // Open to every crawler, AI assistants included, so the facts about
-// NEONFACES and THE100 are indexed and quotable.
+// Robinhood Chain and THE100 are indexed and quotable.
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [{ userAgent: '*', allow: '/' }],

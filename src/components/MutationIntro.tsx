@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 // Every visit boots in the old Normies palette (set before first paint by the
-// inline script in layout.tsx), glitches, and mutates into NEONFACES neon.
+// inline script in layout.tsx), glitches, and mutates into neon.
 
 const GLITCH_START = 350
 const SETTLE       = 1300

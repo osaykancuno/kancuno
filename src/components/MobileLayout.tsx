@@ -6,7 +6,7 @@ import AboutWindow from './windows/AboutWindow'
 import WorksWindow from './windows/WorksWindow'
 import NormiesWindow from './windows/NormiesWindow'
 import ContactWindow from './windows/ContactWindow'
-import { IconProfile, IconWorks, IconNormies, IconContact, IconLine, IconCoffee, IconNeonfaces } from './PixelIcons'
+import { IconProfile, IconWorks, IconNormies, IconContact, IconLine, IconCoffee } from './PixelIcons'
 
 const STATIONS = [
   { name: 'LO-FI',   url: 'https://ice1.somafm.com/groovesalad-128-mp3'   },
@@ -25,7 +25,6 @@ type AppEntry = {
 }
 
 const APPS: AppEntry[] = [
-  { id: 'neonfaces', label: 'NEONFACES', Icon: IconNeonfaces, href: 'https://neonfaces.xyz/' },
   { id: 'about',    label: 'PROFILE',    Icon: IconProfile,  Component: AboutWindow   },
   { id: 'works',    label: 'WORKS',      Icon: IconWorks,    Component: WorksWindow   },
   { id: 'normies',  label: 'NORMIES',    Icon: IconNormies,  Component: NormiesWindow },
@@ -195,8 +194,8 @@ export default function MobileLayout() {
               />
               <Image
                 className="nf-neon-only"
-                src="/neon8362.png"
-                alt="Normie #8362 mutated into NEONFACES neon"
+                src="/8362-goggles.png"
+                alt="Normie #8362 with glowing green goggles"
                 width={68}
                 height={68}
                 style={{ imageRendering: 'pixelated', display: 'block' }}
@@ -209,23 +208,17 @@ export default function MobileLayout() {
                 fontFamily: "'Press Start 2P', monospace",
                 fontSize: 13, color: 'var(--nf-bg)', lineHeight: 1.8,
               }}>
-                <span className="nf-normie-only">NORMIE<br />#8362</span><span className="nf-neon-only">NEONFACER</span>
-              </div>
+                <span className="nf-normie-only">NORMIE<br />#8362</span>              </div>
               <div style={{ fontFamily: "'VT323', monospace", fontSize: 15, color: 'var(--nf-soft)', marginTop: 4 }}>
                 @osaykancuno
               </div>
-              <a
-                href="https://neonfaces.xyz/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'block', marginTop: 6, textDecoration: 'none',
-                  fontFamily: "'Press Start 2P', monospace",
-                  fontSize: 6, color: 'var(--nf-bg)', lineHeight: 2,
-                }}
-              >
-                FOUNDER OF NEONFACES ▶<br />THE100 · THE NORMIES
-              </a>
+              <div style={{
+                marginTop: 6,
+                fontFamily: "'Press Start 2P', monospace",
+                fontSize: 6, color: 'var(--nf-bg)', lineHeight: 2,
+              }}>
+                BUILDING ON ROBINHOOD CHAIN<br />THE100 · THE NORMIES
+              </div>
             </div>
           </div>
 
@@ -243,7 +236,6 @@ export default function MobileLayout() {
               gap: '6px 14px',
             }}>
               {APPS.map(({ id, label, Icon, Component, href }) => {
-                const fillTile = id === 'neonfaces'
                 const isClickable = Boolean(href || Component)
                 return (
                 <button
@@ -273,9 +265,8 @@ export default function MobileLayout() {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: 'var(--nf-bg)',
                     overflow: 'hidden',
-                    padding: fillTile ? 0 : undefined,
                   }}>
-                    <Icon size={fillTile ? 54 : 28} />
+                    <Icon size={28} />
                   </div>
                   <span style={{
                     fontFamily: "'Press Start 2P', monospace",

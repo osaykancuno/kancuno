@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 /* ── Palette ────────────────────────────────────────────────────────────────
-   NEONFACES (neonfaces.xyz) is the default. Every surface reads these tokens,
+   Neon (#CCFF00 on black) is the default. Every surface reads these tokens,
    so a theme or palette switch is a single attribute on <html>.
    --nf-bg    page / window surface      --nf-ink   fills, headings, borders
    --nf-text  body copy                  --nf-card  cards and panels
@@ -22,7 +22,7 @@
   --nf-dot:  #2a320a;
 }
 
-/* Light theme: the "neon page" from the NEONFACES art, black ink on #CCFF00 */
+/* Light theme: the "neon page", black ink on #CCFF00 */
 html[data-theme="light"] {
   --nf-bg:   #ccff00;
   --nf-ink:  #000000;
@@ -166,7 +166,7 @@ html, body {
 
 /* ── Neon mutation ──────────────────────────────────────────────────────────
    Played once per visit: the page boots in the Normies palette, glitches,
-   and settles on NEONFACES. MutationIntro drives html[data-mutating].
+   and settles on neon. MutationIntro drives html[data-mutating].
    Applied to the layout shells (not body > *) so the fixed mobile shell
    keeps its viewport box while it jitters. */
 html[data-mutating] .nf-shell {
