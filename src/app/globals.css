@@ -5,38 +5,13 @@
 @tailwind utilities;
 
 /* ── Palette ────────────────────────────────────────────────────────────────
-   Neon (#CCFF00 on black) is the default. Every surface reads these tokens,
-   so a theme or palette switch is a single attribute on <html>.
+   Monochrome Normies look, dark by default. Every surface reads these tokens,
+   so a theme switch is a single attribute on <html>.
    --nf-bg    page / window surface      --nf-ink   fills, headings, borders
    --nf-text  body copy                  --nf-card  cards and panels
    --nf-edge  hard pixel shadows         --nf-soft  faint hints, text on fills
    --nf-mute  secondary text             --nf-dot   desktop dot grid          */
 :root {
-  --nf-bg:   #000000;
-  --nf-ink:  #ccff00;
-  --nf-text: #e9f5c4;
-  --nf-card: #070900;
-  --nf-edge: #94b21d;
-  --nf-soft: #414d12;
-  --nf-mute: #8a9a5a;
-  --nf-dot:  #2a320a;
-}
-
-/* Light theme: the "neon page", black ink on #CCFF00 */
-html[data-theme="light"] {
-  --nf-bg:   #ccff00;
-  --nf-ink:  #000000;
-  --nf-text: #050600;
-  --nf-card: #f2ffc8;
-  --nf-edge: #000000;
-  --nf-soft: #94b21d;
-  --nf-mute: #556418;
-  --nf-dot:  #94b21d;
-}
-
-/* Pre-mutation palette: the original monochrome Normies look.
-   Only used for the first moments of each visit (see MutationIntro). */
-html[data-palette="normie"] {
   --nf-bg:   #1c1a1b;
   --nf-ink:  #b7b6b4;
   --nf-text: #b7b6b4;
@@ -46,7 +21,7 @@ html[data-palette="normie"] {
   --nf-mute: #656364;
   --nf-dot:  #656364;
 }
-html[data-palette="normie"][data-theme="light"] {
+html[data-theme="light"] {
   --nf-bg:   #e3e5e4;
   --nf-ink:  #48494b;
   --nf-text: #48494b;
@@ -164,9 +139,10 @@ html, body {
   color: var(--nf-bg);
 }
 
-/* ── Neon mutation ──────────────────────────────────────────────────────────
-   Played once per visit: the page boots in the Normies palette, glitches,
-   and settles on neon. MutationIntro drives html[data-mutating].
+/* ── Glitch intro ───────────────────────────────────────────────────────────
+   Played once per visit, colours untouched: the page jitters, the on-chain
+   Normie flickers into the goggles Normie, and everything settles.
+   MutationIntro drives html[data-intro] and html[data-mutating].
    Applied to the layout shells (not body > *) so the fixed mobile shell
    keeps its viewport box while it jitters. */
 html[data-mutating] .nf-shell {
@@ -176,36 +152,36 @@ html[data-mutating] .nf-shell {
 @keyframes nf-jitter {
   0% {
     transform: translate(0, 0) skewX(0deg);
-    filter: drop-shadow(-3px 0 #ff2bd6) drop-shadow(3px 0 #00e5ff);
+    filter: drop-shadow(-3px 0 var(--nf-edge)) drop-shadow(3px 0 var(--nf-mute));
   }
   25% {
     transform: translate(-4px, 1px) skewX(-2deg);
-    filter: drop-shadow(4px 0 #ccff00) drop-shadow(-4px 0 #ff2bd6);
+    filter: drop-shadow(4px 0 var(--nf-mute)) drop-shadow(-4px 0 var(--nf-edge));
   }
   50% {
     transform: translate(3px, -1px) skewX(1.5deg);
-    filter: drop-shadow(-2px 0 #00e5ff) drop-shadow(2px 0 #ccff00);
+    filter: drop-shadow(-2px 0 var(--nf-edge)) invert(0.08);
   }
   75% {
     transform: translate(-1px, 2px) skewX(0deg);
-    filter: drop-shadow(5px 0 #ff2bd6) drop-shadow(-5px 0 #00e5ff);
+    filter: drop-shadow(5px 0 var(--nf-edge)) drop-shadow(-5px 0 var(--nf-mute));
   }
   100% {
     transform: translate(2px, 0) skewX(-1deg);
-    filter: drop-shadow(-3px 0 #ccff00) drop-shadow(3px 0 #ff2bd6);
+    filter: drop-shadow(-3px 0 var(--nf-mute)) drop-shadow(3px 0 var(--nf-edge));
   }
 }
 
-/* Swap artwork with the palette: grey Normie before the mutation, neon after */
-html[data-palette="normie"] .nf-neon-only,
-html:not([data-palette="normie"]) .nf-normie-only {
+/* Swap artwork during the intro: on-chain Normie first, goggles Normie after */
+html[data-intro] .nf-after-intro,
+html:not([data-intro]) .nf-intro-only {
   display: none !important;
 }
 
 /* Blank strip above the art that holds the quote: same colour as each artwork's
    own background, so it reads as part of the image and not as a separate band */
 .nf-art-caption { background: #ffffff; }
-html[data-palette="normie"] .nf-art-caption { background: #e3e5e4; }
+html[data-intro] .nf-art-caption { background: #e3e5e4; }
 
 .nf-mutation-overlay {
   position: fixed;
@@ -217,8 +193,8 @@ html[data-palette="normie"] .nf-art-caption { background: #e3e5e4; }
     to bottom,
     rgba(0, 0, 0, 0) 0,
     rgba(0, 0, 0, 0) 2px,
-    rgba(204, 255, 0, 0.08) 2px,
-    rgba(204, 255, 0, 0.08) 3px
+    rgba(255, 255, 255, 0.07) 2px,
+    rgba(255, 255, 255, 0.07) 3px
   );
 }
 
@@ -226,8 +202,38 @@ html[data-palette="normie"] .nf-art-caption { background: #e3e5e4; }
   position: absolute;
   left: 0;
   width: 100%;
-  background: #ccff00;
+  background: #ffffff;
   mix-blend-mode: difference;
+}
+
+/* ── Build teaser (BuildTeaser.tsx) ───────────────────────────────────────── */
+.nf-glitch {
+  display: inline-block;
+  animation: nf-glitch-word 3.4s steps(1) infinite;
+}
+
+@keyframes nf-glitch-word {
+  0%, 86%, 100% { transform: none; text-shadow: none; clip-path: none; }
+  88% { transform: translateX(-2px) skewX(-10deg); text-shadow: 2px 0 var(--nf-mute); }
+  91% { transform: translateX(2px); text-shadow: -2px 0 var(--nf-edge); clip-path: inset(35% 0 15% 0); }
+  94% { transform: translateX(-1px) skewX(6deg); text-shadow: 1px 0 var(--nf-mute); clip-path: inset(0 0 45% 0); }
+  97% { transform: translateX(1px); text-shadow: none; clip-path: none; }
+}
+
+.nf-glitch-burst {
+  animation: nf-jitter 0.12s steps(2, jump-none) infinite;
+}
+
+.nf-cursor {
+  animation: nf-blink 1s steps(1) infinite;
+}
+
+@keyframes nf-blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-glitch, .nf-glitch-burst, .nf-cursor { animation: none; }
 }
 
 /* No page-level scroll or bounce: each layout scrolls inside its own panels */

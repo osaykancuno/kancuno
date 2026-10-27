@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import DesktopIcon from './DesktopIcon'
 import Taskbar from './Taskbar'
+import BuildTeaser from './BuildTeaser'
 import Window from './Window'
 import AboutWindow from './windows/AboutWindow'
 import WorksWindow from './windows/WorksWindow'
@@ -72,9 +73,9 @@ export default function Desktop() {
               }}>
                 CULTURE BELONGS TO THE<br />PEOPLE WHO CREATE IT
               </div>
-              {/* On-chain Normie during the intro, goggles Normie once the mutation settles */}
+              {/* On-chain Normie during the intro, goggles Normie once the glitch settles */}
               <Image
-                className="nf-normie-only"
+                className="nf-intro-only"
                 src="/8362.png"
                 alt="Normie #8362"
                 width={260}
@@ -83,7 +84,7 @@ export default function Desktop() {
                 priority
               />
               <Image
-                className="nf-neon-only"
+                className="nf-after-intro"
                 src="/8362-goggles.png"
                 alt="Normie #8362 with glowing green goggles"
                 width={260}
@@ -102,7 +103,7 @@ export default function Desktop() {
             fontSize: 26, color: 'var(--nf-ink)', lineHeight: 1.5,
             textAlign: 'right', textShadow: '4px 4px 0 var(--nf-soft)',
           }}>
-            <span className="nf-normie-only">NORMIE<br />#8362</span>          </div>
+            <span className="nf-intro-only">NORMIE<br />#8362</span>          </div>
           <a
             href="https://x.com/OsayKancuno"
             target="_blank"
@@ -123,7 +124,7 @@ export default function Desktop() {
             fontSize: 8, color: 'var(--nf-ink)', textAlign: 'right',
             marginTop: 12, lineHeight: 2,
           }}>
-            BUILDING COOL THINGS<br />ON ROBINHOOD CHAIN
+            BUILDER ON-CHAIN
           </div>
           <div style={{
             fontFamily: "'Press Start 2P', monospace",
@@ -131,6 +132,13 @@ export default function Desktop() {
             marginTop: 6, lineHeight: 2.2,
           }}>
             THE100 MEMBER + HOLDER<br />THE NORMIES
+          </div>
+          <div style={{
+            marginTop: 14, padding: '8px 10px', color: 'var(--nf-ink)',
+            border: '2px solid var(--nf-ink)', boxShadow: '3px 3px 0 var(--nf-soft)',
+            background: 'var(--nf-card)',
+          }}>
+            <BuildTeaser />
           </div>
           <div className="mt-auto" style={{
             fontFamily: "'Press Start 2P', monospace",

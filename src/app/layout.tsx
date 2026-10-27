@@ -6,20 +6,20 @@ import './globals.css'
 
 const SITE = 'https://www.kancuno.com'
 const DESCRIPTION =
-  'Osay Kancuno (K4NCUN0, @OsayKancuno) is building interesting things on Robinhood Chain. ' +
+  'Osay Kancuno (K4NCUN0, @OsayKancuno) is an on-chain builder, currently building something new. ' +
   'Member and holder of THE100 in The Normies (Normie #8362). ' +
   'Also founder of Normies Yacht Club and 8362 Coffee.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: 'Osay Kancuno: Building on Robinhood Chain · Normies THE100',
+  title: 'Osay Kancuno: Builder On-Chain · Normies THE100',
   description: DESCRIPTION,
   applicationName: 'Osay Kancuno',
   authors: [{ name: 'Osay Kancuno', url: SITE }],
   creator: 'Osay Kancuno',
   keywords: [
     'Osay Kancuno', 'K4NCUN0', 'Kancuno',
-    'The Normies', 'THE100', 'Normies THE100', 'Normie #8362', 'Robinhood Chain', 'on-chain NFT',
+    'The Normies', 'THE100', 'Normies THE100', 'Normie #8362', 'on-chain builder', 'on-chain NFT',
     'pixel art NFT', 'Normies Yacht Club', '8362 Coffee',
   ],
   alternates: { canonical: '/' },
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: 'profile',
     url: SITE,
     siteName: 'Osay Kancuno',
-    title: 'Osay Kancuno: Building on Robinhood Chain · Normies THE100',
+    title: 'Osay Kancuno: Builder On-Chain · Normies THE100',
     description: DESCRIPTION,
     images: [{ url: '/8362.png', alt: 'Normie #8362, the PFP of Osay Kancuno' }],
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: 'summary',
     site: '@OsayKancuno',
     creator: '@OsayKancuno',
-    title: 'Osay Kancuno: Building on Robinhood Chain · Normies THE100',
+    title: 'Osay Kancuno: Builder On-Chain · Normies THE100',
     description: DESCRIPTION,
   },
 }
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#000000',
+  themeColor: '#1c1a1b',
 }
 
 // Structured data so search engines and AI assistants read the key facts directly.
@@ -59,7 +59,7 @@ const JSON_LD = {
       alternateName: ['K4NCUN0', 'Kancuno', '@OsayKancuno', 'osaykancuno', 'Normie #8362'],
       url: SITE,
       image: `${SITE}/8362.png`,
-      jobTitle: 'Builder on Robinhood Chain',
+      jobTitle: 'On-chain builder',
       description: DESCRIPTION,
       memberOf: {
         '@type': 'Organization',
@@ -67,7 +67,7 @@ const JSON_LD = {
         description: 'THE100 group of The Normies community. Osay Kancuno is a member and holder.',
         parentOrganization: { '@type': 'Organization', name: 'The Normies', url: 'https://www.normies.art/' },
       },
-      knowsAbout: ['The Normies', 'On-chain NFT art', 'Robinhood Chain', 'Pixel art', 'Vibecoding', 'Web3 community tools'],
+      knowsAbout: ['The Normies', 'On-chain NFT art', 'Pixel art', 'Vibecoding', 'Web3 community tools'],
       sameAs: ['https://x.com/OsayKancuno', 'https://t.me/kancuno'],
     },
     {
@@ -86,16 +86,16 @@ const JSON_LD = {
       '@type': 'ProfilePage',
       '@id': `${SITE}/#profile`,
       url: SITE,
-      name: 'Osay Kancuno: Building on Robinhood Chain · Normies THE100',
+      name: 'Osay Kancuno: Builder On-Chain · Normies THE100',
       mainEntity: { '@id': PERSON_ID },
     },
   ],
 }
 
 // Runs before first paint: apply the saved theme (dark by default) and, unless the
-// visitor prefers reduced motion, start in the Normies palette so MutationIntro can
-// glitch it into neon. The timeout is a safety net if hydration never happens.
-const PRE_PAINT = `(function(){var d=document.documentElement;var t=null;try{t=localStorage.getItem('theme')}catch(e){}d.setAttribute('data-theme',t==='light'?'light':'dark');if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.setAttribute('data-palette','normie');setTimeout(function(){d.removeAttribute('data-palette')},4000)}})()`
+// visitor prefers reduced motion, flag the intro so MutationIntro can glitch from
+// the on-chain Normie to the goggles one. The timeout is a safety net if hydration never happens.
+const PRE_PAINT = `(function(){var d=document.documentElement;var t=null;try{t=localStorage.getItem('theme')}catch(e){}d.setAttribute('data-theme',t==='light'?'light':'dark');if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.setAttribute('data-intro','');setTimeout(function(){d.removeAttribute('data-intro')},4000)}})()`
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

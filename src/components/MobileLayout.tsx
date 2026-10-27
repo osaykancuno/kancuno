@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
+import BuildTeaser from './BuildTeaser'
 import AboutWindow from './windows/AboutWindow'
 import WorksWindow from './windows/WorksWindow'
 import NormiesWindow from './windows/NormiesWindow'
@@ -184,7 +185,7 @@ export default function MobileLayout() {
                 <div style={{ width: 4, height: 4, background: 'var(--nf-ink)' }} />
               </div>
               <Image
-                className="nf-normie-only"
+                className="nf-intro-only"
                 src="/8362.png"
                 alt="Normie #8362"
                 width={68}
@@ -193,7 +194,7 @@ export default function MobileLayout() {
                 priority
               />
               <Image
-                className="nf-neon-only"
+                className="nf-after-intro"
                 src="/8362-goggles.png"
                 alt="Normie #8362 with glowing green goggles"
                 width={68}
@@ -208,7 +209,7 @@ export default function MobileLayout() {
                 fontFamily: "'Press Start 2P', monospace",
                 fontSize: 13, color: 'var(--nf-bg)', lineHeight: 1.8,
               }}>
-                <span className="nf-normie-only">NORMIE<br />#8362</span>              </div>
+                <span className="nf-intro-only">NORMIE<br />#8362</span>              </div>
               <div style={{ fontFamily: "'VT323', monospace", fontSize: 15, color: 'var(--nf-soft)', marginTop: 4 }}>
                 @osaykancuno
               </div>
@@ -217,7 +218,10 @@ export default function MobileLayout() {
                 fontFamily: "'Press Start 2P', monospace",
                 fontSize: 6, color: 'var(--nf-bg)', lineHeight: 2,
               }}>
-                BUILDING ON ROBINHOOD CHAIN<br />THE100 · THE NORMIES
+                BUILDER ON-CHAIN<br />THE100 · THE NORMIES
+              </div>
+              <div style={{ marginTop: 4, color: 'var(--nf-bg)' }}>
+                <BuildTeaser compact />
               </div>
             </div>
           </div>

@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react'
 
-// Every visit boots in the old Normies palette (set before first paint by the
-// inline script in layout.tsx), glitches, and mutates into neon.
+// Every visit boots with the on-chain Normie (html[data-intro], set before first
+// paint by the inline script in layout.tsx), glitches, and settles on the goggles
+// Normie. Colours never change: it's only jitter, scanlines and noise bars.
 
 const GLITCH_START = 350
 const SETTLE       = 1300
 const GLITCH_END   = 1550
-// Palette flips between neon and normie at these moments before settling.
+// Artwork flickers between the two Normies at these moments before settling.
 const FLICKER = [420, 520, 600, 760, 820, 980, 1060, 1180]
 
 type Bar = { top: number; height: number; x: number; opacity: number }
@@ -27,8 +28,8 @@ export default function MutationIntro() {
 
   useEffect(() => {
     const html = document.documentElement
-    // Reduced motion (or a late hydration) skips the intro: palette is already neon.
-    if (html.getAttribute('data-palette') !== 'normie') return
+    // Reduced motion (or a late hydration) skips the intro: the final art is already shown.
+    if (!html.hasAttribute('data-intro')) return
 
     const timers: number[] = []
     const at = (ms: number, fn: () => void) => timers.push(window.setTimeout(fn, ms))
@@ -41,10 +42,10 @@ export default function MutationIntro() {
       barsTimer = window.setInterval(() => setBars(randomBars()), 70)
     })
     FLICKER.forEach((ms, i) => at(ms, () => {
-      if (i % 2 === 0) html.removeAttribute('data-palette')
-      else html.setAttribute('data-palette', 'normie')
+      if (i % 2 === 0) html.removeAttribute('data-intro')
+      else html.setAttribute('data-intro', '')
     }))
-    at(SETTLE, () => html.removeAttribute('data-palette'))
+    at(SETTLE, () => html.removeAttribute('data-intro'))
     at(GLITCH_END, () => {
       html.removeAttribute('data-mutating')
       window.clearInterval(barsTimer)

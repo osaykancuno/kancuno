@@ -42,7 +42,7 @@ export default function AboutWindow() {
 
         {/* Bio */}
         <div className="mb-4" style={{ fontFamily: "'VT323', monospace", fontSize: 18, color: 'var(--nf-text)', lineHeight: 1.6 }}>
-          Building interesting things on <strong>Robinhood Chain</strong>.
+          <strong>Builder on-chain</strong>, working on something new.
           Member and holder of <strong>THE100</strong> in The Normies.
           We will change the world one pixel at a time.
         </div>
@@ -57,7 +57,7 @@ export default function AboutWindow() {
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {['BUILDING ON ROBINHOOD CHAIN', 'THE100 HOLDER', 'NORMIE #8362'].map(tag => (
+          {['BUILDER ON-CHAIN', 'THE100 HOLDER', 'NORMIE #8362'].map(tag => (
             <span key={tag} style={{
               fontFamily: "'Press Start 2P', monospace", fontSize: 7,
               padding: '3px 6px', background: 'var(--nf-ink)', color: 'var(--nf-bg)', border: '1px solid var(--nf-edge)',
