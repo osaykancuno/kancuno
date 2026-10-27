@@ -8,9 +8,9 @@ export default function Home() {
       {/* Plain-text summary for screen readers, search engines and AI crawlers:
           the desktop UI keeps most content inside closed windows. */}
       <section className="sr-only">
-        <h1>Osay Kancuno: building on Robinhood Chain, member and holder of THE100 in The Normies</h1>
+        <h1>Osay Kancuno: on-chain builder, member and holder of THE100 in The Normies</h1>
         <p>
-          Osay Kancuno (K4NCUN0, @OsayKancuno on X) is building interesting things on Robinhood Chain.
+          Osay Kancuno (K4NCUN0, @OsayKancuno on X) is an on-chain builder, currently building something new.
         </p>
         <p>
           Osay Kancuno is a member and holder of THE100 in The Normies community,

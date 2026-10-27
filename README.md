@@ -9,7 +9,7 @@ A fully interactive desktop environment in the browser:
 - Draggable, resizable windows with minimize / maximize / close controls
 - START menu and taskbar with smart focus/minimize/restore logic
 - Dark mode toggle (default) with localStorage persistence
-- Neon palette (#CCFF00 on black) with a Normie → neon glitch intro on every visit
+- Monochrome Normies palette with a glitch intro on every visit and a glitching "building something" teaser
 - Pixel art aesthetic (Press Start 2P + VT323 fonts)
 - Tools and projects built for The Normies and BOOA communities
 
@@ -24,7 +24,7 @@ A fully interactive desktop environment in the browser:
 
 | App | Content |
 |-----|---------|
-| `PROFILE.EXE` | Bio, building on Robinhood Chain, THE100 member + holder |
+| `PROFILE.EXE` | Bio, builder on-chain, THE100 member + holder |
 | `WORKS.EXE` | Personal works + tools built with BOOA (formerly Khôra) |
 | `NORMIES.EXE` | The Normies community, Normifesto + 8 tools |
 | `CONTACT.EXE` | X / Twitter and Telegram |
