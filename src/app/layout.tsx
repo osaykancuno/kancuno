@@ -13,7 +13,8 @@ const TITLE = 'Osay Kancuno — Builder On-Chain · K4NCUN0'
 const DESCRIPTION =
   'Osay Kancuno (K4NCUN0, @OsayKancuno) is an on-chain builder, currently building something new. ' +
   'Member and holder of THE100 in The Normies (Normie #8362). ' +
-  'Also founder of Normies Yacht Club and 8362 Coffee.'
+  'JPEG Frens holder, creator of FRENS AFTER DARK; on the wall at NFC Summit 2027 in Lisbon. ' +
+  'Founder of Normies Yacht Club and 8362 Coffee.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
     'Osay Kancuno', 'K4NCUN0', 'Kancuno',
     'The Normies', 'THE100', 'Normies THE100', 'Normie #8362', 'on-chain builder', 'on-chain NFT',
     'pixel art NFT', 'Normies Yacht Club', '8362 Coffee',
+    'JPEG Frens', 'FRENS AFTER DARK', 'NFC Summit', 'NFC 2027', 'NFC Summit Lisbon', 'On the Wall',
   ],
   alternates: { canonical: '/' },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large' } },
@@ -67,14 +69,22 @@ const JSON_LD = {
       image: `${SITE}/kancuno-logo.png`,
       jobTitle: 'On-chain builder',
       description: DESCRIPTION,
-      memberOf: {
-        '@type': 'Organization',
-        name: 'THE100 (The Normies)',
-        description: 'THE100 group of The Normies community. Osay Kancuno is a member and holder.',
-        parentOrganization: { '@type': 'Organization', name: 'The Normies', url: 'https://www.normies.art/' },
+      memberOf: [
+        {
+          '@type': 'Organization',
+          name: 'THE100 (The Normies)',
+          description: 'THE100 group of The Normies community. Osay Kancuno is a member and holder.',
+          parentOrganization: { '@type': 'Organization', name: 'The Normies', url: 'https://www.normies.art/' },
+        },
+        { '@id': `${SITE}/#jpegfrens` },
+      ],
+      knowsAbout: ['The Normies', 'JPEG Frens', 'On-chain NFT art', 'Pixel art', 'Vibecoding', 'Web3 community tools'],
+      sameAs: ['https://x.com/OsayKancuno', 'https://t.me/kancuno', 'https://onthewall.nfcsummit.com/people/k4ncun0'],
+      subjectOf: {
+        '@type': 'WebPage',
+        name: 'K4NCUN0 · People of the wall, NFC Summit 2027 (Lisbon)',
+        url: 'https://onthewall.nfcsummit.com/people/k4ncun0',
       },
-      knowsAbout: ['The Normies', 'On-chain NFT art', 'Pixel art', 'Vibecoding', 'Web3 community tools'],
-      sameAs: ['https://x.com/OsayKancuno', 'https://t.me/kancuno'],
     },
     {
       '@type': 'Organization',
@@ -87,6 +97,39 @@ const JSON_LD = {
       name: '8362 Coffee',
       url: 'https://8362coffee.com/',
       founder: { '@id': PERSON_ID },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE}/#jpegfrens`,
+      name: 'JPEG Frens',
+      description: 'NFT community. Osay Kancuno is a holder who contributes to the community with FRENS AFTER DARK.',
+    },
+    {
+      '@type': 'CreativeWorkSeries',
+      '@id': `${SITE}/#frens-after-dark`,
+      name: 'FRENS AFTER DARK',
+      description: 'Video mini-series for the JPEG Frens NFT community. Season 2 is airing on X.',
+      creator: { '@id': PERSON_ID },
+      about: { '@id': `${SITE}/#jpegfrens` },
+      inLanguage: 'en',
+      hasPart: [
+        {
+          '@type': 'VideoObject',
+          name: 'FRENS AFTER DARK, Season 2, Ep. 2: Touch Grass Protocol',
+          url: 'https://x.com/OsayKancuno/status/2120201931423420808',
+          uploadDate: '2026-11-10',
+          duration: 'PT1M15S',
+          creator: { '@id': PERSON_ID },
+        },
+        {
+          '@type': 'VideoObject',
+          name: 'FRENS AFTER DARK, Season 2, Ep. 3: Hold The Button',
+          url: 'https://x.com/OsayKancuno/status/2120563587244576871',
+          uploadDate: '2026-11-11',
+          duration: 'PT1M15S',
+          creator: { '@id': PERSON_ID },
+        },
+      ],
     },
     {
       '@type': 'ProfilePage',
