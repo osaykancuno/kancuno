@@ -15,8 +15,9 @@ export default function Home() {
           with Normie #8362 as on-chain PFP, and builds community tools for The Normies.
         </p>
         <p>
-          Osay Kancuno is also a JPEG Frens holder who contributes to the community with FRENS AFTER DARK,
-          a video mini-series for JPEG Frens. Season 2 is airing on X:{' '}
+          Osay Kancuno is also a JPEG Frens holder who contributes to the community: he made{' '}
+          <a href="https://kx499cjd.srstudio.dev/">The Frens Forge</a>, a burn-and-forge game on The Wall Arcade by SuperRare Studio,
+          and he creates FRENS AFTER DARK, a video mini-series for JPEG Frens. Season 2 is airing on X:{' '}
           <a href="https://x.com/OsayKancuno/status/2120201931423420808">Episode 2, &quot;Touch Grass Protocol&quot;</a> (10 November 2026) and{' '}
           <a href="https://x.com/OsayKancuno/status/2120563587244576871">Episode 3, &quot;Hold The Button&quot;</a> (11 November 2026).
         </p>

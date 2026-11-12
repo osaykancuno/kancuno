@@ -114,7 +114,7 @@ ul { list-style: none; }
 }
 .k-legibility--right {
   background:
-    linear-gradient(270deg, rgba(251, 197, 0, 0.93) 0%, rgba(251, 197, 0, 0.84) 40%, rgba(251, 197, 0, 0) 54%);
+    linear-gradient(270deg, rgba(251, 197, 0, 0.93) 0%, rgba(251, 197, 0, 0.86) 44%, rgba(251, 197, 0, 0) 58%);
 }
 .k-stage:is([data-chapter='0'], [data-chapter='2'], [data-chapter='4']) .k-legibility--left,
 .k-stage:is([data-chapter='1'], [data-chapter='3']) .k-legibility--right { opacity: 1; }
@@ -391,7 +391,7 @@ ul { list-style: none; }
   width: min(560px, 40vw);
 }
 .k-ch--left { left: var(--pad); }
-.k-ch--right { right: calc(var(--pad) + 180px); }
+.k-ch--right { right: calc(var(--pad) + 180px); width: min(480px, 34vw); }
 
 /* Hero */
 .k-hero {
@@ -487,6 +487,16 @@ ul { list-style: none; }
   text-transform: uppercase;
   margin-bottom: 22px;
 }
+.k-h2--long { font-size: clamp(34px, min(3.7vw, 6.8vh), 64px); }
+.k-h2--fit { font-size: clamp(32px, min(3.4vw, 6.4vh), 60px); }
+.k-h2,
+.k-title,
+.k-drawer h2,
+.k-drawer h3 { text-wrap: balance; }
+.k-body,
+.k-quote,
+.k-drawer p { text-wrap: pretty; }
+
 .k-mono-line {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -606,6 +616,7 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
 .k-btn--ghost:hover { background: var(--k-ink); color: var(--k-yellow); }
 
 .k-list { border-bottom: 1.5px solid var(--k-ink-15); margin-bottom: 26px; }
+.k-list li:nth-child(n + 5) { display: none; }
 .k-list a {
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -906,7 +917,8 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
 .k-dsoon h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
 .k-dsoon p { color: var(--k-cream-70); font-size: 15px; margin-bottom: 12px; }
 .k-dsoon p:last-child { margin-bottom: 0; }
-.k-dlist .k-dlinks { gap: 10px; }
+.k-dlist .k-dlinks { flex-direction: row; flex-wrap: wrap; gap: 10px 22px; }
+.k-dlist .k-dlinks li { padding: 0; border: 0; }
 .k-dnormie {
   display: flex;
   align-items: center;
@@ -1018,6 +1030,7 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
 
   .k-index { margin-bottom: 12px; font-size: 11px; }
   .k-h2 { font-size: clamp(34px, 10.5vw, 46px); margin-bottom: 14px; }
+  .k-h2--fit { font-size: clamp(28px, 8.6vw, 40px); }
   .k-mono-line { font-size: 10.5px; margin-bottom: 10px; }
   .k-body { font-size: 15px; margin-bottom: 14px; }
   .k-founder { margin-bottom: 16px; gap: 6px 16px; }

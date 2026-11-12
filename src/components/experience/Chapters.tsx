@@ -1,4 +1,5 @@
 import BuildTeaser from '../BuildTeaser'
+import Sentences from './Sentences'
 import {
   BOOA_TOOLS, CHAPTER_LABELS, LINKS, NORMIE_TOOLS, ON_THE_WALL, PROFILE, WORKS,
 } from './content'
@@ -53,7 +54,7 @@ export function ProfileChapter({ onOpen }: ChapterProps) {
       <Index n={1} />
       <h2 className="k-h2" tabIndex={-1}>Builder<br />on-chain.</h2>
       <p className="k-mono-line k-tall-only">{PROFILE.handle} · {PROFILE.tagline}</p>
-      <p className="k-body">{PROFILE.bio}</p>
+      <p className="k-body"><Sentences text={PROFILE.bio} /></p>
       <blockquote className="k-quote k-hide-sm k-mid-only">{PROFILE.quote}</blockquote>
       <div className="k-founder">
         <span className="k-label">Founder of</span>
@@ -80,8 +81,11 @@ export function WorksChapter({ onOpen }: ChapterProps) {
   return (
     <div className="k-card">
       <Index n={2} />
-      <h2 className="k-h2" tabIndex={-1}>Built for the<br />communities.</h2>
-      <p className="k-body">Tributes, frameworks, tools and video, by {PROFILE.handle}. More on the way: new projects in progress.</p>
+      <h2 className="k-h2 k-h2--long" tabIndex={-1}>Built for the<br />communities.</h2>
+      <p className="k-body">
+        Tributes, frameworks, tools and video, by {PROFILE.handle}.<br />
+        More on the way: new projects in progress.
+      </p>
       <ul className="k-list k-hide-sm">
         {rows.map(w => (
           <li key={w.name}>
@@ -104,11 +108,11 @@ export function CommunityChapter({ onOpen }: ChapterProps) {
   return (
     <div className="k-card">
       <Index n={3} />
-      <h2 className="k-h2" tabIndex={-1}>THE100.<br />The Normies.</h2>
+      <h2 className="k-h2 k-h2--fit" tabIndex={-1}>THE100.<br />The&nbsp;Normies.</h2>
       <p className="k-body">
         Member and holder of THE100 in The Normies, part of the community since day 1,
-        with Normie #8362 as on-chain PFP. I build free tools for it. Also a JPEG Frens
-        holder, contributing with Frens After Dark.
+        with Normie #8362 as on-chain PFP.<br />
+        I build free tools for the community.
       </p>
       <p className="k-stat">
         <strong>{NORMIE_TOOLS.length}</strong>
