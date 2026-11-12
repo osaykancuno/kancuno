@@ -71,7 +71,7 @@ function Body({ k }: { k: DrawerKey }) {
   if (k === 'works') {
     return (
       <>
-        <p className="k-dlead">Built for the communities — by {PROFILE.handle}.</p>
+        <p className="k-dlead">Selected works by {PROFILE.handle}.</p>
         <WorkList items={WORKS} />
         <h3 className="k-dsection">Studio collaboration</h3>
         <p className="k-dtext">{BOOA_NOTE}<br />Tools built for this community:</p>

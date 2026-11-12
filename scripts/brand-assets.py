@@ -139,7 +139,7 @@ def write_og():
     d = ImageDraw.Draw(img)
     x0 = 72
     mono = font('mono', 22, 700)
-    d.text((x0, 84), 'K4NCUN0  —  BUILDER ON-CHAIN', font=mono, fill=INK)
+    d.text((x0, 84), 'K4NCUN0  —  ARTIST & BUILDER ON-CHAIN', font=mono, fill=INK)
 
     big = font('display', 92)
     d.text((x0, 160), 'OSAY', font=big, fill=INK)
@@ -150,7 +150,7 @@ def write_og():
     d.rounded_rectangle((x0, 432, x0 + sq, 432 + sq), radius=4, fill=PURPLE)
     d.rounded_rectangle((x0 + sq + 6, 432, x0 + 2 * sq + 6, 432 + sq), radius=4, fill=PINK)
     small = font('mono', 22, 700)
-    d.text((x0 + 2 * sq + 22, 427), 'THE100 MEMBER + HOLDER · THE NORMIES', font=small, fill=INK)
+    d.text((x0 + 2 * sq + 22, 427), 'BUILDING SOMETHING NEW', font=small, fill=INK)
 
     url = font('display', 30, 800, 112)
     d.text((x0, 520), 'kancuno.com', font=url, fill=INK)

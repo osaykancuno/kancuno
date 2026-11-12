@@ -17,9 +17,9 @@ export const CHAPTER_LABELS = ['Intro', 'Profile', 'Works', 'Community', 'Contac
 export const PROFILE = {
   handle: '@osaykancuno',
   tagline: 'On-chain vibecoding → off-chain experiences',
-  bio: 'Builder on-chain, working on something new. Member and holder of THE100 in The Normies. We will change the world one pixel at a time.',
+  bio: 'Artist and builder on-chain, working on something new. We will change the world one pixel at a time.',
   quote: 'Culture belongs to the people who create it.',
-  tags: ['Builder on-chain', 'THE100 holder', 'Normie #8362', 'On the wall · NFC 2027'],
+  tags: ['Artist', 'Builder on-chain', 'K4NCUN0'],
   founderOf: [
     { label: 'Normies Yacht Club', href: LINKS.yachtClub },
     { label: '8362 Coffee', href: LINKS.coffee },

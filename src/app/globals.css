@@ -487,7 +487,6 @@ ul { list-style: none; }
   text-transform: uppercase;
   margin-bottom: 22px;
 }
-.k-h2--long { font-size: clamp(34px, min(3.7vw, 6.8vh), 64px); }
 .k-h2--fit { font-size: clamp(32px, min(3.4vw, 6.4vh), 60px); }
 .k-h2,
 .k-title,

@@ -6,9 +6,10 @@ export default function Home() {
       {/* Plain-text summary for screen readers, search engines and AI crawlers:
           the 3D experience shows one chapter at a time. */}
       <section className="sr-only" aria-label="Summary">
-        <h1>Osay Kancuno, builder on-chain</h1>
+        <h1>Osay Kancuno (K4NCUN0), artist and builder on-chain</h1>
         <p>
-          Osay Kancuno (K4NCUN0, @OsayKancuno on X) is an on-chain builder, currently building something new.
+          Osay Kancuno (K4NCUN0, @OsayKancuno on X) is an artist and builder on-chain, currently building something new.
+          His work spans games, tools, frameworks and video, including projects for communities he belongs to.
         </p>
         <p>
           Osay Kancuno is a member and holder of THE100 in The Normies community,
