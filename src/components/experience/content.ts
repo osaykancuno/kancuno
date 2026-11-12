@@ -8,6 +8,8 @@ export const LINKS = {
   normifesto: 'https://normifesto.netlify.app/',
   yachtClub: 'https://normiesyachtclub.com/',
   coffee: 'https://8362coffee.com/',
+  nfcWall: 'https://onthewall.nfcsummit.com/people/k4ncun0',
+  nfcSummit: 'https://www.nfcsummit.com',
 }
 
 export const CHAPTER_LABELS = ['Intro', 'Profile', 'Works', 'Community', 'Contact'] as const
@@ -17,7 +19,7 @@ export const PROFILE = {
   tagline: 'On-chain vibecoding → off-chain experiences',
   bio: 'Builder on-chain, working on something new. Member and holder of THE100 in The Normies. We will change the world one pixel at a time.',
   quote: 'Culture belongs to the people who create it.',
-  tags: ['Builder on-chain', 'THE100 holder', 'Normie #8362'],
+  tags: ['Builder on-chain', 'THE100 holder', 'Normie #8362', 'On the wall · NFC 2027'],
   founderOf: [
     { label: 'Normies Yacht Club', href: LINKS.yachtClub },
     { label: '8362 Coffee', href: LINKS.coffee },
@@ -31,6 +33,7 @@ export interface Work {
   desc: string
   url: string
   cta: string
+  extra?: { label: string; url: string }[] // further links shown in the drawer
 }
 
 export const WORKS: Work[] = [
@@ -50,7 +53,35 @@ export const WORKS: Work[] = [
     url: 'https://kancuno.notion.site/THE-FRAMEWORK-LIBRARY-2e54fed9de0b80dcb5e3df60fb00432c',
     cta: 'Open framework',
   },
+  {
+    name: 'Frens After Dark',
+    type: 'Video series',
+    status: 'Season 2',
+    desc: 'A video mini-series I make for the JPEG Frens community, as a holder. Season 2 airs on X, about 75 seconds per episode.',
+    url: 'https://x.com/OsayKancuno/status/2120563587244576871',
+    cta: 'Watch Ep. 3',
+    extra: [
+      { label: 'Ep. 3 “Hold The Button”', url: 'https://x.com/OsayKancuno/status/2120563587244576871' },
+      { label: 'Ep. 2 “Touch Grass Protocol”', url: 'https://x.com/OsayKancuno/status/2120201931423420808' },
+    ],
+  },
 ]
+
+// NFC Summit 2027 (Lisbon): holder and community contributor, one of the People of the Wall (not a patron)
+export const ON_THE_WALL = {
+  short: 'On the wall at NFC Summit 2027',
+  text: 'Holder and community contributor at NFC: one of the People of the Wall at NFC Summit 2027 (Lisbon, 27–29 May 2027, Unicorn Factory). K4NCUN0 is painted on the event’s wall: Panel #33, category Builders.',
+  cta: 'See the panel',
+  url: LINKS.nfcWall,
+}
+
+// Other communities supported, after The Normies
+export const ALSO_SUPPORTING = {
+  name: 'JPEG Frens',
+  text: 'Holder and contributor: I make Frens After Dark, a video mini-series for the JPEG Frens community.',
+  cta: 'Watch the series',
+  url: 'https://x.com/OsayKancuno/status/2120563587244576871',
+}
 
 export const BOOA_NOTE = 'In collaboration with BOOA (formerly Khôra, @khorafun).'
 

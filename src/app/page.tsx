@@ -15,6 +15,18 @@ export default function Home() {
           with Normie #8362 as on-chain PFP, and builds community tools for The Normies.
         </p>
         <p>
+          Osay Kancuno is also a JPEG Frens holder who contributes to the community with FRENS AFTER DARK,
+          a video mini-series for JPEG Frens. Season 2 is airing on X:{' '}
+          <a href="https://x.com/OsayKancuno/status/2120201931423420808">Episode 2, &quot;Touch Grass Protocol&quot;</a> (10 November 2026) and{' '}
+          <a href="https://x.com/OsayKancuno/status/2120563587244576871">Episode 3, &quot;Hold The Button&quot;</a> (11 November 2026).
+        </p>
+        <p>
+          At NFC, Osay Kancuno is a holder who contributes to the community, and one of the
+          &quot;People of the Wall&quot; at NFC 2027 (NFC Summit, Lisbon, 27-29 May 2027,
+          Unicorn Factory): his name, K4NCUN0, is painted on the event&apos;s wall at Panel #33, category Builders.{' '}
+          <a href="https://onthewall.nfcsummit.com/people/k4ncun0">See the wall profile</a>.
+        </p>
+        <p>
           Also founder of Normies Yacht Club (normiesyachtclub.com) and 8362 Coffee (8362coffee.com).
           Contact: X @OsayKancuno, Telegram @kancuno.
         </p>

@@ -91,7 +91,7 @@ export default function Experience() {
     let started = false
     const frame = (ms: number) => {
       const now = ms / 1000
-      const dt = Math.min(0.05, (ms - last) / 1000)
+      const dt = Math.min(0.1, (ms - last) / 1000) // slow devices still finish transitions on time
       last = ms
 
       // Loader counter: eases toward 100, holds at 90 until everything is ready
@@ -166,7 +166,9 @@ export default function Experience() {
     // Scrollable regions (the drawer, a chapter that overflows a short screen) keep their own scroll
     const inLocked = (t: EventTarget | null) => {
       const el = t instanceof Element ? t.closest<HTMLElement>('[data-scroll-lock]') : null
-      return el !== null && el.scrollHeight > el.clientHeight + 1
+      if (!el || el.scrollHeight <= el.clientHeight + 1) return false
+      const oy = getComputedStyle(el).overflowY
+      return oy === 'auto' || oy === 'scroll'
     }
 
     const snap = () => {

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import {
-  BOOA_NOTE, BOOA_TOOLS, LINKS, MY_NORMIE, NORMIE_TOOLS, PROFILE, WORKS, type Work,
+  ALSO_SUPPORTING, BOOA_NOTE, BOOA_TOOLS, LINKS, MY_NORMIE, NORMIE_TOOLS, ON_THE_WALL, PROFILE, WORKS, type Work,
 } from './content'
 import type { DrawerKey } from './Chapters'
 
@@ -23,9 +23,19 @@ function WorkList({ items }: { items: Work[] }) {
             <span className="k-dlist-type">{w.type}{w.status ? ` · ${w.status}` : ''}</span>
           </div>
           <p>{w.desc}</p>
-          <a href={w.url} target="_blank" rel="noopener noreferrer" className="k-dlink">
-            {w.cta} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span>
-          </a>
+          {w.extra ? (
+            <ul className="k-dlinks">
+              {w.extra.map(x => (
+                <li key={x.url}>
+                  <a href={x.url} target="_blank" rel="noopener noreferrer" className="k-dlink">{x.label} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <a href={w.url} target="_blank" rel="noopener noreferrer" className="k-dlink">
+              {w.cta} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          )}
         </li>
       ))}
     </ul>
@@ -51,6 +61,9 @@ function Body({ k }: { k: DrawerKey }) {
             <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="k-dlink">Twitter / X <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
           </li>
         </ul>
+        <h3 className="k-dsection">On the wall</h3>
+        <p className="k-dtext">{ON_THE_WALL.text}</p>
+        <a href={ON_THE_WALL.url} target="_blank" rel="noopener noreferrer" className="k-dlink">{ON_THE_WALL.cta} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
       </>
     )
   }
@@ -78,6 +91,12 @@ function Body({ k }: { k: DrawerKey }) {
       </a>
       <h3 className="k-dsection">Tools built for this community</h3>
       <WorkList items={NORMIE_TOOLS} />
+      <h3 className="k-dsection">Also supporting</h3>
+      <div className="k-dsoon">
+        <h3>{ALSO_SUPPORTING.name}</h3>
+        <p>{ALSO_SUPPORTING.text}</p>
+        <a href={ALSO_SUPPORTING.url} target="_blank" rel="noopener noreferrer" className="k-dlink">{ALSO_SUPPORTING.cta} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
+      </div>
       <div className="k-dnormie">
         <Image src="/8362.png" alt="Normie #8362, on-chain PFP of Osay Kancuno" width={88} height={88} style={{ imageRendering: 'pixelated' }} />
         <div>
