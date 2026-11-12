@@ -49,14 +49,14 @@ export default function BuildTeaser({ compact = false }: { compact?: boolean }) 
     }
   }, [])
 
-  const cell = compact ? 5 : 7
+  const cell = compact ? 6 : 7
   const pct  = noisy ? '??%' : `${Math.round((filled / CELLS) * 100)}%`
 
   return (
     <div
-      role="status"
-      aria-label="Building something interesting"
-      style={{ fontFamily: "'Press Start 2P', monospace", fontSize: compact ? 6 : 8, lineHeight: 2 }}
+      role="img"
+      aria-label="Building something interesting. Status: classified."
+      style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, fontSize: compact ? 10 : 11, letterSpacing: '0.08em', lineHeight: 1.8 }}
     >
       <div aria-hidden="true">
         &gt; BUILDING SOMETHING{compact ? ' ' : <br />}
@@ -72,6 +72,7 @@ export default function BuildTeaser({ compact = false }: { compact?: boolean }) 
                 width: cell, height: cell,
                 background: on ? 'currentColor' : 'transparent',
                 border: '1px solid currentColor',
+                borderRadius: 2,
                 opacity: on ? 1 : 0.35,
               }} />
             )
@@ -80,7 +81,7 @@ export default function BuildTeaser({ compact = false }: { compact?: boolean }) 
         <span style={{ minWidth: compact ? 18 : 24 }}>{pct}</span>
       </div>
       {!compact && (
-        <div aria-hidden="true" style={{ fontSize: 6, opacity: 0.6, marginTop: 4 }}>
+        <div aria-hidden="true" style={{ fontSize: 10, marginTop: 4, letterSpacing: '0.16em' }}>
           STATUS: CLASSIFIED
         </div>
       )}

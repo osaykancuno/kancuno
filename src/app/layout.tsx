@@ -1,10 +1,15 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
+import { Archivo, JetBrains_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import MutationIntro from '@/components/MutationIntro'
 import './globals.css'
 
+// Archivo (variable width + weight) for the editorial display type, JetBrains Mono for labels
+const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' })
+const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jbmono', display: 'swap' })
+
 const SITE = 'https://www.kancuno.com'
+const TITLE = 'Osay Kancuno — Builder On-Chain · K4NCUN0'
 const DESCRIPTION =
   'Osay Kancuno (K4NCUN0, @OsayKancuno) is an on-chain builder, currently building something new. ' +
   'Member and holder of THE100 in The Normies (Normie #8362). ' +
@@ -12,7 +17,7 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: 'Osay Kancuno: Builder On-Chain · Normies THE100',
+  title: TITLE,
   description: DESCRIPTION,
   applicationName: 'Osay Kancuno',
   authors: [{ name: 'Osay Kancuno', url: SITE }],
@@ -28,23 +33,24 @@ export const metadata: Metadata = {
     type: 'profile',
     url: SITE,
     siteName: 'Osay Kancuno',
-    title: 'Osay Kancuno: Builder On-Chain · Normies THE100',
+    title: TITLE,
     description: DESCRIPTION,
-    images: [{ url: '/8362.png', alt: 'Normie #8362, the PFP of Osay Kancuno' }],
+    images: [{ url: '/kancuno-logo.png', width: 400, height: 400, alt: 'K4NCUN0, the personal mark of Osay Kancuno' }],
   },
   twitter: {
     card: 'summary',
     site: '@OsayKancuno',
     creator: '@OsayKancuno',
-    title: 'Osay Kancuno: Builder On-Chain · Normies THE100',
+    title: TITLE,
     description: DESCRIPTION,
+    images: ['/kancuno-logo.png'],
   },
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#1c1a1b',
+  themeColor: '#fbc500',
 }
 
 // Structured data so search engines and AI assistants read the key facts directly.
@@ -58,7 +64,7 @@ const JSON_LD = {
       name: 'Osay Kancuno',
       alternateName: ['K4NCUN0', 'Kancuno', '@OsayKancuno', 'osaykancuno', 'Normie #8362'],
       url: SITE,
-      image: `${SITE}/8362.png`,
+      image: `${SITE}/kancuno-logo.png`,
       jobTitle: 'On-chain builder',
       description: DESCRIPTION,
       memberOf: {
@@ -86,27 +92,20 @@ const JSON_LD = {
       '@type': 'ProfilePage',
       '@id': `${SITE}/#profile`,
       url: SITE,
-      name: 'Osay Kancuno: Builder On-Chain · Normies THE100',
+      name: TITLE,
       mainEntity: { '@id': PERSON_ID },
     },
   ],
 }
 
-// Runs before first paint: apply the saved theme (dark by default) and, unless the
-// visitor prefers reduced motion, flag the intro so MutationIntro can glitch from
-// the on-chain Normie to the goggles one. The timeout is a safety net if hydration never happens.
-const PRE_PAINT = `(function(){var d=document.documentElement;var t=null;try{t=localStorage.getItem('theme')}catch(e){}d.setAttribute('data-theme',t==='light'?'light':'dark');if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.setAttribute('data-intro','');setTimeout(function(){d.removeAttribute('data-intro')},4000)}})()`
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${archivo.variable} ${mono.variable}`}>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: PRE_PAINT }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       </head>
       <body>
         {children}
-        <MutationIntro />
         <Analytics />
         <Script id="clarity" strategy="afterInteractive">{`
           (function(c,l,a,r,i,t,y){

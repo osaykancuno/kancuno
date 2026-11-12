@@ -1,14 +1,12 @@
-import { WindowManagerProvider } from '@/components/WindowManager'
-import Desktop from '@/components/Desktop'
-import MobileLayout from '@/components/MobileLayout'
+import Experience from '@/components/experience/Experience'
 
 export default function Home() {
   return (
-    <WindowManagerProvider>
+    <>
       {/* Plain-text summary for screen readers, search engines and AI crawlers:
-          the desktop UI keeps most content inside closed windows. */}
-      <section className="sr-only">
-        <h1>Osay Kancuno: on-chain builder, member and holder of THE100 in The Normies</h1>
+          the 3D experience shows one chapter at a time. */}
+      <section className="sr-only" aria-label="Summary">
+        <h1>Osay Kancuno, builder on-chain</h1>
         <p>
           Osay Kancuno (K4NCUN0, @OsayKancuno on X) is an on-chain builder, currently building something new.
         </p>
@@ -21,14 +19,7 @@ export default function Home() {
           Contact: X @OsayKancuno, Telegram @kancuno.
         </p>
       </section>
-      {/* Desktop: full OS experience */}
-      <div className="hidden md:block">
-        <Desktop />
-      </div>
-      {/* Mobile: scrollable accordion */}
-      <div className="block md:hidden">
-        <MobileLayout />
-      </div>
-    </WindowManagerProvider>
+      <Experience />
+    </>
   )
 }
