@@ -13,7 +13,7 @@ const TITLE = 'Osay Kancuno — Builder On-Chain · K4NCUN0'
 const DESCRIPTION =
   'Osay Kancuno (K4NCUN0, @OsayKancuno) is an on-chain builder, currently building something new. ' +
   'Member and holder of THE100 in The Normies (Normie #8362). ' +
-  'JPEG Frens holder, creator of FRENS AFTER DARK; on the wall at NFC Summit 2027 in Lisbon. ' +
+  'JPEG Frens holder, creator of The Frens Forge and FRENS AFTER DARK; on the wall at NFC Summit 2027. ' +
   'Founder of Normies Yacht Club and 8362 Coffee.'
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     'Osay Kancuno', 'K4NCUN0', 'Kancuno',
     'The Normies', 'THE100', 'Normies THE100', 'Normie #8362', 'on-chain builder', 'on-chain NFT',
     'pixel art NFT', 'Normies Yacht Club', '8362 Coffee',
-    'JPEG Frens', 'FRENS AFTER DARK', 'NFC Summit', 'NFC 2027', 'NFC Summit Lisbon', 'On the Wall',
+    'JPEG Frens', 'The Frens Forge', 'The Wall Arcade', 'FRENS AFTER DARK', 'NFC Summit', 'NFC 2027', 'NFC Summit Lisbon', 'On the Wall',
   ],
   alternates: { canonical: '/' },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large' } },
@@ -37,15 +37,15 @@ export const metadata: Metadata = {
     siteName: 'Osay Kancuno',
     title: TITLE,
     description: DESCRIPTION,
-    images: [{ url: '/kancuno-logo.png', width: 400, height: 400, alt: 'K4NCUN0, the personal mark of Osay Kancuno' }],
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Osay Kancuno (K4NCUN0), builder on-chain, with the K4NCUN0 logo' }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     site: '@OsayKancuno',
     creator: '@OsayKancuno',
     title: TITLE,
     description: DESCRIPTION,
-    images: ['/kancuno-logo.png'],
+    images: [{ url: '/og.png', alt: 'Osay Kancuno (K4NCUN0), builder on-chain, with the K4NCUN0 logo' }],
   },
 }
 
@@ -102,7 +102,18 @@ const JSON_LD = {
       '@type': 'Organization',
       '@id': `${SITE}/#jpegfrens`,
       name: 'JPEG Frens',
-      description: 'NFT community. Osay Kancuno is a holder who contributes to the community with FRENS AFTER DARK.',
+      description: 'NFT community. Osay Kancuno is a holder who contributes to the community with The Frens Forge and FRENS AFTER DARK.',
+    },
+    {
+      '@type': 'VideoGame',
+      '@id': `${SITE}/#frens-forge`,
+      name: 'The Frens Forge',
+      description: 'Burn-and-forge game for the JPEG Frens NFT community, on The Wall Arcade by SuperRare Studio.',
+      url: 'https://kx499cjd.srstudio.dev/',
+      author: { '@id': PERSON_ID },
+      about: { '@id': `${SITE}/#jpegfrens` },
+      gamePlatform: 'Web browser',
+      isPartOf: { '@type': 'CreativeWork', name: 'The Wall Arcade', url: 'https://thewallarcade.superrare.com/' },
     },
     {
       '@type': 'CreativeWorkSeries',

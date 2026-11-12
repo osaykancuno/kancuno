@@ -46,12 +46,16 @@ export const WORKS: Work[] = [
     cta: 'View on OpenSea',
   },
   {
-    name: 'The Framework Library',
-    type: 'Framework',
+    name: 'The Frens Forge',
+    type: 'Game',
     status: 'Live',
-    desc: 'A free Notion framework helping Web3 builders avoid common mistakes — built from real experience in the field.',
-    url: 'https://kancuno.notion.site/THE-FRAMEWORK-LIBRARY-2e54fed9de0b80dcb5e3df60fb00432c',
-    cta: 'Open framework',
+    desc: 'A burn-and-forge game for the JPEG Frens community, playable on The Wall Arcade by SuperRare Studio: arcade games built on the names of the NFC Summit wall in Lisbon.',
+    url: 'https://kx499cjd.srstudio.dev/',
+    cta: 'Play',
+    extra: [
+      { label: 'Play The Frens Forge', url: 'https://kx499cjd.srstudio.dev/' },
+      { label: 'The Wall Arcade', url: 'https://thewallarcade.superrare.com/' },
+    ],
   },
   {
     name: 'Frens After Dark',
@@ -65,6 +69,14 @@ export const WORKS: Work[] = [
       { label: 'Ep. 2 “Touch Grass Protocol”', url: 'https://x.com/OsayKancuno/status/2120201931423420808' },
     ],
   },
+  {
+    name: 'The Framework Library',
+    type: 'Framework',
+    status: 'Live',
+    desc: 'A free Notion framework helping Web3 builders avoid common mistakes — built from real experience in the field.',
+    url: 'https://kancuno.notion.site/THE-FRAMEWORK-LIBRARY-2e54fed9de0b80dcb5e3df60fb00432c',
+    cta: 'Open framework',
+  },
 ]
 
 // NFC Summit 2027 (Lisbon): holder and community contributor, one of the People of the Wall (not a patron)
@@ -75,13 +87,6 @@ export const ON_THE_WALL = {
   url: LINKS.nfcWall,
 }
 
-// Other communities supported, after The Normies
-export const ALSO_SUPPORTING = {
-  name: 'JPEG Frens',
-  text: 'Holder and contributor: I make Frens After Dark, a video mini-series for the JPEG Frens community.',
-  cta: 'Watch the series',
-  url: 'https://x.com/OsayKancuno/status/2120563587244576871',
-}
 
 export const BOOA_NOTE = 'In collaboration with BOOA (formerly Khôra, @khorafun).'
 
@@ -100,6 +105,9 @@ export const NORMIE_TOOLS: Work[] = [
   { name: 'NormieMap', type: '3D globe + chat', url: 'http://normie-map-production.up.railway.app', cta: 'Open', desc: 'Pin your Normie on a 3D globe as resident or traveler, link your X, chat in Normchat and watch the worldwide holder heatmap.' },
   { name: 'Normsky', type: 'Street art frames', url: 'http://normski-generator.vercel.app', cta: 'Open', desc: 'Type a Token ID and frame your Normie on a concrete, brick or plaster wall. Export still images or animated GIFs at any resolution.' },
 ]
+
+// Works tied to The Normies, shown in the Normies drawer (Works keeps the full list)
+export const NORMIES_WORK_NAMES = ['We Are All Normies']
 
 export const MY_NORMIE = 'Normie #8362: my on-chain PFP. THE100 member and holder, part of the community since day 1.'
 

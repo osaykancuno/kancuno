@@ -3,9 +3,10 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import {
-  ALSO_SUPPORTING, BOOA_NOTE, BOOA_TOOLS, LINKS, MY_NORMIE, NORMIE_TOOLS, ON_THE_WALL, PROFILE, WORKS, type Work,
+  BOOA_NOTE, BOOA_TOOLS, LINKS, MY_NORMIE, NORMIE_TOOLS, NORMIES_WORK_NAMES, ON_THE_WALL, PROFILE, WORKS, type Work,
 } from './content'
 import type { DrawerKey } from './Chapters'
+import Sentences from './Sentences'
 
 const TITLES: Record<DrawerKey, string> = {
   profile: 'Profile',
@@ -22,7 +23,7 @@ function WorkList({ items }: { items: Work[] }) {
             <h3>{w.name}</h3>
             <span className="k-dlist-type">{w.type}{w.status ? ` · ${w.status}` : ''}</span>
           </div>
-          <p>{w.desc}</p>
+          <p><Sentences text={w.desc} /></p>
           {w.extra ? (
             <ul className="k-dlinks">
               {w.extra.map(x => (
@@ -47,7 +48,7 @@ function Body({ k }: { k: DrawerKey }) {
     return (
       <>
         <p className="k-dmono">{PROFILE.handle} · {PROFILE.tagline}</p>
-        <p className="k-dlead">{PROFILE.bio}</p>
+        <p className="k-dlead"><Sentences text={PROFILE.bio} /></p>
         <blockquote className="k-dquote">{PROFILE.quote}</blockquote>
         <ul className="k-dtags">{PROFILE.tags.map(t => <li key={t}>{t}</li>)}</ul>
         <h3 className="k-dsection">Founder of</h3>
@@ -62,7 +63,7 @@ function Body({ k }: { k: DrawerKey }) {
           </li>
         </ul>
         <h3 className="k-dsection">On the wall</h3>
-        <p className="k-dtext">{ON_THE_WALL.text}</p>
+        <p className="k-dtext"><Sentences text={ON_THE_WALL.text} /></p>
         <a href={ON_THE_WALL.url} target="_blank" rel="noopener noreferrer" className="k-dlink">{ON_THE_WALL.cta} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
       </>
     )
@@ -73,7 +74,7 @@ function Body({ k }: { k: DrawerKey }) {
         <p className="k-dlead">Built for the communities — by {PROFILE.handle}.</p>
         <WorkList items={WORKS} />
         <h3 className="k-dsection">Studio collaboration</h3>
-        <p className="k-dtext">{BOOA_NOTE} Tools built for this community:</p>
+        <p className="k-dtext">{BOOA_NOTE}<br />Tools built for this community:</p>
         <WorkList items={BOOA_TOOLS} />
         <div className="k-dsoon">
           <h3>More on the way</h3>
@@ -91,17 +92,13 @@ function Body({ k }: { k: DrawerKey }) {
       </a>
       <h3 className="k-dsection">Tools built for this community</h3>
       <WorkList items={NORMIE_TOOLS} />
-      <h3 className="k-dsection">Also supporting</h3>
-      <div className="k-dsoon">
-        <h3>{ALSO_SUPPORTING.name}</h3>
-        <p>{ALSO_SUPPORTING.text}</p>
-        <a href={ALSO_SUPPORTING.url} target="_blank" rel="noopener noreferrer" className="k-dlink">{ALSO_SUPPORTING.cta} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
-      </div>
+      <h3 className="k-dsection">Also for The Normies</h3>
+      <WorkList items={WORKS.filter(w => NORMIES_WORK_NAMES.includes(w.name))} />
       <div className="k-dnormie">
         <Image src="/8362.png" alt="Normie #8362, on-chain PFP of Osay Kancuno" width={88} height={88} style={{ imageRendering: 'pixelated' }} />
         <div>
           <h3>My Normie</h3>
-          <p>{MY_NORMIE}</p>
+          <p><Sentences text={MY_NORMIE} /></p>
         </div>
       </div>
     </>

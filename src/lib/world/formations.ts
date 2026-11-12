@@ -291,7 +291,7 @@ export function buildChapters(): ChapterShape[] {
       { land: [0.19, 0], port: [0, 0.2] }, worksIdle),
     chapter(communityLayout(), [-CELL, -CELL * 2], Math.PI / 4,
       { pos: [0, 11.8, 12.4], target: [0, 1.0, -1.0] },
-      { land: [-0.22, 0.02], port: [0, 0.3] }, communityIdle),
+      { land: [-0.26, 0.02], port: [0, 0.3] }, communityIdle),
     chapter(contactLayout(), [0, -CELL * 3], 0,
       { pos: [0, 15, 4.4], target: [0, 0, 0.1] },
       { land: [0.2, 0], port: [0, 0.17] }, still),
