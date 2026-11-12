@@ -9,12 +9,16 @@ const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jbmono', display: 'swap' })
 
 const SITE = 'https://www.kancuno.com'
-const TITLE = 'Osay Kancuno — Builder On-Chain · K4NCUN0'
+// Share link and search copy are about Osay only: no community names here
+// (communities stay as context in the chapters, JSON-LD nodes and llms.txt).
+const TITLE = 'Osay Kancuno (K4NCUN0) · Artist & Builder On-Chain'
+const SHARE_DESCRIPTION =
+  'Osay Kancuno (K4NCUN0) is an artist and builder on-chain, working on something new. ' +
+  'On-chain work, off-chain experiences.'
 const DESCRIPTION =
-  'Osay Kancuno (K4NCUN0, @OsayKancuno) is an on-chain builder, currently building something new. ' +
-  'Member and holder of THE100 in The Normies (Normie #8362). ' +
-  'JPEG Frens holder, creator of The Frens Forge and FRENS AFTER DARK; on the wall at NFC Summit 2027. ' +
-  'Founder of Normies Yacht Club and 8362 Coffee.'
+  'Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain, currently building something new. ' +
+  'Games, tools, frameworks and video: on-chain work, off-chain experiences.'
+const IMAGE_ALT = 'Osay Kancuno (K4NCUN0), artist and builder on-chain, with the K4NCUN0 logo'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -24,9 +28,10 @@ export const metadata: Metadata = {
   authors: [{ name: 'Osay Kancuno', url: SITE }],
   creator: 'Osay Kancuno',
   keywords: [
-    'Osay Kancuno', 'K4NCUN0', 'Kancuno',
-    'The Normies', 'THE100', 'Normies THE100', 'Normie #8362', 'on-chain builder', 'on-chain NFT',
-    'pixel art NFT', 'Normies Yacht Club', '8362 Coffee',
+    'Osay Kancuno', 'K4NCUN0', 'Kancuno', '@OsayKancuno',
+    'artist on-chain', 'on-chain artist', 'on-chain builder', 'on-chain art', 'pixel art',
+    // secondary context
+    'Normies Yacht Club', '8362 Coffee', 'The Normies', 'THE100', 'Normie #8362',
     'JPEG Frens', 'The Frens Forge', 'The Wall Arcade', 'FRENS AFTER DARK', 'NFC Summit', 'NFC 2027', 'NFC Summit Lisbon', 'On the Wall',
   ],
   alternates: { canonical: '/' },
@@ -36,16 +41,16 @@ export const metadata: Metadata = {
     url: SITE,
     siteName: 'Osay Kancuno',
     title: TITLE,
-    description: DESCRIPTION,
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Osay Kancuno (K4NCUN0), builder on-chain, with the K4NCUN0 logo' }],
+    description: SHARE_DESCRIPTION,
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: IMAGE_ALT }],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@OsayKancuno',
     creator: '@OsayKancuno',
     title: TITLE,
-    description: DESCRIPTION,
-    images: [{ url: '/og.png', alt: 'Osay Kancuno (K4NCUN0), builder on-chain, with the K4NCUN0 logo' }],
+    description: SHARE_DESCRIPTION,
+    images: [{ url: '/og.png', alt: IMAGE_ALT }],
   },
 }
 
@@ -64,10 +69,10 @@ const JSON_LD = {
       '@type': 'Person',
       '@id': PERSON_ID,
       name: 'Osay Kancuno',
-      alternateName: ['K4NCUN0', 'Kancuno', '@OsayKancuno', 'osaykancuno', 'Normie #8362'],
+      alternateName: ['K4NCUN0', 'Kancuno', '@OsayKancuno', 'osaykancuno'],
       url: SITE,
       image: `${SITE}/kancuno-logo.png`,
-      jobTitle: 'On-chain builder',
+      jobTitle: 'Artist and builder on-chain',
       description: DESCRIPTION,
       memberOf: [
         {
@@ -78,7 +83,7 @@ const JSON_LD = {
         },
         { '@id': `${SITE}/#jpegfrens` },
       ],
-      knowsAbout: ['The Normies', 'JPEG Frens', 'On-chain NFT art', 'Pixel art', 'Vibecoding', 'Web3 community tools'],
+      knowsAbout: ['On-chain art', 'Pixel art', 'On-chain building', 'Web3 community tools'],
       sameAs: ['https://x.com/OsayKancuno', 'https://t.me/kancuno', 'https://onthewall.nfcsummit.com/people/k4ncun0'],
       subjectOf: {
         '@type': 'WebPage',

@@ -1,7 +1,7 @@
 import BuildTeaser from '../BuildTeaser'
 import Sentences from './Sentences'
 import {
-  BOOA_TOOLS, CHAPTER_LABELS, LINKS, NORMIE_TOOLS, ON_THE_WALL, PROFILE, WORKS,
+  BOOA_TOOLS, CHAPTER_LABELS, LINKS, NORMIE_TOOLS, PROFILE, WORKS,
 } from './content'
 
 export type DrawerKey = 'profile' | 'works' | 'community'
@@ -30,7 +30,7 @@ export function HeroChapter() {
   return (
     <div className="k-hero">
       <p className="k-eyebrow k-reveal" style={{ ['--d' as string]: '0.05s' }}>
-        Builder on-chain — THE100 member + holder · The Normies
+        Artist &amp; builder on-chain
       </p>
       <h2 className="k-title" tabIndex={-1}>
         <span className="k-line"><span style={{ ['--d' as string]: '0.1s' }}>Osay</span></span>
@@ -52,7 +52,7 @@ export function ProfileChapter({ onOpen }: ChapterProps) {
   return (
     <div className="k-card">
       <Index n={1} />
-      <h2 className="k-h2" tabIndex={-1}>Builder<br />on-chain.</h2>
+      <h2 className="k-h2" tabIndex={-1}>Artist &amp;<br />builder.</h2>
       <p className="k-mono-line k-tall-only">{PROFILE.handle} · {PROFILE.tagline}</p>
       <p className="k-body"><Sentences text={PROFILE.bio} /></p>
       <blockquote className="k-quote k-hide-sm k-mid-only">{PROFILE.quote}</blockquote>
@@ -64,10 +64,6 @@ export function ProfileChapter({ onOpen }: ChapterProps) {
           </a>
         ))}
       </div>
-      <a className="k-wall k-hide-sm" href={ON_THE_WALL.url} target="_blank" rel="noopener noreferrer">
-        <span className="k-wall-dot" aria-hidden="true" />
-        {ON_THE_WALL.short} · Panel #33 <Arrow />
-      </a>
       <div className="k-actions">
         <a className="k-btn" href={LINKS.x} target="_blank" rel="noopener noreferrer">Twitter / X <Arrow /></a>
         <button type="button" className="k-btn k-btn--ghost" onClick={() => onOpen('profile')}>Full profile</button>
@@ -81,9 +77,9 @@ export function WorksChapter({ onOpen }: ChapterProps) {
   return (
     <div className="k-card">
       <Index n={2} />
-      <h2 className="k-h2 k-h2--long" tabIndex={-1}>Built for the<br />communities.</h2>
+      <h2 className="k-h2" tabIndex={-1}>Selected<br />works.</h2>
       <p className="k-body">
-        Tributes, frameworks, tools and video, by {PROFILE.handle}.<br />
+        Games, tools, frameworks and video, by {PROFILE.handle}.<br />
         More on the way: new projects in progress.
       </p>
       <ul className="k-list k-hide-sm">
