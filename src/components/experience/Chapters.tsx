@@ -3,7 +3,7 @@ import Sentences from './Sentences'
 import { useRef, useState } from 'react'
 import Image from 'next/image'
 import {
-  CHAPTER_LABELS, COMMUNITIES, COMMUNITY_WORK_COUNT, EXPERIMENTS, EXPERIMENTS_LEAD, EXPERIMENT_SLOTS, LINKS, PROFILE,
+  CARD_WORKS, CHAPTER_LABELS, COMMUNITIES, COMMUNITY_WORK_COUNT, EXPERIMENTS, EXPERIMENTS_LEAD, EXPERIMENT_SLOTS, LINKS, PROFILE,
   type CommunityId,
 } from './content'
 
@@ -74,7 +74,6 @@ export function ProfileChapter({ onOpen }: ChapterProps) {
       <h2 className="k-h2" tabIndex={-1}>Artist &amp;<br />builder.</h2>
       <p className="k-mono-line k-tall-only">{PROFILE.handle} · {PROFILE.tagline}</p>
       <p className="k-body"><Sentences text={PROFILE.bio} /></p>
-      <blockquote className="k-quote k-hide-sm k-mid-only">{PROFILE.quote}</blockquote>
       <div className="k-founder">
         <span className="k-label">Founder of</span>
         {PROFILE.founderOf.map(f => (
@@ -130,7 +129,7 @@ export function ExperimentsChapter({ onOpen }: ChapterProps) {
 export function CommunitiesChapter({ onOpen }: ChapterProps) {
   const [tab, setTab] = useState<CommunityId>(COMMUNITIES[0].id)
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
-  const shown = 3 // works listed on the card; the drawer has them all
+  const shown = CARD_WORKS
 
   // Tabs pattern: arrows move between tabs, Home/End jump to the ends
   const onTabKey = (e: React.KeyboardEvent, i: number) => {

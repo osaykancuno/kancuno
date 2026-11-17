@@ -18,9 +18,8 @@ export const CHAPTER_LABELS = ['Intro', 'Profile', 'Experiments', 'Communities',
 
 export const PROFILE = {
   handle: '@osaykancuno',
-  tagline: 'On-chain vibecoding → off-chain experiences',
-  bio: 'Artist and builder on-chain, working on something new. We will change the world one pixel at a time.',
-  quote: 'Culture belongs to the people who create it.',
+  tagline: 'On-chain work → off-chain experiences',
+  bio: 'Working on something new, on-chain and off-chain. Culture belongs to the people who create it.',
   tags: ['Artist', 'Builder on-chain', 'K4NCUN0'],
   founderOf: [
     { label: 'Normies Yacht Club', href: LINKS.yachtClub },
@@ -62,9 +61,8 @@ export const EXPERIMENTS: Experiment[] = [
     kind: 'Off-chain',
     status: 'Live',
     tagline: 'Jam together in space.',
-    desc: 'A live music universe in 3D. Make a full song alone or jam it with friends: every part is a ring you can step into.',
+    desc: 'A live music universe in 3D. Make a full song alone or jam it with friends: every part (drums, bass, chords, melody, texture, voice) is a ring you can step into.',
     features: [
-      'Drums, bass, chords, melody, texture and voice are rings you can enter.',
       'The space reacts: harmony builds calm structures, clashes glitch until you resolve them.',
       'Jam live with pads, keys or a MIDI keyboard, friends join from a link in real time.',
       'A real studio: step sequencer, piano roll, song arranger and mixer.',
@@ -100,7 +98,7 @@ export const WORKS: Work[] = [
     type: 'Video series',
     community: 'JPEG Frens',
     status: 'Seasons 1–2',
-    desc: 'A video mini-series I make for the JPEG Frens community, as a holder. Two seasons so far, airing on X.',
+    desc: 'A video mini-series for the JPEG Frens community, airing on X. Two seasons so far.',
     url: 'https://x.com/OsayKancuno/status/2121274266490388930',
     cta: 'Watch S2 Ep. 5',
     extra: [
@@ -156,7 +154,7 @@ export const NORMIE_TOOLS: Work[] = [
   { name: 'Normsky', type: 'Street art frames', url: 'http://normski-generator.vercel.app', cta: 'Open', desc: 'Type a Token ID and frame your Normie on a concrete, brick or plaster wall. Export still images or animated GIFs at any resolution.' },
 ]
 
-export const MY_NORMIE = 'Normie #8362: my on-chain PFP. THE100 member and holder, part of the community since day 1.'
+export const MY_NORMIE = 'Normie #8362, my on-chain PFP: fully on-chain and customized.'
 
 // ── Community work: one tab per community, in the Communities chapter and drawer ──
 export type CommunityId = 'jpegfrens' | 'normies' | 'booa'
@@ -169,6 +167,14 @@ export interface Community {
   link?: { label: string; url: string } // a key community link next to the works
 }
 
+const featureFirst = (works: Work[], names: string[]) => [
+  ...names.map(n => works.find(w => w.name === n)).filter((w): w is Work => !!w),
+  ...works.filter(w => !names.includes(w.name)),
+]
+
+// The card shows the first CARD_WORKS of each community; the drawer lists them all
+export const CARD_WORKS = 2
+
 export const COMMUNITIES: Community[] = [
   {
     id: 'jpegfrens',
@@ -179,8 +185,9 @@ export const COMMUNITIES: Community[] = [
   {
     id: 'normies',
     name: 'The Normies',
-    role: 'THE100 member and holder since day 1, with Normie #8362 as on-chain PFP. I build free tools for the community.',
-    works: [...WORKS.filter(w => w.community === 'The Normies'), ...NORMIE_TOOLS],
+    role: 'THE100 member and holder, part of the community since day 1. I build free tools for the community.',
+    // Air Normies and The Normies City lead (shown on the card), then the rest
+    works: featureFirst([...WORKS.filter(w => w.community === 'The Normies'), ...NORMIE_TOOLS], ['Air Normies', 'The Normies City']),
     link: { label: 'The Normifesto', url: LINKS.normifesto },
   },
   {

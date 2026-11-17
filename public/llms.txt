@@ -6,6 +6,7 @@
 
 - Name: Osay Kancuno. Also known as K4NCUN0, Kancuno, @OsayKancuno.
 - Role: artist and builder on-chain, running a series of experiments (on-chain and off-chain).
+- Motto: "Culture belongs to the people who create it."
 - Founder of: Normies Yacht Club (https://normiesyachtclub.com/) and 8362 Coffee (https://8362coffee.com/).
 - Author of The Framework Library, a free Notion framework for Web3 builders.
 

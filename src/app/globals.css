@@ -493,7 +493,6 @@ ul { list-style: none; }
 .k-drawer h2,
 .k-drawer h3 { text-wrap: balance; }
 .k-body,
-.k-quote,
 .k-drawer p { text-wrap: pretty; }
 
 .k-mono-line {
@@ -510,17 +509,6 @@ ul { list-style: none; }
   color: var(--k-ink-80);
   max-width: 42ch;
   margin-bottom: 20px;
-}
-.k-quote {
-  position: relative;
-  font-size: 21px;
-  font-weight: 700;
-  font-stretch: 112%;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  padding-left: 20px;
-  margin-bottom: 20px;
-  border-left: 4px solid var(--k-pink);
 }
 .k-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
 .k-tags li {
@@ -891,10 +879,6 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
   .k-tab-role { margin-bottom: 10px; }
   .k-list--tab { margin-bottom: 18px; }
 }
-@media (min-width: 768px) and (max-height: 800px) {
-  .k-mid-only { display: none; }
-  .k-list--tab li:nth-child(n + 3) { display: none; }
-}
 @media (min-width: 768px) and (max-height: 640px) {
   .k-body { font-size: 15.5px; line-height: 1.45; }
   .k-list { display: none; }
@@ -993,15 +977,6 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
 }
 .k-dlead { font-size: 20px; line-height: 1.5; margin-bottom: 26px; }
 .k-dtext { font-size: 16px; line-height: 1.55; color: var(--k-cream-70); margin-bottom: 8px; }
-.k-dquote {
-  font-size: 24px;
-  font-weight: 800;
-  font-stretch: 112%;
-  line-height: 1.3;
-  padding-left: 20px;
-  border-left: 4px solid var(--k-pink);
-  margin-bottom: 26px;
-}
 .k-dtags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
 .k-dtags li {
   font-family: var(--font-mono);

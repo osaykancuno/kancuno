@@ -10,6 +10,7 @@ export default function Home() {
         <p>
           Osay Kancuno (K4NCUN0, @OsayKancuno on X) is an artist and builder on-chain.
           He runs a long series of experiments, on-chain and off-chain.
+          His motto: &quot;Culture belongs to the people who create it.&quot;
         </p>
         <h2>Experiments</h2>
         <p>
