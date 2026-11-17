@@ -14,7 +14,7 @@ export const LINKS = {
 }
 
 // Order matters: Osay first (profile, his own experiments), then the work he does for communities
-export const CHAPTER_LABELS = ['Intro', 'Profile', 'Experiments', 'Communities', 'Normies', 'Contact'] as const
+export const CHAPTER_LABELS = ['Intro', 'Profile', 'Experiments', 'Communities', 'Contact'] as const
 
 export const PROFILE = {
   handle: '@osaykancuno',
@@ -140,8 +140,6 @@ export const ON_THE_WALL = {
 }
 
 
-export const BOOA_NOTE = 'In collaboration with BOOA (formerly Khôra, @khorafun).'
-
 export const BOOA_TOOLS: Work[] = [
   { name: 'MoltBOOA Lab', community: 'BOOA', type: 'Agent simulator', url: 'http://moltbooa-lab.vercel.app', cta: 'Open', desc: 'Your agent has a life now: simulate, chat, battle, and export your BOOA to production.' },
   { name: 'Skill Synergy', community: 'BOOA', type: 'Agent matcher', url: 'http://booa-skill-synergy.vercel.app', cta: 'Open', desc: 'Find the right match: the complementary skills of on-chain AI agents.' },
@@ -158,10 +156,42 @@ export const NORMIE_TOOLS: Work[] = [
   { name: 'Normsky', type: 'Street art frames', url: 'http://normski-generator.vercel.app', cta: 'Open', desc: 'Type a Token ID and frame your Normie on a concrete, brick or plaster wall. Export still images or animated GIFs at any resolution.' },
 ]
 
-// Works tied to The Normies, shown in the Normies drawer (Communities keeps the full list)
-export const NORMIES_WORK_NAMES = ['We Are All Normies']
-
 export const MY_NORMIE = 'Normie #8362: my on-chain PFP. THE100 member and holder, part of the community since day 1.'
+
+// ── Community work: one tab per community, in the Communities chapter and drawer ──
+export type CommunityId = 'jpegfrens' | 'normies' | 'booa'
+
+export interface Community {
+  id: CommunityId
+  name: string
+  role: string // Osay's place in the community, one or two sentences
+  works: Work[]
+  link?: { label: string; url: string } // a key community link next to the works
+}
+
+export const COMMUNITIES: Community[] = [
+  {
+    id: 'jpegfrens',
+    name: 'JPEG Frens',
+    role: 'Holder, contributing to the community with a game and a video series.',
+    works: WORKS.filter(w => w.community === 'JPEG Frens'),
+  },
+  {
+    id: 'normies',
+    name: 'The Normies',
+    role: 'THE100 member and holder since day 1, with Normie #8362 as on-chain PFP. I build free tools for the community.',
+    works: [...WORKS.filter(w => w.community === 'The Normies'), ...NORMIE_TOOLS],
+    link: { label: 'The Normifesto', url: LINKS.normifesto },
+  },
+  {
+    id: 'booa',
+    name: 'BOOA',
+    role: 'In collaboration with BOOA (formerly Khôra, @khorafun): tools for on-chain AI agents.',
+    works: BOOA_TOOLS,
+  },
+]
+
+export const COMMUNITY_WORK_COUNT = COMMUNITIES.reduce((n, c) => n + c.works.length, 0)
 
 export const STATIONS = [
   { name: 'Lo-fi',   url: 'https://ice1.somafm.com/groovesalad-128-mp3' },

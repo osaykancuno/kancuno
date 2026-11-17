@@ -14,7 +14,7 @@ import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment
 import { BAR_SIZE, CELL, CUBE_SIZE, POOL_SIZE, POOLS, buildChapters, hash, type PoolKey } from './formations'
 import { PALETTE } from './palette'
 
-export const CHAPTERS = 6 // keep in sync with buildChapters() and CHAPTER_LABELS
+export const CHAPTERS = 5 // keep in sync with buildChapters() and CHAPTER_LABELS
 
 const clamp01 = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x)
 const easeInOut = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2)
@@ -123,7 +123,7 @@ export class World {
     for (let k = -5; k <= 7; k++) lines.push({ c: CELL / 2 + CELL * k, dir: -1 })  // x - z = c
     const beams = new InstancedMesh(new RoundedBoxGeometry(1, 1, 1, 2, 0.12), ink, lines.length)
     const o = new Object3D()
-    const focus = new Vector3(0, 0, -19) // middle of the chapter path
+    const focus = new Vector3(0, 0, -14) // middle of the chapter path
     lines.forEach(({ c, dir }, i) => {
       const p0 = dir === 1 ? new Vector3(c / 2, 0, c / 2) : new Vector3(c / 2, 0, -c / 2)
       const d = dir === 1 ? new Vector3(1, 0, -1).normalize() : new Vector3(1, 0, 1).normalize()

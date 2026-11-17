@@ -2,7 +2,7 @@
 // every chapter and the engine morphs between arrangements:
 //   bars   – the two crossed bars of the X (the figure's body)
 //   cubes  – the seven head cubes
-//   voxels – small blocks that build the tower, the 100 field and the halo
+//   voxels – small blocks that build the rings, the 100 field and the halo
 // The figure (bars + cubes) is a faithful 3D copy of the K4NCUN0 logo, measured
 // from the original artwork: unit = one head cube.
 
@@ -188,29 +188,7 @@ function experimentsLayout(): Layout {
   return { ...standingFigure(0.6, 2.6), voxels }
 }
 
-// 04 Communities: a twisting tower of blocks, the figure hovering on top while it is being built
-const TOWER_LAYER_H = 0.42
-function worksLayout(): Layout {
-  const n = VOXEL_SIDE
-  const voxels: Piece[] = Array.from({ length: POOL_SIZE.voxels }, (_, i) => {
-    const layer = Math.floor(i / n), k = i % n
-    // Tapering, twisting tower with air between the blocks; a purple helix runs up it
-    const r = 2.25 - layer * 0.055
-    const a = (k / n) * Math.PI * 2 + layer * 0.3
-    const len = ((Math.PI * 2 * r) / n) * 0.7
-    const helix = k === (layer * 2) % n
-    return {
-      p: new Vector3(Math.cos(a) * r, 0.2 + layer * TOWER_LAYER_H, Math.sin(a) * r),
-      q: qAxis(Y_AXIS, -a + Math.PI / 2),
-      s: new Vector3(len, 0.28, 0.4),
-      c: layer === n - 1 ? (k % 2 ? PALETTE.pink : PALETTE.purple) : helix ? PALETTE.purple : PALETTE.ink,
-    }
-  })
-  const top = 0.2 + (n - 1) * TOWER_LAYER_H
-  return { ...standingFigure(0.5, top + 1.3), voxels }
-}
-
-// 05 Normies: a 14x14 pixel field that spells 100 (THE100), the figure watching from behind
+// 04 Communities: a 14x14 pixel field that spells 100 (THE100, home community), the figure watching from behind
 const DIGITS: Record<string, string[]> = {
   '1': ['.X.', 'XX.', '.X.', '.X.', 'XXX'],
   '0': ['XXX', 'X.X', 'X.X', 'X.X', 'XXX'],
@@ -242,7 +220,7 @@ function communityLayout(): Layout {
   return { ...fig, voxels }
 }
 
-// 06 Contact: back to the artwork, lying flat in its frame
+// 05 Contact: back to the artwork, lying flat in its frame
 function contactLayout(): Layout {
   return { ...flatFigure(), voxels: hiddenVoxels(true) }
 }
@@ -304,13 +282,6 @@ export function buildChapters(): ChapterShape[] {
       out.set(0, Math.sin(t * 0.9 + h * 6) * 0.07 * k, Math.cos(t * 0.7 + h * 4) * 0.08 * k)
     }
   }
-  const worksIdle: ChapterShape['idle'] = (pool, i, t, out) => {
-    if (pool === 'voxels') {
-      // Top two layers hover in and out of place: the build is never finished
-      const k = Math.max(0, Math.floor(i / VOXEL_SIDE) - (VOXEL_SIDE - 3)) / 2
-      out.set(0, k * (0.35 + Math.sin(t * 1.3 + i * 0.9) * 0.3), 0)
-    } else out.set(0, Math.sin(t * 1.1) * 0.12, 0)
-  }
   // Each ring turns its own way and a wave runs round it, like layers playing together
   const experimentsIdle: ChapterShape['idle'] = (pool, i, t, out) => {
     if (pool === 'voxels') {
@@ -337,14 +308,11 @@ export function buildChapters(): ChapterShape[] {
     chapter(experimentsLayout(), [-CELL, -CELL], 0,
       { pos: [0, 13.8, 13.4], target: [0, 1.5, 0] },
       { land: [0.21, 0.02], port: [0, 0.3] }, experimentsIdle),
-    chapter(worksLayout(), [CELL, -CELL * 2], 0,
-      { pos: [0, 6.6, 18], target: [0, 4.4, 0] },
-      { land: [-0.19, 0], port: [0, 0.2] }, worksIdle),
-    chapter(communityLayout(), [-CELL, -CELL * 3], Math.PI / 4,
-      { pos: [0, 13.2, 13.6], target: [0, 1.0, -1.0] },
-      { land: [0.17, 0.02], port: [0, 0.3] }, communityIdle),
-    chapter(contactLayout(), [0, -CELL * 4], 0,
+    chapter(communityLayout(), [CELL, -CELL * 2], Math.PI / 4,
+      { pos: [0, 11.8, 12.4], target: [0, 1.0, -1.0] },
+      { land: [-0.26, 0.02], port: [0, 0.2] }, communityIdle),
+    chapter(contactLayout(), [0, -CELL * 3], 0,
       { pos: [0, 15, 4.4], target: [0, 0, 0.1] },
-      { land: [-0.2, 0], port: [0, 0.17] }, still),
+      { land: [0.2, 0], port: [0, 0.17] }, still),
   ]
 }

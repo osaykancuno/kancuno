@@ -3,8 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import {
-  BOOA_NOTE, BOOA_TOOLS, EXPERIMENTS, EXPERIMENTS_LEAD, LINKS, MY_NORMIE, NORMIE_TOOLS, NORMIES_WORK_NAMES, ON_THE_WALL,
-  OWN_PROJECTS, PROFILE, WORKS, type Work,
+  COMMUNITIES, EXPERIMENTS, EXPERIMENTS_LEAD, LINKS, MY_NORMIE, ON_THE_WALL, OWN_PROJECTS, PROFILE, type Work,
 } from './content'
 import type { DrawerKey } from './Chapters'
 import Sentences from './Sentences'
@@ -13,7 +12,6 @@ const TITLES: Record<DrawerKey, string> = {
   profile: 'Profile',
   experiments: 'The lab',
   works: 'Community work',
-  community: 'The Normies',
 }
 
 const NewTab = () => <><span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></>
@@ -100,45 +98,42 @@ function Body({ k }: { k: DrawerKey }) {
       </>
     )
   }
-  if (k === 'works') {
-    const by = (c: string) => WORKS.filter(w => w.community === c)
-    return (
-      <>
-        <p className="k-dlead"><Sentences text="Work I make as a holder, for the communities I belong to." /></p>
-        <h3 className="k-dsection">JPEG Frens</h3>
-        <WorkList items={by('JPEG Frens')} />
-        <h3 className="k-dsection">The Normies</h3>
-        <WorkList items={by('The Normies')} />
-        <p className="k-dtext k-dnote">Plus {NORMIE_TOOLS.length} free community tools, in the Normies section.</p>
-        <h3 className="k-dsection">BOOA</h3>
-        <p className="k-dtext">{BOOA_NOTE}</p>
-        <WorkList items={BOOA_TOOLS} />
-      </>
-    )
-  }
   return (
     <>
-      <a className="k-dfeature" href={LINKS.normifesto} target="_blank" rel="noopener noreferrer">
-        <span className="k-dfeature-title">The Normifesto</span>
-        <span className="k-dfeature-sub">What The Normies stand for, on-chain and forever.</span>
-        <span className="k-dlink">Read it <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></span>
-      </a>
-      <h3 className="k-dsection">Tools built for this community</h3>
-      <WorkList items={NORMIE_TOOLS} />
-      <h3 className="k-dsection">Also for The Normies</h3>
-      <WorkList items={WORKS.filter(w => NORMIES_WORK_NAMES.includes(w.name))} />
-      <div className="k-dnormie">
-        <Image src="/8362.png" alt="Normie #8362, on-chain PFP of Osay Kancuno" width={88} height={88} style={{ imageRendering: 'pixelated' }} />
-        <div>
-          <h3>My Normie</h3>
-          <p><Sentences text={MY_NORMIE} /></p>
-        </div>
-      </div>
+      <p className="k-dlead"><Sentences text="Work I make as a holder, for the communities I belong to." /></p>
+      <nav className="k-djump" aria-label="Communities">
+        {COMMUNITIES.map(c => (
+          <a key={c.id} href={`#d-${c.id}`}>{c.name} <span>{c.works.length}</span></a>
+        ))}
+      </nav>
+      {COMMUNITIES.map(c => (
+        <section key={c.id} id={`d-${c.id}`} className="k-dcommunity" aria-labelledby={`d-${c.id}-title`}>
+          <h3 id={`d-${c.id}-title`} className="k-dcommunity-title">{c.name}</h3>
+          <p className="k-dtext"><Sentences text={c.role} /></p>
+          {c.id === 'normies' && (
+            <div className="k-dnormie">
+              <Image src="/8362.png" alt="Normie #8362, on-chain PFP of Osay Kancuno" width={88} height={88} style={{ imageRendering: 'pixelated' }} />
+              <div>
+                <h4>My Normie</h4>
+                <p><Sentences text={MY_NORMIE} /></p>
+              </div>
+            </div>
+          )}
+          {c.link && (
+            <a className="k-dfeature" href={c.link.url} target="_blank" rel="noopener noreferrer">
+              <span className="k-dfeature-title">{c.link.label}</span>
+              <span className="k-dfeature-sub">What The Normies stand for, on-chain and forever.</span>
+              <span className="k-dlink">Read it <NewTab /></span>
+            </a>
+          )}
+          <WorkList items={c.works} />
+        </section>
+      ))}
     </>
   )
 }
 
-export default function Drawer({ open, onClose }: { open: DrawerKey | null; onClose: () => void }) {
+export default function Drawer({ open, section, onClose }: { open: DrawerKey | null; section?: string; onClose: () => void }) {
   const closeRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const lastKey = useRef<DrawerKey>('works')
@@ -152,7 +147,9 @@ export default function Drawer({ open, onClose }: { open: DrawerKey | null; onCl
     if (!open) return
     const previous = document.activeElement as HTMLElement | null
     closeRef.current?.focus({ preventScroll: true })
-    panelRef.current?.scrollTo({ top: 0 })
+    const target = section ? panelRef.current?.querySelector<HTMLElement>(`#d-${section}`) : null
+    if (target && panelRef.current) panelRef.current.scrollTo({ top: target.offsetTop - 84 })
+    else panelRef.current?.scrollTo({ top: 0 })
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') { e.preventDefault(); onClose() }
       if (e.key === 'Tab' && panelRef.current) {
@@ -169,7 +166,7 @@ export default function Drawer({ open, onClose }: { open: DrawerKey | null; onCl
       // Wait for the page to leave its inert state, then give focus back
       requestAnimationFrame(() => previous?.focus?.({ preventScroll: true }))
     }
-  }, [open, onClose])
+  }, [open, section, onClose])
 
   return (
     <div className="k-drawer-root" data-open={open ? '' : undefined} aria-hidden={!open}>

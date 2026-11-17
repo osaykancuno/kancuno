@@ -7,13 +7,13 @@ import LogoMark from './LogoMark'
 import SoundToggle from './SoundToggle'
 import Drawer from './Drawer'
 import {
-  CommunitiesChapter, ContactChapter, ExperimentsChapter, HeroChapter, NormiesChapter, ProfileChapter, type DrawerKey,
+  CommunitiesChapter, ContactChapter, ExperimentsChapter, HeroChapter, ProfileChapter, type DrawerKey,
 } from './Chapters'
 import { CHAPTER_LABELS } from './content'
 
 const N = CHAPTER_LABELS.length
 // Copy alternates sides; the 3D focus moves the other way (see formations.ts shift)
-const SIDES = ['hero', 'right', 'left', 'right', 'left', 'right'] as const
+const SIDES = ['hero', 'right', 'left', 'right', 'left'] as const
 const clamp = (x: number, a: number, b: number) => Math.max(a, Math.min(b, x))
 
 export default function Experience() {
@@ -32,6 +32,7 @@ export default function Experience() {
 
   const [active, setActive] = useState(0)
   const [drawer, setDrawer] = useState<DrawerKey | null>(null)
+  const [drawerSection, setDrawerSection] = useState<string | undefined>()
   const [ready, setReady] = useState(false)
   const [fallback, setFallback] = useState(false)
 
@@ -47,7 +48,7 @@ export default function Experience() {
     target.current = clamp(Math.round(target.current) + d, 0, N - 1)
     focusOnChange.current = true
   }, [])
-  const openDrawer = useCallback((k: DrawerKey) => setDrawer(k), [])
+  const openDrawer = useCallback((k: DrawerKey, section?: string) => { setDrawerSection(section); setDrawer(k) }, [])
   const closeDrawer = useCallback(() => setDrawer(null), [])
 
   // ── World + frame loop ──────────────────────────────────────────────────────
@@ -352,7 +353,6 @@ export default function Experience() {
             <ProfileChapter key="profile" onOpen={openDrawer} />,
             <ExperimentsChapter key="experiments" onOpen={openDrawer} />,
             <CommunitiesChapter key="communities" onOpen={openDrawer} />,
-            <NormiesChapter key="normies" onOpen={openDrawer} />,
             <ContactChapter key="contact" />,
           ].map((node, i) => (
             <section
@@ -389,7 +389,7 @@ export default function Experience() {
         </footer>
       </div>
 
-      <Drawer open={drawer} onClose={closeDrawer} />
+      <Drawer open={drawer} section={drawerSection} onClose={closeDrawer} />
 
       <div className="k-loader" data-done={ready ? '' : undefined} aria-hidden="true">
         <LogoMark size={44} />

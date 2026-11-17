@@ -1,17 +1,20 @@
 import BuildTeaser from '../BuildTeaser'
 import Sentences from './Sentences'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import {
-  BOOA_TOOLS, CHAPTER_LABELS, EXPERIMENTS, EXPERIMENTS_LEAD, EXPERIMENT_SLOTS, LINKS, NORMIE_TOOLS, PROFILE, WORKS,
+  CHAPTER_LABELS, COMMUNITIES, COMMUNITY_WORK_COUNT, EXPERIMENTS, EXPERIMENTS_LEAD, EXPERIMENT_SLOTS, LINKS, PROFILE,
+  type CommunityId,
 } from './content'
 
-export type DrawerKey = 'profile' | 'experiments' | 'works' | 'community'
+export type DrawerKey = 'profile' | 'experiments' | 'works'
 
 // Chapter indexes, in CHAPTER_LABELS order
-export const CH = { intro: 0, profile: 1, experiments: 2, communities: 3, normies: 4, contact: 5 } as const
+export const CH = { intro: 0, profile: 1, experiments: 2, communities: 3, contact: 4 } as const
 
 interface ChapterProps {
-  onOpen: (key: DrawerKey) => void
+  // section: an id inside the drawer to scroll to (a community)
+  onOpen: (key: DrawerKey, section?: string) => void
 }
 
 const Arrow = () => (
@@ -125,51 +128,90 @@ export function ExperimentsChapter({ onOpen }: ChapterProps) {
 }
 
 export function CommunitiesChapter({ onOpen }: ChapterProps) {
-  const rows = [...WORKS, ...BOOA_TOOLS]
+  const [tab, setTab] = useState<CommunityId>(COMMUNITIES[0].id)
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const shown = 3 // works listed on the card; the drawer has them all
+
+  // Tabs pattern: arrows move between tabs, Home/End jump to the ends
+  const onTabKey = (e: React.KeyboardEvent, i: number) => {
+    const n = COMMUNITIES.length
+    const to = e.key === 'ArrowRight' ? (i + 1) % n : e.key === 'ArrowLeft' ? (i - 1 + n) % n
+      : e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : -1
+    if (to < 0) return
+    e.preventDefault()
+    e.stopPropagation()
+    setTab(COMMUNITIES[to].id)
+    tabRefs.current[to]?.focus()
+  }
+
   return (
     <div className="k-card">
       <Index n={CH.communities} />
       <h2 className="k-h2 k-h2--fit" tabIndex={-1}>Community<br />work.</h2>
-      <p className="k-body">
-        <Sentences text={`Games, tools and video I make as a holder, for the communities I belong to. JPEG Frens, The Normies and BOOA.`} />
+      <p className="k-body k-hide-sm">
+        <Sentences text={`${COMMUNITY_WORK_COUNT} works I made as a holder, for the communities I belong to.`} />
       </p>
-      <ul className="k-list k-hide-sm">
-        {rows.map(w => (
-          <li key={w.name}>
-            <a href={w.url} target="_blank" rel="noopener noreferrer">
-              <span className="k-list-name">{w.name}</span>
-              <span className="k-list-type">{w.community} · {w.type}</span>
-              <Arrow />
-            </a>
-          </li>
+      <div className="k-tabs" role="tablist" aria-label="Communities">
+        {COMMUNITIES.map((x, i) => (
+          <button
+            key={x.id}
+            ref={el => { tabRefs.current[i] = el }}
+            type="button"
+            role="tab"
+            id={`k-tab-${x.id}`}
+            aria-selected={x.id === tab}
+            aria-controls={`k-tabpanel-${x.id}`}
+            tabIndex={x.id === tab ? 0 : -1}
+            className="k-tab"
+            onClick={() => setTab(x.id)}
+            onKeyDown={e => onTabKey(e, i)}
+          >
+            {x.name}
+            <span className="k-tab-count" aria-hidden="true">{x.works.length}</span>
+            <span className="sr-only">, {x.works.length} works</span>
+          </button>
         ))}
-      </ul>
-      <div className="k-actions">
-        <button type="button" className="k-btn" onClick={() => onOpen('works')}>All community work</button>
       </div>
-    </div>
-  )
-}
-
-export function NormiesChapter({ onOpen }: ChapterProps) {
-  return (
-    <div className="k-card">
-      <Index n={CH.normies} />
-      <h2 className="k-h2 k-h2--fit" tabIndex={-1}>THE100.<br />The&nbsp;Normies.</h2>
-      <p className="k-body">
-        Member and holder of THE100 in The Normies, part of the community since day 1,
-        with Normie #8362 as on-chain PFP.<br />
-        I build free tools for the community.
-      </p>
-      <p className="k-stat">
-        <strong>{NORMIE_TOOLS.length}</strong>
-        <span>community tools<br />built so far</span>
-      </p>
-      <div className="k-actions">
-        <button type="button" className="k-btn" onClick={() => onOpen('community')}>Explore the tools</button>
-        <a className="k-btn k-btn--ghost" href={LINKS.normifesto} target="_blank" rel="noopener noreferrer">
-          The Normifesto <Arrow />
-        </a>
+      {/* All panels share one grid cell, so the card keeps the height of the tallest
+          and the heading never jumps when the tab changes */}
+      <div className="k-tabpanels">
+        {COMMUNITIES.map(x => {
+          const on = x.id === tab
+          return (
+            <div
+              key={x.id}
+              className="k-tabpanel"
+              role="tabpanel"
+              id={`k-tabpanel-${x.id}`}
+              aria-labelledby={`k-tab-${x.id}`}
+              data-inactive={on ? undefined : ''}
+              {...(on ? {} : ({ inert: '', 'aria-hidden': true } as object))}
+            >
+              <p className="k-tab-role">{x.role}</p>
+              <ul className="k-list k-list--tab k-hide-sm">
+                {x.works.slice(0, shown).map(w => (
+                  <li key={w.name}>
+                    <a href={w.url} target="_blank" rel="noopener noreferrer">
+                      <span className="k-list-name">{w.name}</span>
+                      <span className="k-list-type">{w.type}</span>
+                      <Arrow />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="k-actions">
+                <button type="button" className="k-btn" onClick={() => onOpen('works', x.id)}>
+                  {x.works.length > shown ? `All ${x.works.length} works` : `More on ${x.name}`}
+                </button>
+                {x.link && (
+                  <a className="k-btn k-btn--ghost" href={x.link.url} target="_blank" rel="noopener noreferrer">
+                    {x.link.label} <Arrow />
+                  </a>
+                )}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
