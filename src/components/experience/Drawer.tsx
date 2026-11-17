@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import {
-  COMMUNITIES, EXPERIMENTS, LINKS, MY_NORMIE, ON_THE_WALL, OWN_PROJECTS, PROFILE, type Work,
+  COMMUNITIES, EXPERIMENTS, LINKS, MY_NORMIE, ON_THE_WALL, PROFILE, type Work,
 } from './content'
 import type { DrawerKey } from './Chapters'
 import Sentences from './Sentences'
@@ -52,19 +52,15 @@ function Body({ k }: { k: DrawerKey }) {
         <p className="k-dmono">{PROFILE.handle} · {PROFILE.tagline}</p>
         <p className="k-dlead"><Sentences text={PROFILE.bio} /></p>
         <ul className="k-dtags">{PROFILE.tags.map(t => <li key={t}>{t}</li>)}</ul>
-        <h3 className="k-dsection">Founder of</h3>
-        <ul className="k-dlinks">
-          {PROFILE.founderOf.map(f => (
-            <li key={f.label}>
-              <a href={f.href} target="_blank" rel="noopener noreferrer" className="k-dlink">{f.label} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
-            </li>
-          ))}
-          <li>
-            <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="k-dlink">Twitter / X <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
-          </li>
-        </ul>
-        <h3 className="k-dsection">Own projects</h3>
-        <WorkList items={OWN_PROJECTS} />
+        {PROFILE.ventures.map(v => (
+          <div key={v.label}>
+            <h3 className="k-dsection">{v.role} of</h3>
+            {v.note && <p className="k-dtext">{v.note}</p>}
+            <a href={v.href} target="_blank" rel="noopener noreferrer" className="k-dlink">{v.label} <NewTab /></a>
+          </div>
+        ))}
+        <h3 className="k-dsection">Follow</h3>
+        <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="k-dlink">Twitter / X <NewTab /></a>
         <h3 className="k-dsection">On the wall</h3>
         <p className="k-dtext"><Sentences text={ON_THE_WALL.text} /></p>
         <a href={ON_THE_WALL.url} target="_blank" rel="noopener noreferrer" className="k-dlink">{ON_THE_WALL.cta} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>

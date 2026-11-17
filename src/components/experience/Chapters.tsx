@@ -74,14 +74,16 @@ export function ProfileChapter({ onOpen }: ChapterProps) {
       <h2 className="k-h2" tabIndex={-1}>Artist &amp;<br />builder.</h2>
       <p className="k-mono-line k-tall-only">{PROFILE.handle} · {PROFILE.tagline}</p>
       <p className="k-body"><Sentences text={PROFILE.bio} /></p>
-      <div className="k-founder">
-        <span className="k-label">Founder of</span>
-        {PROFILE.founderOf.map(f => (
-          <a key={f.label} href={f.href} target="_blank" rel="noopener noreferrer" className="k-link">
-            {f.label} <Arrow />
-          </a>
+      <ul className="k-founder">
+        {PROFILE.ventures.map(v => (
+          <li key={v.label} className="k-venture">
+            <span className="k-label">{v.role} of</span>
+            <a href={v.href} target="_blank" rel="noopener noreferrer" className="k-link">
+              {v.label} <Arrow />
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
       <div className="k-actions">
         <a className="k-btn" href={LINKS.x} target="_blank" rel="noopener noreferrer">Twitter / X <Arrow /></a>
         <button type="button" className="k-btn k-btn--ghost" onClick={() => onOpen('profile')}>Full profile</button>
@@ -126,8 +128,9 @@ export function ExperimentsChapter({ onOpen }: ChapterProps) {
   )
 }
 
-export function CommunitiesChapter({ onOpen }: ChapterProps) {
-  const [tab, setTab] = useState<CommunityId>(COMMUNITIES[0].id)
+export function CommunitiesChapter({ onOpen, onTab }: ChapterProps & { onTab: (id: CommunityId) => void }) {
+  const [tab, setTabState] = useState<CommunityId>(COMMUNITIES[0].id)
+  const setTab = (id: CommunityId) => { setTabState(id); onTab(id) }
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
   const shown = CARD_WORKS
 

@@ -38,6 +38,8 @@ export interface ChapterShape {
   shift: { land: [number, number]; port: [number, number] }
   // Idle motion: world-space offset for piece i of a pool at time t
   idle: (pool: PoolKey, i: number, t: number, out: Vector3) => void
+  // Alternative voxel arrangements the engine can morph to while staying in this chapter
+  variants?: Record<string, PoolShape>
 }
 
 export const hash = (n: number) => {
@@ -188,36 +190,67 @@ function experimentsLayout(): Layout {
   return { ...standingFigure(0.6, 2.6), voxels }
 }
 
-// 04 Communities: a 14x14 pixel field that spells 100 (THE100, home community), the figure watching from behind
+// 04 Communities: a 14x14 pixel field that changes with the community tab, the
+// figure watching from behind: 100 for The Normies (THE100), FREN for JPEG Frens.
+type Lit = Map<number, { c: number; h: number }>
+const at = (row: number, col: number) => row * VOXEL_SIDE + col
+
 const DIGITS: Record<string, string[]> = {
   '1': ['.X.', 'XX.', '.X.', '.X.', 'XXX'],
   '0': ['XXX', 'X.X', 'X.X', 'X.X', 'XXX'],
 }
-const LIT = new Map<number, number>()
+const LIT_100: Lit = new Map()
 ;['1', '0', '0'].forEach((d, n) =>
   DIGITS[d].forEach((row, ry) =>
     row.split('').forEach((ch, rx) => {
-      if (ch === 'X') LIT.set((5 + ry) * VOXEL_SIDE + 2 + n * 4 + rx, n === 0 ? PALETTE.purple : PALETTE.pink)
+      if (ch === 'X') LIT_100.set(at(5 + ry, 2 + n * 4 + rx), { c: n === 0 ? PALETTE.purple : PALETTE.pink, h: 1.3 })
     }),
   ),
 )
+
+// FREN for JPEG Frens on one line, same rows and height as the 100. Narrow F and E
+// (2 wide) leave room for a real diagonal on the N: 2+1+3+1+2+1+4 = all 14 columns.
+const FREN_GLYPHS: Record<string, string[]> = {
+  F: ['XX', 'X.', 'XX', 'X.', 'X.'],
+  R: ['XX.', 'X.X', 'XX.', 'X.X', 'X.X'],
+  E: ['XX', 'X.', 'XX', 'X.', 'XX'],
+  N: ['X..X', 'XX.X', 'X.XX', 'X..X', 'X..X'],
+}
+const LIT_FREN: Lit = new Map()
+{
+  let col = 0
+  for (const g of 'FREN') {
+    const glyph = FREN_GLYPHS[g]
+    glyph.forEach((row, ry) =>
+      row.split('').forEach((ch, rx) => {
+        if (ch === 'X') LIT_FREN.set(at(5 + ry, col + rx), { c: g === 'F' ? PALETTE.purple : PALETTE.pink, h: 1.3 })
+      }),
+    )
+    col += glyph[0].length + 1
+  }
+}
+
+export const COMMUNITY_FIELDS: Record<string, Lit> = { normies: LIT_100, jpegfrens: LIT_FREN }
+
 const GRID = 0.45
-function communityLayout(): Layout {
+function fieldVoxels(lit: Lit): Piece[] {
   const n = VOXEL_SIDE
-  const voxels: Piece[] = Array.from({ length: POOL_SIZE.voxels }, (_, i) => {
+  return Array.from({ length: POOL_SIZE.voxels }, (_, i) => {
     const col = i % n, row = Math.floor(i / n)
-    const lit = LIT.get(i)
-    const h = lit ? 1.3 : 0.28
+    const px = lit.get(i)
+    const h = px ? px.h : 0.28
     return {
       p: new Vector3((col - (n - 1) / 2) * GRID, h / 2 + 0.02, (row - (n - 1) / 2) * GRID),
       q: new Quaternion(),
       s: new Vector3(0.4, h, 0.4),
-      c: lit ?? PALETTE.ink,
+      c: px ? px.c : PALETTE.ink,
     }
   })
+}
+function communityLayout(field: Lit): Layout {
   const fig = standingFigure(0.62, 2.1)
   for (const pc of [...fig.bars, ...fig.cubes]) pc.p.z -= 3.9
-  return { ...fig, voxels }
+  return { ...fig, voxels: fieldVoxels(field) }
 }
 
 // 05 Contact: back to the artwork, lying flat in its frame
@@ -249,6 +282,7 @@ function chapter(
   cam: { pos: [number, number, number]; target: [number, number, number] },
   shift: ChapterShape['shift'],
   idle: ChapterShape['idle'],
+  variants?: Record<string, Piece[]>, // alternative voxel layouts, same frame as `layout`
 ): ChapterShape {
   const yawQ = qAxis(Y_AXIS, yaw)
   const origin = new Vector3(center[0], 0, center[1])
@@ -264,6 +298,7 @@ function chapter(
     camTarget: local(cam.target),
     shift,
     idle,
+    variants: variants && Object.fromEntries(Object.entries(variants).map(([k, v]) => [k, toPool(v, yawQ, origin)])),
   }
 }
 
@@ -294,7 +329,7 @@ export function buildChapters(): ChapterShape[] {
   const communityIdle: ChapterShape['idle'] = (pool, i, t, out) => {
     if (pool === 'voxels') {
       const col = i % VOXEL_SIDE, row = Math.floor(i / VOXEL_SIDE)
-      out.set(0, (LIT.has(i) ? 0.1 : 0.16) * Math.sin(t * 1.4 - (col + row) * 0.45), 0)
+      out.set(0, 0.13 * Math.sin(t * 1.4 - (col + row) * 0.45), 0)
     } else out.set(0, Math.sin(t * 1.1) * 0.08, 0)
   }
 
@@ -308,9 +343,10 @@ export function buildChapters(): ChapterShape[] {
     chapter(experimentsLayout(), [-CELL, -CELL], 0,
       { pos: [0, 13.8, 13.4], target: [0, 1.5, 0] },
       { land: [0.21, 0.02], port: [0, 0.3] }, experimentsIdle),
-    chapter(communityLayout(), [CELL, -CELL * 2], Math.PI / 4,
+    chapter(communityLayout(LIT_100), [CELL, -CELL * 2], Math.PI / 4,
       { pos: [0, 11.8, 12.4], target: [0, 1.0, -1.0] },
-      { land: [-0.26, 0.02], port: [0, 0.2] }, communityIdle),
+      { land: [-0.26, 0.02], port: [0, 0.2] }, communityIdle,
+      Object.fromEntries(Object.entries(COMMUNITY_FIELDS).map(([k, lit]) => [k, fieldVoxels(lit)]))),
     chapter(contactLayout(), [0, -CELL * 3], 0,
       { pos: [0, 15, 4.4], target: [0, 0, 0.1] },
       { land: [0.2, 0], port: [0, 0.17] }, still),

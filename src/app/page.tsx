@@ -41,8 +41,8 @@ export default function Home() {
           <a href="https://onthewall.nfcsummit.com/people/k4ncun0">See the wall profile</a>.
         </p>
         <p>
-          Also founder of Normies Yacht Club (normiesyachtclub.com) and 8362 Coffee (8362coffee.com),
-          and author of The Framework Library, a free Notion framework for Web3 builders.
+          Also founder of Normies Yacht Club (normiesyachtclub.com), pixel-art yachts that live entirely on Ethereum,
+          each one born from a burned Normie, and creator of 8362 Coffee (8362coffee.com), a real-world coffee brand tied to Normie #8362.
           Contact: X @OsayKancuno, Telegram @kancuno.
         </p>
       </section>

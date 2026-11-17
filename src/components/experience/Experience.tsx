@@ -9,7 +9,7 @@ import Drawer from './Drawer'
 import {
   CommunitiesChapter, ContactChapter, ExperimentsChapter, HeroChapter, ProfileChapter, type DrawerKey,
 } from './Chapters'
-import { CHAPTER_LABELS } from './content'
+import { CHAPTER_LABELS, COMMUNITIES } from './content'
 
 const N = CHAPTER_LABELS.length
 // Copy alternates sides; the 3D focus moves the other way (see formations.ts shift)
@@ -50,6 +50,8 @@ export default function Experience() {
   }, [])
   const openDrawer = useCallback((k: DrawerKey, section?: string) => { setDrawerSection(section); setDrawer(k) }, [])
   const closeDrawer = useCallback(() => setDrawer(null), [])
+  // The community tab drives the 3D field (100 for The Normies, FREN for JPEG Frens)
+  const showCommunity = useCallback((id: string) => worldRef.current?.setVariant(id), [])
 
   // ── World + frame loop ──────────────────────────────────────────────────────
   useEffect(() => {
@@ -78,6 +80,7 @@ export default function Experience() {
         const world = createWorld(canvas, { reducedMotion: reduced, lowPower })
         if (!world) { setFallback(true); engineReady = true; return }
         worldRef.current = world
+        world.setVariant(COMMUNITIES[0].id, true)
         resize()
         return world.warmup().then(() => { engineReady = true })
       })
@@ -133,7 +136,7 @@ export default function Experience() {
       }
 
       // Idle frames: 30fps on phones; nothing at all when motion is reduced and still
-      const moving = s !== lastRendered || !started || dirty
+      const moving = s !== lastRendered || !started || dirty || !!worldRef.current?.busy()
       const skip = !moving && (reduced || (lowPower && ms - lastRenderMs < 31))
       if (!skip) {
         worldRef.current?.update(s, dt, now)
@@ -352,7 +355,7 @@ export default function Experience() {
             <HeroChapter key="hero" onGo={goTo} />,
             <ProfileChapter key="profile" onOpen={openDrawer} />,
             <ExperimentsChapter key="experiments" onOpen={openDrawer} />,
-            <CommunitiesChapter key="communities" onOpen={openDrawer} />,
+            <CommunitiesChapter key="communities" onOpen={openDrawer} onTab={showCommunity} />,
             <ContactChapter key="contact" />,
           ].map((node, i) => (
             <section

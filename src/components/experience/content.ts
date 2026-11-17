@@ -21,9 +21,10 @@ export const PROFILE = {
   tagline: 'On-chain work → off-chain experiences',
   bio: 'Working on something new, on-chain and off-chain. Culture belongs to the people who create it.',
   tags: ['Artist', 'Builder on-chain', 'K4NCUN0'],
-  founderOf: [
-    { label: 'Normies Yacht Club', href: LINKS.yachtClub },
-    { label: '8362 Coffee', href: LINKS.coffee },
+  // Founder of an on-chain club, creator of a real-world brand: never "founder" for 8362 Coffee
+  ventures: [
+    { role: 'Founder', label: 'Normies Yacht Club', href: LINKS.yachtClub },
+    { role: 'Creator', label: '8362 Coffee', href: LINKS.coffee, note: 'A real-world coffee brand tied to Normie #8362.' },
   ],
 }
 
@@ -115,17 +116,14 @@ export const WORKS: Work[] = [
     url: 'https://opensea.io/collection/we-are-all-normies',
     cta: 'View on OpenSea',
   },
-]
-
-// Osay's own resources (Profile drawer)
-export const OWN_PROJECTS: Work[] = [
   {
-    name: 'The Framework Library',
-    type: 'Framework',
-    status: 'Live',
-    desc: 'A free Notion framework helping Web3 builders avoid common mistakes — built from real experience in the field.',
-    url: 'https://kancuno.notion.site/THE-FRAMEWORK-LIBRARY-2e54fed9de0b80dcb5e3df60fb00432c',
-    cta: 'Open framework',
+    name: 'Normies Yacht Club',
+    type: 'On-chain collection',
+    community: 'The Normies',
+    status: 'Founder',
+    desc: 'Pixel-art yachts that live entirely on Ethereum, each one born from a burned Normie. A fleet with an end, to sail in a 3D marina. CC0.',
+    url: LINKS.yachtClub,
+    cta: 'Visit the club',
   },
 ]
 
@@ -136,12 +134,6 @@ export const ON_THE_WALL = {
   cta: 'See the panel',
   url: LINKS.nfcWall,
 }
-
-
-export const BOOA_TOOLS: Work[] = [
-  { name: 'MoltBOOA Lab', community: 'BOOA', type: 'Agent simulator', url: 'http://moltbooa-lab.vercel.app', cta: 'Open', desc: 'Your agent has a life now: simulate, chat, battle, and export your BOOA to production.' },
-  { name: 'Skill Synergy', community: 'BOOA', type: 'Agent matcher', url: 'http://booa-skill-synergy.vercel.app', cta: 'Open', desc: 'Find the right match: the complementary skills of on-chain AI agents.' },
-]
 
 export const NORMIE_TOOLS: Work[] = [
   { name: 'Normies University', type: 'Agent academy', url: 'https://normie-university.vercel.app/', cta: 'Open', desc: 'Enroll your Normie as a learning agent: buy skill modules in USDC and earn on-chain soulbound credentials that build a composable reputation other protocols can read.' },
@@ -157,7 +149,7 @@ export const NORMIE_TOOLS: Work[] = [
 export const MY_NORMIE = 'Normie #8362, my on-chain PFP: fully on-chain and customized.'
 
 // ── Community work: one tab per community, in the Communities chapter and drawer ──
-export type CommunityId = 'jpegfrens' | 'normies' | 'booa'
+export type CommunityId = 'jpegfrens' | 'normies'
 
 export interface Community {
   id: CommunityId
@@ -186,15 +178,9 @@ export const COMMUNITIES: Community[] = [
     id: 'normies',
     name: 'The Normies',
     role: 'THE100 member and holder, part of the community since day 1. I build free tools for the community.',
-    // Air Normies and The Normies City lead (shown on the card), then the rest
-    works: featureFirst([...WORKS.filter(w => w.community === 'The Normies'), ...NORMIE_TOOLS], ['Air Normies', 'The Normies City']),
+    // Air Normies and Normies Yacht Club lead (shown on the card), then the rest
+    works: featureFirst([...WORKS.filter(w => w.community === 'The Normies'), ...NORMIE_TOOLS], ['Air Normies', 'Normies Yacht Club']),
     link: { label: 'The Normifesto', url: LINKS.normifesto },
-  },
-  {
-    id: 'booa',
-    name: 'BOOA',
-    role: 'In collaboration with BOOA (formerly Khôra, @khorafun): tools for on-chain AI agents.',
-    works: BOOA_TOOLS,
   },
 ]
 

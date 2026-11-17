@@ -523,11 +523,12 @@ ul { list-style: none; }
 }
 .k-founder {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 18px;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 26px;
 }
+.k-venture { display: flex; align-items: baseline; gap: 14px; }
+.k-venture .k-label { width: auto; min-width: 92px; }
 .k-label {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -1233,7 +1234,7 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
   .k-h2--fit { font-size: clamp(28px, 8.6vw, 40px); }
   .k-mono-line { font-size: 10.5px; margin-bottom: 10px; }
   .k-body { font-size: 15px; margin-bottom: 14px; }
-  .k-founder { margin-bottom: 16px; gap: 6px 16px; }
+  .k-founder { margin-bottom: 16px; gap: 8px; }
   .k-link { font-size: 15px; }
   .k-btn { height: 44px; padding: 0 18px; font-size: 14px; }
   .k-stat { margin-bottom: 18px; }

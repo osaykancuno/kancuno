@@ -84,6 +84,7 @@ const JSON_LD = {
         },
         { '@id': `${SITE}/#jpegfrens` },
       ],
+      brand: { '@id': `${SITE}/#8362coffee` },
       knowsAbout: ['On-chain art', 'Pixel art', 'On-chain building', 'Web3 community tools', 'Interactive 3D experiences'],
       sameAs: ['https://x.com/OsayKancuno', 'https://t.me/kancuno', 'https://onthewall.nfcsummit.com/people/k4ncun0'],
       subjectOf: {
@@ -112,13 +113,15 @@ const JSON_LD = {
       '@type': 'Organization',
       name: 'Normies Yacht Club',
       url: 'https://normiesyachtclub.com/',
+      description: 'Pixel-art yachts that live entirely on Ethereum, each one born from a burned Normie, in a fleet with an end. CC0.',
       founder: { '@id': PERSON_ID },
     },
     {
-      '@type': 'Organization',
+      '@type': 'Brand',
+      '@id': `${SITE}/#8362coffee`,
       name: '8362 Coffee',
       url: 'https://8362coffee.com/',
-      founder: { '@id': PERSON_ID },
+      description: 'A real-world coffee brand tied to Normie #8362, created by Osay Kancuno.',
     },
     {
       '@type': 'Organization',

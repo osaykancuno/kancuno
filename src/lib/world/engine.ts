@@ -11,7 +11,7 @@ import {
 } from 'three'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js'
-import { BAR_SIZE, CELL, CUBE_SIZE, POOL_SIZE, POOLS, buildChapters, hash, type PoolKey } from './formations'
+import { BAR_SIZE, CELL, CUBE_SIZE, POOL_SIZE, POOLS, VOXEL_SIDE, buildChapters, hash, type PoolKey, type PoolShape } from './formations'
 import { PALETTE } from './palette'
 
 export const CHAPTERS = 5 // keep in sync with buildChapters() and CHAPTER_LABELS
@@ -48,6 +48,9 @@ export class World {
   private key: DirectionalLight
   private catcher: Mesh
   private chapters = buildChapters()
+  // Voxel variant morph (e.g. the community field switching between 100 and FREN)
+  private variant: string | null = null
+  private morph: { ch: number; from: PoolShape; to: PoolShape; start: number } | null = null
   private pools: Pool[] = []
   private camCurve: CatmullRomCurve3
   private targetCurve: CatmullRomCurve3
@@ -207,6 +210,56 @@ export class World {
     }
   }
 
+  /**
+   * Switch the voxel arrangement of the chapter that has a variant with this name.
+   * The blocks hop into the new shape in a wave across the field; `instant` skips it.
+   */
+  setVariant(name: string, instant = false) {
+    if (name === this.variant) return
+    const ch = this.chapters.findIndex(c => c.variants?.[name])
+    if (ch < 0) return
+    this.variant = name
+    const cur = this.chapters[ch].pools.voxels
+    const to = this.chapters[ch].variants![name]
+    if (instant || this.reduced) {
+      cur.pos.set(to.pos); cur.scl.set(to.scl); cur.col.set(to.col); cur.rot.set(to.rot)
+      this.morph = null
+      return
+    }
+    // Start from wherever the blocks are now, so quick tab changes stay smooth
+    const from: PoolShape = { pos: cur.pos.slice(), rot: cur.rot.slice(), scl: cur.scl.slice(), col: cur.col.slice() }
+    this.morph = { ch, from, to, start: -1 }
+  }
+
+  /** True while a variant morph is running (the page keeps rendering). */
+  busy() { return this.morph !== null }
+
+  private stepMorph(now: number) {
+    const m = this.morph
+    if (!m) return
+    if (m.start < 0) m.start = now
+    const DUR = 1.25, WAVE = 0.5, PIECE = 0.5
+    const k = (now - m.start) / DUR
+    const cur = this.chapters[m.ch].pools.voxels
+    const n = POOL_SIZE.voxels
+    for (let i = 0; i < n; i++) {
+      const col = i % VOXEL_SIDE, row = Math.floor(i / VOXEL_SIDE)
+      const delay = ((col + row) / (2 * (VOXEL_SIDE - 1))) * WAVE
+      const u = easeInOut(clamp01((k - delay) / PIECE))
+      const hop = Math.sin(Math.PI * u) * 0.9
+      for (let a = 0; a < 3; a++) {
+        const j = i * 3 + a
+        cur.pos[j] = MathUtils.lerp(m.from.pos[j], m.to.pos[j], u) + (a === 1 ? hop : 0)
+        cur.scl[j] = MathUtils.lerp(m.from.scl[j], m.to.scl[j], u)
+        cur.col[j] = MathUtils.lerp(m.from.col[j], m.to.col[j], u)
+      }
+    }
+    if (k >= WAVE + PIECE) {
+      cur.pos.set(m.to.pos); cur.scl.set(m.to.scl); cur.col.set(m.to.col); cur.rot.set(m.to.rot)
+      this.morph = null
+    }
+  }
+
   /** Pointer in normalised device coords (-1..1). */
   setPointer(x: number, y: number, active: boolean) {
     this.pointer.set(x, y)
@@ -224,6 +277,7 @@ export class World {
     s = MathUtils.clamp(s, 0, last)
     const seg = Math.min(Math.floor(s), last - 1)
     const f = s - seg
+    this.stepMorph(now)
     const A = this.chapters[seg], B = this.chapters[seg + 1]
     const t = this.reduced ? 0 : now
 

@@ -11,7 +11,7 @@ A fully interactive desktop environment in the browser:
 - Dark mode toggle (default) with localStorage persistence
 - Monochrome Normies palette with a glitch intro on every visit and a glitching "building something" teaser
 - Pixel art aesthetic (Press Start 2P + VT323 fonts)
-- Tools and projects built for The Normies and BOOA communities
+- Tools and projects built for The Normies and JPEG Frens communities
 
 ## Stack
 
@@ -25,7 +25,7 @@ A fully interactive desktop environment in the browser:
 | App | Content |
 |-----|---------|
 | `PROFILE.EXE` | Bio, builder on-chain, THE100 member + holder |
-| `WORKS.EXE` | Personal works + tools built with BOOA (formerly Khôra) |
+| `WORKS.EXE` | Personal works |
 | `NORMIES.EXE` | The Normies community, Normifesto + 8 tools |
 | `CONTACT.EXE` | X / Twitter and Telegram |
 | `8362 COFFEE` / `NORMIES YACHT CLUB` | External links |
