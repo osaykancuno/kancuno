@@ -11,7 +11,7 @@ const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jbmono', dis
 const SITE = 'https://www.kancuno.com'
 // Share link and search copy are about Osay only: no community names here
 // (communities stay as context in the chapters, JSON-LD nodes and llms.txt).
-const TITLE = 'K4NCUN0 - Artist & Builder'
+const TITLE = 'KANCUNO - Artist & Builder'
 const SHARE_DESCRIPTION =
   'Osay Kancuno (K4NCUN0) is an artist and builder on-chain. ' +
   'A series of on-chain and off-chain experiments, starting with JAMVERSE.'
