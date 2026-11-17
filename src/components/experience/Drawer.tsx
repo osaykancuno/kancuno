@@ -3,16 +3,20 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import {
-  BOOA_NOTE, BOOA_TOOLS, LINKS, MY_NORMIE, NORMIE_TOOLS, NORMIES_WORK_NAMES, ON_THE_WALL, PROFILE, WORKS, type Work,
+  BOOA_NOTE, BOOA_TOOLS, EXPERIMENTS, EXPERIMENTS_LEAD, LINKS, MY_NORMIE, NORMIE_TOOLS, NORMIES_WORK_NAMES, ON_THE_WALL,
+  OWN_PROJECTS, PROFILE, WORKS, type Work,
 } from './content'
 import type { DrawerKey } from './Chapters'
 import Sentences from './Sentences'
 
 const TITLES: Record<DrawerKey, string> = {
   profile: 'Profile',
-  works: 'Works',
-  community: 'Community',
+  experiments: 'The lab',
+  works: 'Community work',
+  community: 'The Normies',
 }
+
+const NewTab = () => <><span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></>
 
 function WorkList({ items }: { items: Work[] }) {
   return (
@@ -62,24 +66,53 @@ function Body({ k }: { k: DrawerKey }) {
             <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="k-dlink">Twitter / X <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
           </li>
         </ul>
+        <h3 className="k-dsection">Own projects</h3>
+        <WorkList items={OWN_PROJECTS} />
         <h3 className="k-dsection">On the wall</h3>
         <p className="k-dtext"><Sentences text={ON_THE_WALL.text} /></p>
         <a href={ON_THE_WALL.url} target="_blank" rel="noopener noreferrer" className="k-dlink">{ON_THE_WALL.cta} <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
       </>
     )
   }
-  if (k === 'works') {
+  if (k === 'experiments') {
     return (
       <>
-        <p className="k-dlead">Selected works by {PROFILE.handle}.</p>
-        <WorkList items={WORKS} />
-        <h3 className="k-dsection">Studio collaboration</h3>
-        <p className="k-dtext">{BOOA_NOTE}<br />Tools built for this community:</p>
-        <WorkList items={BOOA_TOOLS} />
+        <p className="k-dlead"><Sentences text={EXPERIMENTS_LEAD} /></p>
+        {EXPERIMENTS.map(e => (
+          <article key={e.code} className="k-dexp">
+            <a href={e.url} target="_blank" rel="noopener noreferrer" className="k-dexp-media">
+              <Image src={e.image.src} alt={e.image.alt} width={e.image.width} height={e.image.height} sizes="(max-width: 767px) 90vw, 520px" />
+            </a>
+            <p className="k-dmono">{e.code} · {e.kind} · {e.status}</p>
+            <h3 className="k-dexp-name">{e.name}</h3>
+            <p className="k-dtext"><Sentences text={`${e.tagline} ${e.desc}`} /></p>
+            <ul className="k-dfeatures">
+              {e.features.map(f => <li key={f}>{f}</li>)}
+            </ul>
+            <a href={e.url} target="_blank" rel="noopener noreferrer" className="k-dlink">{e.cta} <NewTab /></a>
+          </article>
+        ))}
         <div className="k-dsoon">
-          <h3>More on the way</h3>
-          <p>New projects in progress — stay tuned.</p>
+          <h3>Next experiments</h3>
+          <p>On-chain and off-chain.<br />In the works, stay tuned on X.</p>
+          <a href={LINKS.x} target="_blank" rel="noopener noreferrer" className="k-dlink">Follow @OsayKancuno <NewTab /></a>
         </div>
+      </>
+    )
+  }
+  if (k === 'works') {
+    const by = (c: string) => WORKS.filter(w => w.community === c)
+    return (
+      <>
+        <p className="k-dlead"><Sentences text="Work I make as a holder, for the communities I belong to." /></p>
+        <h3 className="k-dsection">JPEG Frens</h3>
+        <WorkList items={by('JPEG Frens')} />
+        <h3 className="k-dsection">The Normies</h3>
+        <WorkList items={by('The Normies')} />
+        <p className="k-dtext k-dnote">Plus {NORMIE_TOOLS.length} free community tools, in the Normies section.</p>
+        <h3 className="k-dsection">BOOA</h3>
+        <p className="k-dtext">{BOOA_NOTE}</p>
+        <WorkList items={BOOA_TOOLS} />
       </>
     )
   }

@@ -10,9 +10,11 @@ export const LINKS = {
   coffee: 'https://8362coffee.com/',
   nfcWall: 'https://onthewall.nfcsummit.com/people/k4ncun0',
   nfcSummit: 'https://www.nfcsummit.com',
+  jamverse: 'https://jamverse.kancuno.com/',
 }
 
-export const CHAPTER_LABELS = ['Intro', 'Profile', 'Works', 'Community', 'Contact'] as const
+// Order matters: Osay first (profile, his own experiments), then the work he does for communities
+export const CHAPTER_LABELS = ['Intro', 'Profile', 'Experiments', 'Communities', 'Normies', 'Contact'] as const
 
 export const PROFILE = {
   handle: '@osaykancuno',
@@ -29,6 +31,7 @@ export const PROFILE = {
 export interface Work {
   name: string
   type: string
+  community?: string // the community a work is made for (shown in the Communities chapter)
   status?: string
   desc: string
   url: string
@@ -36,18 +39,53 @@ export interface Work {
   extra?: { label: string; url: string }[] // further links shown in the drawer
 }
 
-export const WORKS: Work[] = [
+// ── Experiments: Osay's own series, on-chain and off-chain ────────────────
+export const EXPERIMENTS_LEAD = 'A long series of experiments, on-chain and off-chain. The first one is live.'
+
+export interface Experiment {
+  code: string
+  name: string
+  kind: 'Off-chain' | 'On-chain'
+  status: string
+  tagline: string
+  desc: string
+  features: string[]
+  url: string
+  cta: string
+  image: { src: string; width: number; height: number; alt: string }
+}
+
+export const EXPERIMENTS: Experiment[] = [
   {
-    name: 'We Are All Normies',
-    type: 'Tribute',
+    code: 'EXP. 001',
+    name: 'JAMVERSE',
+    kind: 'Off-chain',
     status: 'Live',
-    desc: 'A tribute NFT collection celebrating The Normies community. A collaborative 69x69 canvas.',
-    url: 'https://opensea.io/collection/we-are-all-normies',
-    cta: 'View on OpenSea',
+    tagline: 'Jam together in space.',
+    desc: 'A live music universe in 3D. Make a full song alone or jam it with friends: every part is a ring you can step into.',
+    features: [
+      'Drums, bass, chords, melody, texture and voice are rings you can enter.',
+      'The space reacts: harmony builds calm structures, clashes glitch until you resolve them.',
+      'Jam live with pads, keys or a MIDI keyboard, friends join from a link in real time.',
+      'A real studio: step sequencer, piano roll, song arranger and mixer.',
+      'One tap turns a loop into a song, from intro to drop to outro.',
+      'Export WAV, stems or MIDI, and play a new seed challenge every day.',
+    ],
+    url: 'https://jamverse.kancuno.com/',
+    cta: 'Enter JAMVERSE',
+    image: { src: '/experiments/jamverse.png', width: 1200, height: 630, alt: 'JAMVERSE: jam together in space' },
   },
+]
+
+// Placeholders for the series: shown as upcoming slots, never with invented names
+export const EXPERIMENT_SLOTS = 3
+
+// Work made for the communities Osay belongs to
+export const WORKS: Work[] = [
   {
     name: 'The Frens Forge',
     type: 'Game',
+    community: 'JPEG Frens',
     status: 'Live',
     desc: 'A burn-and-forge game for the JPEG Frens community, playable on The Wall Arcade by SuperRare Studio: arcade games built on the names of the NFC Summit wall in Lisbon.',
     url: 'https://kx499cjd.srstudio.dev/',
@@ -60,15 +98,29 @@ export const WORKS: Work[] = [
   {
     name: 'Frens After Dark',
     type: 'Video series',
-    status: 'Season 2',
-    desc: 'A video mini-series I make for the JPEG Frens community, as a holder. Season 2 airs on X, about 75 seconds per episode.',
-    url: 'https://x.com/OsayKancuno/status/2120563587244576871',
-    cta: 'Watch Ep. 3',
+    community: 'JPEG Frens',
+    status: 'Seasons 1–2',
+    desc: 'A video mini-series I make for the JPEG Frens community, as a holder. Two seasons so far, airing on X.',
+    url: 'https://x.com/OsayKancuno/status/2121274266490388930',
+    cta: 'Watch S2 Ep. 5',
     extra: [
-      { label: 'Ep. 3 “Hold The Button”', url: 'https://x.com/OsayKancuno/status/2120563587244576871' },
-      { label: 'Ep. 2 “Touch Grass Protocol”', url: 'https://x.com/OsayKancuno/status/2120201931423420808' },
+      { label: 'S2 Ep. 5 “Mint Condition”', url: 'https://x.com/OsayKancuno/status/2121274266490388930' },
+      { label: 'S1 Ep. 5 “No Risk, No Sheet”', url: 'https://x.com/OsayKancuno/status/2119116948881457640' },
     ],
   },
+  {
+    name: 'We Are All Normies',
+    type: 'Tribute',
+    community: 'The Normies',
+    status: 'Live',
+    desc: 'A tribute NFT collection celebrating The Normies community. A collaborative 69x69 canvas.',
+    url: 'https://opensea.io/collection/we-are-all-normies',
+    cta: 'View on OpenSea',
+  },
+]
+
+// Osay's own resources (Profile drawer)
+export const OWN_PROJECTS: Work[] = [
   {
     name: 'The Framework Library',
     type: 'Framework',
@@ -91,8 +143,8 @@ export const ON_THE_WALL = {
 export const BOOA_NOTE = 'In collaboration with BOOA (formerly Khôra, @khorafun).'
 
 export const BOOA_TOOLS: Work[] = [
-  { name: 'MoltBOOA Lab', type: 'Agent simulator', url: 'http://moltbooa-lab.vercel.app', cta: 'Open', desc: 'Your agent has a life now: simulate, chat, battle, and export your BOOA to production.' },
-  { name: 'Skill Synergy', type: 'Agent matcher', url: 'http://booa-skill-synergy.vercel.app', cta: 'Open', desc: 'Find the right match: the complementary skills of on-chain AI agents.' },
+  { name: 'MoltBOOA Lab', community: 'BOOA', type: 'Agent simulator', url: 'http://moltbooa-lab.vercel.app', cta: 'Open', desc: 'Your agent has a life now: simulate, chat, battle, and export your BOOA to production.' },
+  { name: 'Skill Synergy', community: 'BOOA', type: 'Agent matcher', url: 'http://booa-skill-synergy.vercel.app', cta: 'Open', desc: 'Find the right match: the complementary skills of on-chain AI agents.' },
 ]
 
 export const NORMIE_TOOLS: Work[] = [
@@ -106,7 +158,7 @@ export const NORMIE_TOOLS: Work[] = [
   { name: 'Normsky', type: 'Street art frames', url: 'http://normski-generator.vercel.app', cta: 'Open', desc: 'Type a Token ID and frame your Normie on a concrete, brick or plaster wall. Export still images or animated GIFs at any resolution.' },
 ]
 
-// Works tied to The Normies, shown in the Normies drawer (Works keeps the full list)
+// Works tied to The Normies, shown in the Normies drawer (Communities keeps the full list)
 export const NORMIES_WORK_NAMES = ['We Are All Normies']
 
 export const MY_NORMIE = 'Normie #8362: my on-chain PFP. THE100 member and holder, part of the community since day 1.'

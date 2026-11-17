@@ -1,17 +1,23 @@
 # Osay Kancuno (K4NCUN0)
 
-> Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain, currently building something new.
+> Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain, running a long series of on-chain and off-chain experiments. The first is JAMVERSE.
 
 ## Key facts
 
 - Name: Osay Kancuno. Also known as K4NCUN0, Kancuno, @OsayKancuno.
-- Role: artist and builder on-chain, currently working on something new (not announced yet).
+- Role: artist and builder on-chain, running a series of experiments (on-chain and off-chain).
 - Founder of: Normies Yacht Club (https://normiesyachtclub.com/) and 8362 Coffee (https://8362coffee.com/).
+- Author of The Framework Library, a free Notion framework for Web3 builders.
+
+## Experiments
+
+- EXP. 001 · Off-chain · Live: JAMVERSE (https://jamverse.kancuno.com/). A live music universe in 3D: make a full song alone or jam it with friends in real time. Every part (drums, bass, chords, melody, texture, voice) is a ring you can step into. Step sequencer, piano roll, song arranger and mixer; one tap turns a loop into a full song; export WAV, stems or MIDI; a new seed challenge every day. Free, in the browser.
+- More experiments, on-chain and off-chain, are in the works.
 
 ## Communities (context)
 
 - The Normies: member and holder of THE100 (https://www.normies.art/). On-chain PFP: Normie #8362. Builder of free community tools for The Normies.
-- JPEG Frens: holder who contributes to the community with The Frens Forge (a burn-and-forge game on The Wall Arcade by SuperRare Studio: https://kx499cjd.srstudio.dev/) and FRENS AFTER DARK, a video mini-series for JPEG Frens (Season 2 airing on X).
+- JPEG Frens: holder who contributes to the community with The Frens Forge (a burn-and-forge game on The Wall Arcade by SuperRare Studio: https://kx499cjd.srstudio.dev/) and FRENS AFTER DARK, a video mini-series for JPEG Frens (Seasons 1 and 2, on X).
 - NFC: holder who contributes to the community; one of the "People of the Wall" at NFC 2027 (NFC Summit, Lisbon, 27-29 May 2027, Unicorn Factory): his name K4NCUN0 is painted on the event's wall, Panel #33, category "Builders".
 
 ## The Frens Forge (JPEG Frens game)
@@ -21,12 +27,13 @@
 
 ## FRENS AFTER DARK (JPEG Frens video mini-series)
 
-- Season 2, Ep. 2 "Touch Grass Protocol" (2026-11-10): https://x.com/OsayKancuno/status/2120201931423420808
-- Season 2, Ep. 3 "Hold The Button" (2026-11-11): https://x.com/OsayKancuno/status/2120563587244576871
+- Season 1, Ep. 5 "No Risk, No Sheet" (2026-11-07): https://x.com/OsayKancuno/status/2119116948881457640
+- Season 2, Ep. 5 "Mint Condition" (2026-11-13): https://x.com/OsayKancuno/status/2121274266490388930
 
 ## Links
 
 - Site: https://www.kancuno.com
+- JAMVERSE: https://jamverse.kancuno.com/
 - X / Twitter: https://x.com/OsayKancuno
 - Telegram: https://t.me/kancuno
 - NFC 2027 "On the wall" profile: https://onthewall.nfcsummit.com/people/k4ncun0

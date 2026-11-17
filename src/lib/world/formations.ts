@@ -149,7 +149,46 @@ function profileLayout(): Layout {
 }
 const RING_R = 3.3
 
-// 03 Works: a twisting tower of blocks, the figure hovering on top while it is being built
+// 03 Experiments: concentric rings of blocks, one per layer of a song (as in
+// JAMVERSE, where every part is a ring you can step into). The rings rise toward
+// the outside like a small amphitheatre; the figure performs in the middle.
+const EXP_RINGS = [1.5, 2.0, 2.5, 3.0, 3.5, 4.0]
+const EXP_COUNTS = [18, 24, 30, 36, 42, 46] // 196 blocks in all
+const EXP_STEP = 0.14 // each ring sits a little higher than the one inside it
+const EXP_RING = new Uint8Array(POOL_SIZE.voxels)
+const EXP_J = new Uint8Array(POOL_SIZE.voxels)
+const EXP_ANGLE = new Float32Array(POOL_SIZE.voxels)
+{
+  let i = 0
+  EXP_COUNTS.forEach((n, k) => {
+    for (let j = 0; j < n; j++, i++) {
+      EXP_RING[i] = k
+      EXP_J[i] = j
+      EXP_ANGLE[i] = (j / n) * Math.PI * 2 + k * 0.35
+    }
+  })
+}
+function experimentsLayout(): Layout {
+  const voxels: Piece[] = Array.from({ length: POOL_SIZE.voxels }, (_, i) => {
+    const k = EXP_RING[i], j = EXP_J[i], a = EXP_ANGLE[i], r = EXP_RINGS[k]
+    // A frozen waveform: every ring has its own number of peaks
+    const wave = Math.abs(Math.sin(((j / EXP_COUNTS[k]) * Math.PI * 2 * (k + 2)) / 2))
+    const h = 0.12 + wave * wave * (0.26 + k * 0.05)
+    const c = k === 0 ? PALETTE.purple
+      : k === 3 && j % 4 === 0 ? PALETTE.pink
+        : k === 5 && j % 6 === 0 ? PALETTE.purple
+          : PALETTE.ink
+    return {
+      p: new Vector3(Math.cos(a) * r, k * EXP_STEP + h / 2 + 0.02, Math.sin(a) * r),
+      q: qAxis(Y_AXIS, -a),
+      s: new Vector3(0.28, h, 0.28),
+      c,
+    }
+  })
+  return { ...standingFigure(0.6, 2.6), voxels }
+}
+
+// 04 Communities: a twisting tower of blocks, the figure hovering on top while it is being built
 const TOWER_LAYER_H = 0.42
 function worksLayout(): Layout {
   const n = VOXEL_SIDE
@@ -171,7 +210,7 @@ function worksLayout(): Layout {
   return { ...standingFigure(0.5, top + 1.3), voxels }
 }
 
-// 04 Community: a 14x14 pixel field that spells 100 (THE100), the figure watching from behind
+// 05 Normies: a 14x14 pixel field that spells 100 (THE100), the figure watching from behind
 const DIGITS: Record<string, string[]> = {
   '1': ['.X.', 'XX.', '.X.', '.X.', 'XXX'],
   '0': ['XXX', 'X.X', 'X.X', 'X.X', 'XXX'],
@@ -203,7 +242,7 @@ function communityLayout(): Layout {
   return { ...fig, voxels }
 }
 
-// 05 Contact: back to the artwork, lying flat in its frame
+// 06 Contact: back to the artwork, lying flat in its frame
 function contactLayout(): Layout {
   return { ...flatFigure(), voxels: hiddenVoxels(true) }
 }
@@ -272,6 +311,15 @@ export function buildChapters(): ChapterShape[] {
       out.set(0, k * (0.35 + Math.sin(t * 1.3 + i * 0.9) * 0.3), 0)
     } else out.set(0, Math.sin(t * 1.1) * 0.12, 0)
   }
+  // Each ring turns its own way and a wave runs round it, like layers playing together
+  const experimentsIdle: ChapterShape['idle'] = (pool, i, t, out) => {
+    if (pool === 'voxels') {
+      const k = EXP_RING[i], a = EXP_ANGLE[i], r = EXP_RINGS[k]
+      const w = (k % 2 ? -1 : 1) * (0.05 + k * 0.012) * t
+      const lift = 0.12 * (0.5 + 0.5 * Math.sin(t * 2.2 - a * 2 - k * 0.9))
+      out.set((Math.cos(a + w) - Math.cos(a)) * r, lift, (Math.sin(a + w) - Math.sin(a)) * r)
+    } else out.set(0, Math.sin(t * 1.1) * 0.1, 0)
+  }
   const communityIdle: ChapterShape['idle'] = (pool, i, t, out) => {
     if (pool === 'voxels') {
       const col = i % VOXEL_SIDE, row = Math.floor(i / VOXEL_SIDE)
@@ -286,14 +334,17 @@ export function buildChapters(): ChapterShape[] {
     chapter(profileLayout(), [0, 0], 0,
       { pos: [-5.8, 4.6, 14.2], target: [0, 3.0, 0.5] },
       { land: [-0.19, 0], port: [0, 0.2] }, profileIdle),
-    chapter(worksLayout(), [CELL, -CELL], 0,
+    chapter(experimentsLayout(), [-CELL, -CELL], 0,
+      { pos: [0, 13.8, 13.4], target: [0, 1.5, 0] },
+      { land: [0.21, 0.02], port: [0, 0.3] }, experimentsIdle),
+    chapter(worksLayout(), [CELL, -CELL * 2], 0,
       { pos: [0, 6.6, 18], target: [0, 4.4, 0] },
-      { land: [0.19, 0], port: [0, 0.2] }, worksIdle),
-    chapter(communityLayout(), [-CELL, -CELL * 2], Math.PI / 4,
-      { pos: [0, 11.8, 12.4], target: [0, 1.0, -1.0] },
-      { land: [-0.26, 0.02], port: [0, 0.3] }, communityIdle),
-    chapter(contactLayout(), [0, -CELL * 3], 0,
+      { land: [-0.19, 0], port: [0, 0.2] }, worksIdle),
+    chapter(communityLayout(), [-CELL, -CELL * 3], Math.PI / 4,
+      { pos: [0, 13.2, 13.6], target: [0, 1.0, -1.0] },
+      { land: [0.17, 0.02], port: [0, 0.3] }, communityIdle),
+    chapter(contactLayout(), [0, -CELL * 4], 0,
       { pos: [0, 15, 4.4], target: [0, 0, 0.1] },
-      { land: [0.2, 0], port: [0, 0.17] }, still),
+      { land: [-0.2, 0], port: [0, 0.17] }, still),
   ]
 }

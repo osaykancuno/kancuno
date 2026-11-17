@@ -8,8 +8,19 @@ export default function Home() {
       <section className="sr-only" aria-label="Summary">
         <h1>Osay Kancuno (K4NCUN0), artist and builder on-chain</h1>
         <p>
-          Osay Kancuno (K4NCUN0, @OsayKancuno on X) is an artist and builder on-chain, currently building something new.
-          His work spans games, tools, frameworks and video, including projects for communities he belongs to.
+          Osay Kancuno (K4NCUN0, @OsayKancuno on X) is an artist and builder on-chain.
+          He runs a long series of experiments, on-chain and off-chain.
+        </p>
+        <h2>Experiments</h2>
+        <p>
+          Experiment 001, off-chain, live: <a href="https://jamverse.kancuno.com/">JAMVERSE</a>, a live music universe in 3D.
+          Make a full song alone or jam it with friends in real time: every part (drums, bass, chords, melody, texture, voice)
+          is a ring you can step into. It includes a step sequencer, piano roll, song arranger and mixer, and exports WAV, stems or MIDI.
+          Free, in the browser.
+        </p>
+        <h2>Community work</h2>
+        <p>
+          He also makes games, tools and video for the communities he belongs to, as a holder.
         </p>
         <p>
           Osay Kancuno is a member and holder of THE100 in The Normies community,
@@ -18,9 +29,9 @@ export default function Home() {
         <p>
           Osay Kancuno is also a JPEG Frens holder who contributes to the community: he made{' '}
           <a href="https://kx499cjd.srstudio.dev/">The Frens Forge</a>, a burn-and-forge game on The Wall Arcade by SuperRare Studio,
-          and he creates FRENS AFTER DARK, a video mini-series for JPEG Frens. Season 2 is airing on X:{' '}
-          <a href="https://x.com/OsayKancuno/status/2120201931423420808">Episode 2, &quot;Touch Grass Protocol&quot;</a> (10 November 2026) and{' '}
-          <a href="https://x.com/OsayKancuno/status/2120563587244576871">Episode 3, &quot;Hold The Button&quot;</a> (11 November 2026).
+          and he creates FRENS AFTER DARK, a video mini-series for JPEG Frens on X, now in its second season:{' '}
+          <a href="https://x.com/OsayKancuno/status/2119116948881457640">Season 1, Episode 5, &quot;No Risk, No Sheet&quot;</a> (7 November 2026) and{' '}
+          <a href="https://x.com/OsayKancuno/status/2121274266490388930">Season 2, Episode 5, &quot;Mint Condition&quot;</a> (13 November 2026).
         </p>
         <p>
           At NFC, Osay Kancuno is a holder who contributes to the community, and one of the
@@ -29,7 +40,8 @@ export default function Home() {
           <a href="https://onthewall.nfcsummit.com/people/k4ncun0">See the wall profile</a>.
         </p>
         <p>
-          Also founder of Normies Yacht Club (normiesyachtclub.com) and 8362 Coffee (8362coffee.com).
+          Also founder of Normies Yacht Club (normiesyachtclub.com) and 8362 Coffee (8362coffee.com),
+          and author of The Framework Library, a free Notion framework for Web3 builders.
           Contact: X @OsayKancuno, Telegram @kancuno.
         </p>
       </section>

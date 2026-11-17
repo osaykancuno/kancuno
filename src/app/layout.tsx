@@ -13,11 +13,11 @@ const SITE = 'https://www.kancuno.com'
 // (communities stay as context in the chapters, JSON-LD nodes and llms.txt).
 const TITLE = 'Osay Kancuno (K4NCUN0) · Artist & Builder On-Chain'
 const SHARE_DESCRIPTION =
-  'Osay Kancuno (K4NCUN0) is an artist and builder on-chain, working on something new. ' +
-  'On-chain work, off-chain experiences.'
+  'Osay Kancuno (K4NCUN0) is an artist and builder on-chain. ' +
+  'A series of on-chain and off-chain experiments, starting with JAMVERSE.'
 const DESCRIPTION =
-  'Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain, currently building something new. ' +
-  'Games, tools, frameworks and video: on-chain work, off-chain experiences.'
+  'Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain, running a series of on-chain and off-chain experiments. ' +
+  'The first, JAMVERSE, is a live music universe in 3D. Also games, tools and video for the communities he belongs to.'
 const IMAGE_ALT = 'Osay Kancuno (K4NCUN0), artist and builder on-chain, with the K4NCUN0 logo'
 
 export const metadata: Metadata = {
@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   keywords: [
     'Osay Kancuno', 'K4NCUN0', 'Kancuno', '@OsayKancuno',
     'artist on-chain', 'on-chain artist', 'on-chain builder', 'on-chain art', 'pixel art',
+    'JAMVERSE', 'on-chain experiments', 'off-chain experiments', '3D music studio', 'jam online with friends',
     // secondary context
     'Normies Yacht Club', '8362 Coffee', 'The Normies', 'THE100', 'Normie #8362',
     'JPEG Frens', 'The Frens Forge', 'The Wall Arcade', 'FRENS AFTER DARK', 'NFC Summit', 'NFC 2027', 'NFC Summit Lisbon', 'On the Wall',
@@ -83,13 +84,29 @@ const JSON_LD = {
         },
         { '@id': `${SITE}/#jpegfrens` },
       ],
-      knowsAbout: ['On-chain art', 'Pixel art', 'On-chain building', 'Web3 community tools'],
+      knowsAbout: ['On-chain art', 'Pixel art', 'On-chain building', 'Web3 community tools', 'Interactive 3D experiences'],
       sameAs: ['https://x.com/OsayKancuno', 'https://t.me/kancuno', 'https://onthewall.nfcsummit.com/people/k4ncun0'],
       subjectOf: {
         '@type': 'WebPage',
         name: 'K4NCUN0 · People of the wall, NFC Summit 2027 (Lisbon)',
         url: 'https://onthewall.nfcsummit.com/people/k4ncun0',
       },
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': `${SITE}/#jamverse`,
+      name: 'JAMVERSE',
+      alternateName: 'Experiment 001',
+      url: 'https://jamverse.kancuno.com/',
+      description:
+        'A live music universe in 3D: make a full song alone or jam it with friends in real time. ' +
+        'Step sequencer, piano roll, arranger and mixer; export WAV, stems or MIDI. Free, in the browser. ' +
+        'The first of a series of on-chain and off-chain experiments by Osay Kancuno.',
+      applicationCategory: 'MultimediaApplication',
+      operatingSystem: 'Web browser',
+      isAccessibleForFree: true,
+      image: 'https://jamverse.kancuno.com/og-image.png',
+      author: { '@id': PERSON_ID },
     },
     {
       '@type': 'Organization',
@@ -124,25 +141,23 @@ const JSON_LD = {
       '@type': 'CreativeWorkSeries',
       '@id': `${SITE}/#frens-after-dark`,
       name: 'FRENS AFTER DARK',
-      description: 'Video mini-series for the JPEG Frens NFT community. Season 2 is airing on X.',
+      description: 'Video mini-series for the JPEG Frens NFT community, on X. Seasons 1 and 2.',
       creator: { '@id': PERSON_ID },
       about: { '@id': `${SITE}/#jpegfrens` },
       inLanguage: 'en',
       hasPart: [
         {
           '@type': 'VideoObject',
-          name: 'FRENS AFTER DARK, Season 2, Ep. 2: Touch Grass Protocol',
-          url: 'https://x.com/OsayKancuno/status/2120201931423420808',
-          uploadDate: '2026-11-10',
-          duration: 'PT1M15S',
+          name: 'FRENS AFTER DARK, Season 1, Ep. 5: No Risk, No Sheet',
+          url: 'https://x.com/OsayKancuno/status/2119116948881457640',
+          uploadDate: '2026-11-07',
           creator: { '@id': PERSON_ID },
         },
         {
           '@type': 'VideoObject',
-          name: 'FRENS AFTER DARK, Season 2, Ep. 3: Hold The Button',
-          url: 'https://x.com/OsayKancuno/status/2120563587244576871',
-          uploadDate: '2026-11-11',
-          duration: 'PT1M15S',
+          name: 'FRENS AFTER DARK, Season 2, Ep. 5: Mint Condition',
+          url: 'https://x.com/OsayKancuno/status/2121274266490388930',
+          uploadDate: '2026-11-13',
           creator: { '@id': PERSON_ID },
         },
       ],

@@ -7,12 +7,13 @@ import LogoMark from './LogoMark'
 import SoundToggle from './SoundToggle'
 import Drawer from './Drawer'
 import {
-  CommunityChapter, ContactChapter, HeroChapter, ProfileChapter, WorksChapter, type DrawerKey,
+  CommunitiesChapter, ContactChapter, ExperimentsChapter, HeroChapter, NormiesChapter, ProfileChapter, type DrawerKey,
 } from './Chapters'
 import { CHAPTER_LABELS } from './content'
 
 const N = CHAPTER_LABELS.length
-const SIDES = ['hero', 'right', 'left', 'right', 'left'] as const
+// Copy alternates sides; the 3D focus moves the other way (see formations.ts shift)
+const SIDES = ['hero', 'right', 'left', 'right', 'left', 'right'] as const
 const clamp = (x: number, a: number, b: number) => Math.max(a, Math.min(b, x))
 
 export default function Experience() {
@@ -347,10 +348,11 @@ export default function Experience() {
 
         <main id="content">
           {[
-            <HeroChapter key="hero" />,
+            <HeroChapter key="hero" onGo={goTo} />,
             <ProfileChapter key="profile" onOpen={openDrawer} />,
-            <WorksChapter key="works" onOpen={openDrawer} />,
-            <CommunityChapter key="community" onOpen={openDrawer} />,
+            <ExperimentsChapter key="experiments" onOpen={openDrawer} />,
+            <CommunitiesChapter key="communities" onOpen={openDrawer} />,
+            <NormiesChapter key="normies" onOpen={openDrawer} />,
             <ContactChapter key="contact" />,
           ].map((node, i) => (
             <section
