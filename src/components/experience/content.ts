@@ -21,9 +21,9 @@ export const PROFILE = {
   tagline: 'On-chain work → off-chain experiences',
   bio: 'Working on something new, on-chain and off-chain. Culture belongs to the people who create it.',
   tags: ['Artist', 'Builder on-chain', 'K4NCUN0'],
-  // Founder of an on-chain club, creator of a real-world brand: never "founder" for 8362 Coffee
+  // Creator of a real-world brand: never "founder" for 8362 Coffee. Normies Yacht Club
+  // lives in the Normies tab of Community work only, so it is not repeated here.
   ventures: [
-    { role: 'Founder', label: 'Normies Yacht Club', href: LINKS.yachtClub },
     { role: 'Creator', label: '8362 Coffee', href: LINKS.coffee, note: 'A real-world coffee brand tied to Normie #8362.' },
   ],
 }

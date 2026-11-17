@@ -3,15 +3,14 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import {
-  COMMUNITIES, EXPERIMENTS, LINKS, MY_NORMIE, ON_THE_WALL, PROFILE, type Work,
+  COMMUNITIES, EXPERIMENTS, LINKS, MY_NORMIE, ON_THE_WALL, PROFILE, type Community, type Work,
 } from './content'
 import type { DrawerKey } from './Chapters'
 import Sentences from './Sentences'
 
-const TITLES: Record<DrawerKey, string> = {
+const TITLES: Record<Exclude<DrawerKey, 'works'>, string> = {
   profile: 'Profile',
   experiments: 'The lab',
-  works: 'Community work',
 }
 
 const NewTab = () => <><span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></>
@@ -45,7 +44,7 @@ function WorkList({ items }: { items: Work[] }) {
   )
 }
 
-function Body({ k }: { k: DrawerKey }) {
+function Body({ k, community }: { k: DrawerKey; community: Community }) {
   if (k === 'profile') {
     return (
       <>
@@ -92,37 +91,29 @@ function Body({ k }: { k: DrawerKey }) {
       </>
     )
   }
+  // One community at a time: the tab that opened the drawer, nothing from the others
+  const c = community
   return (
     <>
-      <p className="k-dlead"><Sentences text="Work I make as a holder, for the communities I belong to." /></p>
-      <nav className="k-djump" aria-label="Communities">
-        {COMMUNITIES.map(c => (
-          <a key={c.id} href={`#d-${c.id}`}>{c.name} <span>{c.works.length}</span></a>
-        ))}
-      </nav>
-      {COMMUNITIES.map(c => (
-        <section key={c.id} id={`d-${c.id}`} className="k-dcommunity" aria-labelledby={`d-${c.id}-title`}>
-          <h3 id={`d-${c.id}-title`} className="k-dcommunity-title">{c.name}</h3>
-          <p className="k-dtext"><Sentences text={c.role} /></p>
-          {c.id === 'normies' && (
-            <div className="k-dnormie">
-              <Image src="/8362.png" alt="Normie #8362, on-chain PFP of Osay Kancuno" width={88} height={88} style={{ imageRendering: 'pixelated' }} />
-              <div>
-                <h4>My Normie</h4>
-                <p><Sentences text={MY_NORMIE} /></p>
-              </div>
-            </div>
-          )}
-          {c.link && (
-            <a className="k-dfeature" href={c.link.url} target="_blank" rel="noopener noreferrer">
-              <span className="k-dfeature-title">{c.link.label}</span>
-              <span className="k-dfeature-sub">What The Normies stand for, on-chain and forever.</span>
-              <span className="k-dlink">Read it <NewTab /></span>
-            </a>
-          )}
-          <WorkList items={c.works} />
-        </section>
-      ))}
+      <p className="k-dlead"><Sentences text={c.role} /></p>
+      {c.id === 'normies' && (
+        <div className="k-dnormie">
+          <Image src="/8362.png" alt="Normie #8362, on-chain PFP of Osay Kancuno" width={88} height={88} style={{ imageRendering: 'pixelated' }} />
+          <div>
+            <h3>My Normie</h3>
+            <p><Sentences text={MY_NORMIE} /></p>
+          </div>
+        </div>
+      )}
+      {c.link && (
+        <a className="k-dfeature" href={c.link.url} target="_blank" rel="noopener noreferrer">
+          <span className="k-dfeature-title">{c.link.label}</span>
+          <span className="k-dfeature-sub">What The Normies stand for, on-chain and forever.</span>
+          <span className="k-dlink">Read it <NewTab /></span>
+        </a>
+      )}
+      <h3 className="k-dsection">{c.works.length} works</h3>
+      <WorkList items={c.works} />
     </>
   )
 }
@@ -131,8 +122,13 @@ export default function Drawer({ open, section, onClose }: { open: DrawerKey | n
   const closeRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const lastKey = useRef<DrawerKey>('works')
-  if (open) lastKey.current = open
+  const lastCommunity = useRef<Community>(COMMUNITIES[0])
+  if (open) {
+    lastKey.current = open
+    lastCommunity.current = COMMUNITIES.find(c => c.id === section) ?? COMMUNITIES[0]
+  }
   const k = lastKey.current
+  const community = lastCommunity.current
 
   // React 18 has no `inert` prop: toggle the attribute directly
   useEffect(() => { panelRef.current?.toggleAttribute('inert', !open) }, [open])
@@ -141,9 +137,7 @@ export default function Drawer({ open, section, onClose }: { open: DrawerKey | n
     if (!open) return
     const previous = document.activeElement as HTMLElement | null
     closeRef.current?.focus({ preventScroll: true })
-    const target = section ? panelRef.current?.querySelector<HTMLElement>(`#d-${section}`) : null
-    if (target && panelRef.current) panelRef.current.scrollTo({ top: target.offsetTop - 84 })
-    else panelRef.current?.scrollTo({ top: 0 })
+    panelRef.current?.scrollTo({ top: 0 })
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') { e.preventDefault(); onClose() }
       if (e.key === 'Tab' && panelRef.current) {
@@ -174,13 +168,13 @@ export default function Drawer({ open, section, onClose }: { open: DrawerKey | n
         data-scroll-lock
       >
         <div className="k-drawer-head">
-          <h2 id="k-drawer-title">{TITLES[k]}</h2>
+          <h2 id="k-drawer-title">{k === 'works' ? community.name : TITLES[k]}</h2>
           <button ref={closeRef} type="button" className="k-close" onClick={onClose} aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div className="k-drawer-body">
-          <Body k={k} />
+          <Body k={k} community={community} />
         </div>
       </div>
     </div>

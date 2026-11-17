@@ -203,7 +203,7 @@ export function CommunitiesChapter({ onOpen, onTab }: ChapterProps & { onTab: (i
               </ul>
               <div className="k-actions">
                 <button type="button" className="k-btn" onClick={() => onOpen('works', x.id)}>
-                  {x.works.length > shown ? `All ${x.works.length} works` : `More on ${x.name}`}
+                  {`All ${x.works.length} works`}
                 </button>
                 {x.link && (
                   <a className="k-btn k-btn--ghost" href={x.link.url} target="_blank" rel="noopener noreferrer">
