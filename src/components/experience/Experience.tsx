@@ -10,6 +10,7 @@ import {
   CommunitiesChapter, ContactChapter, ExperimentsChapter, HeroChapter, ProfileChapter, type DrawerKey,
 } from './Chapters'
 import { CHAPTER_LABELS, COMMUNITIES } from './content'
+import { sfxDrawer, sfxMorph, sfxSection, sfxTap, unlockSfx } from '@/lib/sfx'
 
 const N = CHAPTER_LABELS.length
 // Copy alternates sides; the 3D focus moves the other way (see formations.ts shift)
@@ -48,10 +49,10 @@ export default function Experience() {
     target.current = clamp(Math.round(target.current) + d, 0, N - 1)
     focusOnChange.current = true
   }, [])
-  const openDrawer = useCallback((k: DrawerKey, section?: string) => { setDrawerSection(section); setDrawer(k) }, [])
-  const closeDrawer = useCallback(() => setDrawer(null), [])
+  const openDrawer = useCallback((k: DrawerKey, section?: string) => { setDrawerSection(section); setDrawer(k); sfxDrawer(true) }, [])
+  const closeDrawer = useCallback(() => { if (drawerRef.current) sfxDrawer(false); setDrawer(null) }, [])
   // The community tab drives the 3D field (100 for The Normies, FREN for JPEG Frens)
-  const showCommunity = useCallback((id: string) => worldRef.current?.setVariant(id), [])
+  const showCommunity = useCallback((id: string) => { worldRef.current?.setVariant(id); sfxMorph() }, [])
 
   // ── World + frame loop ──────────────────────────────────────────────────────
   useEffect(() => {
@@ -271,6 +272,33 @@ export default function Experience() {
       window.removeEventListener('keydown', onKey)
     }
   }, [])
+
+  // Interface sounds (on by default, separate from the radio). Audio may only start
+  // after a gesture, so the first click, tap or key press unlocks it.
+  useEffect(() => {
+    const unlock = () => unlockSfx()
+    const onClick = (e: MouseEvent) => {
+      const el = e.target instanceof Element ? e.target.closest('a[href], button') : null
+      if (el && el.getAttribute('role') !== 'tab') sfxTap() // tabs have their own sound
+    }
+    const opts = { capture: true, passive: true }
+    window.addEventListener('pointerdown', unlock, opts)
+    window.addEventListener('touchend', unlock, opts)
+    window.addEventListener('keydown', unlock, opts)
+    window.addEventListener('click', onClick, opts)
+    return () => {
+      window.removeEventListener('pointerdown', unlock, opts)
+      window.removeEventListener('touchend', unlock, opts)
+      window.removeEventListener('keydown', unlock, opts)
+      window.removeEventListener('click', onClick, opts)
+    }
+  }, [])
+  const prevActive = useRef(0)
+  useEffect(() => {
+    if (active === prevActive.current) return
+    sfxSection(active, active - prevActive.current)
+    prevActive.current = active
+  }, [active])
 
   // Only the visible chapter is interactive and exposed to assistive tech
   useEffect(() => {
