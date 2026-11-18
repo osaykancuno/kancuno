@@ -10,7 +10,7 @@ import Sentences from './Sentences'
 
 const TITLES: Record<Exclude<DrawerKey, 'works'>, string> = {
   profile: 'Profile',
-  experiments: 'The lab',
+  experiments: 'Side quests',
 }
 
 const NewTab = () => <><span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></>

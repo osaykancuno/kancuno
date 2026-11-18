@@ -192,9 +192,10 @@ ul { list-style: none; }
   transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
 }
 .k-pill:hover { background: var(--k-pink); color: var(--k-ink); transform: translateY(-1px); }
-/* THE K.LAB: a neon sign in the header. It switches on with a flicker, then breathes,
-   and a quick stutter every few seconds catches the eye; brand pink and purple only. */
-.k-pill--lab {
+/* Neon sign: the header pill (JAMVERSE on the intro, THE K.LAB after it) and THE K.LAB in the hero.
+   It switches on with a flicker, then breathes, and a quick stutter every few seconds
+   catches the eye; brand pink and purple only. */
+.k-neon {
   position: relative;
   isolation: isolate;
   display: inline-flex;
@@ -206,7 +207,7 @@ ul { list-style: none; }
   text-shadow: 0 0 2px #fff, 0 0 6px var(--k-pink), 0 0 14px var(--k-pink), 0 0 22px var(--k-purple);
   animation: k-neon-text 7s linear 2.2s infinite;
 }
-.k-pill--lab::before {
+.k-neon::before {
   /* the halo, on its own layer so it can breathe without repainting the text */
   content: '';
   position: absolute;
@@ -216,16 +217,16 @@ ul { list-style: none; }
   box-shadow: 0 0 8px 3px rgba(252, 152, 202, 1), 0 0 26px 9px rgba(149, 89, 187, 0.9), 0 0 56px 18px rgba(149, 89, 187, 0.5);
   animation: k-neon-on 1.4s linear 0.6s both, k-neon-breathe 3.6s ease-in-out 2s infinite;
 }
-.k-pill--lab:hover,
-.k-pill--lab:focus-visible {
+.k-neon:hover,
+.k-neon:focus-visible {
   background: var(--k-ink);
   color: #fff;
   transform: translateY(-1px) scale(1.03);
   text-shadow: 0 0 3px #fff, 0 0 12px rgba(252, 152, 202, 1), 0 0 24px rgba(149, 89, 187, 0.9);
 }
-.k-pill--lab:hover::before,
-.k-pill--lab:focus-visible::before { animation: none; opacity: 1; filter: brightness(1.35); }
-.k-pill--lab:focus-visible { outline: 2px solid var(--k-ink); outline-offset: 4px; }
+.k-neon:hover::before,
+.k-neon:focus-visible::before { animation: none; opacity: 1; filter: brightness(1.35); }
+.k-neon:focus-visible { outline: 2px solid var(--k-ink); outline-offset: 4px; }
 
 @keyframes k-neon-on {
   0% { opacity: 0; }
@@ -244,7 +245,7 @@ ul { list-style: none; }
   93%, 95% { color: rgba(255, 227, 241, 0.35); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .k-pill--lab, .k-pill--lab::before { animation: none; }
+  .k-neon, .k-neon::before { animation: none; }
 }
 
 .k-sound { display: flex; align-items: center; gap: 2px; }
@@ -502,6 +503,18 @@ ul { list-style: none; }
   transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
 }
 .k-handle:hover { background: #6f3c93; transform: translateY(-2px); }
+/* THE K.LAB under the handle: same height, type and width, so the two read as a pair,
+   stacked in a column centred on the teaser box */
+.k-hero-ctas { display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.k-hero-ctas .k-handle { min-width: 11.4em; justify-content: center; }
+/* .k-handle comes after .k-neon in this file: give the neon back its ring and colour */
+.k-hero-lab.k-neon {
+  color: #ffe3f1;
+  box-shadow: 0 0 0 2px var(--k-pink), 0 0 0 3.5px rgba(255, 255, 255, 0.35), inset 0 0 14px rgba(252, 152, 202, 0.45);
+}
+.k-hero-lab.k-neon:hover,
+.k-hero-lab.k-neon:focus-visible { background: var(--k-ink); color: #fff; transform: translateY(-2px) scale(1.03); }
+.k-hero-lab:hover .k-arrow { transform: translateX(3px); }
 .k-teaser {
   min-width: 250px;
   padding: 10px 14px;
@@ -611,7 +624,7 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
 
 .k-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
-/* Hero: pointer to the latest experiment */
+/* Hero chip (k-news) */
 .k-news {
   display: inline-flex;
   align-items: center;
@@ -624,6 +637,8 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
   transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out);
 }
 .k-news:hover { background: var(--k-ink); color: var(--k-yellow); }
+/* the zero of K1N0 / K4NCUN0: the mono font's dotted zero, never an O */
+.k-zero { font-family: var(--font-mono); font-weight: inherit; }
 .k-news-dot,
 .k-exp-live {
   width: 8px;
@@ -1255,6 +1270,7 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
   .k-eyebrow { font-size: 10.5px; margin-bottom: 12px; }
   .k-title { font-size: 13.4vw; }
   .k-handle { height: 38px; font-size: 13px; padding: 0 16px; }
+  .k-hero-ctas { gap: 8px; }
 
   .k-index { margin-bottom: 12px; font-size: 11px; }
   .k-h2 { font-size: clamp(34px, 10.5vw, 46px); margin-bottom: 14px; }
@@ -1291,6 +1307,8 @@ a:hover .k-arrow { transform: translate(2px, -2px); }
 /* Narrow phones: the three community tabs stay on one row */
 @media (max-width: 380px) {
   .k-tab { padding: 0 11px; font-size: 13px; }
+  /* the two hero buttons and the teaser stay side by side */
+  .k-hero-ctas .k-handle { font-size: 12px; padding: 0 12px; }
 }
 
 /* Short phones: tighten the copy so it never reaches the header */

@@ -2,6 +2,7 @@ import BuildTeaser from '../BuildTeaser'
 import Sentences from './Sentences'
 import { useRef, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import {
   CARD_WORKS, CHAPTER_LABELS, COMMUNITIES, COMMUNITY_WORK_COUNT, EXPERIMENTS, EXPERIMENTS_LEAD, EXPERIMENT_SLOTS, LINKS, PROFILE,
   type CommunityId,
@@ -33,8 +34,7 @@ function Index({ n }: { n: number }) {
   )
 }
 
-export function HeroChapter({ onGo }: { onGo: (i: number) => void }) {
-  const latest = EXPERIMENTS[EXPERIMENTS.length - 1]
+export function HeroChapter() {
   return (
     <div className="k-hero">
       <p className="k-eyebrow k-reveal" style={{ ['--d' as string]: '0.05s' }}>
@@ -45,24 +45,19 @@ export function HeroChapter({ onGo }: { onGo: (i: number) => void }) {
         <span className="k-line"><span style={{ ['--d' as string]: '0.2s' }}>Kancuno</span></span>
       </h2>
       <div className="k-hero-meta k-reveal" style={{ ['--d' as string]: '0.45s' }}>
-        <a className="k-handle" href={LINKS.x} target="_blank" rel="noopener noreferrer">
-          K4NCUN0 <Arrow />
-        </a>
+        {/* The handle and THE K.LAB stacked as a pair, as tall as the teaser beside them */}
+        <div className="k-hero-ctas">
+          <a className="k-handle" href={LINKS.x} target="_blank" rel="noopener noreferrer">
+            K4NCUN0 <Arrow />
+          </a>
+          <Link className="k-handle k-neon k-hero-lab" href="/lab">
+            THE K.LAB <span className="k-arrow" aria-hidden="true">→</span>
+          </Link>
+        </div>
         <div className="k-teaser">
           <BuildTeaser />
         </div>
       </div>
-      <button
-        type="button"
-        className="k-news k-reveal"
-        style={{ ['--d' as string]: '0.6s' }}
-        onClick={() => onGo(CH.experiments)}
-      >
-        <span className="k-news-dot" aria-hidden="true" />
-        <span className="k-news-code">New · {latest.code}</span>
-        <span className="k-news-name">{latest.name}</span>
-        <span className="k-news-go" aria-hidden="true">→</span>
-      </button>
     </div>
   )
 }
@@ -98,7 +93,7 @@ export function ExperimentsChapter({ onOpen }: ChapterProps) {
   return (
     <div className="k-card">
       <Index n={CH.experiments} />
-      <h2 className="k-h2" tabIndex={-1}>The<br />lab.</h2>
+      <h2 className="k-h2" tabIndex={-1}>Side<br />quests.</h2>
       <p className="k-body"><Sentences text={EXPERIMENTS_LEAD} /></p>
       <a className="k-exp" href={exp.url} target="_blank" rel="noopener noreferrer">
         {/* Wordmark banner on tall screens; the plain name takes over when space is short */}
@@ -114,7 +109,7 @@ export function ExperimentsChapter({ onOpen }: ChapterProps) {
         <span className="k-exp-cta">{exp.cta} <Arrow /></span>
       </a>
       <div className="k-actions k-exp-foot">
-        <button type="button" className="k-btn k-btn--ghost" onClick={() => onOpen('experiments')}>Lab notes</button>
+        <button type="button" className="k-btn k-btn--ghost" onClick={() => onOpen('experiments')}>Quest log</button>
         <ol className="k-track k-hide-sm" aria-label="The series">
           {slots.map((e, i) => (
             <li key={i} data-live={e ? '' : undefined}>

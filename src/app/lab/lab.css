@@ -52,9 +52,6 @@ html:has(.lab) { scroll-padding-top: 84px; }
 }
 .lab-skip:focus { top: 12px; }
 
-/* the zero of K1N0 / K4NCUN0: the mono font's dotted zero, never an O */
-.k-zero { font-family: var(--font-mono); font-weight: inherit; }
-
 .lab-label {
   font-family: var(--font-mono);
   font-size: 11px;

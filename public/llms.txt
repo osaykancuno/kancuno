@@ -1,26 +1,27 @@
 # Osay Kancuno (K4NCUN0)
 
-> Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain, running a long series of on-chain and off-chain experiments. The first is JAMVERSE.
+> Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain. He made THE K.LAB (https://www.kancuno.com/lab) and its fully on-chain collection K1N0 on Ethereum. He also runs side quests, on-chain and off-chain, like JAMVERSE.
 
 ## Key facts
 
 - Name: Osay Kancuno. Also known as K4NCUN0, Kancuno, @OsayKancuno.
-- Role: artist and builder on-chain, running a series of experiments (on-chain and off-chain).
+- Role: artist and builder on-chain. Creator of THE K.LAB and the K1N0 collection. Side quests: experiments on-chain and off-chain.
 - Motto: "Culture belongs to the people who create it."
 - Founder of: Normies Yacht Club (https://normiesyachtclub.com/: pixel-art yachts that live entirely on Ethereum, each one born from a burned Normie; CC0).
 - Creator of: 8362 Coffee (https://8362coffee.com/), a real-world coffee brand tied to Normie #8362.
 
-## Experiments
+## Side quests (experiments)
 
+- On the home page this chapter is titled "Side quests"; it was called "The lab" before, not to be confused with THE K.LAB.
 - EXP. 001 · Off-chain · Live: JAMVERSE (https://jamverse.kancuno.com/). A live music universe in 3D: make a full song alone or jam it with friends in real time. Every part (drums, bass, chords, melody, texture, voice) is a ring you can step into. Step sequencer, piano roll, song arranger and mixer; one tap turns a loop into a full song; export WAV, stems or MIDI; a new seed challenge every day. Free, in the browser.
 - More experiments, on-chain and off-chain, are in the works.
 
 ## THE K.LAB
 
-- https://www.kancuno.com/lab: THE K.LAB, Osay Kancuno's creative lab built on his own symbol, the K (seven head blocks over an X), in 3D exactly like the figure on the home page, plus a flat vector version. "One symbol. Infinite variations." Separate from the Experiments series.
+- https://www.kancuno.com/lab: THE K.LAB, Osay Kancuno's creative lab built on his own symbol, the K (seven head blocks over an X), in 3D exactly like the figure on the home page, plus a flat vector version. "One symbol. Infinite variations." Featured first on the home page; separate from the side quests.
 - Free tools in the browser, no wallet, no gas: K Editor (colours, gradients, patterns, neon, glitch, pixel, undo/redo, PNG/SVG/JSON export), Pixel Forge (pixel-art grids with the K preset), Animation Bench (loops, GIF and video export), SVG Suite (optimise SVG, base files), Touch Field (move the pointer over the 3D K and the blocks make way, like on the home page; record a clip), Image Wrap (put your own picture on the 3D K, across the figure or on every block; it never leaves the browser). The 3D K can be turned and zoomed in every tool. Optional mint: K1N0, the collection THE K.LAB on Ethereum (8,362 in all, 0.0024 ETH, numbers 1-8,362 chosen by the minter or at random): the K in clay-like 3D, the X and four head blocks always black, with four colours of its own (background, centre, two front blocks), each combination minted once, and the colours never change; holders give each colour an effect and set the 3D view for the gas only, the latest look is what the image, the 3D piece and OpenSea show, and every look is kept on-chain with who set it. Image, interactive 3D piece and metadata are fully on-chain.
 - Light rules: the figure stays recognisable (seven head blocks, one X); total freedom on colours, textures, effects and backgrounds. Base files (SVG, wireframe, pixel grid, starter JSON) are downloadable.
-- Creation is off-chain. Minting a creation ("Mint this K") is planned and will always be optional; how the 3D file goes on-chain is still being designed. Gallery Wall and Prompt Lab are coming.
+- Creation is off-chain. Minting is optional ("Mint this K" in the Lab). K1N0 is live on Ethereum mainnet: contract 0x25c8518e54b7cbb6cfe16d11bda5d543fb9e397f, collection on OpenSea https://opensea.io/collection/the-klab, token pages https://www.kancuno.com/lab/token?id=N. Gallery Wall and Prompt Lab are coming.
 
 ## Communities (context)
 

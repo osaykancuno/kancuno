@@ -14,10 +14,11 @@ const SITE = 'https://www.kancuno.com'
 const TITLE = 'KANCUNO - Artist & Builder'
 const SHARE_DESCRIPTION =
   'Osay Kancuno (K4NCUN0) is an artist and builder on-chain. ' +
-  'A series of on-chain and off-chain experiments, starting with JAMVERSE.'
+  'THE K.LAB: one symbol, infinite variations, with K1N0 on Ethereum.'
 const DESCRIPTION =
-  'Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain, running a series of on-chain and off-chain experiments. ' +
-  'The first, JAMVERSE, is a live music universe in 3D. Also games, tools and video for the communities he belongs to.'
+  'Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain. ' +
+  'He made THE K.LAB: free tools to design your own K, and K1N0, a fully on-chain collection on Ethereum. ' +
+  'Also side quests like JAMVERSE, a live music universe in 3D, and games, tools and video for the communities he belongs to.'
 const IMAGE_ALT = 'Osay Kancuno (K4NCUN0), artist and builder on-chain, with the K4NCUN0 logo'
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     'Osay Kancuno', 'K4NCUN0', 'Kancuno', '@OsayKancuno',
     'artist on-chain', 'on-chain artist', 'on-chain builder', 'on-chain art', 'pixel art',
     'JAMVERSE', 'on-chain experiments', 'off-chain experiments', '3D music studio', 'jam online with friends',
-    'THE K.LAB', 'Kancuno K', 'pixel art editor', 'logo remix', 'creative framework',
+    'THE K.LAB', 'K1N0', 'K1N0 NFT', 'on-chain NFT', 'Kancuno K', 'pixel art editor', 'logo remix', 'creative framework',
     // secondary context
     'Normies Yacht Club', '8362 Coffee', 'The Normies', 'THE100', 'Normie #8362',
     'JPEG Frens', 'The Frens Forge', 'The Wall Arcade', 'FRENS AFTER DARK', 'NFC Summit', 'NFC 2027', 'NFC Summit Lisbon', 'On the Wall',
@@ -98,12 +99,12 @@ const JSON_LD = {
       '@type': 'WebApplication',
       '@id': `${SITE}/#jamverse`,
       name: 'JAMVERSE',
-      alternateName: 'Experiment 001',
+      alternateName: 'Side quest 001',
       url: 'https://jamverse.kancuno.com/',
       description:
         'A live music universe in 3D: make a full song alone or jam it with friends in real time. ' +
         'Step sequencer, piano roll, arranger and mixer; export WAV, stems or MIDI. Free, in the browser. ' +
-        'The first of a series of on-chain and off-chain experiments by Osay Kancuno.',
+        'A side quest by Osay Kancuno, from a series of on-chain and off-chain experiments.',
       applicationCategory: 'MultimediaApplication',
       operatingSystem: 'Web browser',
       isAccessibleForFree: true,
@@ -116,8 +117,9 @@ const JSON_LD = {
       name: 'THE K.LAB',
       url: `${SITE}/lab`,
       description:
-        'One symbol, infinite variations: free browser tools to create, remix and animate art based on the Kancuno K. ' +
-        'The K in 3D, like the home page: K Editor, Pixel Forge, Animation Bench (GIF and video), SVG Suite and Touch Field. Creation is off-chain, no wallet needed; minting will be optional.',
+        'By Osay Kancuno. One symbol, infinite variations: free browser tools to create, remix and animate art based on the Kancuno K, ' +
+        'in 3D like the home page: K Editor, Pixel Forge, Animation Bench (GIF and video), SVG Suite, Touch Field and Image Wrap. Creation is off-chain, no wallet needed. ' +
+        'Optional mint: K1N0, 8,362 Ks fully on-chain on Ethereum, four colours of your own that never change and a look you keep changing, kept on-chain with its story.',
       applicationCategory: 'DesignApplication',
       operatingSystem: 'Web browser',
       isAccessibleForFree: true,

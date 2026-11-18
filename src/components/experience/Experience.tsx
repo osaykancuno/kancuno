@@ -10,7 +10,7 @@ import Drawer from './Drawer'
 import {
   CommunitiesChapter, ContactChapter, ExperimentsChapter, HeroChapter, ProfileChapter, type DrawerKey,
 } from './Chapters'
-import { CHAPTER_LABELS, COMMUNITIES } from './content'
+import { CHAPTER_LABELS, COMMUNITIES, LINKS } from './content'
 import { sfxDrawer, sfxMorph, sfxSection, sfxTap, unlockSfx } from '@/lib/sfx'
 
 const N = CHAPTER_LABELS.length
@@ -360,8 +360,15 @@ export default function Experience() {
           </button>
           <div className="k-header-right">
             <SoundToggle />
-            {/* THE K.LAB is its own page, apart from the Experiments series */}
-            <Link className="k-pill k-pill--lab" href="/lab">THE K.LAB</Link>
+            {/* The intro already shows THE K.LAB, so there the neon pill points to JAMVERSE;
+                from the second chapter on it is THE K.LAB again. The key remounts it so the neon switches on anew. */}
+            {active === 0 ? (
+              <a key="jam" className="k-pill k-neon" href={LINKS.jamverse} target="_blank" rel="noopener noreferrer">
+                JAMVERSE<span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            ) : (
+              <Link key="lab" className="k-pill k-neon" href="/lab">THE K.LAB</Link>
+            )}
             <button type="button" className="k-pill" onClick={() => goTo(N - 1)}>Let&apos;s talk</button>
           </div>
         </header>
@@ -383,7 +390,7 @@ export default function Experience() {
 
         <main id="content">
           {[
-            <HeroChapter key="hero" onGo={goTo} />,
+            <HeroChapter key="hero" />,
             <ProfileChapter key="profile" onOpen={openDrawer} />,
             <ExperimentsChapter key="experiments" onOpen={openDrawer} />,
             <CommunitiesChapter key="communities" onOpen={openDrawer} onTab={showCommunity} />,

@@ -9,21 +9,22 @@ export default function Home() {
         <h1>Osay Kancuno (K4NCUN0), artist and builder on-chain</h1>
         <p>
           Osay Kancuno (K4NCUN0, @OsayKancuno on X) is an artist and builder on-chain.
-          He runs a long series of experiments, on-chain and off-chain.
+          He made <a href="/lab">THE K.LAB</a>.
           His motto: &quot;Culture belongs to the people who create it.&quot;
-        </p>
-        <h2>Experiments</h2>
-        <p>
-          Experiment 001, off-chain, live: <a href="https://jamverse.kancuno.com/">JAMVERSE</a>, a live music universe in 3D.
-          Make a full song alone or jam it with friends in real time: every part (drums, bass, chords, melody, texture, voice)
-          is a ring you can step into. It includes a step sequencer, piano roll, song arranger and mixer, and exports WAV, stems or MIDI.
-          Free, in the browser.
         </p>
         <h2>THE K.LAB</h2>
         <p>
           <a href="/lab">THE K.LAB</a> is his creative lab built on his own symbol, the K: one symbol, infinite variations.
-          Free tools in the browser (K Editor, Pixel Forge, Animation Bench, SVG Suite) to create, remix and animate your own K,
-          with no wallet needed. Minting a creation will always be optional.
+          Free tools in the browser (K Editor, Pixel Forge, Animation Bench, SVG Suite, Touch Field, Image Wrap) to create, remix and animate your own K,
+          with no wallet needed. Optional mint: K1N0, 8,362 Ks fully on-chain on Ethereum. Each has four colours of its own that never change,
+          and a look its holder keeps changing for the gas only, kept on-chain with its story.
+        </p>
+        <h2>Side quests</h2>
+        <p>
+          Side quests, on-chain and off-chain. Side quest 001, off-chain, live: <a href="https://jamverse.kancuno.com/">JAMVERSE</a>, a live music universe in 3D.
+          Make a full song alone or jam it with friends in real time: every part (drums, bass, chords, melody, texture, voice)
+          is a ring you can step into. It includes a step sequencer, piano roll, song arranger and mixer, and exports WAV, stems or MIDI.
+          Free, in the browser.
         </p>
         <h2>Community work</h2>
         <p>

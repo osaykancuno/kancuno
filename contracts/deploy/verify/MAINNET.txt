@@ -1,0 +1,40 @@
+THE K.LAB on Ethereum mainnet: what to paste on Etherscan (Verify & Publish)
+
+Every contract: Compiler Type "Solidity (Standard-Json-Input)", Compiler v0.8.28+commit.7893614a,
+License MIT, file standard-input.json (this folder). Etherscan cannot read the constructor arguments
+of contracts made by another contract, so paste them as below (no 0x).
+
+1. KLab (the K1N0 NFT, verify this one first)
+   https://etherscan.io/verifyContract?a=0x25c8518e54b7cbb6cfe16d11bda5d543fb9e397f
+   Contract: src/KLab.sol:KLab
+   Constructor arguments:
+   0000000000000000000000008fe4cce4e8210033bb639753a08fa9052dbfe0bd00000000000000000000000041b199a5194c58b29559a482e919331e1c8eef850003020200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000074b344e43554e3000000000000000000000000000000000000000000000000000
+
+2. KLabRenderer (metadata)
+   https://etherscan.io/verifyContract?a=0x8fe4cce4e8210033bb639753a08fa9052dbfe0bd
+   Contract: src/KLabRenderer.sol:KLabRenderer
+   Constructor arguments:
+   000000000000000000000000c2483e18d84d3e991a53f297385b011d5c4bd87100000000000000000000000050e0cb4174fdb6587e9f9960eb5760ffd5b36722
+
+3. KLabArt3D (the 3D image)
+   https://etherscan.io/verifyContract?a=0xc2483e18d84d3e991a53f297385b011d5c4bd871
+   Contract: src/KLabArt3D.sol:KLabArt3D
+   Constructor arguments:
+   000000000000000000000000c5faded9412903ddd65b22737ab44c938c7ae599
+
+4. KLabArtBg (backgrounds)
+   https://etherscan.io/verifyContract?a=0xc5faded9412903ddd65b22737ab44c938c7ae599
+   Contract: src/KLabArt3D.sol:KLabArtBg
+   Constructor arguments: none
+
+5. KLabViewer (the interactive 3D piece)
+   https://etherscan.io/verifyContract?a=0x50e0cb4174fdb6587e9f9960eb5760ffd5b36722
+   Contract: src/KLabViewer.sol:KLabViewer
+   Constructor arguments: none
+
+Checked 2026-11-18: the bytecode of KLab and KLabViewer on-chain is identical to this build;
+KLabRenderer differs only in its two immutable addresses (art, viewer), as expected.
+
+Sourcify: all five verified as exact_match on 2026-11-18 (https://repo.sourcify.dev/1/0x25c8518e54b7cbb6cfe16d11bda5d543fb9e397f).
+Etherscan: its form needs a Cloudflare check that a person must pass; the file can be uploaded straight from
+https://raw.githubusercontent.com/osaykancuno/kancuno/master/contracts/deploy/verify/standard-input.json
