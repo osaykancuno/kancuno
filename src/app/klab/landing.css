@@ -1,4 +1,4 @@
-/* THE K.LAB landing (/lab). Shared kit in lab.css. */
+/* THE K.LAB landing (/klab). Shared kit in lab.css. */
 .kl { --kl-max: 1240px; }
 .kl > section { max-width: var(--kl-max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
 

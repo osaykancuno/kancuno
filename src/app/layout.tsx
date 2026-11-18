@@ -113,9 +113,9 @@ const JSON_LD = {
     },
     {
       '@type': 'WebApplication',
-      '@id': `${SITE}/lab#app`,
+      '@id': `${SITE}/klab#app`,
       name: 'THE K.LAB',
-      url: `${SITE}/lab`,
+      url: `${SITE}/klab`,
       description:
         'By Osay Kancuno. One symbol, infinite variations: free browser tools to create, remix and animate art based on the Kancuno K, ' +
         'in 3D like the home page: K Editor, Pixel Forge, Animation Bench (GIF and video), SVG Suite, Touch Field and Image Wrap. Creation is off-chain, no wallet needed. ' +
@@ -123,7 +123,7 @@ const JSON_LD = {
       applicationCategory: 'DesignApplication',
       operatingSystem: 'Web browser',
       isAccessibleForFree: true,
-      image: `${SITE}/lab/og-lab.png`,
+      image: `${SITE}/klab/og-lab.png`,
       author: { '@id': PERSON_ID },
     },
     {

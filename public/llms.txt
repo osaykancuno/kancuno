@@ -1,6 +1,6 @@
 # Osay Kancuno (K4NCUN0)
 
-> Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain. He made THE K.LAB (https://www.kancuno.com/lab) and its fully on-chain collection K1N0 on Ethereum. He also runs side quests, on-chain and off-chain, like JAMVERSE.
+> Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain. He made THE K.LAB (https://www.kancuno.com/klab) and its fully on-chain collection K1N0 on Ethereum. He also runs side quests, on-chain and off-chain, like JAMVERSE.
 
 ## Key facts
 
@@ -18,10 +18,10 @@
 
 ## THE K.LAB
 
-- https://www.kancuno.com/lab: THE K.LAB, Osay Kancuno's creative lab built on his own symbol, the K (seven head blocks over an X), in 3D exactly like the figure on the home page, plus a flat vector version. "One symbol. Infinite variations." Featured first on the home page; separate from the side quests.
+- https://www.kancuno.com/klab: THE K.LAB, Osay Kancuno's creative lab built on his own symbol, the K (seven head blocks over an X), in 3D exactly like the figure on the home page, plus a flat vector version. "One symbol. Infinite variations." Featured first on the home page; separate from the side quests.
 - Free tools in the browser, no wallet, no gas: K Editor (colours, gradients, patterns, neon, glitch, pixel, undo/redo, PNG/SVG/JSON export), Pixel Forge (pixel-art grids with the K preset), Animation Bench (loops, GIF and video export), SVG Suite (optimise SVG, base files), Touch Field (move the pointer over the 3D K and the blocks make way, like on the home page; record a clip), Image Wrap (put your own picture on the 3D K, across the figure or on every block; it never leaves the browser). The 3D K can be turned and zoomed in every tool. Optional mint: K1N0, the collection THE K.LAB on Ethereum (8,362 in all, 0.0024 ETH, numbers 1-8,362 chosen by the minter or at random): the K in clay-like 3D, the X and four head blocks always black, with four colours of its own (background, centre, two front blocks), each combination minted once, and the colours never change; holders give each colour an effect and set the 3D view for the gas only, the latest look is what the image, the 3D piece and OpenSea show, and every look is kept on-chain with who set it. Image, interactive 3D piece and metadata are fully on-chain.
 - Light rules: the figure stays recognisable (seven head blocks, one X); total freedom on colours, textures, effects and backgrounds. Base files (SVG, wireframe, pixel grid, starter JSON) are downloadable.
-- Creation is off-chain. Minting is optional ("Mint this K" in the Lab). K1N0 is live on Ethereum mainnet: contract 0x25c8518e54b7cbb6cfe16d11bda5d543fb9e397f, collection on OpenSea https://opensea.io/collection/the-klab, token pages https://www.kancuno.com/lab/token?id=N. Gallery Wall and Prompt Lab are coming.
+- Creation is off-chain. Minting is optional ("Mint this K" in the Lab). K1N0 is live on Ethereum mainnet: contract 0x25c8518e54b7cbb6cfe16d11bda5d543fb9e397f, collection on OpenSea https://opensea.io/collection/the-klab, token pages https://www.kancuno.com/klab/token?id=N. Gallery Wall and Prompt Lab are coming.
 
 ## Communities (context)
 
@@ -43,7 +43,7 @@
 
 - Site: https://www.kancuno.com
 - JAMVERSE: https://jamverse.kancuno.com/
-- THE K.LAB: https://www.kancuno.com/lab
+- THE K.LAB: https://www.kancuno.com/klab
 - X / Twitter: https://x.com/OsayKancuno
 - Telegram: https://t.me/kancuno
 - NFC 2027 "On the wall" profile: https://onthewall.nfcsummit.com/people/k4ncun0

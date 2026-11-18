@@ -9,12 +9,12 @@ export default function Home() {
         <h1>Osay Kancuno (K4NCUN0), artist and builder on-chain</h1>
         <p>
           Osay Kancuno (K4NCUN0, @OsayKancuno on X) is an artist and builder on-chain.
-          He made <a href="/lab">THE K.LAB</a>.
+          He made <a href="/klab">THE K.LAB</a>.
           His motto: &quot;Culture belongs to the people who create it.&quot;
         </p>
         <h2>THE K.LAB</h2>
         <p>
-          <a href="/lab">THE K.LAB</a> is his creative lab built on his own symbol, the K: one symbol, infinite variations.
+          <a href="/klab">THE K.LAB</a> is his creative lab built on his own symbol, the K: one symbol, infinite variations.
           Free tools in the browser (K Editor, Pixel Forge, Animation Bench, SVG Suite, Touch Field, Image Wrap) to create, remix and animate your own K,
           with no wallet needed. Optional mint: K1N0, 8,362 Ks fully on-chain on Ethereum. Each has four colours of its own that never change,
           and a look its holder keeps changing for the gas only, kept on-chain with its story.

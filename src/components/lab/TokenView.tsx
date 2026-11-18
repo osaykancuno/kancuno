@@ -131,7 +131,7 @@ export default function TokenView() {
   const remix = () => {
     if (!data) return
     set(designFromColours(data.colours, defaultDesign(), data.look, `Remix of K1N0 ${id}`))
-    router.push('/lab/editor')
+    router.push('/klab/editor')
   }
 
   return (
@@ -145,7 +145,7 @@ export default function TokenView() {
       {!KLAB.live ? (
         <div className="lab-panel lab-section">
           <p>The <Zt>K1N0</Zt> contract is not live yet. Make your K now: when the mint opens, it is one click away.</p>
-          <Link className="lab-btn lab-btn--primary" href="/lab/editor">Open the K Editor</Link>
+          <Link className="lab-btn lab-btn--primary" href="/klab/editor">Open the K Editor</Link>
         </div>
       ) : (
         <div className="tv-grid">
@@ -225,7 +225,7 @@ export default function TokenView() {
                 </div>
               </>
             )}
-            <form className="lab-row" onSubmit={e => { e.preventDefault(); const n = Math.floor(Number(goto)); if (goto !== '' && n >= 0) router.push(`/lab/token?id=${n}`) }}>
+            <form className="lab-row" onSubmit={e => { e.preventDefault(); const n = Math.floor(Number(goto)); if (goto !== '' && n >= 0) router.push(`/klab/token?id=${n}`) }}>
               <label className="lab-label" htmlFor="tv-id">Go to K1N0 #</label>
               <input id="tv-id" className="tv-input" inputMode="numeric" value={goto} onChange={e => setGoto(e.target.value.replace(/\D/g, '').slice(0, 4))} placeholder={String(has ? id : 0)} />
               <button type="submit" className="lab-btn lab-btn--sm">Go</button>

@@ -154,7 +154,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
   const setSlot = (slot: number, v: number) => setColours(c => { const n = [...c] as Colours; n[slot] = v; return n })
   const carry = `#k1n0=${data.slice(2, 10)}`
   const shareText = encodeURIComponent(`My K1N0 #${minted} from THE K.LAB by @OsayKancuno: four colours that are mine, fully on-chain, and a look I can keep changing.`)
-  const shareUrl = encodeURIComponent(`https://www.kancuno.com/lab/token?id=${minted}`)
+  const shareUrl = encodeURIComponent(`https://www.kancuno.com/klab/token?id=${minted}`)
 
   return (
     // Closing is always possible: a transaction already sent goes on in the wallet
@@ -175,7 +175,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
             <div className="mint__done">
               <p className="mint__big">These colours are yours. Now give it a look: an effect for each colour, changeable whenever you like.</p>
               <div className="lab-row">
-                <Link className="lab-btn lab-btn--primary" href={`/lab/token?id=${minted}`} onClick={onClose}>Give it a look</Link>
+                <Link className="lab-btn lab-btn--primary" href={`/klab/token?id=${minted}`} onClick={onClose}>Give it a look</Link>
                 <a className="lab-btn" href={`https://x.com/intent/post?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noopener noreferrer">Share on X</a>
                 <a className="lab-btn lab-btn--ghost" href={tokenMarketUrl(minted)} target="_blank" rel="noopener noreferrer">OpenSea</a>
               </div>
@@ -225,7 +225,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
                     : !KLAB.live ? <span>When the mint opens, the Lab checks that nobody owns these four colours yet.</span>
                       : taken === null ? <span>Checking these colours…</span>
                         : taken === 0 ? <span>Free. Mint them and they are yours: nobody can mint these four colours again.</span>
-                          : <span>Already <Link href={`/lab/token?id=${taken}`} onClick={onClose}><Zt>{`K1N0 #${taken}`}</Zt></Link>. Change one colour to make your own.</span>}
+                          : <span>Already <Link href={`/klab/token?id=${taken}`} onClick={onClose}><Zt>{`K1N0 #${taken}`}</Zt></Link>. Change one colour to make your own.</span>}
                 </li>
                 <li data-ok={(numFree && !!free) || undefined} data-bad={(numValid && !numFree) || undefined}>
                   <strong>Your number</strong>
@@ -273,7 +273,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
               {KLAB.live && wallets.length === 0 && (
                 <p className="lab-note">
                   To mint you need an Ethereum wallet: <a href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer">MetaMask</a>, <a href="https://www.coinbase.com/wallet" target="_blank" rel="noopener noreferrer">Coinbase Wallet</a> or <a href="https://rainbow.me/" target="_blank" rel="noopener noreferrer">Rainbow</a>.
-                  On a phone, open this page in your wallet app: <a href={`https://metamask.app.link/dapp/www.kancuno.com/lab/editor${carry}`}>MetaMask</a> · <a href={`https://go.cb-w.com/dapp?cb_url=${encodeURIComponent(`https://www.kancuno.com/lab/editor${carry}`)}`}>Coinbase</a>. Your colours come along.
+                  On a phone, open this page in your wallet app: <a href={`https://metamask.app.link/dapp/www.kancuno.com/klab/editor${carry}`}>MetaMask</a> · <a href={`https://go.cb-w.com/dapp?cb_url=${encodeURIComponent(`https://www.kancuno.com/klab/editor${carry}`)}`}>Coinbase</a>. Your colours come along.
                 </p>
               )}
               {phase === 'pending' && (

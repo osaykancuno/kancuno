@@ -367,7 +367,7 @@ export default function Experience() {
                 JAMVERSE<span className="sr-only"> (opens in a new tab)</span>
               </a>
             ) : (
-              <Link key="lab" className="k-pill k-neon" href="/lab">THE K.LAB</Link>
+              <Link key="lab" className="k-pill k-neon" href="/klab">THE K.LAB</Link>
             )}
             <button type="button" className="k-pill" onClick={() => goTo(N - 1)}>Let&apos;s talk</button>
           </div>

@@ -9,7 +9,7 @@ Outputs: src/app/icon.svg        flat vector mark (browser tab icon; replaces ic
          src/app/favicon.ico     16/32/48 px, drawn from the same flat mark
          src/app/apple-icon.png  180 px, the 3D logo (home-screen icon)
          public/og.png           1200x630 share image (X, Telegram, WhatsApp...)
-         public/lab/og-lab.png   1200x630 share image of THE K.LAB (/lab)
+         public/klab/og-lab.png   1200x630 share image of THE K.LAB (/klab)
 
     python scripts/brand-assets.py lab   # only THE K.LAB share image
 """
@@ -249,15 +249,15 @@ def write_og_lab():
     d.text((x0, 240), 'Infinite', font=big, fill=YELLOW)
     d.text((x0, 320), 'variations.', font=big, fill=YELLOW)
     d.text((x0, 460), 'CREATE · REMIX · ANIMATE · NO WALLET', font=font('mono', 18, 600), fill=(190, 184, 166))
-    d.text((x0, 520), 'kancuno.com/lab', font=font('display', 30, 800, 112), fill=CREAM)
-    os.makedirs(os.path.join(ROOT, 'public/lab'), exist_ok=True)
-    img.save(os.path.join(ROOT, 'public/lab/og-lab.png'), optimize=True)
+    d.text((x0, 520), 'kancuno.com/klab', font=font('display', 30, 800, 112), fill=CREAM)
+    os.makedirs(os.path.join(ROOT, 'public/klab'), exist_ok=True)
+    img.save(os.path.join(ROOT, 'public/klab/og-lab.png'), optimize=True)
 
 
 if __name__ == '__main__':
     if sys.argv[1:] == ['lab']:
         write_og_lab()
-        print('public/lab/og-lab.png written')
+        print('public/klab/og-lab.png written')
         sys.exit(0)
     write_og_lab()
     write_svg()

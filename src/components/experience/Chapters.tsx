@@ -50,7 +50,7 @@ export function HeroChapter() {
           <a className="k-handle" href={LINKS.x} target="_blank" rel="noopener noreferrer">
             K4NCUN0 <Arrow />
           </a>
-          <Link className="k-handle k-neon k-hero-lab" href="/lab">
+          <Link className="k-handle k-neon k-hero-lab" href="/klab">
             THE K.LAB <span className="k-arrow" aria-hidden="true">→</span>
           </Link>
         </div>

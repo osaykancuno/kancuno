@@ -7,7 +7,7 @@ Everything for the collection page. Images in this folder: `logo.png` (Logo, 350
 - **Name:** THE K.LAB
 - **URL slug:** `the-k-lab` (or `k1n0` if taken)
 - **Category:** Art
-- **Links:** Website `https://www.kancuno.com/lab` · X `https://x.com/OsayKancuno`
+- **Links:** Website `https://www.kancuno.com/klab` · X `https://x.com/OsayKancuno`
 - **Creator earnings:** your choice (the contract's own royalty is 0% until you set it with `setRoyalty`)
 - **Display theme:** Contained (the pieces are square)
 - **Explicit content:** off
@@ -23,7 +23,7 @@ The Kancuno K in clay-like 3D: seven blocks for a head over an X. The X and four
 
 **Fully on-chain on Ethereum.** The contract draws the image in 3D and an interactive 3D piece you can turn right here: drag it, scroll to zoom. No IPFS, no server.
 
-Design yours in THE K.LAB: kancuno.com/lab
+Design yours in THE K.LAB: kancuno.com/klab
 
 ## Short texts
 
@@ -37,7 +37,7 @@ THE K.LAB is open.
 Design your K in the browser, pick four colours nobody else has, mint it as a K1N0. Then give it a look: an effect for each colour, changed whenever you like, every look kept on-chain.
 
 8,362 · 0.0024 ETH · fully on-chain
-kancuno.com/lab
+kancuno.com/klab
 
 ## Thread (X)
 
@@ -47,11 +47,11 @@ kancuno.com/lab
 
 3/ The look is alive. Glow, pulse, float, neon, metal… one effect per colour, plus speed and 3D view. Gas only, as often as you like, every look on-chain with your name. When it changes hands, the story goes on.
 
-4/ Nothing sits off-chain: the contract draws the 3D image and the interactive piece you turn on OpenSea. No IPFS, no server. 0.0024 ETH. kancuno.com/lab
+4/ Nothing sits off-chain: the contract draws the 3D image and the interactive piece you turn on OpenSea. No IPFS, no server. 0.0024 ETH. kancuno.com/klab
 
 ## Notes for collectors (FAQ, optional)
 
-- **Before buying,** check the token page (kancuno.com/lab/token?id=…): its looks are listed with dates. A holder can change the look until the sale; the colours never change.
+- **Before buying,** check the token page (kancuno.com/klab/token?id=…): its looks are listed with dates. A holder can change the look until the sale; the colours never change.
 - **What a holder can change:** only the look (an effect per colour, speed, 3D view). The image and the 3D piece here always show the latest look; OpenSea refreshes on its own (the contract signals every change, EIP-4906). A holder can also let an app set looks for them (looks only, never transfers); a marketplace approved to sell a K1N0 cannot touch its look.
 - **What can evolve, and what never will:** the number, the four colours, every look already set and the cap of 8,362 (plus #0) are permanent. The artist can add new effects and new artwork through a new renderer until it is locked, and new ways to mint the remaining numbers through public extensions (same rules: unique colours, same cap). Every such change is an on-chain event.
 - **Minting busy moments:** the number and the colours are public while a transaction waits. If someone takes them first, the mint simply fails (only gas is spent). A private RPC such as Flashbots Protect avoids that.

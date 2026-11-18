@@ -80,7 +80,7 @@ export function SampleWall() {
     <ul className="kl-wall">
       {WALL.map((d, i) => (
         <li key={i}>
-          <Link href="/lab/editor" className="kl-wall__item" onClick={() => set(cloneDesign(d))} aria-label={`Open ${d.name} in the K Editor`}>
+          <Link href="/klab/editor" className="kl-wall__item" onClick={() => set(cloneDesign(d))} aria-label={`Open ${d.name} in the K Editor`}>
             <KThumb design={d} alt="" size={240} />
             <span className="kl-wall__meta"><span>{d.name}</span><span>Off-chain</span></span>
           </Link>

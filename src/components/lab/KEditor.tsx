@@ -124,7 +124,7 @@ export default function KEditor() {
           </div>
           {pixel && (
             <p className="lab-note">
-              This K is in <strong>pixel form</strong>. Paint it in <Link href="/lab/pixel">Pixel Forge</Link>, or{' '}
+              This K is in <strong>pixel form</strong>. Paint it in <Link href="/klab/pixel">Pixel Forge</Link>, or{' '}
               <button type="button" className="lab-btn lab-btn--sm lab-btn--ghost" onClick={() => patch(x => { x.form = 'vector' })}>switch to vector</button>
             </p>
           )}
@@ -187,7 +187,7 @@ export default function KEditor() {
           <Range label="Grain" min={0} max={1} value={d.fx.grain} onChange={v => patch(x => { x.fx.grain = v }, 'fx-grain')} />
           <Range label="Scanlines" min={0} max={1} value={d.fx.scan} onChange={v => patch(x => { x.fx.scan = v }, 'fx-scan')} />
           <Range label="Depth" min={0} max={1} value={d.fx.depth} onChange={v => patch(x => { x.fx.depth = v }, 'fx-depth')} />
-          <p className="lab-note">Motion lives in the <Link href="/lab/animate">Animation Bench</Link>.</p>
+          <p className="lab-note">Motion lives in the <Link href="/klab/animate">Animation Bench</Link>.</p>
         </Section>
 
         <Section title="Presets">

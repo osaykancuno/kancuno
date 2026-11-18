@@ -8,12 +8,12 @@ import { MintSoon } from '@/components/lab/MintSoon'
 import './landing.css'
 
 const TOOLS = [
-  { code: 'T.01', name: 'K Editor', href: '/lab/editor', live: true, desc: 'Pick a part of the 3D K and change it: colours, gradients, patterns, neon, glitch, pixel. Export PNG, GLB, SVG.' },
-  { code: 'T.02', name: 'Pixel Forge', href: '/lab/pixel', live: true, desc: 'Draw the K one pixel at a time, then see it as 3D voxels. Fixed grids, brand or free palettes.' },
-  { code: 'T.03', name: 'Animation Bench', href: '/lab/animate', live: true, desc: 'Loops for the K: glow, bounce, head wave, blink, a full turn, pixel rain. Export GIF or video.' },
-  { code: 'T.04', name: 'SVG Suite', href: '/lab/svg', live: true, desc: 'Render, clean and optimise the flat K as SVG. Download the base files of the framework.' },
-  { code: 'T.05', name: 'Touch Field', href: '/lab/touch', live: true, desc: 'Move your pointer over the K and the blocks make way, like on the home page. Tune it, record it.' },
-  { code: 'T.06', name: 'Image Wrap', href: '/lab/wrap', live: true, desc: 'Choose a picture and the 3D K wears it: across the figure or on every block, framed by you, in its own colours or the logo’s.' },
+  { code: 'T.01', name: 'K Editor', href: '/klab/editor', live: true, desc: 'Pick a part of the 3D K and change it: colours, gradients, patterns, neon, glitch, pixel. Export PNG, GLB, SVG.' },
+  { code: 'T.02', name: 'Pixel Forge', href: '/klab/pixel', live: true, desc: 'Draw the K one pixel at a time, then see it as 3D voxels. Fixed grids, brand or free palettes.' },
+  { code: 'T.03', name: 'Animation Bench', href: '/klab/animate', live: true, desc: 'Loops for the K: glow, bounce, head wave, blink, a full turn, pixel rain. Export GIF or video.' },
+  { code: 'T.04', name: 'SVG Suite', href: '/klab/svg', live: true, desc: 'Render, clean and optimise the flat K as SVG. Download the base files of the framework.' },
+  { code: 'T.05', name: 'Touch Field', href: '/klab/touch', live: true, desc: 'Move your pointer over the K and the blocks make way, like on the home page. Tune it, record it.' },
+  { code: 'T.06', name: 'Image Wrap', href: '/klab/wrap', live: true, desc: 'Choose a picture and the 3D K wears it: across the figure or on every block, framed by you, in its own colours or the logo’s.' },
   { code: 'T.07', name: 'Prompt Lab', live: false, desc: 'Describe a K in words and get a design that follows the framework. Feed it your own JSON.' },
   { code: 'T.08', name: 'Gallery Wall', live: false, desc: 'A public wall of K’s made in the Lab, with likes, downloads and sharing on X.' },
   { code: 'T.09', name: 'Template Vault', href: '#framework', live: true, desc: 'Base files, wireframe, pixel grid and starter designs to build from.' },
@@ -50,7 +50,7 @@ export default function LabHome() {
             <br />Free to create, no wallet. Mint it as a <Zt>K1N0</Zt> if you want it on-chain.
           </p>
           <div className="kl-cta">
-            <Link href="/lab/editor" className="lab-btn lab-btn--primary">Enter the Lab <span aria-hidden="true">→</span></Link>
+            <Link href="/klab/editor" className="lab-btn lab-btn--primary">Enter the Lab <span aria-hidden="true">→</span></Link>
             <a href="#framework" className="lab-btn lab-btn--ghost">Get the base files</a>
           </div>
           <p className="kl-prompt lab-label" aria-hidden="true">&gt; one pixel at a time_</p>
@@ -190,7 +190,7 @@ export default function LabHome() {
           <li><span className="kl-steps__n">05</span><strong>Share</strong><span>Post it on X and tag @OsayKancuno.</span></li>
         </ol>
         <div className="kl-cta">
-          <Link href="/lab/editor" className="lab-btn lab-btn--primary">Enter the Lab <span aria-hidden="true">→</span></Link>
+          <Link href="/klab/editor" className="lab-btn lab-btn--primary">Enter the Lab <span aria-hidden="true">→</span></Link>
           <a href="https://x.com/OsayKancuno" className="lab-btn" target="_blank" rel="noopener noreferrer">Follow on X<span className="lab-sr"> (opens in a new tab)</span></a>        </div>
       </section>
     </div>

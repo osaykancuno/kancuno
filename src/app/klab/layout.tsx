@@ -11,9 +11,9 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   title: { default: TITLE, template: '%s · THE K.LAB' },
   description: DESCRIPTION,
-  alternates: { canonical: '/lab' },
-  openGraph: { type: 'website', url: '/lab', title: TITLE, description: DESCRIPTION, images: [{ url: '/lab/og-lab.png', width: 1200, height: 630, alt: 'THE K.LAB: one symbol, infinite variations' }] },
-  twitter: { card: 'summary_large_image', site: '@OsayKancuno', creator: '@OsayKancuno', title: TITLE, description: DESCRIPTION, images: [{ url: '/lab/og-lab.png', alt: 'THE K.LAB: one symbol, infinite variations' }] },
+  alternates: { canonical: '/klab' },
+  openGraph: { type: 'website', url: '/klab', title: TITLE, description: DESCRIPTION, images: [{ url: '/klab/og-lab.png', width: 1200, height: 630, alt: 'THE K.LAB: one symbol, infinite variations' }] },
+  twitter: { card: 'summary_large_image', site: '@OsayKancuno', creator: '@OsayKancuno', title: TITLE, description: DESCRIPTION, images: [{ url: '/klab/og-lab.png', alt: 'THE K.LAB: one symbol, infinite variations' }] },
 }
 
 export default function LabLayout({ children }: { children: React.ReactNode }) {

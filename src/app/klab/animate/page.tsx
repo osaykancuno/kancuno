@@ -5,7 +5,7 @@ import './animate.css'
 export const metadata: Metadata = {
   title: 'Animation Bench',
   description: 'Make the K move. Pick loops, set the period and export a seamless GIF, video or PNG.',
-  alternates: { canonical: '/lab/animate' },
+  alternates: { canonical: '/klab/animate' },
 }
 
 export default function Page() {
