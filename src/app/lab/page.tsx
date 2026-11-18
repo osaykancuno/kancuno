@@ -191,9 +191,7 @@ export default function LabHome() {
         </ol>
         <div className="kl-cta">
           <Link href="/lab/editor" className="lab-btn lab-btn--primary">Enter the Lab <span aria-hidden="true">→</span></Link>
-          <a href="https://x.com/OsayKancuno" className="lab-btn" target="_blank" rel="noopener noreferrer">Follow on X<span className="lab-sr"> (opens in a new tab)</span></a>
-          <a href="https://t.me/kancuno" className="lab-btn lab-btn--ghost" target="_blank" rel="noopener noreferrer">Telegram<span className="lab-sr"> (opens in a new tab)</span></a>
-        </div>
+          <a href="https://x.com/OsayKancuno" className="lab-btn" target="_blank" rel="noopener noreferrer">Follow on X<span className="lab-sr"> (opens in a new tab)</span></a>        </div>
       </section>
     </div>
   )

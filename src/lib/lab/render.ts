@@ -134,11 +134,12 @@ export function renderSvg(d: KDesign, o: RenderOpts = {}): string {
         const p = shared || col(d.head.cubes[i])
         let y = h.y
         let hh = HEAD_H
-        if (has('wave')) y += Math.sin(TAU * (ph - i / 7)) * 1.4
+        // gentle, so the 2-3-2 head never breaks apart
+        if (has('wave')) y += Math.sin(TAU * (ph - i / 7)) * 0.9
         if (has('blink') && h.row === 2) {
           // a quick blink of the front (pink) row around the middle of the loop
           const k = Math.max(0, 1 - Math.abs(ph - 0.5) / 0.06)
-          hh = HEAD_H * (1 - 0.8 * k)
+          hh = HEAD_H * (1 - 0.55 * k) // the block narrows, never disappears
           y += (HEAD_H - hh) / 2
         }
         const ins = d.head.line ? LINE_W / 2 : 0
@@ -167,7 +168,7 @@ export function renderSvg(d: KDesign, o: RenderOpts = {}): string {
   const fxPrims: string[] = []
   let src = 'SourceGraphic'
   if (pixel > 0) {
-    const B = 1.4 + pixel * 4.6
+    const B = 1 + pixel * 2.6 // at most ~3 pixels across a head block: the K keeps its shape
     const f = B * 0.3
     fxPrims.push(
       `<feFlood x="${n((B - f) / 2)}" y="${n((B - f) / 2)}" width="${n(f)}" height="${n(f)}"/>` +
@@ -193,7 +194,7 @@ export function renderSvg(d: KDesign, o: RenderOpts = {}): string {
   if (has('glitch')) {
     const step = Math.floor(ph * 12)
     gseed += step * 13
-    glitch = hash(step + d.fx.seed) > 0.5 ? Math.max(glitch, 0.5) : glitch * 0.25
+    glitch = hash(step + d.fx.seed) > 0.5 ? Math.max(glitch, 0.4) : glitch * 0.25
   }
   const figId = `${uid}-fig`
   const layers: string[] = []
@@ -203,7 +204,7 @@ export function renderSvg(d: KDesign, o: RenderOpts = {}): string {
   }
   let splitAttr = ''
   if (glitch > 0.01) {
-    const k = glitch * 2.2
+    const k = glitch * 1.4
     defs.push(
       `<filter id="${uid}-sp" filterUnits="userSpaceOnUse" x="-10" y="-10" width="120" height="120" color-interpolation-filters="sRGB">` +
         `<feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="${uid}r"/><feOffset in="${uid}r" dx="${n(-k)}" result="${uid}ro"/>` +
@@ -217,7 +218,7 @@ export function renderSvg(d: KDesign, o: RenderOpts = {}): string {
     for (let i = 0; i < 4; i++) {
       const y = 20 + hash(gseed + i * 11) * 60
       const h = 1.5 + hash(gseed + i * 5) * 5
-      const dx = (hash(gseed + i * 3) - 0.5) * 14 * glitch
+      const dx = (hash(gseed + i * 3) - 0.5) * 7 * glitch // slices shift a little: the K stays whole
       defs.push(`<clipPath id="${uid}-c${i}"><rect x="0" y="${n(y)}" width="${CANVAS}" height="${n(h)}"/></clipPath>`)
       layers.push(`<g clip-path="url(#${uid}-c${i})" pointer-events="none"><use href="#${figId}" transform="translate(${n(dx)} 0)"/></g>`)
     }

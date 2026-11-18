@@ -50,6 +50,16 @@ export const GRID_SIZES = [24, 32, 48, 64] as const
 const PITCH: Record<number, number> = { 24: 4, 32: 4, 48: 6, 64: 8 }
 
 const solid = (a: string): Fill => ({ kind: 'solid', a })
+// Palette colours too dark to sit behind the ink X (it would vanish into them)
+const DARK: readonly string[] = [BRAND.ink, '#1d2a6b', '#6b3e26']
+/** The colour moved toward black (light colours) or white (dark ones) by k, for quiet backgrounds */
+function shade(hex: string, k: number): string {
+  const v = parseInt(hex.slice(1), 16)
+  const rgb = [(v >> 16) & 255, (v >> 8) & 255, v & 255]
+  const light = rgb[0] * 0.299 + rgb[1] * 0.587 + rgb[2] * 0.114 > 140
+  const to = light ? 0 : 255
+  return '#' + rgb.map(c => Math.round(c + (to - c) * k).toString(16).padStart(2, '0')).join('')
+}
 const part = (fill: Fill, extra: Partial<PartStyle> = {}): PartStyle => ({ visible: true, line: false, fill, ...extra })
 
 // The K as true pixel art on a size x size grid. Point-sampling the vector loses the
@@ -194,19 +204,19 @@ export const PRESETS: KDesign[] = [
     head: { cubes: ['#3a2116', '#3a2116', '#3a2116', '#fff6dc', '#3a2116', '#6b3e26', '#6b3e26'] },
     fx: { grain: 0.55, depth: 0.5 },
   }),
+  // The clay K with pixel rain falling around it (the pixel form strays too far from the figure)
   makeDesign({
     name: 'Pixel Rain',
-    form: 'pixel',
-    bg: { fill: solid(BRAND.ink) },
-    grid: { size: 24, gap: 0.12, cells: presetGrid(24, [BRAND.yellow, BRAND.yellow, BRAND.yellow, BRAND.purple, BRAND.yellow, BRAND.pink, BRAND.pink], BRAND.yellow) },
-    anim: { loops: ['rain', 'bounce'] },
+    bg: { fill: solid(BRAND.purple) },
+    head: { cubes: [BRAND.ink, BRAND.ink, BRAND.ink, BRAND.yellow, BRAND.ink, '#3ff2ff', '#3ff2ff'] },
+    anim: { loops: ['rain'] },
   }),
   makeDesign({
     name: '1-Bit',
     bg: { fill: { kind: 'pattern', pattern: 'checker', a: '#ffffff', b: '#e6e6e6', scale: 4 } },
     body: { fill: solid('#111111') },
     head: { cubes: ['#111111', '#111111', '#111111', '#ffffff', '#111111', '#111111', '#111111'] },
-    fx: { pixel: 0.45 },
+    fx: { pixel: 0.3 },
   }),
   makeDesign({
     name: 'Blueprint',
@@ -242,26 +252,27 @@ export const cloneDesign = (d: KDesign): KDesign => ({
 // Random remix that keeps the K recognisable: the silhouette and the head pattern never change
 export function remix(d: KDesign, rand: () => number = Math.random): KDesign {
   const pick = <T,>(a: readonly T[]) => a[Math.floor(rand() * a.length)]
-  const pal = [...K1N0_PALETTE] // remixes stay mintable as they are
-  const bgc = pick(pal)
-  let ink = pick(pal.filter(c => c !== bgc))
-  if (ink === bgc) ink = BRAND.ink
-  const acc1 = pick(pal.filter(c => c !== bgc && c !== ink))
-  const acc2 = pick(pal.filter(c => c !== bgc && c !== ink && c !== acc1))
+  // Like a K1N0: the X and four head blocks stay ink, so the figure always reads as the K.
+  // The background is never a dark colour that would swallow the ink X.
+  const ink = BRAND.ink
+  const pal = K1N0_PALETTE.filter(c => c !== ink) // remixes stay mintable as they are
+  const bgc = pick(pal.filter(c => !DARK.includes(c)))
+  const acc1 = pick(pal.filter(c => c !== bgc))
+  const acc2 = pick(pal.filter(c => c !== bgc && c !== acc1))
+  // gradients and patterns only shade the background colour, so they never compete with the figure
   const bgFill: Fill = rand() < 0.5 ? solid(bgc) : rand() < 0.5
-    ? { kind: 'gradient', a: bgc, b: pick(pal), angle: pick([0, 45, 90, 135]) }
-    : { kind: 'pattern', pattern: pick(['stripes', 'dots', 'checker', 'scan', 'grid'] as const), a: bgc, b: pick(pal), scale: pick([3, 4, 6, 8]) }
+    ? { kind: 'gradient', a: bgc, b: shade(bgc, 0.22), angle: pick([0, 45, 90, 135]) }
+    : { kind: 'pattern', pattern: pick(['stripes', 'dots', 'scan', 'grid'] as const), a: bgc, b: shade(bgc, 0.12), scale: pick([4, 6, 8]) }
   const out = cloneDesign(d)
   out.name = 'Remix ' + Math.floor(rand() * 9000 + 1000)
   out.bg = { ...out.bg, visible: true, fill: bgFill }
-  const line = rand() < 0.2
-  out.body = { ...out.body, visible: true, line, fill: solid(ink) }
-  out.head = { ...out.head, visible: true, line, useFill: false, cubes: [ink, ink, ink, acc2, ink, acc1, acc1] }
+  out.body = { ...out.body, visible: true, line: false, fill: solid(ink) }
+  out.head = { ...out.head, visible: true, line: false, useFill: false, cubes: [ink, ink, ink, acc2, ink, acc1, acc1] }
   out.fx = {
     ...out.fx,
-    glow: line ? 0.7 : rand() < 0.2 ? 0.4 : 0,
-    glitch: rand() < 0.2 ? 0.4 : 0,
-    pixel: rand() < 0.12 ? 0.4 : 0,
+    glow: rand() < 0.2 ? 0.4 : 0,
+    glitch: rand() < 0.15 ? 0.3 : 0,
+    pixel: 0, // pixelation is a choice in the editor, never a random one
     grain: rand() < 0.25 ? 0.4 : 0,
     scan: rand() < 0.15 ? 0.5 : 0,
     depth: rand() < 0.3 ? 0.5 : 0,

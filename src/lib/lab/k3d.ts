@@ -105,11 +105,11 @@ const FX_SHADER = {
       if (uPixel > 0.0) { vec2 b = vec2(uPixel) / uRes; uv = (floor(uv / b) + 0.5) * b; }
       if (uGlitch > 0.0) {
         float band = floor(uv.y * 22.0);
-        if (h1(band + uSeed) > 1.0 - uGlitch * 0.4) uv.x += (h1(band * 1.7 + uSeed) - 0.5) * 0.14 * uGlitch;
+        if (h1(band + uSeed) > 1.0 - uGlitch * 0.4) uv.x += (h1(band * 1.7 + uSeed) - 0.5) * 0.07 * uGlitch;
       }
       vec4 c = texture2D(tDiffuse, uv);
       if (uGlitch > 0.0) {
-        float k = uGlitch * 0.007;
+        float k = uGlitch * 0.005;
         c.r = texture2D(tDiffuse, uv + vec2(k, 0.0)).r;
         c.b = texture2D(tDiffuse, uv - vec2(k, 0.0)).b;
       }
@@ -489,14 +489,14 @@ export class KRenderer {
 
     if (this.touch?.field) this.buildField(d)
 
-    // Pixel rain: voxels falling onto the floor in the K's colours
+    // Pixel rain: voxels falling onto the floor in the K's colours, around the figure, never through it
     if (d.anim.loops.includes('rain')) {
-      const n = 36
+      const n = 30
       const mat = this.track(new MeshStandardMaterial({ color: 0xffffff, roughness: 0.52 }))
       const mesh = this.track(new InstancedMesh(KRenderer.voxelGeo, mat, n))
       const tones = [d.head.cubes[3], d.head.cubes[5], d.form === 'pixel' ? '#fbc500' : d.head.cubes[0]]
       for (let i = 0; i < n; i++) mesh.setColorAt(i, col(tones[i % 3]))
-      mesh.castShadow = true
+      mesh.castShadow = false // their shadows would dot the K itself
       mesh.frustumCulled = false
       this.rain = mesh
       this.scene.add(mesh)
@@ -722,8 +722,8 @@ export class KRenderer {
     const squash = this.squash.fill(1)
     for (const c of this.cubes) {
       const i = c.userData.i as number
-      if (has('wave')) offs[i] = Math.sin(TAU * (ph - i / 7)) * 0.22 + 0.22
-      if (has('blink') && c.userData.row === 2) squash[i] = 1 - 0.8 * Math.max(0, 1 - Math.abs(ph - 0.5) / 0.06)
+      if (has('wave')) offs[i] = Math.sin(TAU * (ph - i / 7)) * 0.14 + 0.14 // gentle: the head stays one figure
+      if (has('blink') && c.userData.row === 2) squash[i] = 1 - 0.55 * Math.max(0, 1 - Math.abs(ph - 0.5) / 0.06) // narrows, never vanishes
       const to = this.cubeOff[i]
       this.m.makeTranslation(to.x, offs[i] + to.y, to.z).multiply(c.userData.base as Matrix4)
       if (squash[i] !== 1) this.m.multiply(this.scaleM.makeScale(1, squash[i], 1))
@@ -765,10 +765,13 @@ export class KRenderer {
     // Rain
     if (this.rain) {
       for (let i = 0; i < this.rain.count; i++) {
-        const sz = 0.22 + hash(i * 7.3 + 1) * 0.22
+        const sz = 0.18 + hash(i * 7.3 + 1) * 0.16
         const speed = 1 + Math.floor(hash(i * 3.1 + 2) * 2)
         const fall = (hash(i * 1.7 + 3) + ph * speed) % 1
-        this.o.position.set((hash(i + d.fx.seed) - 0.5) * 9, 9 - fall * 9 + sz / 2, (hash(i * 5.3 + 4) - 0.5) * 8)
+        // keep a clear lane over the K (|x| < 2.6): the drops fall at its sides and behind it
+        const side = hash(i + d.fx.seed) < 0.5 ? -1 : 1
+        const x = side * (2.6 + hash(i * 2.9 + d.fx.seed) * 2.2)
+        this.o.position.set(x, 9 - fall * 9 + sz / 2, (hash(i * 5.3 + 4) - 0.5) * 8)
         this.o.rotation.set(fall * 3, fall * 2, 0)
         this.o.scale.setScalar(sz)
         this.o.updateMatrix()
@@ -787,10 +790,11 @@ export class KRenderer {
     if (has('glitch')) {
       const step = Math.floor(ph * 12)
       seed += step * 13
-      glitch = hash(step + d.fx.seed) > 0.5 ? Math.max(glitch, 0.5) : glitch * 0.25
+      glitch = hash(step + d.fx.seed) > 0.5 ? Math.max(glitch, 0.4) : glitch * 0.25
     }
     const u = this.fxPass.uniforms
-    u.uPixel.value = d.fx.pixel > 0 ? Math.max(2, (this.size / 100) * (1.4 + d.fx.pixel * 4.6)) : 0
+    // at most ~3 pixels across a head block, so the K keeps its shape
+    u.uPixel.value = d.fx.pixel > 0 ? Math.max(2, (this.size / 100) * (1 + d.fx.pixel * 2.6)) : 0
     u.uGlitch.value = glitch
     u.uGrain.value = d.fx.grain
     u.uScan.value = d.fx.scan
