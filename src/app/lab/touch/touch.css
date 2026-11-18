@@ -1,0 +1,16 @@
+/* T.05 Touch Field */
+.tf-canvas { cursor: crosshair; touch-action: none; }
+.tf-canvas:focus-visible { outline: 3px solid #fff6dc; outline-offset: -3px; box-shadow: inset 0 0 0 6px #0f0d0a; }
+.tf-rec {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #fff6dc;
+  background: rgba(15, 13, 10, 0.78);
+  border-radius: 2px;
+}
+.tf-rec::first-letter { color: #ff3b30; }

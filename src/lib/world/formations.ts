@@ -8,6 +8,9 @@
 
 import { Color, Euler, Quaternion, Vector3 } from 'three'
 import { PALETTE } from './palette'
+import { BAR_ANGLE, BAR_SIZE, BAR_Y, CUBE_SIZE, FLAT_CENTER, HEAD_POS, LEVEL } from './figure'
+
+export { BAR_SIZE, CUBE_SIZE }
 
 export const POOLS = ['bars', 'cubes', 'voxels'] as const
 export type PoolKey = (typeof POOLS)[number]
@@ -18,9 +21,8 @@ export const CELL = 9.6
 export const VOXEL_SIDE = 14
 export const POOL_SIZE: Record<PoolKey, number> = { bars: 2, cubes: 7, voxels: VOXEL_SIDE * VOXEL_SIDE }
 
-// Piece dimensions (geometry is built at this size, scale stays ~1 for the figure)
-export const BAR_SIZE: [number, number, number] = [3.62, 0.62, 1.0] // length, thickness, width
-export const CUBE_SIZE: [number, number, number] = [1, 0.8, 1]      // width, height, depth
+// Piece dimensions (BAR_SIZE, CUBE_SIZE) and the figure's layout live in ./figure,
+// shared with THE K.LAB; geometry is built at that size, scale stays ~1 for the figure.
 
 export interface PoolShape {
   pos: Float32Array // world positions, 3 per piece
@@ -57,20 +59,9 @@ const qEuler = (x: number, y: number, z: number) => new Quaternion().setFromEule
 
 // ── The figure, lying flat (as in the artwork: seen from above) ─────────────
 // Logo 2D coordinates (x right, y up, X crossing at 0,0) → world: x, height, -y.
-const BAR_ANGLE = (47.5 * Math.PI) / 180
-const FLAT_CENTER = 0.62 // 2D y of the figure's visual centre, so it sits centred
-const BAR_Y = BAR_SIZE[1] / 2 + 0.04
-const LEVEL = [0.44, 0.74, 1.06] // cube centre heights: back row, middle row, front row
-
-const HEAD: { x: number; y: number; level: number; c: number }[] = [
-  { x: -0.54, y: 2.96, level: 0, c: PALETTE.ink },
-  { x: 0.54, y: 2.96, level: 0, c: PALETTE.ink },
-  { x: -1.08, y: 2.36, level: 1, c: PALETTE.ink },
-  { x: 0, y: 2.34, level: 1, c: PALETTE.purple },
-  { x: 1.08, y: 2.36, level: 1, c: PALETTE.ink },
-  { x: -0.56, y: 1.74, level: 2, c: PALETTE.pink },
-  { x: 0.56, y: 1.74, level: 2, c: PALETTE.pink },
-]
+// Positions and heights come from ./figure (one layout for the site and THE K.LAB)
+const HEAD_COLOURS = [PALETTE.ink, PALETTE.ink, PALETTE.ink, PALETTE.purple, PALETTE.ink, PALETTE.pink, PALETTE.pink]
+const HEAD = HEAD_POS.map((h, i) => ({ ...h, c: HEAD_COLOURS[i] }))
 
 function flatFigure(): { bars: Piece[]; cubes: Piece[] } {
   const z = (y: number) => -(y - FLAT_CENTER)

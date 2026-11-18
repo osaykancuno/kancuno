@@ -9,10 +9,15 @@ Outputs: src/app/icon.svg        flat vector mark (browser tab icon; replaces ic
          src/app/favicon.ico     16/32/48 px, drawn from the same flat mark
          src/app/apple-icon.png  180 px, the 3D logo (home-screen icon)
          public/og.png           1200x630 share image (X, Telegram, WhatsApp...)
+         public/lab/og-lab.png   1200x630 share image of THE K.LAB (/lab)
+
+    python scripts/brand-assets.py lab   # only THE K.LAB share image
 """
 
 import glob
+import math
 import os
+import sys
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
@@ -158,7 +163,103 @@ def write_og():
     img.save(os.path.join(ROOT, 'public/og.png'), optimize=True)
 
 
+# The flat K of THE K.LAB, same numbers as src/lib/lab/base.ts (100-unit canvas)
+LAB_HEAD = [(38.5, 23, INK), (50.5, 23, INK), (32.5, 33, INK), (44.5, 33, PURPLE), (56.5, 33, INK),
+            (38.5, 43, PINK), (50.5, 43, PINK)]
+LAB_BAR = dict(cx=50, cy=63, length=44, thickness=7.75, angle=36)
+LAB_BG = (15, 13, 10)
+CREAM = (255, 246, 220)
+
+
+def draw_lab_k(size):
+    """The original K of THE K.LAB (lattice diamond, flat figure) at `size` px."""
+    big = size * 4
+    k = big / 100
+    img = Image.new('RGB', (big, big), YELLOW)
+    d = ImageDraw.Draw(img)
+    h, w = 57.6 * k, 5.3 * k
+    c = 50 * k
+    pts = [(c, c - h), (c + h, c), (c, c + h), (c - h, c), (c, c - h)]
+    d.line(pts, fill=INK, width=round(w), joint='curve')
+    r = LAB_BAR['thickness'] / 2
+    half = LAB_BAR['length'] / 2 - r
+    for s in (1, -1):
+        a = math.radians(s * LAB_BAR['angle'])
+        dx, dy = math.cos(a) * half, math.sin(a) * half
+        p1 = ((LAB_BAR['cx'] - dx) * k, (LAB_BAR['cy'] - dy) * k)
+        p2 = ((LAB_BAR['cx'] + dx) * k, (LAB_BAR['cy'] + dy) * k)
+        d.line([p1, p2], fill=INK, width=round(LAB_BAR['thickness'] * k))
+        for px, py in (p1, p2):
+            d.ellipse((px - r * k, py - r * k, px + r * k, py + r * k), fill=INK)
+    for x, y, col in LAB_HEAD:
+        d.rectangle((x * k, y * k, (x + 11) * k, (y + 10) * k), fill=col)
+    return img.resize((size, size), Image.LANCZOS)
+
+
+def figure_mask(fig):
+    """Alpha mask of the figure in a crop of the logo artwork (see write_og_lab)."""
+    w, h = fig.size
+    px = fig.load()
+    a = [[0.0] * w for _ in range(h)]
+    for y in range(h):
+        for x in range(w):
+            r, g, b = px[x, y]
+            dist = abs(r - YELLOW[0]) + abs(g - YELLOW[1]) + abs(b - YELLOW[2])
+            a[y][x] = min(1.0, max(0.0, (dist - 18) / 70))
+    keep = [[False] * w for _ in range(h)]
+    stack = [(w // 2, h // 2)]
+    while stack:
+        x, y = stack.pop()
+        if x < 0 or y < 0 or x >= w or y >= h or keep[y][x] or a[y][x] < 0.12:
+            continue
+        keep[y][x] = True
+        stack += [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
+    m = Image.new('L', (w, h), 0)
+    mp = m.load()
+    for y in range(h):
+        for x in range(w):
+            if keep[y][x]:
+                edge = min(x, y, w - 1 - x, h - 1 - y)  # the shadow runs past the crop: fade it out
+                mp[x, y] = round(a[y][x] * min(1.0, edge / 10) * 255)
+    return m.filter(ImageFilter.GaussianBlur(0.6))
+
+
+def write_og_lab():
+    W, H = 1200, 630
+    img = Image.new('RGB', (W, H), LAB_BG)
+    art = 450
+    ax, ay = W - 72 - art, (H - art) // 2
+    d = ImageDraw.Draw(img)
+    d.rectangle((ax - 10, ay - 10, ax + art + 9, ay + art + 9), fill=(23, 20, 15))
+    # The 3D figure of the logo (no bars around it), on its own yellow, like the apple icon
+    fig = logo_figure()
+    # brand yellow panel with the figure cut out of the artwork: only pixels that differ from
+    # the yellow and touch the figure are kept (the diamond frame's fragments at the crop's
+    # edges drop away), with soft alpha so its shadow and rounded edges stay natural
+    fh = round(art * 0.84)
+    fig = fig.resize((round(fig.width * fh / fig.height), fh), Image.LANCZOS)
+    panel = Image.new('RGB', (art, art), YELLOW)
+    panel.paste(fig, ((art - fig.width) // 2, (art - fh) // 2), figure_mask(fig))
+    img.paste(panel, (ax, ay))
+
+    x0 = 72
+    d.text((x0, 92), 'THE K.LAB  ·  BY K4NCUN0', font=font('mono', 22, 700), fill=YELLOW)
+    big = font('display', 68, 900, 116)
+    d.text((x0, 160), 'One symbol.', font=big, fill=CREAM)
+    d.text((x0, 240), 'Infinite', font=big, fill=YELLOW)
+    d.text((x0, 320), 'variations.', font=big, fill=YELLOW)
+    d.text((x0, 460), 'CREATE · REMIX · ANIMATE · NO WALLET', font=font('mono', 18, 600), fill=(190, 184, 166))
+    d.text((x0, 520), 'kancuno.com/lab', font=font('display', 30, 800, 112), fill=CREAM)
+    os.makedirs(os.path.join(ROOT, 'public/lab'), exist_ok=True)
+    img.save(os.path.join(ROOT, 'public/lab/og-lab.png'), optimize=True)
+
+
 if __name__ == '__main__':
+    if sys.argv[1:] == ['lab']:
+        write_og_lab()
+        print('public/lab/og-lab.png written')
+        sys.exit(0)
+    write_og_lab()
     write_svg()
     write_favicon()
     write_apple_icon()

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deploy · THE K.LAB</title>
+<style>
+  :root { color-scheme: dark; --y: #fbc500; --ink: #0f0d0a; --p: #17140f; --l: rgba(255,246,220,.14); --t: #fff6dc; --d: rgba(255,246,220,.66); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ink); color: var(--t); font: 15px/1.5 system-ui, sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 28px; margin: 0 0 4px; } .mono { font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--y); }
+  p { color: var(--d); }
+  .card { border: 1px solid var(--l); border-radius: 6px; background: var(--p); padding: 16px; margin: 14px 0; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  button, select { height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--l); background: transparent; color: var(--t); font: inherit; cursor: pointer; }
+  button.go { background: var(--y); color: var(--ink); border-color: var(--y); font-weight: 600; }
+  button:disabled { opacity: .45; cursor: default; }
+  ol { padding-left: 20px; } li { margin: 10px 0; }
+  code { font-family: ui-monospace, monospace; font-size: 13px; word-break: break-all; color: var(--t); }
+  .ok { color: #27e07a; } .err { color: #ff8a80; }
+  a { color: var(--y); }
+</style>
+</head>
+<body>
+<main>
+  <p class="mono">THE K.LAB · K1N0 · <a href="owner.html">owner page</a></p>
+  <h1>Deploy the contracts</h1>
+  <p>Deploy the whole collection from your wallet: the artwork, the 3D viewer, the renderer and the K1N0 contract. On Ethereum it takes two confirmations; on networks that allow one contract per transaction, the page goes one contract at a time. You will be the owner. If something stops, press Deploy again: it continues where it left off.</p>
+
+  <div class="card">
+    <div class="row">
+      <button id="connect" class="go">Connect wallet</button>
+      <select id="net" aria-label="Network">
+        <option value="1">Ethereum mainnet</option>
+        <option value="11155111">Sepolia (test)</option>
+      </select>
+      <span id="who"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row"><button id="s1" class="go" disabled>Deploy THE K.LAB</button><span id="cost"></span></div>
+    <ol id="steps"></ol>
+    <p id="status" role="status"></p>
+  </div>
+
+  <div class="card" id="done" hidden>
+    <p class="ok"><strong>THE K.LAB is live, with the K4NCUN0 logo as K1N0 #0 in your wallet.</strong> The mint is closed: open it from the <a href="owner.html">owner page</a> when you launch.</p>
+    <p>K1N0 contract: <code id="final"></code></p>
+    <p>Send this address back in the chat: it goes into <code>src/lib/lab/chain.ts</code> and the Mint button opens. Then verify the contracts on Etherscan with <code>deploy/verify/standard-input.json</code>.</p>
+  </div>
+</main>
+<script>
+const CODE = /*__CODE__*/{};
+const NETS = { 1: { hex: '0x1', name: 'Ethereum', scan: 'https://etherscan.io' }, 11155111: { hex: '0xaa36a7', name: 'Sepolia', scan: 'https://sepolia.etherscan.io' } };
+const $ = id => document.getElementById(id);
+let wallet = null, from = null;
+const net = () => Number($('net').value);
+const key = () => 'klab-deploy-v3-' + net();
+const saved = () => { try { return JSON.parse(localStorage.getItem(key()) || '{}') } catch { return {} } };
+const save = o => localStorage.setItem(key(), JSON.stringify({ ...saved(), ...o }));
+const status = (t, cls) => { $('status').textContent = t; $('status').className = cls || '' };
+const pad = a => a.toLowerCase().replace(/^0x/, '').padStart(64, '0');
+const word = (data, i) => '0x' + data.slice(2 + i * 64 + 24, 2 + (i + 1) * 64);
+const LABELS = { bg: 'Background', art: 'Image (3D)', viewer: '3D piece', renderer: 'Renderer', klab: 'K1N0 (THE K.LAB)' };
+
+function render() {
+  const s = saved(), scan = NETS[net()].scan;
+  $('steps').innerHTML = Object.keys(LABELS).filter(k => s[k]).map(k => '<li>' + LABELS[k] + ': <a href="' + scan + '/address/' + s[k] + '" target="_blank" rel="noopener">' + s[k] + '</a></li>').join('');
+  $('s1').disabled = !from || !!s.klab;
+  $('done').hidden = !s.klab;
+  $('final').textContent = s.klab || '';
+}
+
+async function pickWallet() {
+  const found = [];
+  window.addEventListener('eip6963:announceProvider', e => found.push(e.detail));
+  window.dispatchEvent(new Event('eip6963:requestProvider'));
+  await new Promise(r => setTimeout(r, 300));
+  return (found[0] && found[0].provider) || window.ethereum || null;
+}
+async function onNet() {
+  plan = null;
+  if (!wallet) return render();
+  try { await wallet.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: NETS[net()].hex }] }) }
+  catch { status('Switch your wallet to ' + NETS[net()].name + '.', 'err') }
+  render();
+  estimate();
+}
+$('connect').onclick = async () => {
+  wallet = await pickWallet();
+  if (!wallet) return status('No wallet found in this browser. Install MetaMask, Rabby, Coinbase Wallet or Rainbow.', 'err');
+  try {
+    [from] = await wallet.request({ method: 'eth_requestAccounts' });
+    $('who').textContent = from.slice(0, 6) + '…' + from.slice(-4);
+    await onNet();
+    status('Connected. The owner of THE K.LAB will be this account.');
+  } catch (e) { status(e.message || 'Not connected.', 'err') }
+};
+$('net').onchange = onNet;
+
+// Can this network create several contracts in one transaction? (Ethereum today: yes)
+let plan = null;
+async function choosePlan() {
+  if (plan) return plan;
+  try {
+    const gas = BigInt(await wallet.request({ method: 'eth_estimateGas', params: [{ from, data: CODE.KLabDeployArt }] }));
+    plan = gas < 15000000n ? 'two' : 'each';
+  } catch { plan = 'each' }
+  return plan;
+}
+// The lowest fees that still get in quickly: the current base fee (with room for it to rise
+// over a few blocks) plus a small tip, instead of the wallet's usually generous default.
+const GWEI = 1000000000n;
+async function fees() {
+  const block = await wallet.request({ method: 'eth_getBlockByNumber', params: ['latest', false] });
+  const base = BigInt(block.baseFeePerGas || '0x0');
+  let tip = GWEI / 100n; // 0.01 gwei
+  try {
+    const market = BigInt(await wallet.request({ method: 'eth_maxPriorityFeePerGas' }));
+    tip = market < tip ? tip : market > GWEI / 20n ? GWEI / 20n : market; // between 0.01 and 0.05 gwei
+  } catch {}
+  return { base, tip, max: base + base / 4n + tip }; // room for the base fee to rise for a couple of blocks
+}
+const hex = n => '0x' + n.toString(16);
+const eth = wei => (Number(wei) / 1e18).toFixed(6) + ' ETH';
+async function estimate() {
+  if (!wallet || !from) return;
+  try {
+    const p = await choosePlan();
+    const f = await fees();
+    $('cost').textContent = p === 'two'
+      ? '2 confirmations · ≈ ' + eth(9400000n * (f.base + f.tip)) + ' of gas in all (gas now: ' + (Number(f.base) / 1e9).toFixed(2) + ' gwei; it costs less when the network is quiet)'
+      : '5 confirmations, one per contract';
+  } catch { $('cost').textContent = '' }
+}
+
+async function send(data, label) {
+  const id = parseInt(await wallet.request({ method: 'eth_chainId' }), 16);
+  if (id !== net()) throw new Error('Your wallet is on another network: switch to ' + NETS[net()].name + '.');
+  const f = await fees();
+  const gas = BigInt(await wallet.request({ method: 'eth_estimateGas', params: [{ from, data }] }));
+  const tx = { from, data, gas: hex(gas + gas / 20n), maxFeePerGas: hex(f.max), maxPriorityFeePerGas: hex(f.tip) };
+  status(label + ': confirm in your wallet… (about ' + eth(gas * (f.base + f.tip)) + ' of gas; keep the fees the site suggests)');
+  const hash = await wallet.request({ method: 'eth_sendTransaction', params: [tx] });
+  status(label + ': waiting for the block… (' + hash.slice(0, 10) + '…)');
+  for (;;) {
+    const r = await wallet.request({ method: 'eth_getTransactionReceipt', params: [hash] });
+    if (r) { if (r.status !== '0x1') throw new Error(label + ' failed on-chain.'); return r }
+    await new Promise(res => setTimeout(res, 3000));
+  }
+}
+function logData(r, topic) {
+  const l = r.logs.find(x => x.topics[0] === topic);
+  if (!l) throw new Error('Addresses not found in the receipt.');
+  return l.data;
+}
+
+async function deployTwo() {
+  if (!saved().art) {
+    const d = logData(await send(CODE.KLabDeployArt, 'Artwork and 3D viewer (1/2)'), '__TOPIC_ART__');
+    save({ art: word(d, 0), viewer: word(d, 1) });
+    render();
+  }
+  const s = saved();
+  const d = logData(await send(CODE.KLabDeployCollection + pad(s.art) + pad(s.viewer), 'Renderer and K1N0 (2/2)'), '__TOPIC_COLL__');
+  save({ renderer: word(d, 0), klab: word(d, 1) });
+}
+// KLab's constructor: renderer, owner, the logo's colours (bytes4), its title (string)
+const klabArgs = (renderer, owner) => pad(renderer) + pad(owner) + '00030202'.padEnd(64, '0') + (128).toString(16).padStart(64, '0') +
+  (7).toString(16).padStart(64, '0') + '4b344e43554e30'.padEnd(64, '0');
+async function deployEach() {
+  const one = async (k, data, label) => {
+    if (saved()[k]) return;
+    save({ [k]: (await send(data, label)).contractAddress });
+    render();
+  };
+  await one('bg', CODE.KLabArtBg, 'Background (1/5)');
+  await one('art', CODE.KLabArt3D + pad(saved().bg), 'Image (2/5)');
+  await one('viewer', CODE.KLabViewer, '3D piece (3/5)');
+  let s = saved();
+  await one('renderer', CODE.KLabRenderer + pad(s.art) + pad(s.viewer), 'Renderer (4/5)');
+  await one('klab', CODE.KLab + klabArgs(saved().renderer, from), 'K1N0, with the logo as #0 (5/5)');
+}
+$('s1').onclick = async () => {
+  try {
+    $('s1').disabled = true;
+    const s = saved();
+    // a run already started one way keeps going that way
+    const p = s.bg ? 'each' : s.art ? 'two' : await choosePlan();
+    await (p === 'two' ? deployTwo() : deployEach());
+    status('Done.', 'ok');
+  } catch (e) { status(e.message || String(e), 'err') }
+  render();
+};
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+/* T.06 Image Wrap */
+.iw-stage { position: relative; }
+.iw-stage[data-over] { outline: 2px dashed var(--lab-acc); outline-offset: -8px; }
+.iw-drop {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lab-text);
+  background: rgba(15, 13, 10, 0.6);
+  pointer-events: none;
+}
+.iw-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 28px 16px;
+  border: 1px dashed var(--lab-line-2);
+  border-radius: var(--lab-r);
+  background: var(--lab-panel-2);
+  color: var(--lab-text);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+.iw-pick:hover, .iw-pick:focus-visible { border-color: var(--lab-acc); }
+.iw-pick:focus-visible { outline: 2px solid var(--lab-acc); outline-offset: 2px; }
+.iw-pick__big { font-family: var(--font-mono); font-size: 28px; line-height: 1; color: var(--lab-acc); }
+.iw-frame {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  border: 1px solid var(--lab-line);
+  border-radius: var(--lab-r);
+  background: #17140f;
+  cursor: move;
+  touch-action: none;
+}

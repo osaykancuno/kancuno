@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import type { World } from '@/lib/world/engine'
 import LogoMark from './LogoMark'
 import SoundToggle from './SoundToggle'
@@ -359,6 +360,8 @@ export default function Experience() {
           </button>
           <div className="k-header-right">
             <SoundToggle />
+            {/* THE K.LAB is its own page, apart from the Experiments series */}
+            <Link className="k-pill k-pill--lab" href="/lab">THE K.LAB</Link>
             <button type="button" className="k-pill" onClick={() => goTo(N - 1)}>Let&apos;s talk</button>
           </div>
         </header>

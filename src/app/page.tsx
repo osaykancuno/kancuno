@@ -19,6 +19,12 @@ export default function Home() {
           is a ring you can step into. It includes a step sequencer, piano roll, song arranger and mixer, and exports WAV, stems or MIDI.
           Free, in the browser.
         </p>
+        <h2>THE K.LAB</h2>
+        <p>
+          <a href="/lab">THE K.LAB</a> is his creative lab built on his own symbol, the K: one symbol, infinite variations.
+          Free tools in the browser (K Editor, Pixel Forge, Animation Bench, SVG Suite) to create, remix and animate your own K,
+          with no wallet needed. Minting a creation will always be optional.
+        </p>
         <h2>Community work</h2>
         <p>
           He also makes games, tools and video for the communities he belongs to, as a holder.

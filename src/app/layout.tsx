@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     'Osay Kancuno', 'K4NCUN0', 'Kancuno', '@OsayKancuno',
     'artist on-chain', 'on-chain artist', 'on-chain builder', 'on-chain art', 'pixel art',
     'JAMVERSE', 'on-chain experiments', 'off-chain experiments', '3D music studio', 'jam online with friends',
+    'THE K.LAB', 'Kancuno K', 'pixel art editor', 'logo remix', 'creative framework',
     // secondary context
     'Normies Yacht Club', '8362 Coffee', 'The Normies', 'THE100', 'Normie #8362',
     'JPEG Frens', 'The Frens Forge', 'The Wall Arcade', 'FRENS AFTER DARK', 'NFC Summit', 'NFC 2027', 'NFC Summit Lisbon', 'On the Wall',
@@ -107,6 +108,20 @@ const JSON_LD = {
       operatingSystem: 'Web browser',
       isAccessibleForFree: true,
       image: 'https://jamverse.kancuno.com/og-image.png',
+      author: { '@id': PERSON_ID },
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': `${SITE}/lab#app`,
+      name: 'THE K.LAB',
+      url: `${SITE}/lab`,
+      description:
+        'One symbol, infinite variations: free browser tools to create, remix and animate art based on the Kancuno K. ' +
+        'The K in 3D, like the home page: K Editor, Pixel Forge, Animation Bench (GIF and video), SVG Suite and Touch Field. Creation is off-chain, no wallet needed; minting will be optional.',
+      applicationCategory: 'DesignApplication',
+      operatingSystem: 'Web browser',
+      isAccessibleForFree: true,
+      image: `${SITE}/lab/og-lab.png`,
       author: { '@id': PERSON_ID },
     },
     {

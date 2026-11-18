@@ -1,0 +1,16 @@
+.ab-scrub { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+.ab-scrub input[type='range'] { width: 100%; accent-color: var(--k-yellow); }
+.ab-scrub output { font-family: var(--font-mono); font-size: 11px; color: var(--lab-dim); min-width: 52px; text-align: right; }
+.ab-loops { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 6px; }
+.ab-loop {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-align: left;
+  padding: 9px 10px; min-height: 38px; border: 1px solid var(--lab-line-2); border-radius: var(--lab-r); color: var(--lab-dim);
+}
+.ab-loop:hover { color: var(--lab-text); border-color: var(--lab-dim); }
+.ab-loop[aria-pressed='true'] { background: var(--k-yellow); color: var(--k-ink); border-color: var(--k-yellow); }
+.ab-recipes { display: flex; flex-wrap: wrap; gap: 6px; }
+.ab-progress { height: 4px; background: var(--lab-line); border-radius: 2px; overflow: hidden; }
+.ab-progress > span { display: block; height: 100%; background: var(--k-yellow); transition: width 0.15s linear; }
+.ab-export { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+.lab-btn[aria-disabled='true'] { opacity: 0.45; cursor: not-allowed; }
