@@ -9,7 +9,7 @@ import './landing.css'
 
 const TOOLS = [
   { code: 'T.01', name: 'K Editor', href: '/klab/editor', live: true, desc: 'Pick a part of K1N0 in 3D and change it: colours, gradients, patterns, neon, glitch, pixel. Export PNG, GLB, SVG.' },
-  { code: 'T.02', name: 'Pixel Forge', href: '/klab/pixel', live: true, desc: 'Draw K1N0 one pixel at a time, then see it as 3D voxels. Fixed grids, original or free palettes.' },
+  { code: 'T.02', name: 'Pixel Forge', href: '/klab/pixel', live: true, desc: 'Draw K1N0 pixel by pixel, then see it as 3D voxels. Fixed grids, original or free palettes.' },
   { code: 'T.03', name: 'Animation Bench', href: '/klab/animate', live: true, desc: 'Loops for K1N0: glow, bounce, head wave, blink, a full turn, pixel rain. Export GIF or video.' },
   { code: 'T.04', name: 'SVG Suite', href: '/klab/svg', live: true, desc: 'Render, clean and optimise the flat K1N0 as SVG. Download the base files of the framework.' },
   { code: 'T.05', name: 'Touch Field', href: '/klab/touch', live: true, desc: 'Move your pointer over K1N0 and the blocks make way. Tune it, record it.' },
@@ -53,7 +53,7 @@ export default function LabHome() {
             <Link href="/klab/editor" className="lab-btn lab-btn--primary">Enter the Lab <span aria-hidden="true">→</span></Link>
             <a href="#framework" className="lab-btn lab-btn--ghost">Get the base files</a>
           </div>
-          <p className="kl-prompt lab-label" aria-hidden="true">&gt; one pixel at a time_</p>
+          <p className="kl-prompt lab-label" aria-hidden="true">&gt; Culture belongs to the people who create it_</p>
         </div>
         <HeroK />
       </section>

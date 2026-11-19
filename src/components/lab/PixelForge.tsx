@@ -1,5 +1,5 @@
 'use client'
-// Pixel Forge (T.02): draw the K one pixel at a time.
+// Pixel Forge (T.02): draw K1N0 pixel by pixel.
 // Painting happens in a local draft (ref + canvas); the design is committed at most once per
 // animation frame under one history key per stroke, so a stroke is a single undo step.
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react'
@@ -362,7 +362,7 @@ export default function PixelForge() {
       <header className="lab-tool__head">
         <h1 className="lab-tool__title">Pixel Forge</h1>
         <span className="lab-label">T.02</span>
-        <p className="lab-note">Draw K1N0 one pixel at a time.</p>
+        <p className="lab-note">Draw K1N0 pixel by pixel.</p>
       </header>
 
       <div className="lab-tool__stagewrap">
