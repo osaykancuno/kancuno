@@ -118,10 +118,13 @@ export async function coloursTaken(c: Colours): Promise<number | 0> {
   const h = await call('0x' + SEL.coloursTaken + left(coloursHex(c)))
   return decUint(h, 0) === BigInt(1) ? Number(decUint(h, 1)) : 0
 }
+// usedMap() is a uint256[] of about 33 words (8,363 bits): never trust a bigger length from an RPC
+const usedWords = (h: string) => Math.min(Number(BigInt('0x' + h.slice(64, 128))), 40)
+
 // The numbers still free (1..8362), from the contract's map of used ones (one call)
 export async function freeNumbers(): Promise<number[]> {
   const h = (await call('0x' + SEL.usedMap)).slice(2)
-  const n = Number(BigInt('0x' + h.slice(64, 128)))
+  const n = usedWords(h)
   const used = new Set<number>()
   for (let i = 0; i < n; i++) {
     const w = BigInt('0x' + h.slice(128 + i * 64, 192 + i * 64))
@@ -137,14 +140,14 @@ export async function freeNumbers(): Promise<number[]> {
 export async function isMinted(id: number): Promise<boolean> {
   const h = (await call('0x' + SEL.usedMap)).slice(2)
   const w = id >> 8
-  if (w >= Number(BigInt('0x' + h.slice(64, 128)))) return false
+  if (w >= usedWords(h)) return false
   return ((BigInt('0x' + h.slice(128 + w * 64, 192 + w * 64)) >> BigInt(id & 255)) & BigInt(1)) === BigInt(1)
 }
 
 /** Every minted number, #0 included, from the contract's map of used ones (one call) */
 export async function mintedNumbers(): Promise<number[]> {
   const h = (await call('0x' + SEL.usedMap)).slice(2)
-  const n = Number(BigInt('0x' + h.slice(64, 128)))
+  const n = usedWords(h)
   const ids: number[] = []
   for (let i = 0; i < n; i++) {
     const w = BigInt('0x' + h.slice(128 + i * 64, 192 + i * 64))
@@ -165,7 +168,9 @@ export async function ownedBy(who: string, onFound?: (ids: number[]) => void): P
   const found: number[] = []
   for (let i = 0; i < ids.length && found.length < total; i += 8) {
     const batch = ids.slice(i, i + 8)
-    const owners = await Promise.all(batch.map(id => call(encUint(SEL.ownerOf, id)).catch(() => '0x')))
+    // every number in the map is minted, so ownerOf never reverts here: any error is the network,
+    // and it must surface rather than silently drop a piece
+    const owners = await Promise.all(batch.map(id => call(encUint(SEL.ownerOf, id))))
     owners.forEach((o, j) => { if (o.length >= 66 && '0x' + o.slice(-40).toLowerCase() === me) found.push(batch[j]) })
     onFound?.([...found])
   }

@@ -38,6 +38,7 @@ export default function HoldersView() {
   const [error, setError] = useState('')
   const [pieces, setPieces] = useState<Piece[] | null>(null)
   const [goto, setGoto] = useState('')
+  const [run, setRun] = useState(0) // bumped on every lookup, so the same address can be read again
 
   useEffect(() => discoverWallets(setWallets), [])
 
@@ -50,7 +51,11 @@ export default function HoldersView() {
     ;(async () => {
       try {
         const ids = await ownedBy(who)
-        const rows = await Promise.all(ids.map(id => dataOf(id).then(h => parse(id, h))))
+        const rows: Piece[] = []
+        for (let i = 0; i < ids.length && alive; i += 8) { // a few at a time, so public RPCs are not flooded
+          const batch = ids.slice(i, i + 8)
+          rows.push(...(await Promise.all(batch.map(id => dataOf(id).then(h => parse(id, h))))))
+        }
         if (!alive) return
         setPieces(rows.sort((a, b) => a.id - b.id))
       } catch (e) {
@@ -60,23 +65,28 @@ export default function HoldersView() {
       }
     })()
     return () => { alive = false }
-  }, [who])
+  }, [who, run])
 
   const connectWith = async (w: WalletInfo) => {
     setError('')
     try {
       setBusy('Connecting…')
-      setWho(await connect(w.provider))
+      const a = await connect(w.provider)
+      if (!/^0x[0-9a-fA-F]{40}$/.test(a)) throw new Error('The wallet did not share an address.')
+      setWho(a)
+      setRun(r => r + 1)
     } catch (e) {
       setBusy('')
-      setError(explain(e))
+      setError(e instanceof Error && !(e as { code?: number }).code ? e.message : explain(e))
     }
   }
   const lookUp = (e: FormEvent) => {
     e.preventDefault()
     const a = typed.trim()
     if (!/^0x[0-9a-fA-F]{40}$/.test(a)) { setError('Paste a full Ethereum address: 0x followed by 40 characters.'); return }
+    if (/^0x0{40}$/.test(a)) { setError('That is the zero address: nobody holds pieces there.'); return }
     setWho(a)
+    setRun(r => r + 1)
   }
 
   return (
@@ -110,13 +120,13 @@ export default function HoldersView() {
                   No wallet found in this browser. On a phone, open this page in your wallet app: <a href="https://metamask.app.link/dapp/www.kancuno.com/klab/mine">MetaMask</a> · <a href={`https://go.cb-w.com/dapp?cb_url=${encodeURIComponent('https://www.kancuno.com/klab/mine')}`}>Coinbase</a>.
                 </p>
               )}
-              <p className="lab-note">Connecting only reads which pieces you hold: nothing is signed or sent.</p>
+              <p className="lab-note">Connecting only reads which pieces you hold, through public Ethereum nodes: nothing is signed or sent.</p>
               <form className="lab-row" onSubmit={lookUp}>
                 <label className="lab-label" htmlFor="hv-addr">Or an address</label>
                 <input id="hv-addr" className="hv-addr" value={typed} onChange={e => setTyped(e.target.value)} placeholder="0x…" spellCheck={false} autoComplete="off" />
                 <button type="submit" className="lab-btn lab-btn--sm" disabled={!!busy}>Look</button>
               </form>
-              {busy && <p className="lab-note" role="status">{busy}</p>}
+              <p className="lab-note" role="status" aria-live="polite">{busy}</p>
               {error && <p className="lab-error" role="alert">{error}</p>}
             </section>
 
