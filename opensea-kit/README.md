@@ -1,6 +1,6 @@
 # OpenSea · THE K.LAB
 
-Everything for the collection page. Images in this folder: `logo.png` (Logo, 350×350, made at 2×), `banner.png` (Banner, 1400×350, made at 2×), `featured.png` (Featured image, 600×400, made at 2×). They show K1N0 exactly as the contract draws them.
+Everything for the collection page. Images in this folder: `logo.png` (Logo, 350×350, made at 2×: THE K.LAB's mark, K1N0 #1, not the K4NCUN0 logo), `banner.gif` (Banner, 1400×350, animated: a wall of K1N0 that keep changing, the mark fixed in the middle; `banner.png` is the still version, made at 2×), `featured.png` (Featured image, 600×400, made at 2×). The tiles show K1N0 as the contract draws them. Rebuild with `python scripts/opensea-kit.py`.
 
 ## Collection settings
 

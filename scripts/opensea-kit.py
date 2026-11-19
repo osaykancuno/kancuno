@@ -197,9 +197,48 @@ def write_featured():
     img.save(os.path.join(OUT, 'featured.png'), optimize=True)
 
 
+def write_banner_gif(frames=18, period=6, ms=260):
+    """1400x350 animated banner: a wall of K1N0 that keep changing (each tile cycles through three
+    combinations, a third of the wall at a time), with THE K.LAB's mark fixed in the middle. Loops."""
+    W, H = 1400, 350
+    tile, gap, cols, rows = 98, 10, 13, 3
+    x0 = (W - (cols * tile + (cols - 1) * gap)) // 2
+    y0 = (H - (rows * tile + (rows - 1) * gap)) // 2
+    mid = (rows // 2) * cols + cols // 2
+    rng = random.Random(8362)
+    pool = V2[1:]
+    while len(pool) < 3 * cols * rows:
+        c = v2_combo(rng)
+        if c not in pool and c != V2[0]:
+            pool.append(c)
+    rng.shuffle(pool)
+    cache = {}
+    def tile_img(c):
+        if c not in cache:
+            cache[c] = k3d(tile, *c)
+        return cache[c]
+    mask = Image.new('L', (tile, tile), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, tile - 1, tile - 1), radius=8, fill=255)
+    order = list(range(cols * rows))
+    phase = {i: rng.randrange(period) for i in order}
+    combos = {i: [pool[(3 * i + j) % len(pool)] for j in range(3)] for i in order}
+    out = []
+    for t in range(frames):
+        img = Image.new('RGB', (W, H), (32, 28, 22))
+        for i in order:
+            r, cc = divmod(i, cols)
+            c = V2[0] if i == mid else combos[i][((t + phase[i]) // period) % 3]
+            img.paste(tile_img(c), (x0 + cc * (tile + gap), y0 + r * (tile + gap)), mask)
+        out.append(img.quantize(colors=255, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE))
+    path = os.path.join(OUT, 'banner.gif')
+    out[0].save(path, save_all=True, append_images=out[1:], duration=ms, loop=0, optimize=True, disposal=1)
+    return path
+
+
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
     write_logo()
     write_banner()
     write_featured()
-    print('opensea-kit/: logo.png (700x700), banner.png (2800x700), featured.png (1200x800)')
+    write_banner_gif()
+    print('opensea-kit/: logo.png (700x700), banner.png (2800x700), banner.gif (1400x350, animated), featured.png (1200x800)')
