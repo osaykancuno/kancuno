@@ -397,8 +397,8 @@ export default function Experience() {
               aria-label={CHAPTER_LABELS[i]}
               style={{ ['--v' as string]: i === 0 ? 1 : 0 }}
               data-scroll-lock
-              // Inactive chapters start inert on the server too (React 18 has no inert prop)
-              {...(i !== 0 ? ({ inert: '', 'aria-hidden': true } as object) : {})}
+              // Inactive chapters start inert on the server too
+              {...(i !== 0 ? ({ inert: true, 'aria-hidden': true } as object) : {})}
             >
               {node}
             </section>

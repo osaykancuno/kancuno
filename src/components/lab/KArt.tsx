@@ -19,7 +19,7 @@ export function useReducedMotion(): boolean {
 }
 
 // Loop clock: runs only while asked, on screen and with the tab visible
-function useLoopTime(ref: React.RefObject<HTMLElement>, run: boolean): number {
+function useLoopTime(ref: React.RefObject<HTMLElement | null>, run: boolean): number {
   const [t, setT] = useState(0)
   const [onScreen, setOnScreen] = useState(true)
   const [tabVisible, setTabVisible] = useState(true)

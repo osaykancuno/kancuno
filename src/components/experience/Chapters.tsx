@@ -182,7 +182,7 @@ export function CommunitiesChapter({ onOpen, onTab }: ChapterProps & { onTab: (i
               id={`k-tabpanel-${x.id}`}
               aria-labelledby={`k-tab-${x.id}`}
               data-inactive={on ? undefined : ''}
-              {...(on ? {} : ({ inert: '', 'aria-hidden': true } as object))}
+              {...(on ? {} : ({ inert: true, 'aria-hidden': true } as object))}
             >
               <p className="k-tab-role">{x.role}</p>
               <ul className="k-list k-list--tab k-hide-sm">
