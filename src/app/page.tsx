@@ -18,6 +18,7 @@ export default function Home() {
           Free tools in the browser (K Editor, Pixel Forge, Animation Bench, SVG Suite, Touch Field, Image Wrap) to create, remix and animate your own K1N0,
           with no wallet needed. Optional mint: 8,362 K1N0 fully on-chain on Ethereum. Each has four colours of its own that never change,
           and a look its holder keeps changing for the gas only, kept on-chain with its story.
+          The collection is on OpenSea: <a href="https://opensea.io/collection/the-klab">opensea.io/collection/the-klab</a>.
         </p>
         <h2>Side quests</h2>
         <p>

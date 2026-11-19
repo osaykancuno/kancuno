@@ -46,6 +46,9 @@ export const KLAB = {
 export const txUrl = (hash: string) => `${KLAB.chain.explorer}/tx/${hash}`
 export const tokenMarketUrl = (id: number | bigint) => `${KLAB.chain.opensea}/${KLAB.address}/${id}`
 export const contractUrl = () => `${KLAB.chain.explorer}/address/${KLAB.address}`
+/** The collection page on OpenSea (mainnet; on test networks, the contract page instead) */
+export const COLLECTION_URL = 'https://opensea.io/collection/the-klab'
+export const collectionUrl = () => (KLAB.chainId === 1 ? COLLECTION_URL : contractUrl())
 
 // ── ABI (only what the Lab needs) ─────────────────────────────────────────
 const SEL = {

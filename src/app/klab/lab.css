@@ -115,6 +115,7 @@ a.lab-label:hover { color: var(--lab-text); }
 
 .lab-main { flex: 1; width: 100%; }
 
+.lab-foot__links { display: inline-flex; gap: 18px; flex-wrap: wrap; }
 .lab-foot {
   display: flex;
   flex-wrap: wrap;

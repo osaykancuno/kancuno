@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { LabProvider } from '@/lib/lab/store'
 import LabHeader from '@/components/lab/LabHeader'
 import { Zt } from '@/components/lab/Zt'
+import { COLLECTION_URL } from '@/lib/lab/chain'
 import './lab.css'
 
 const TITLE = 'THE K.LAB · KANCUNO'
@@ -27,7 +28,10 @@ export default function LabLayout({ children }: { children: React.ReactNode }) {
         <footer className="lab-foot">
           <span className="lab-label"><Zt>THE K.LAB · started by K4NCUN0 · K1N0 is CC0</Zt></span>
           <span className="lab-label">Create off-chain. Mint only if you want.</span>
-          <Link className="lab-label" href="/">kancuno.com</Link>
+          <span className="lab-foot__links">
+            <a className="lab-label" href={COLLECTION_URL} target="_blank" rel="noopener noreferrer">OpenSea ↗<span className="lab-sr"> (the K1N0 collection, opens in a new tab)</span></a>
+            <Link className="lab-label" href="/">kancuno.com</Link>
+          </span>
         </footer>
       </div>
     </LabProvider>

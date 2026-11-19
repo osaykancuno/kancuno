@@ -134,6 +134,7 @@ const JSON_LD = {
       description: 'An open character with no owner: seven head blocks over an X. K1N0 and its base files are public domain under CC0 1.0.',
       license: 'https://creativecommons.org/publicdomain/zero/1.0/',
       creator: { '@id': PERSON_ID },
+      sameAs: ['https://opensea.io/collection/the-klab', 'https://etherscan.io/address/0x25c8518e54b7cbb6cfe16d11bda5d543fb9e397f'],
     },
     {
       '@type': 'Organization',

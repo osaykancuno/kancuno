@@ -11,7 +11,7 @@ import {
   BG_FX, coloursFrom, dataHex, decodeLook, designFromColours, encodeLook, HEAD_FX, K1N0, MAX_SUPPLY, NAMES, SLOTS, SPEEDS, type Colours, type Look,
 } from '@/lib/lab/onchain'
 import {
-  canSetLook, connect, contractUrl, dataOf, discoverWallets, ensureChain, explain, isMinted, KLAB, lookHistory, looksTotal, ownerOf, sendLook, short,
+  canSetLook, collectionUrl, connect, contractUrl, dataOf, discoverWallets, ensureChain, explain, isMinted, KLAB, lookHistory, looksTotal, ownerOf, sendLook, short,
   tokenMarketUrl, tokenMeta, txUrl, waitTx, type LookEntry, type WalletInfo,
 } from '@/lib/lab/chain'
 import { useLab } from '@/lib/lab/store'
@@ -376,6 +376,7 @@ export default function TokenView() {
                   </div>
                   <p className="lab-note">Image, 3D piece and data live in the contract on Ethereum: no server, no IPFS. The colours never change; the latest look is what OpenSea shows.</p>
                   <div className="lab-row">
+                    <a className="lab-btn lab-btn--sm" href={collectionUrl()} target="_blank" rel="noopener noreferrer">Collection<span className="lab-sr"> (OpenSea, opens in a new tab)</span></a>
                     <a className="lab-btn lab-btn--sm" href={contractUrl()} target="_blank" rel="noopener noreferrer">Contract<span className="lab-sr"> (opens in a new tab)</span></a>
                     <a className="lab-btn lab-btn--sm" href={`${KLAB.chain.explorer}/address/${data.owner}`} target="_blank" rel="noopener noreferrer">Holder<span className="lab-sr"> (opens in a new tab)</span></a>
                   </div>

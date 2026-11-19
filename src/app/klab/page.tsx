@@ -5,6 +5,7 @@ import { KThumb } from '@/components/lab/KArt'
 import { defaultDesign } from '@/lib/lab/design'
 import { K1N0, MAX_SUPPLY, MINT_PRICE_ETH } from '@/lib/lab/onchain'
 import { MintSoon } from '@/components/lab/MintSoon'
+import { COLLECTION_URL } from '@/lib/lab/chain'
 import './landing.css'
 
 const TOOLS = [
@@ -178,6 +179,7 @@ export default function LabHome() {
         </div>
         <p className="kl-sub">Minting is optional: the Lab works 100% without it. Nobody votes on your <Zt>K1N0</Zt>.</p>
         <div className="kl-cta">
+          <a href={COLLECTION_URL} className="lab-btn lab-btn--primary" target="_blank" rel="noopener noreferrer"><span><Zt>See every K1N0 on OpenSea</Zt></span> <span aria-hidden="true">↗</span><span className="lab-sr"> (opens in a new tab)</span></a>
           <Link href="/klab/mine" className="lab-btn"><span><Zt>Already hold a K1N0? Change its look</Zt></span> <span aria-hidden="true">→</span></Link>
         </div>
       </section>

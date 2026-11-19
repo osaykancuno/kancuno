@@ -8,7 +8,7 @@ import { Zt } from './Zt'
 import { KThumb } from './KArt'
 import { defaultDesign, type KDesign } from '@/lib/lab/design'
 import { coloursFrom, decodeLook, designFromColours, MAX_SUPPLY, type Colours, type Look } from '@/lib/lab/onchain'
-import { connect, dataOf, discoverWallets, explain, KLAB, ownedBy, short, type WalletInfo } from '@/lib/lab/chain'
+import { collectionUrl, connect, dataOf, discoverWallets, explain, KLAB, ownedBy, short, type WalletInfo } from '@/lib/lab/chain'
 
 interface Piece { id: number; colours: Colours; look: Look; title: string; design: KDesign }
 
@@ -139,7 +139,10 @@ export default function HoldersView() {
                   <div className="lab-panel lab-section">
                     <p><Zt>No K1N0 in this wallet yet.</Zt></p>
                     <p className="lab-note">Make one in the Lab, no wallet needed, and mint it only if you want.</p>
-                    <Link className="lab-btn lab-btn--primary" href="/klab/editor">Open the K Editor</Link>
+                    <div className="lab-row">
+                      <Link className="lab-btn lab-btn--primary" href="/klab/editor">Open the K Editor</Link>
+                      <a className="lab-btn" href={collectionUrl()} target="_blank" rel="noopener noreferrer">Browse the collection ↗<span className="lab-sr"> (OpenSea, opens in a new tab)</span></a>
+                    </div>
                   </div>
                 ) : (
                   <ul className="hv-list">
@@ -166,6 +169,7 @@ export default function HoldersView() {
                 {CAN.map(c => <div key={c.name}><dt>{c.name}</dt><dd>{c.text}</dd></div>)}
               </dl>
               <p className="lab-note">Anyone can open a K1N0 and try looks; only its holder, or an app they chose, can save one.</p>
+              <a className="lab-btn lab-btn--sm" href={collectionUrl()} target="_blank" rel="noopener noreferrer"><span><Zt>Every K1N0 on OpenSea</Zt></span> ↗<span className="lab-sr"> (opens in a new tab)</span></a>
             </section>
             <form className="lab-row" onSubmit={e => { e.preventDefault(); const n = Math.floor(Number(goto)); if (goto !== '' && n >= 0 && n <= MAX_SUPPLY) router.push(`/klab/token?id=${n}`) }}>
               <label className="lab-label" htmlFor="hv-id">Know the number? K1N0 #</label>
