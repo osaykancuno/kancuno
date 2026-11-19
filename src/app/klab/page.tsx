@@ -39,7 +39,7 @@ export default function LabHome() {
       {/* ── Hero ── */}
       <section className="kl-hero" aria-labelledby="kl-title">
         <div className="kl-hero__copy">
-          <p className="lab-label kl-eyebrow">THE K.LAB · open to everyone</p>
+          <p className="lab-label kl-eyebrow">THE K.LAB · open to everyone · CC0</p>
           <h1 id="kl-title" className="kl-hero__title">
             <span>One symbol.</span>
             <span>Infinite variations.</span>
@@ -68,6 +68,7 @@ export default function LabHome() {
           <div className="kl-text">
             <p><Zt>K1N0 is a simple, strong figure: seven blocks for a head, an X for a body.</Zt></p>
             <p>It is not one person’s mark: it is a shared symbol, made to be reinvented.</p>
+            <p><Zt>K1N0 is </Zt><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0<span className="lab-sr"> (opens in a new tab)</span></a>: public domain, free for anyone to use, remix and sell, with no permission needed.</p>
             <p>The figure stays the same; every version tells a new story.</p>
             <p>Keep it recognisable, then make it yours.</p>
             <p>It lives in 3D and in a flat version for vector files.</p>
@@ -142,6 +143,7 @@ export default function LabHome() {
               <div><dt>Keep</dt><dd><Zt>K1N0 stays recognisable: seven head blocks, one X.</Zt></dd></div>
               <div><dt>Prefer</dt><dd>Clay 3D, pixel art, neon, high contrast.</dd></div>
               <div><dt>Free</dt><dd>Colours, textures, effects, accessories and backgrounds. All of it.</dd></div>
+              <div><dt>CC0</dt><dd><Zt>K1N0 and its base files are public domain (</Zt><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0<span className="lab-sr"> (opens in a new tab)</span></a>). Use them for anything, commercial work included. No permission or credit needed.</dd></div>
             </dl>
             <h3 className="kl-h3">Base files</h3>
             <BaseDownloads />

@@ -21,6 +21,8 @@ K1N0 in clay-like 3D: seven blocks for a head over an X. The X and four blocks o
 
 **The look is alive.** The four colours are fixed forever at mint; the art keeps moving. Whoever holds a K1N0 gives each of its colours an effect (glow, pulse, blink, float, shimmer, neon, metal, glitch; the background has its own), sets the speed and the 3D view. Each change costs only gas, and every look stays on-chain with who set it and when. When a K1N0 changes hands, its story goes on with the next holder.
 
+**CC0.** K1N0 is public domain (https://creativecommons.org/publicdomain/zero/1.0/): use it, remix it, build on it, commercial work included.
+
 **Fully on-chain on Ethereum.** The contract draws the image in 3D and an interactive 3D piece you can turn right here: drag it, scroll to zoom. No IPFS, no server.
 
 Design yours in THE K.LAB, no wallet needed: kancuno.com/klab
@@ -28,7 +30,7 @@ Design yours in THE K.LAB, no wallet needed: kancuno.com/klab
 ## Short texts
 
 - **Tagline (≤ 80):** One symbol. Infinite variations. Four colours, a living look.
-- **Short description (≤ 160):** 8,362 K1N0 in 3D, fully on-chain. Four colours that are yours alone, and a look you keep changing for the gas only. A symbol for everyone.
+- **Short description (≤ 160):** 8,362 K1N0 in 3D, fully on-chain. Four colours that are yours alone, and a look you keep changing for the gas only. CC0, for everyone.
 
 ## Launch post (X)
 

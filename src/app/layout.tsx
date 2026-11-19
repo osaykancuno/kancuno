@@ -117,7 +117,7 @@ const JSON_LD = {
       name: 'THE K.LAB',
       url: `${SITE}/klab`,
       description:
-        'K1N0 is a symbol of crypto and pop culture that belongs to everyone. One symbol, infinite variations: browser tools to create, remix and animate your own K1N0, ' +
+        'K1N0 is a symbol of crypto and pop culture that belongs to everyone, public domain under CC0. One symbol, infinite variations: browser tools to create, remix and animate your own K1N0, ' +
         'in 3D: K Editor, Pixel Forge, Animation Bench (GIF and video), SVG Suite, Touch Field and Image Wrap. Creation is off-chain, no wallet needed. ' +
         'Optional mint: 8,362 K1N0 fully on-chain on Ethereum, four colours of your own that never change and a look you keep changing, kept on-chain with its story.',
       applicationCategory: 'DesignApplication',
@@ -125,6 +125,15 @@ const JSON_LD = {
       isAccessibleForFree: true,
       image: `${SITE}/klab/og-lab.png`,
       author: { '@id': PERSON_ID },
+    },
+    {
+      '@type': 'CreativeWork',
+      '@id': `${SITE}/klab#k1n0`,
+      name: 'K1N0',
+      url: `${SITE}/klab`,
+      description: 'An open symbol of crypto and pop culture: seven head blocks over an X. K1N0 and its base files are public domain under CC0 1.0.',
+      license: 'https://creativecommons.org/publicdomain/zero/1.0/',
+      creator: { '@id': PERSON_ID },
     },
     {
       '@type': 'Organization',

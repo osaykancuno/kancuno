@@ -12,7 +12,7 @@ export const wireframeDesign = (): KDesign =>
   })
 
 export const BASE_FILES = [
-  { id: 'svg', label: 'Base K1N0', ext: 'SVG', file: 'k-lab-base.svg', type: 'image/svg+xml', note: 'The flat K1N0, vector, 1024 px.' },
+  { id: 'svg', label: 'Base K1N0', ext: 'SVG', file: 'k-lab-base.svg', type: 'image/svg+xml', note: 'The flat K1N0, vector, 1024 px. CC0.' },
   { id: 'wire', label: 'Wireframe', ext: 'SVG', file: 'k-lab-wireframe.svg', type: 'image/svg+xml', note: 'Outlines only, transparent.' },
   { id: 'grid', label: 'Pixel grid', ext: 'JSON', file: 'k-lab-pixel-grid-32.json', type: 'application/json', note: 'K1N0 on a 32×32 grid.' },
   { id: 'design', label: 'Starter design', ext: 'JSON', file: 'k-lab-starter.k.json', type: 'application/json', note: 'Load it in any K.LAB tool.' },
