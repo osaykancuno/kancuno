@@ -38,3 +38,11 @@ KLabRenderer differs only in its two immutable addresses (art, viewer), as expec
 Sourcify: all five verified as exact_match on 2026-11-18 (https://repo.sourcify.dev/1/0x25c8518e54b7cbb6cfe16d11bda5d543fb9e397f).
 Etherscan: its form needs a Cloudflare check that a person must pass; the file can be uploaded straight from
 https://raw.githubusercontent.com/osaykancuno/kancuno/master/contracts/deploy/verify/standard-input.json
+
+2026-11-19: metadata switched to KLabRenderer2 (same art and viewer, aligned words: K1N0 as an open
+character with no owner, CC0; links to /klab). Deployed by the owner from deploy/owner.html:
+   KLabRenderer2 0x4e51de05faaa0d15b86cc857956854470dd63ea0 (src/KLabRenderer2.sol:KLabRenderer2,
+   constructor: art 0xc2483e18d84d3e991a53f297385b011d5c4bd871, viewer 0x50e0cb4174fdb6587e9f9960eb5760ffd5b36722)
+   Verified: Sourcify exact_match and Etherscan exact match (forwarded by Sourcify), standard input in verify/renderer2/.
+   The first renderer 0x8fe4cce4e8210033bb639753a08fa9052dbfe0bd stays deployed: deploy/owner.html can switch back.
+   Check any time: node scripts/renderer2-live-check.cjs 0x4e51de05faaa0d15b86cc857956854470dd63ea0
