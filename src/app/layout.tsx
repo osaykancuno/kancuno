@@ -17,7 +17,7 @@ const SHARE_DESCRIPTION =
   'THE K.LAB: one symbol, infinite variations, with K1N0 on Ethereum.'
 const DESCRIPTION =
   'Osay Kancuno (K4NCUN0, @OsayKancuno) is an artist and builder on-chain. ' +
-  'He made THE K.LAB: free tools to design your own K, and K1N0, a fully on-chain collection on Ethereum. ' +
+  'He made THE K.LAB, an open lab around K1N0, a symbol anyone can remix and mint fully on-chain on Ethereum. ' +
   'Also side quests like JAMVERSE, a live music universe in 3D, and games, tools and video for the communities he belongs to.'
 const IMAGE_ALT = 'Osay Kancuno (K4NCUN0), artist and builder on-chain, with the K4NCUN0 logo'
 
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     'Osay Kancuno', 'K4NCUN0', 'Kancuno', '@OsayKancuno',
     'artist on-chain', 'on-chain artist', 'on-chain builder', 'on-chain art', 'pixel art',
     'JAMVERSE', 'on-chain experiments', 'off-chain experiments', '3D music studio', 'jam online with friends',
-    'THE K.LAB', 'K1N0', 'K1N0 NFT', 'on-chain NFT', 'Kancuno K', 'pixel art editor', 'logo remix', 'creative framework',
+    'THE K.LAB', 'K1N0', 'K1N0 NFT', 'on-chain NFT', 'K1N0 remix', 'pixel art editor', 'open symbol', 'creative framework',
     // secondary context
     'Normies Yacht Club', '8362 Coffee', 'The Normies', 'THE100', 'Normie #8362',
     'JPEG Frens', 'The Frens Forge', 'The Wall Arcade', 'FRENS AFTER DARK', 'NFC Summit', 'NFC 2027', 'NFC Summit Lisbon', 'On the Wall',
@@ -117,9 +117,9 @@ const JSON_LD = {
       name: 'THE K.LAB',
       url: `${SITE}/klab`,
       description:
-        'By Osay Kancuno. One symbol, infinite variations: free browser tools to create, remix and animate art based on the Kancuno K, ' +
-        'in 3D like the home page: K Editor, Pixel Forge, Animation Bench (GIF and video), SVG Suite, Touch Field and Image Wrap. Creation is off-chain, no wallet needed. ' +
-        'Optional mint: K1N0, 8,362 Ks fully on-chain on Ethereum, four colours of your own that never change and a look you keep changing, kept on-chain with its story.',
+        'K1N0 is a symbol of crypto and pop culture that belongs to everyone. One symbol, infinite variations: browser tools to create, remix and animate your own K1N0, ' +
+        'in 3D: K Editor, Pixel Forge, Animation Bench (GIF and video), SVG Suite, Touch Field and Image Wrap. Creation is off-chain, no wallet needed. ' +
+        'Optional mint: 8,362 K1N0 fully on-chain on Ethereum, four colours of your own that never change and a look you keep changing, kept on-chain with its story.',
       applicationCategory: 'DesignApplication',
       operatingSystem: 'Web browser',
       isAccessibleForFree: true,

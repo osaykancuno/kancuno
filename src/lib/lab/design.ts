@@ -123,7 +123,7 @@ function buildGrid(size: number, cubes: string[], body: string): string[] {
 export function defaultDesign(): KDesign {
   return {
     v: 1,
-    name: 'Original K',
+    name: 'Original K1N0',
     form: 'vector',
     view: '3d',
     bg: part(solid(BRAND.yellow)),
@@ -170,13 +170,13 @@ export function makeDesign(p: Patch): KDesign {
 export const PRESETS: KDesign[] = [
   defaultDesign(),
   makeDesign({
-    name: 'Night K',
+    name: 'Night K1N0',
     bg: { fill: solid(BRAND.ink) },
     body: { fill: solid(BRAND.yellow) },
     head: { cubes: [BRAND.yellow, BRAND.yellow, BRAND.yellow, BRAND.purple, BRAND.yellow, BRAND.pink, BRAND.pink] },
   }),
   makeDesign({
-    name: 'Neon K',
+    name: 'Neon K1N0',
     bg: { fill: solid('#07060b') },
     body: { line: true, fill: solid('#ff4fd8') },
     head: { line: true, cubes: ['#3ff2ff', '#3ff2ff', '#3ff2ff', '#ff4fd8', '#3ff2ff', BRAND.yellow, BRAND.yellow] },

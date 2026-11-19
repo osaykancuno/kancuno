@@ -22,7 +22,7 @@ export function MintButton({ className = 'lab-btn lab-btn--primary' }: { classNa
   const [open, setOpen] = useState(false)
   return (
     <>
-      <button type="button" className={className} onClick={() => setOpen(true)}>Mint this K</button>
+      <button type="button" className={className} onClick={() => setOpen(true)}><span><Zt>Mint this K1N0</Zt></span></button>
       {open && <MintDialog onClose={() => setOpen(false)} />}
     </>
   )
@@ -34,7 +34,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
   const start = useMemo(() => coloursFromDesign(design), [design])
   const [colours, setColours] = useState<Colours>(start.colours)
   // the title starts from the name the visitor gave their K (not the Lab's default names)
-  const [rawTitle, setRawTitle] = useState(() => (/^(Original K|Remix( of)? .*|Untitled|K1N0)$/i.test(design.name) ? '' : cleanName(design.name)))
+  const [rawTitle, setRawTitle] = useState(() => (/^(Original K(1N0)?|Remix( of)? .*|Untitled|K1N0)$/i.test(design.name) ? '' : cleanName(design.name)))
   const title = cleanName(rawTitle)
   const titleBad = hasArtistName(title) // the artist's name is reserved
   const valid = validColours(colours)
@@ -160,7 +160,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
     // Closing is always possible: a transaction already sent goes on in the wallet
     <dialog ref={ref} className="mint" aria-labelledby="mint-title" onCancel={onClose}>
       <div className="mint__head">
-        <h2 id="mint-title" className="mint__title"><Zt>{phase === 'done' ? `K1N0 #${minted} is yours` : 'Mint this K'}</Zt></h2>
+        <h2 id="mint-title" className="mint__title"><Zt>{phase === 'done' ? `K1N0 #${minted} is yours` : 'Mint this K1N0'}</Zt></h2>
         <button type="button" className="mint__x" onClick={onClose} aria-label="Close">×</button>
       </div>
 
@@ -186,7 +186,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
               <ol className="mint__steps">
                 <li data-ok={valid || undefined} data-bad={!valid || undefined}>
                   <strong>Four colours</strong>
-                  <span>The X and four blocks of the head always stay black; these four colours are yours. <Zt>{start.exact ? 'From your K:' : 'Your K, in the K1N0 palette:'}</Zt></span>
+                  <span>The X and four blocks of the head always stay black; these four colours are yours. <Zt>{start.exact ? 'From your design:' : 'Your design, in the K1N0 palette:'}</Zt></span>
                   <div className="k1-slots">
                     {SLOTS.map((name, slot) => (
                       <div key={name} className="k1-slot" role="radiogroup" aria-label={`${name} colour`}

@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import LogoMark from '@/components/experience/LogoMark'
+import { Zt } from './Zt'
 
 export const LAB_TOOLS = [
   { href: '/klab/editor', code: 'T.01', name: 'K Editor' },
@@ -26,6 +27,9 @@ export default function LabHeader() {
             {t.name}
           </Link>
         ))}
+        <Link href="/klab/mine" className="lab-nav__link lab-nav__mine" aria-current={path === '/klab/mine' ? 'page' : undefined}>
+          <span><Zt>My K1N0</Zt></span>
+        </Link>
       </nav>
       <Link href="/" className="lab-nav__home">kancuno.com <span aria-hidden="true">↗</span></Link>
     </header>

@@ -14,9 +14,9 @@ export default function Home() {
         </p>
         <h2>THE K.LAB</h2>
         <p>
-          <a href="/klab">THE K.LAB</a> is his creative lab built on his own symbol, the K: one symbol, infinite variations.
-          Free tools in the browser (K Editor, Pixel Forge, Animation Bench, SVG Suite, Touch Field, Image Wrap) to create, remix and animate your own K,
-          with no wallet needed. Optional mint: K1N0, 8,362 Ks fully on-chain on Ethereum. Each has four colours of its own that never change,
+          <a href="/klab">THE K.LAB</a> is an open creative lab around K1N0, a symbol of crypto and pop culture that belongs to everyone: one symbol, infinite variations.
+          Free tools in the browser (K Editor, Pixel Forge, Animation Bench, SVG Suite, Touch Field, Image Wrap) to create, remix and animate your own K1N0,
+          with no wallet needed. Optional mint: 8,362 K1N0 fully on-chain on Ethereum. Each has four colours of its own that never change,
           and a look its holder keeps changing for the gas only, kept on-chain with its story.
         </p>
         <h2>Side quests</h2>

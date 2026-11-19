@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { renderSvg, svgDataUrl } from '@/lib/lab/render'
 import { useLab } from '@/lib/lab/store'
+import { Zt } from './Zt'
 import { downloadText, slug } from '@/lib/lab/export'
 import { BASE_FILES, baseFile } from '@/lib/lab/base-files'
 import { MAX_OPTIMIZE_BYTES, byteSize, looksLikeSvg, optimizeSvg, setSvgSize, type OptimizeOptions } from '@/lib/lab/svg-optimize'
@@ -103,7 +104,7 @@ export function SvgSuite() {
         <section className="lab-panel lab-section" aria-label="Source">
           <h2 className="lab-section__title">Source</h2>
           <div className="lab-seg">
-            <button type="button" aria-pressed={source === 'design'} onClick={() => setSource('design')}>Current K design</button>
+            <button type="button" aria-pressed={source === 'design'} onClick={() => setSource('design')}>Current design</button>
             <button type="button" aria-pressed={source === 'paste'} onClick={() => setSource('paste')}>Paste / upload SVG</button>
           </div>
           {source === 'paste' && (
@@ -148,8 +149,8 @@ export function SvgSuite() {
           <p className="lab-status" role="status" aria-live="polite">{status}</p>
         </section>
 
-        <section className="lab-panel lab-section" aria-label="Base K files">
-          <h2 className="lab-section__title">Base K files</h2>
+        <section className="lab-panel lab-section" aria-label="Base K1N0 files">
+          <h2 className="lab-section__title"><Zt>Base K1N0 files</Zt></h2>
           <div className="ss-files">
             {BASE_FILES.map(f => (
               <div className="ss-file" key={f.id}>

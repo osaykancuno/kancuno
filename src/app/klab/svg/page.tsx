@@ -4,7 +4,7 @@ import './svg.css'
 
 export const metadata: Metadata = {
   title: 'SVG Suite',
-  description: 'Render, clean and download SVG. Optimise the K or your own file and grab the base K files.',
+  description: 'Render, clean and download SVG. Optimise K1N0 or your own file and grab the base K1N0 files.',
   alternates: { canonical: '/klab/svg' },
 }
 

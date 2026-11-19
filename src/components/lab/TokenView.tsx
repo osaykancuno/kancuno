@@ -139,12 +139,12 @@ export default function TokenView() {
       <header className="lab-tool__head">
         <span className="lab-label">K1N0</span>
         <h1 className="lab-tool__title"><Zt>{has ? `K1N0 #${id}` : 'K1N0'}</Zt></h1>
-        <p className="lab-note">{data ? <Zt>{id === 0 ? 'The K4NCUN0 logo' : data.title || 'Untitled'}</Zt> : `One of ${MAX_SUPPLY.toLocaleString('en')}, each with four colours of its own, fully on-chain.`}</p>
+        <p className="lab-note">{data ? <Zt>{id === 0 ? 'The first K1N0' : data.title || 'Untitled'}</Zt> : `One of ${MAX_SUPPLY.toLocaleString('en')}, each with four colours of its own, fully on-chain.`}</p>
       </header>
 
       {!KLAB.live ? (
         <div className="lab-panel lab-section">
-          <p>The <Zt>K1N0</Zt> contract is not live yet. Make your K now: when the mint opens, it is one click away.</p>
+          <p>The <Zt>K1N0</Zt> contract is not live yet. Make your K1N0 now: when the mint opens, it is one click away.</p>
           <Link className="lab-btn lab-btn--primary" href="/klab/editor">Open the K Editor</Link>
         </div>
       ) : (
@@ -230,6 +230,7 @@ export default function TokenView() {
               <input id="tv-id" className="tv-input" inputMode="numeric" value={goto} onChange={e => setGoto(e.target.value.replace(/\D/g, '').slice(0, 4))} placeholder={String(has ? id : 0)} />
               <button type="submit" className="lab-btn lab-btn--sm">Go</button>
             </form>
+            <p className="lab-note"><Link href="/klab/mine"><Zt>All your K1N0 in one place →</Zt></Link></p>
           </div>
         </div>
       )}

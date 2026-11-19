@@ -180,7 +180,7 @@ export default function TouchField() {
     const done = new Promise<void>(res => { rec.onstop = () => res(); rec.onerror = () => res() })
     rec.start(250)
     live.current.rec = true // keep drawing every frame so the clip runs smoothly
-    setStatus('Recording 6 seconds. Move over the K.')
+    setStatus('Recording 6 seconds. Move over K1N0.')
     for (let s = 6; s > 0; s--) { setRecording(s); await new Promise(res => setTimeout(res, 1000)) }
     rec.stop()
     live.current.rec = false
@@ -197,7 +197,7 @@ export default function TouchField() {
       <header className="lab-tool__head">
         <span className="lab-label">T.05</span>
         <h1 className="lab-tool__title">Touch Field</h1>
-        <p className="lab-note">Move over the K. The blocks make way.</p>
+        <p className="lab-note">Move over K1N0. The blocks make way.</p>
       </header>
 
       <div className="lab-tool__stagewrap">
@@ -212,7 +212,7 @@ export default function TouchField() {
               tabIndex={0}
               role="application"
               aria-roledescription="touch field"
-              aria-label={`Touch Field: the 3D K, ${opts.mode} mode. Move the pointer over it, or use the arrow keys.`}
+              aria-label={`Touch Field: K1N0 in 3D, ${opts.mode} mode. Move the pointer over it, or use the arrow keys.`}
               aria-describedby="tf-help"
               data-orbit="tool"
               data-hand={hand}
@@ -247,8 +247,8 @@ export default function TouchField() {
           <Range label="Radius" min={0.6} max={4} step={0.1} value={opts.radius} format={v => v.toFixed(1)} onChange={radius => set({ radius })} />
           <Range label="Strength" min={0.2} max={2.5} step={0.05} value={opts.strength} format={v => v.toFixed(2)} onChange={strength => set({ strength })} />
           <Range label="Return" min={1} max={16} step={0.5} value={opts.ease} format={v => `${v.toFixed(1)}/s`} onChange={ease => set({ ease })} />
-          <Seg label="Moves" value={opts.parts} options={[{ value: 'all', label: 'Whole K' }, { value: 'head', label: 'Head' }, { value: 'body', label: 'Body' }]} onChange={parts => set({ parts })} />
-          <label className="lab-check"><input type="checkbox" checked={opts.field} onChange={e => set({ field: e.target.checked })} /> Voxel field around the K</label>
+          <Seg label="Moves" value={opts.parts} options={[{ value: 'all', label: 'Whole figure' }, { value: 'head', label: 'Head' }, { value: 'body', label: 'Body' }]} onChange={parts => set({ parts })} />
+          <label className="lab-check"><input type="checkbox" checked={opts.field} onChange={e => set({ field: e.target.checked })} /> Voxel field around K1N0</label>
           <label className="lab-check"><input type="checkbox" checked={demo && !reduce} disabled={reduce} onChange={e => setDemo(e.target.checked)} /> Demo when idle{reduce ? ' (off: reduced motion)' : ''}</label>
         </Section>
 
@@ -269,7 +269,7 @@ export default function TouchField() {
             <button type="button" className="lab-btn" onClick={snapshot}>PNG still</button>
           </div>
           <p className="lab-status" role="status">{status}</p>
-          <p className="lab-note">The K comes from your current design: change it in the K Editor or Pixel Forge (pixels become voxels here).</p>
+          <p className="lab-note">K1N0 comes from your current design: change it in the K Editor or Pixel Forge (pixels become voxels here).</p>
           <div className="lab-row"><MintButton /></div>
         </Section>
       </div>

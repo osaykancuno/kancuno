@@ -9,6 +9,7 @@ import { exportJson, exportPng, exportSvg } from '@/lib/lab/export'
 import { renderSvg } from '@/lib/lab/render'
 import { isHex } from '@/lib/lab/validate'
 import { useLab } from '@/lib/lab/store'
+import { Zt } from './Zt'
 
 type Tool = 'pencil' | 'eraser' | 'fill' | 'eyedropper'
 type PaletteMode = 'k' | 'free'
@@ -361,7 +362,7 @@ export default function PixelForge() {
       <header className="lab-tool__head">
         <h1 className="lab-tool__title">Pixel Forge</h1>
         <span className="lab-label">T.02</span>
-        <p className="lab-note">Draw the K one pixel at a time.</p>
+        <p className="lab-note">Draw K1N0 one pixel at a time.</p>
       </header>
 
       <div className="lab-tool__stagewrap">
@@ -390,8 +391,8 @@ export default function PixelForge() {
           {!isPixel && (
             <div className="pf-start">
               <p className="lab-label">Vector design loaded</p>
-              <p className="lab-note">Your vector K stays untouched until you choose.</p>
-              <button type="button" className="lab-btn lab-btn--primary" onClick={startFromPreset}>Start from the K preset</button>
+              <p className="lab-note">Your vector K1N0 stays untouched until you choose.</p>
+              <button type="button" className="lab-btn lab-btn--primary" onClick={startFromPreset}><span><Zt>Start from the K1N0 preset</Zt></span></button>
               <button type="button" className="lab-btn lab-btn--ghost lab-btn--sm" onClick={useExistingGrid}>Edit my saved grid</button>
             </div>
           )}
@@ -445,7 +446,7 @@ export default function PixelForge() {
           <div className="pf-headrow">
             <h2 className="lab-section__title">Colour</h2>
             <span className="lab-seg" role="group" aria-label="Palette">
-              <button type="button" aria-pressed={mode === 'k'} onClick={() => chooseMode('k')}>K palette</button>
+              <button type="button" aria-pressed={mode === 'k'} onClick={() => chooseMode('k')}>Original palette</button>
               <button type="button" aria-pressed={mode === 'free'} onClick={() => chooseMode('free')}>Free</button>
             </span>
           </div>
@@ -498,7 +499,7 @@ export default function PixelForge() {
             <output>{Math.round(design.grid.gap * 100)}%</output>
           </label>
           <div className="lab-row">
-            <button type="button" className="lab-btn lab-btn--sm" onClick={resetPreset}>Reset to K preset</button>
+            <button type="button" className="lab-btn lab-btn--sm" onClick={resetPreset}><span><Zt>Reset to the K1N0 preset</Zt></span></button>
             <button type="button" className="lab-btn lab-btn--sm lab-btn--ghost" onClick={clearGrid}>Clear</button>
             {isPixel && <button type="button" className="lab-btn lab-btn--sm lab-btn--ghost" onClick={backToVector}>Back to vector</button>}
           </div>

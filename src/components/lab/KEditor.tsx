@@ -12,7 +12,7 @@ import { ColorPick, FillEditor, Range, Section, Seg } from './controls'
 import { MintButton } from './MintDialog'
 
 const PARTS: { id: PartId; name: string; hint: string }[] = [
-  { id: 'bg', name: 'Background', hint: 'The field behind the K' },
+  { id: 'bg', name: 'Background', hint: 'The field behind K1N0' },
   { id: 'body', name: 'Body', hint: 'The X' },
   { id: 'head', name: 'Head', hint: 'Seven squares' },
 ]
@@ -40,7 +40,7 @@ export default function KEditor() {
   const onImport = async (f: File | undefined) => {
     setError('')
     if (!f) return
-    if (f.size > 400_000) { setError('File too large for a K design.'); return }
+    if (f.size > 400_000) { setError('File too large for a K1N0 design.'); return }
     try {
       set(parseDesignText(await f.text()))
       setStatus(`Loaded “${f.name}”.`)
@@ -71,7 +71,7 @@ export default function KEditor() {
       <div className="lab-tool__head">
         <span className="lab-label">T.01</span>
         <h1 className="lab-tool__title">K Editor</h1>
-        <p className="lab-note">Pick a part. Change everything but the K.</p>
+        <p className="lab-note">Pick a part. Change everything but the figure.</p>
       </div>
 
       <div className="lab-tool__stagewrap">
@@ -85,14 +85,14 @@ export default function KEditor() {
           </div>
           <button type="button" className="lab-btn lab-btn--sm" onClick={undo} disabled={!canUndo} title="Undo (Ctrl+Z)">Undo</button>
           <button type="button" className="lab-btn lab-btn--sm" onClick={redo} disabled={!canRedo} title="Redo (Ctrl+Shift+Z)">Redo</button>
-          <button type="button" className="lab-btn lab-btn--sm" onClick={() => set(remix(d))} title="A random variation that keeps the K">Remix</button>
+          <button type="button" className="lab-btn lab-btn--sm" onClick={() => set(remix(d))} title="A random variation that keeps K1N0 recognisable">Remix</button>
           {d.view === '3d' && !isDefaultCam(d.cam) && (
             <button type="button" className="lab-btn lab-btn--sm" onClick={() => set(x => ({ ...x, cam: { ...CAM_DEFAULT } }))} title="Back to the front view (double-click the stage)">Front view</button>
           )}
           <button type="button" className="lab-btn lab-btn--sm lab-btn--ghost" onClick={reset}>Reset</button>
         </div>
         <p className="lab-note" style={{ textAlign: 'center' }}>
-          {d.view === '3d' ? 'Click a part, or choose it in Layers. Drag to turn the K, scroll or pinch to zoom.' : 'Click a part of the K, or choose it in Layers.'}
+          {d.view === '3d' ? 'Click a part, or choose it in Layers. Drag to turn K1N0, scroll or pinch to zoom.' : 'Click a part of K1N0, or choose it in Layers.'}
         </p>
       </div>
 
@@ -227,7 +227,7 @@ export default function KEditor() {
             <MintButton />
             <span className="lab-note">Optional · K1N0 on Ethereum, your colours alone</span>
           </div>
-          <p className="lab-note">PNG and GIF follow the view (3D or flat). Your K is saved in this browser.</p>
+          <p className="lab-note">PNG and GIF follow the view (3D or flat). Your K1N0 is saved in this browser.</p>
         </Section>
       </div>
     </div>

@@ -117,7 +117,7 @@ export function AnimationBench() {
       <header className="lab-tool__head">
         <span className="lab-soon">T.03</span>
         <h1 className="lab-tool__title">Animation Bench</h1>
-        <p className="lab-note">Make the K move. Export a loop.</p>
+        <p className="lab-note">Make K1N0 move. Export a loop.</p>
       </header>
 
       <div className="lab-tool__stagewrap">
@@ -149,7 +149,7 @@ export function AnimationBench() {
           <output>{t.toFixed(2)}s</output>
         </div>
         {reduced && <p className="lab-note">Your system asks for reduced motion, so playback starts paused. Press Play to opt in, or use the scrubber. Export still works.</p>}
-        {loops.length === 0 && <p className="lab-note">Pick at least one loop to bring the K to life.</p>}
+        {loops.length === 0 && <p className="lab-note">Pick at least one loop to bring K1N0 to life.</p>}
       </div>
 
       <div className="lab-controls">

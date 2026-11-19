@@ -4,7 +4,7 @@ import './wrap.css'
 
 export const metadata: Metadata = {
   title: 'Image Wrap',
-  description: 'Choose a picture and wear it on the 3D Kancuno K: print it across the figure or on every block, frame it, map it to the logo colours. Stays in your browser.',
+  description: 'Choose a picture and put it on K1N0 in 3D: print it across the figure or on every block, frame it, map it to the original colours. Stays in your browser.',
   alternates: { canonical: '/klab/wrap' },
 }
 

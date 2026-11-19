@@ -79,7 +79,7 @@ export function KPreview(props: PreviewProps) {
   const clock = useLoopTime(ref, run)
   const t = time ?? (animate && (!reduce || forceMotion) ? clock : 0)
   return (
-    <div ref={ref} className="lab-art" role="img" aria-label={props.label ?? `${design.name}, a K design`} style={{ background: bgColour(d) }}>
+    <div ref={ref} className="lab-art" role="img" aria-label={props.label ?? `${design.name}, a K1N0 design`} style={{ background: bgColour(d) }}>
       {d.view === '3d'
         ? <K3D design={d} t={t} selected={props.selected} onPick={props.onPick} orbit={props.orbit || !!props.onCam} onCam={props.onCam} />
         : <KFlat design={d} t={t} uid={props.uid} selected={props.selected} onPick={props.onPick} />}
@@ -200,7 +200,7 @@ function K3D({ design, t, selected, onPick, orbit = false, onCam }: K3DProps) {
       data-ready={ready ? '' : undefined}
       data-orbit={orbit ? (onCam ? 'tool' : 'view') : undefined}
       tabIndex={orbit ? 0 : undefined}
-      aria-label={orbit ? 'Drag to turn around the K. Arrow keys turn, plus and minus zoom, 0 resets the view.' : undefined}
+      aria-label={orbit ? 'Drag to turn around K1N0. Arrow keys turn, plus and minus zoom, 0 resets the view.' : undefined}
       onKeyDown={orbit ? e => {
         const c = keyCam(view.current ?? latest.current.design.cam ?? CAM_DEFAULT, e.key)
         if (!c) return

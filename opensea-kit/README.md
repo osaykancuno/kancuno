@@ -15,33 +15,33 @@ Everything for the collection page. Images in this folder: `logo.png` (Logo, 350
 
 ## Description (OpenSea, markdown)
 
-K1N0 by K4NCUN0. **One symbol, infinite variations.**
+**One symbol, infinite variations.** K1N0 is a symbol of crypto and pop culture, and it belongs to everyone: take it, remix it, make it yours.
 
-The Kancuno K in clay-like 3D: seven blocks for a head over an X. The X and four blocks of the head are always black; the other four colours are its own: the background, the centre block and the two front blocks. 16 colours in the palette, and **every combination can be minted only once.** You pick its number, from 1 to 8,362, or press Random.
+K1N0 in clay-like 3D: seven blocks for a head over an X. The X and four blocks of the head are always black; the other four colours are its own: the background, the centre block and the two front blocks. 16 colours in the palette, and **every combination can be minted only once.** You pick its number, from 1 to 8,362, or press Random.
 
 **The look is alive.** The four colours are fixed forever at mint; the art keeps moving. Whoever holds a K1N0 gives each of its colours an effect (glow, pulse, blink, float, shimmer, neon, metal, glitch; the background has its own), sets the speed and the 3D view. Each change costs only gas, and every look stays on-chain with who set it and when. When a K1N0 changes hands, its story goes on with the next holder.
 
 **Fully on-chain on Ethereum.** The contract draws the image in 3D and an interactive 3D piece you can turn right here: drag it, scroll to zoom. No IPFS, no server.
 
-Design yours in THE K.LAB: kancuno.com/klab
+Design yours in THE K.LAB, no wallet needed: kancuno.com/klab
 
 ## Short texts
 
 - **Tagline (≤ 80):** One symbol. Infinite variations. Four colours, a living look.
-- **Short description (≤ 160):** 8,362 K1N0 in 3D, fully on-chain. Four colours that are yours alone, and a look you keep changing for the gas only. By K4NCUN0.
+- **Short description (≤ 160):** 8,362 K1N0 in 3D, fully on-chain. Four colours that are yours alone, and a look you keep changing for the gas only. A symbol for everyone.
 
 ## Launch post (X)
 
 THE K.LAB is open.
 
-Design your K in the browser, pick four colours nobody else has, mint it as a K1N0. Then give it a look: an effect for each colour, changed whenever you like, every look kept on-chain.
+Design your K1N0 in the browser, pick four colours nobody else has, mint it as a K1N0. Then give it a look: an effect for each colour, changed whenever you like, every look kept on-chain.
 
 8,362 · 0.0024 ETH · fully on-chain
 kancuno.com/klab
 
 ## Thread (X)
 
-1/ The K is my character: seven blocks for a head over an X, in clay-like 3D. In THE K.LAB anyone designs their own with free tools. As a K1N0 the X and four blocks stay black, and it takes four colours of its own: background, centre, two front blocks.
+1/ K1N0 is a symbol for everyone: seven blocks for a head over an X, in clay-like 3D. In THE K.LAB anyone makes their own, no wallet needed. As a K1N0 the X and four blocks stay black, and it takes four colours of its own: background, centre, two front blocks.
 
 2/ Every combination of the four can be minted once. When it is yours, nobody can mint it again. You also pick your number from 1 to 8,362, or press Random.
 

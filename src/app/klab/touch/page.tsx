@@ -4,7 +4,7 @@ import './touch.css'
 
 export const metadata: Metadata = {
   title: 'Touch Field',
-  description: 'Move your pointer over the 3D Kancuno K and the blocks make way, like on the kancuno.com home page. Push, lift, pull or ripple. Record a clip.',
+  description: 'Move your pointer over K1N0 in 3D and the blocks make way. Push, lift, pull or ripple. Record a clip.',
   alternates: { canonical: '/klab/touch' },
 }
 

@@ -4,7 +4,7 @@ import './pixel.css'
 
 export const metadata: Metadata = {
   title: 'Pixel Forge',
-  description: 'Draw the K one pixel at a time. A pixel editor for the Kancuno logo with mirror, fill, limited palette and PNG, SVG and JSON export.',
+  description: 'Draw K1N0 one pixel at a time. A pixel editor with mirror, fill, limited palette and PNG, SVG and JSON export.',
   alternates: { canonical: '/klab/pixel' },
 }
 

@@ -51,7 +51,7 @@ export const contractUrl = () => `${KLAB.chain.explorer}/address/${KLAB.address}
 const SEL = {
   mint: 'c65f1d85', coloursTaken: '77040ad5', usedMap: '12ac3626', tokenURI: 'c87b56dd', dataOf: '871caa98',
   looksCount: '2832dfd0', lookAt: '3593cd58', setLook: 'c4f6a629', totalSupply: '18160ddd', price: 'a035b1fe',
-  mintOpen: '24bbd049', ownerOf: '6352211e', isLookOperator: '39c9b1bf',
+  mintOpen: '24bbd049', ownerOf: '6352211e', isLookOperator: '39c9b1bf', balanceOf: '70a08231',
 }
 const TRANSFER = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
 const ERRORS: Record<string, string> = {
@@ -139,6 +139,37 @@ export async function isMinted(id: number): Promise<boolean> {
   const w = id >> 8
   if (w >= Number(BigInt('0x' + h.slice(64, 128)))) return false
   return ((BigInt('0x' + h.slice(128 + w * 64, 192 + w * 64)) >> BigInt(id & 255)) & BigInt(1)) === BigInt(1)
+}
+
+/** Every minted number, #0 included, from the contract's map of used ones (one call) */
+export async function mintedNumbers(): Promise<number[]> {
+  const h = (await call('0x' + SEL.usedMap)).slice(2)
+  const n = Number(BigInt('0x' + h.slice(64, 128)))
+  const ids: number[] = []
+  for (let i = 0; i < n; i++) {
+    const w = BigInt('0x' + h.slice(128 + i * 64, 192 + i * 64))
+    if (w === BigInt(0)) continue
+    for (let b = 0; b < 256; b++) if ((w >> BigInt(b)) & BigInt(1)) ids.push(i * 256 + b)
+  }
+  if (!ids.includes(0)) ids.unshift(0) // #0 is minted with the contract
+  return ids
+}
+
+/** The K1N0 held by `who`: balanceOf says how many, then ownerOf over the minted numbers,
+ *  a few at a time, stopping as soon as all of them are found. */
+export async function ownedBy(who: string, onFound?: (ids: number[]) => void): Promise<number[]> {
+  const me = who.toLowerCase()
+  const total = Number(decUint(await call('0x' + SEL.balanceOf + word(BigInt(me)))))
+  if (!total) return []
+  const ids = await mintedNumbers()
+  const found: number[] = []
+  for (let i = 0; i < ids.length && found.length < total; i += 8) {
+    const batch = ids.slice(i, i + 8)
+    const owners = await Promise.all(batch.map(id => call(encUint(SEL.ownerOf, id)).catch(() => '0x')))
+    owners.forEach((o, j) => { if (o.length >= 66 && '0x' + o.slice(-40).toLowerCase() === me) found.push(batch[j]) })
+    onFound?.([...found])
+  }
+  return found
 }
 
 /** KLab.dataOf: colours (4) · look (8) · looks (2) · title — what the image and the 3D piece draw */

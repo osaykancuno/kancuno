@@ -10,7 +10,7 @@ import Drawer from './Drawer'
 import {
   CommunitiesChapter, ContactChapter, ExperimentsChapter, HeroChapter, ProfileChapter, type DrawerKey,
 } from './Chapters'
-import { CHAPTER_LABELS, COMMUNITIES, LINKS } from './content'
+import { CHAPTER_LABELS, COMMUNITIES } from './content'
 import { sfxDrawer, sfxMorph, sfxSection, sfxTap, unlockSfx } from '@/lib/sfx'
 
 const N = CHAPTER_LABELS.length
@@ -360,15 +360,9 @@ export default function Experience() {
           </button>
           <div className="k-header-right">
             <SoundToggle />
-            {/* The intro already shows THE K.LAB, so there the neon pill points to JAMVERSE;
-                from the second chapter on it is THE K.LAB again. The key remounts it so the neon switches on anew. */}
-            {active === 0 ? (
-              <a key="jam" className="k-pill k-neon" href={LINKS.jamverse} target="_blank" rel="noopener noreferrer">
-                JAMVERSE<span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            ) : (
-              <Link key="lab" className="k-pill k-neon" href="/klab">THE K.LAB</Link>
-            )}
+            {/* The intro already shows THE K.LAB in the hero, so the neon pill appears from the second
+                chapter on (JAMVERSE lives only in its own section, Side quests). */}
+            {active !== 0 && <Link className="k-pill k-neon" href="/klab">THE K.LAB</Link>}
             <button type="button" className="k-pill" onClick={() => goTo(N - 1)}>Let&apos;s talk</button>
           </div>
         </header>

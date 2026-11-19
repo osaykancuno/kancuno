@@ -2,11 +2,12 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { LabProvider } from '@/lib/lab/store'
 import LabHeader from '@/components/lab/LabHeader'
+import { Zt } from '@/components/lab/Zt'
 import './lab.css'
 
 const TITLE = 'THE K.LAB · KANCUNO'
 const DESCRIPTION =
-  'THE K.LAB by Osay Kancuno: one symbol, infinite variations. Free tools to create, remix and animate art in the Kancuno style, in the browser, no wallet needed.'
+  'K1N0 is an open symbol of crypto and pop culture, and it belongs to everyone. One symbol, infinite variations: create, remix and animate your own K1N0 in the browser, no wallet needed.'
 
 export const metadata: Metadata = {
   title: { default: TITLE, template: '%s · THE K.LAB' },
@@ -24,7 +25,7 @@ export default function LabLayout({ children }: { children: React.ReactNode }) {
         <LabHeader />
         <main id="lab-main" className="lab-main">{children}</main>
         <footer className="lab-foot">
-          <span className="lab-label">THE K.LAB · by K4NCUN0</span>
+          <span className="lab-label"><Zt>THE K.LAB · started by K4NCUN0</Zt></span>
           <span className="lab-label">Create off-chain. Mint only if you want.</span>
           <Link className="lab-label" href="/">kancuno.com</Link>
         </footer>

@@ -29,7 +29,7 @@ export function HeroK() {
       onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setHeld(false) }}
     >
       <div className="kl-hero__frame">
-        <KPreview design={d} uid="hero" animate paused={stopped} orbit label={`The K in one of its variations: ${d.name}`} />
+        <KPreview design={d} uid="hero" animate paused={stopped} orbit label={`K1N0 in one of its variations: ${d.name}`} />
       </div>
       <figcaption className="kl-hero__cap">
         <span className="lab-label">Variation {String(i + 1).padStart(2, '0')} / {String(PRESETS.length).padStart(2, '0')} · {d.name} · Drag to turn</span>
