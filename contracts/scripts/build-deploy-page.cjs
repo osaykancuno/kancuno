@@ -31,6 +31,5 @@ fs.writeFileSync(path.join(root, 'deploy/index.html'), tpl.replace('/*__CODE__*/
 console.log('deploy/index.html written', Object.fromEntries(Object.entries(code).map(([k, v]) => [k, (v.length - 2) / 2 + ' bytes'])))
 
 
-// deploy/owner.html: retire the first contract, launch, withdraw (owner only)
-fs.copyFileSync(path.join(__dirname, 'owner-template.html'), path.join(root, 'deploy/owner.html'))
-console.log('deploy/owner.html written')
+// deploy/owner.html: retire the first contract, launch, withdraw, align the metadata (owner only)
+require('./build-owner-page.cjs')

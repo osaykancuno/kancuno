@@ -9,7 +9,8 @@ module.exports = {
   },
   paths: { sources: './src', tests: './test', cache: './cache', artifacts: './artifacts' },
   networks: {
-    hardhat: { blockGasLimit: 60_000_000, chainId: process.env.HH_CHAIN_ID ? Number(process.env.HH_CHAIN_ID) : 31337 },
+    // FORK_URL: rehearse on a local copy of mainnet (scripts/renderer2-fork-check.cjs); nothing is sent to mainnet
+    hardhat: { blockGasLimit: 60_000_000, chainId: process.env.HH_CHAIN_ID ? Number(process.env.HH_CHAIN_ID) : 31337, ...(process.env.FORK_URL ? { forking: { url: process.env.FORK_URL } } : {}) },
     // test runs only: a throwaway key in KLAB_TEST_KEY (never a real wallet, never mainnet)
     sepolia: { url: 'https://ethereum-sepolia-rpc.publicnode.com', chainId: 11155111, gas: 15_000_000, gasPrice: 20_000_000 /* 0.02 gwei: Sepolia's base fee is near zero */, accounts: process.env.KLAB_TEST_KEY ? [process.env.KLAB_TEST_KEY] : [] },
   },
