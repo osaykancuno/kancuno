@@ -31,5 +31,5 @@ fs.writeFileSync(path.join(root, 'deploy/index.html'), tpl.replace('/*__CODE__*/
 console.log('deploy/index.html written', Object.fromEntries(Object.entries(code).map(([k, v]) => [k, (v.length - 2) / 2 + ' bytes'])))
 
 
-// deploy/owner.html: retire the first contract, launch, withdraw, align the metadata (owner only)
-require('./build-owner-page.cjs')
+// the owner's private tools are not part of this public repository: built only where they exist
+if (fs.existsSync(path.join(__dirname, 'build-owner-page.cjs'))) require('./build-owner-page.cjs')

@@ -2,3 +2,8 @@ node_modules/
 cache/
 artifacts/
 out/
+# the owner's private tools (mint open/close, withdraw, renderer switch): kept on the owner's computer only
+deploy/owner.html
+deploy/Owner page.cmd
+scripts/owner-template.html
+scripts/build-owner-page.cjs

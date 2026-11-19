@@ -29,6 +29,6 @@ Tested on Sepolia on 2026-11-18 (one contract per transaction there: Sepolia pri
 npm run build && npm run deploy-page
 ```
 
-Serve `deploy/` on localhost (the "klab-deploy" entry of `.claude/launch.json`, or `python -m http.server 8546 --directory contracts/deploy`), open http://127.0.0.1:8546 in the browser where your wallet is, choose the network, Connect, then Deploy. On Ethereum mainnet it is two confirmations; where each transaction may create only one contract, the page goes one by one (five). It resumes where it stopped. The account that deploys owns the collection. `node scripts/find-deploy.cjs <owner>` finds the new KLab; put it in `src/lib/lab/chain.ts` (`DEPLOYED`). Open the mint from `deploy/owner.html` at launch.
+Serve `deploy/` on localhost (the "klab-deploy" entry of `.claude/launch.json`, or `python -m http.server 8546 --directory contracts/deploy`), open http://127.0.0.1:8546 in the browser where your wallet is, choose the network, Connect, then Deploy. On Ethereum mainnet it is two confirmations; where each transaction may create only one contract, the page goes one by one (five). It resumes where it stopped. The account that deploys owns the collection. `node scripts/find-deploy.cjs <owner>` finds the new KLab; put it in `src/lib/lab/chain.ts` (`DEPLOYED`). The owner's own tools (mint open/close, renderer switch) are kept outside this public repository.
 
 Verify on Etherscan with `deploy/verify/standard-input.json` (see `deploy/verify/README.txt`).

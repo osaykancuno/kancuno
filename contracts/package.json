@@ -5,8 +5,7 @@
   "scripts": {
     "build": "hardhat compile",
     "test": "hardhat test",
-    "deploy-page": "node scripts/build-deploy-page.cjs",
-    "owner-page": "node scripts/build-owner-page.cjs"
+    "deploy-page": "node scripts/build-deploy-page.cjs"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.1.2",
