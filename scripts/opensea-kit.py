@@ -135,8 +135,8 @@ def random_combo(rng):
         return bg, body, head(body, centre, front)
 
 
-V2 = [  # curated K1N0 (background, centre, front left, front right); the first is the logo, #0
-    ('yellow', 'purple', 'pink', 'pink'), ('navy', 'magenta', 'yellow', 'cyan'), ('cream', 'yellow', 'red', 'red'),
+V2 = [  # curated K1N0 (background, centre, front left, front right); the first is the mark of THE K.LAB
+    ('cream', 'pink', 'lime', 'lime'), ('yellow', 'purple', 'pink', 'pink'), ('navy', 'magenta', 'yellow', 'cyan'), ('cream', 'yellow', 'red', 'red'),
     ('magenta', 'lime', 'cream', 'navy'), ('green', 'cream', 'pink', 'pink'), ('orange', 'cream', 'yellow', 'brown'),
     ('purple', 'pink', 'cyan', 'lime'), ('red', 'yellow', 'cream', 'cream'), ('blue', 'red', 'pink', 'yellow'),
     ('tan', 'orange', 'cream', 'brown'), ('grey', 'lime', 'magenta', 'magenta'), ('lime', 'magenta', 'cyan', 'navy'),
@@ -154,8 +154,8 @@ def v2_combo(rng):
 
 
 def write_logo():
-    """350x350 (made at 2x): K1N0 #0, the logo, as the contract draws it."""
-    k3d(700, *V2[0]).save(os.path.join(OUT, 'logo.png'), optimize=True)
+    """350x350 (made at 2x): the mark of THE K.LAB (public/klab/k1n0-mark.png), not the K4NCUN0 logo."""
+    brand.lab_mark(700, crop=True).save(os.path.join(OUT, 'logo.png'), optimize=True)
 
 
 def write_banner():

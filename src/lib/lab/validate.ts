@@ -96,6 +96,17 @@ export function parseDesign(input: unknown): KDesign {
     const c = input.cam
     d.cam = clampCam({ yaw: num(c.yaw, d.cam.yaw, -360, 360), pitch: num(c.pitch, d.cam.pitch, 0, 90), zoom: num(c.zoom, d.cam.zoom, 0.1, 5) })
   }
+  // K1N0 mode only with a look the contract accepts; anything else imports as a free remix
+  d.look = null
+  if (isObj(input.look) && Array.isArray(input.look.fx) && input.look.fx.length === 4) {
+    const l = input.look
+    const int = (v: unknown, a: number, b: number) => (typeof v === 'number' && Number.isInteger(v) && v >= a && v <= b ? v : null)
+    const fx = (l.fx as unknown[]).map(v => int(v, 0, 8))
+    const look = { speed: int(l.speed, 0, 3), yaw: int(l.yaw, -180, 178), pitch: int(l.pitch, 20, 89), zoom: int(l.zoom, 60, 190) }
+    if (fx.every(v => v !== null) && Object.values(look).every(v => v !== null) && (look.yaw as number) % 2 === 0) {
+      d.look = { fx: fx as [number, number, number, number], speed: look.speed!, yaw: look.yaw!, pitch: look.pitch!, zoom: look.zoom! }
+    }
+  }
   return d
 }
 

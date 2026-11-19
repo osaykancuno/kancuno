@@ -9,7 +9,8 @@ Outputs: src/app/icon.svg        flat vector mark (browser tab icon; replaces ic
          src/app/favicon.ico     16/32/48 px, drawn from the same flat mark
          src/app/apple-icon.png  180 px, the 3D logo (home-screen icon)
          public/og.png           1200x630 share image (X, Telegram, WhatsApp...)
-         public/klab/og-lab.png   1200x630 share image of THE K.LAB (/klab)
+         public/klab/og-lab.png   1200x630 share image of THE K.LAB (/klab), from public/klab/k1n0-mark.png
+         src/app/klab/icon.png, apple-icon.png   the icons of /klab (THE K.LAB's own mark)
 
     python scripts/brand-assets.py lab   # only THE K.LAB share image
 """
@@ -224,6 +225,26 @@ def figure_mask(fig):
     return m.filter(ImageFilter.GaussianBlur(0.6))
 
 
+LAB_MARK = os.path.join(ROOT, 'public/klab/k1n0-mark.png')  # THE K.LAB's own mark: a K1N0 on cream, not the K4NCUN0 logo
+
+
+def lab_mark(size, crop=False):
+    """The mark of THE K.LAB at `size` px; crop=True frames the figure tighter (small icons)."""
+    m = Image.open(LAB_MARK).convert('RGB')
+    if crop:
+        w, h = m.size
+        c = round(w * 0.74)
+        cx, cy = w // 2, round(h * 0.44)
+        m = m.crop((cx - c // 2, cy - c // 2, cx - c // 2 + c, cy - c // 2 + c))
+    return m.resize((size, size), Image.LANCZOS)
+
+
+def write_lab_icons():
+    """src/app/klab/icon.png and apple-icon.png: the tab and home-screen icons of /klab."""
+    lab_mark(256, crop=True).save(os.path.join(ROOT, 'src/app/klab/icon.png'), optimize=True)
+    lab_mark(180, crop=True).save(os.path.join(ROOT, 'src/app/klab/apple-icon.png'), optimize=True)
+
+
 def write_og_lab():
     W, H = 1200, 630
     img = Image.new('RGB', (W, H), LAB_BG)
@@ -231,24 +252,15 @@ def write_og_lab():
     ax, ay = W - 72 - art, (H - art) // 2
     d = ImageDraw.Draw(img)
     d.rectangle((ax - 10, ay - 10, ax + art + 9, ay + art + 9), fill=(23, 20, 15))
-    # The 3D figure of the logo (no bars around it), on its own yellow, like the apple icon
-    fig = logo_figure()
-    # brand yellow panel with the figure cut out of the artwork: only pixels that differ from
-    # the yellow and touch the figure are kept (the diamond frame's fragments at the crop's
-    # edges drop away), with soft alpha so its shadow and rounded edges stay natural
-    fh = round(art * 0.84)
-    fig = fig.resize((round(fig.width * fh / fig.height), fh), Image.LANCZOS)
-    panel = Image.new('RGB', (art, art), YELLOW)
-    panel.paste(fig, ((art - fig.width) // 2, (art - fh) // 2), figure_mask(fig))
-    img.paste(panel, (ax, ay))
+    img.paste(lab_mark(art), (ax, ay))
 
     x0 = 72
-    d.text((x0, 92), 'THE K.LAB  ·  BY K4NCUN0', font=font('mono', 22, 700), fill=YELLOW)
+    d.text((x0, 92), 'THE K.LAB  ·  K1N0  ·  CC0', font=font('mono', 22, 700), fill=YELLOW)
     big = font('display', 68, 900, 116)
     d.text((x0, 160), 'One symbol.', font=big, fill=CREAM)
     d.text((x0, 240), 'Infinite', font=big, fill=YELLOW)
     d.text((x0, 320), 'variations.', font=big, fill=YELLOW)
-    d.text((x0, 460), 'CREATE · REMIX · ANIMATE · NO WALLET', font=font('mono', 18, 600), fill=(190, 184, 166))
+    d.text((x0, 460), 'AN OPEN CHARACTER · NO OWNER · NO WALLET', font=font('mono', 18, 600), fill=(190, 184, 166))
     d.text((x0, 520), 'kancuno.com/klab', font=font('display', 30, 800, 112), fill=CREAM)
     os.makedirs(os.path.join(ROOT, 'public/klab'), exist_ok=True)
     img.save(os.path.join(ROOT, 'public/klab/og-lab.png'), optimize=True)
@@ -257,9 +269,11 @@ def write_og_lab():
 if __name__ == '__main__':
     if sys.argv[1:] == ['lab']:
         write_og_lab()
-        print('public/klab/og-lab.png written')
+        write_lab_icons()
+        print('public/klab/og-lab.png, src/app/klab/icon.png, apple-icon.png written')
         sys.exit(0)
     write_og_lab()
+    write_lab_icons()
     write_svg()
     write_favicon()
     write_apple_icon()

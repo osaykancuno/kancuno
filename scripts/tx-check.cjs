@@ -53,7 +53,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms))
   pass++
   const edgeCams = [{ yaw: -180, pitch: 74, zoom: 1 }, { yaw: 179.9, pitch: 74, zoom: 1 }, { yaw: 360, pitch: 10, zoom: 0.2 }, { yaw: -721, pitch: 95, zoom: 5 },
     { yaw: NaN, pitch: 74, zoom: 1 }, { yaw: 33.3, pitch: 47.6, zoom: 1.234 }, { yaw: 177, pitch: 20, zoom: 0.6 }]
-  const edgeLooks = edgeCams.map(cam => oc.lookFromDesign({ ...de.defaultDesign(), view: '3d', cam }))
+  const edgeLooks = edgeCams.map(cam => oc.lookFromDesign({ ...de.defaultDesign(), look: null, view: '3d', cam }))
+  // K1N0 mode: the design's own look is what it mints with
+  ok(JSON.stringify(oc.lookFromDesign(de.defaultDesign())) === JSON.stringify(de.ORIGINAL_LOOK), 'K1N0 mode mints its own look')
+  ok(oc.mintCheck(de.defaultDesign()).changes.length === 0 && oc.mintCheck(de.defaultDesign()).problems.length === 0, 'the starting design is mint-ready')
   for (const l of edgeLooks) {
     const valid = l.fx.every(v => v === 0) && l.speed === 1 && l.yaw >= -180 && l.yaw <= 178 && l.yaw % 2 === 0 && l.pitch >= 20 && l.pitch <= 89 && l.zoom >= 60 && l.zoom <= 190
     ok(valid, 'lookFromDesign in range', JSON.stringify(l))
@@ -117,6 +120,21 @@ const sleep = ms => new Promise(r => setTimeout(r, ms))
       ok(w.sent.length === 0, 'nothing sent after a failed dry run')
     }
     await sleep(250)
+  }
+  // the planned K1N0 #1: THE K.LAB's mark (cream, pink, lime, lime), its look, from the owner, at the live price
+  {
+    const mark = oc.coloursFromDesign(de.defaultDesign()).colours
+    ok(JSON.stringify(mark) === '[4,2,15,15]', 'the starting design is the mark (cream, pink, lime, lime)', JSON.stringify(mark))
+    const free1 = !(await ch.isMinted(1)), freeMark = (await ch.coloursTaken(mark)) === false
+    console.log('K1N0 #1 free:', free1, '· mark colours free:', freeMark)
+    if (free1 && freeMark) {
+      const w = fakeWallet()
+      try {
+        await ch.sendMint(w.provider, OWNER === RICH ? RICH : RICH, mark, oc.cleanName('THE K.LAB'), oc.lookFromDesign(de.defaultDesign()), 1, state.price)
+        const tx = w.sent[0]
+        ok(tx && tx.to === ch.KLAB.address && BigInt(tx.value) === state.price && state.price === 2400000000000000n, 'mint of #1 "THE K.LAB" passes at 0.0024 ETH')
+      } catch (e) { ok(false, 'mint of #1 dry run', ch.explain(e)) }
+    }
   }
   // must fail before anything reaches the wallet, with a clear reason
   const bad = [

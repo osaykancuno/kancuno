@@ -34,7 +34,9 @@ export const BRAND = {
   cream: '#fff6dc',
 } as const
 
-export const HEAD_DEFAULT = [BRAND.ink, BRAND.ink, BRAND.ink, BRAND.purple, BRAND.ink, BRAND.pink, BRAND.pink]
+// The head of THE K.LAB's mark (the starting K1N0): pink centre, lime front blocks. The K4NCUN0
+// logo (purple centre, pink fronts) is K1N0 #0, the artist's own piece, not the Lab's base.
+export const HEAD_DEFAULT = [BRAND.ink, BRAND.ink, BRAND.ink, BRAND.pink, BRAND.ink, '#c8f04a', '#c8f04a']
 
 // The K1N0 palette: the 16 colours a minted K can use (stored in the KLab contract, same order).
 // Brand first; any two are clearly apart (ΔE2000 ≥ 14), so no two K1N0 differ by a mere shade.

@@ -82,8 +82,8 @@ a.lab-label:hover { color: var(--lab-text); }
   place-items: center;
   width: 34px;
   height: 34px;
-  background: var(--k-yellow);
-  border-radius: var(--lab-r);
+  border-radius: 6px;
+  overflow: hidden; /* the mark carries its own cream field */
 }
 .lab-brand__name {
   font-family: var(--font-mono);
@@ -162,8 +162,12 @@ a.lab-label:hover { color: var(--lab-text); }
 
 .lab-tool {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
-  gap: 20px;
+  /* one layout for every tool and the token page: centred, the stage beside a wide control column */
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 480px);
+  gap: 24px;
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
   padding: 20px var(--pad) 40px;
   align-items: start;
 }
@@ -460,7 +464,6 @@ a.lab-label:hover { color: var(--lab-text); }
 
 /* K1N0 token page */
 .tv, .hv { grid-template-columns: minmax(0, 1fr); } /* one full-width column: the page lays out its own grid */
-.tv { width: 100%; max-width: 1360px; margin-inline: auto; }
 .tv-head { align-items: center; }
 .tv-head__go { margin-left: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .tv-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 520px); gap: 28px; align-items: start; }
@@ -556,3 +559,9 @@ a.lab-label:hover { color: var(--lab-text); }
 .mcheck__list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.45; color: var(--lab-dim); }
 .mcheck__list--bad { color: #ff8a80; }
 .mcheck .lab-btn--sm { align-self: flex-start; }
+
+/* K Editor, K1N0 mode: four colour slots */
+.k1s-slot { display: grid; grid-template-columns: 92px 1fr; gap: 10px; align-items: center; }
+.k1s-swatches { display: grid; grid-template-columns: repeat(8, 22px); gap: 6px; }
+.k1s-swatches .k1-sw { width: 22px; height: 22px; }
+@media (max-width: 420px) { .k1s-slot { grid-template-columns: 1fr; gap: 6px; } }

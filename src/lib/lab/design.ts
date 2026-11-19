@@ -2,6 +2,7 @@
 import { BRAND, CANVAS, FIGURE_BOX, HEAD_DEFAULT, K1N0_PALETTE, onBar } from './base'
 import { CAM_DEFAULT, type Cam } from './orbit'
 import type { KImage } from './image'
+import type { Look } from './onchain'
 
 export const DESIGN_VERSION = 1
 
@@ -43,6 +44,9 @@ export interface KDesign {
   anim: { loops: AnimLoop[]; period: number } // Animation Bench, period in seconds
   cam: Cam // 3D view: where the visitor turned the K to (exports keep it)
   img: KImage | null // Image Wrap: a picture printed on the 3D K (vector form only)
+  /** K1N0 mode: the on-chain look (an effect per colour, speed, 3D view) this design mints with.
+   *  Set: the design is exactly a K1N0 (four colours on the black K). null/absent: free remix. */
+  look?: Look | null
 }
 
 export const GRID_SIZES = [24, 32, 48, 64] as const
@@ -126,7 +130,7 @@ export function defaultDesign(): KDesign {
     name: 'Original K1N0',
     form: 'vector',
     view: '3d',
-    bg: part(solid(BRAND.yellow)),
+    bg: part(solid(BRAND.cream)),
     body: part(solid(BRAND.ink)),
     head: { ...part(solid(BRAND.ink)), cubes: [...HEAD_DEFAULT], useFill: false },
     fx: { glow: 0, glitch: 0, pixel: 0, grain: 0, scan: 0, depth: 0, seed: 8362 },
@@ -134,8 +138,13 @@ export function defaultDesign(): KDesign {
     anim: { loops: [], period: 2.4 },
     cam: { ...CAM_DEFAULT },
     img: null,
+    // the mark of THE K.LAB: grid on the cream field, the lime front blocks glowing
+    look: { ...ORIGINAL_LOOK, fx: [...ORIGINAL_LOOK.fx] },
   }
 }
+
+/** The look of the starting K1N0 (palette effects: background Grid, front blocks Glow) */
+export const ORIGINAL_LOOK: Look = { fx: [6, 0, 1, 1], speed: 1, yaw: 0, pitch: 74, zoom: 100 }
 
 type Patch = {
   name: string
@@ -163,6 +172,7 @@ export function makeDesign(p: Patch): KDesign {
     fx: { ...d.fx, ...p.fx },
     anim: { ...d.anim, ...p.anim },
     grid: p.grid ? { ...d.grid, ...p.grid } : { ...d.grid, cells: presetGrid(d.grid.size, head.cubes, (p.body?.fill?.kind === 'solid' && p.body.fill.a) || BRAND.ink) },
+    look: null, // themes are free remixes
   }
 }
 
@@ -247,6 +257,7 @@ export const cloneDesign = (d: KDesign): KDesign => ({
   anim: { ...d.anim, loops: d.anim.loops.slice() },
   cam: { ...(d.cam ?? CAM_DEFAULT) },
   img: d.img ? { ...d.img } : null,
+  look: d.look ? { ...d.look, fx: [...d.look.fx] as Look['fx'] } : null,
 })
 
 // Random remix that keeps the K recognisable: the silhouette and the head pattern never change
@@ -264,6 +275,7 @@ export function remix(d: KDesign, rand: () => number = Math.random): KDesign {
     ? { kind: 'gradient', a: bgc, b: shade(bgc, 0.22), angle: pick([0, 45, 90, 135]) }
     : { kind: 'pattern', pattern: pick(['stripes', 'dots', 'scan', 'grid'] as const), a: bgc, b: shade(bgc, 0.12), scale: pick([4, 6, 8]) }
   const out = cloneDesign(d)
+  out.look = null // a free remix (gradients, patterns, Lab effects)
   out.name = 'Remix ' + Math.floor(rand() * 9000 + 1000)
   out.bg = { ...out.bg, visible: true, fill: bgFill }
   out.body = { ...out.body, visible: true, line: false, fill: solid(ink) }

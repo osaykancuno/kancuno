@@ -7,7 +7,7 @@ import { Zt } from './Zt'
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
-  coloursFromDesign, cleanName, dataHex, hasArtistName, INK, K1N0, lookFromDesign, MAX_SUPPLY, MINT_PRICE_ETH, mintCheck, mintReady, NAMES, SLOTS, validColours, type Colours,
+  coloursFromDesign, cleanName, isDefaultName, dataHex, hasArtistName, INK, K1N0, lookFromDesign, MAX_SUPPLY, MINT_PRICE_ETH, mintCheck, mintReady, NAMES, SLOTS, validColours, type Colours,
 } from '@/lib/lab/onchain'
 import {
   coloursTaken, connect, contractUrl, discoverWallets, ensureChain, eth, explain, freeNumbers, KLAB, readMintState, sendMint,
@@ -78,7 +78,7 @@ export function MintPanel({ note }: { note?: string }) {
       )}
       <div className="lab-row">
         <MintButton />
-        <span className="lab-note">{note ?? `Optional · ${MINT_PRICE_ETH} ETH · the 3D view comes with it`}</span>
+        <span className="lab-note">{note ?? `Optional · ${MINT_PRICE_ETH} ETH · ${design.look ? 'its look comes with it' : 'the 3D view comes with it'}`}</span>
       </div>
     </div>
   )
@@ -90,7 +90,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
   const start = useMemo(() => coloursFromDesign(design), [design])
   const [colours, setColours] = useState<Colours>(start.colours)
   // the title starts from the name the visitor gave their K (not the Lab's default names)
-  const [rawTitle, setRawTitle] = useState(() => (/^(Original K(1N0)?|Remix( of)? .*|Untitled|K1N0)$/i.test(design.name) ? '' : cleanName(design.name)))
+  const [rawTitle, setRawTitle] = useState(() => (isDefaultName(design.name) ? '' : cleanName(design.name)))
   const title = cleanName(rawTitle)
   const titleBad = hasArtistName(title) // the artist's name is reserved
   const valid = validColours(colours)

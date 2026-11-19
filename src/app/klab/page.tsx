@@ -127,7 +127,7 @@ export default function LabHome() {
         <div className="kl-fw">
           <div className="kl-fw__art">
             <div className="kl-fw__pair">
-              <KThumb design={defaultDesign()} alt="The original K1N0 in 3D: black and pink and purple clay blocks over a black X, on yellow" size={480} />
+              <KThumb design={defaultDesign()} alt="The original K1N0 in 3D: black clay blocks with a pink centre and two lime front blocks over a black X, on cream" size={480} />
               <KThumb design={{ ...defaultDesign(), view: 'flat' }} alt="The flat K1N0: the same figure as a 2D vector mark" size={480} />
             </div>
             <ol className="kl-anatomy">

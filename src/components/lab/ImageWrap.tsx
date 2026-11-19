@@ -27,7 +27,7 @@ const FITS = [
 ] as const
 const PALETTES = [
   { value: 'off', label: 'Original' },
-  { value: 'brand', label: 'Original colours' },
+  { value: 'brand', label: 'Lab colours' },
   { value: 'duo', label: 'Duotone' },
 ] as const
 
@@ -169,7 +169,7 @@ export default function ImageWrap() {
               <Range label="Brightness" min={-1} max={1} step={0.01} value={img.bright} format={v => `${Math.round(v * 100)}`} onChange={bright => patch({ bright }, 'img-b')} />
               <Range label="Contrast" min={-1} max={1} step={0.01} value={img.contrast} format={v => `${Math.round(v * 100)}`} onChange={contrast => patch({ contrast }, 'img-c')} />
               <Range label="Saturation" min={0} max={2} step={0.01} value={img.sat} format={v => `${Math.round(v * 100)}%`} onChange={sat => patch({ sat }, 'img-s')} />
-              <p className="lab-note">Original colours maps the picture to the five original colours of K1N0. Duotone uses the X colour and the centre square.</p>
+              <p className="lab-note">Lab colours maps the picture to five K1N0 colours: ink, yellow, pink, purple and cream. Duotone uses the X colour and the centre square.</p>
             </Section>
 
             <Section title="Export">
@@ -186,7 +186,7 @@ export default function ImageWrap() {
                 <button type="button" className="lab-btn" onClick={() => exportJson(d)}>JSON</button>
               </div>
               <MintPanel note="The picture stays yours, off-chain" />
-              <p className="lab-note">The design JSON carries the picture, so it opens the same in any tool. The flat SVG keeps the original colours.</p>
+              <p className="lab-note">The design JSON carries the picture, so it opens the same in any tool. The flat SVG keeps the colours of the figure.</p>
               <p className="lab-status" role="status">{status}</p>
               {error && <p className="lab-error" role="alert">{error}</p>}
             </Section>

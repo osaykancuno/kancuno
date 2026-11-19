@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import LogoMark from '@/components/experience/LogoMark'
+import LabMark from './LabMark'
 import { Zt } from './Zt'
 
 export const LAB_TOOLS = [
@@ -18,7 +18,7 @@ export default function LabHeader() {
   return (
     <header className="lab-head">
       <Link href="/klab" className="lab-brand" aria-label="THE K.LAB home">
-        <span className="lab-brand__mark"><LogoMark size={26} /></span>
+        <span className="lab-brand__mark"><LabMark size={34} /></span>
         <span className="lab-brand__name">THE K.LAB</span>
       </Link>
       <nav className="lab-nav" aria-label="K.LAB tools">

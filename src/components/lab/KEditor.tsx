@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { HEAD } from '@/lib/lab/base'
 import { cloneDesign, PRESETS, remix, type Fill, type KDesign, type PartId } from '@/lib/lab/design'
 import { exportGlb, exportJson, exportPng, exportSvg } from '@/lib/lab/export'
@@ -10,6 +10,9 @@ import { useLab } from '@/lib/lab/store'
 import { KPreview, KThumb } from './KArt'
 import { ColorPick, FillEditor, Range, Section, Seg } from './controls'
 import { MintPanel } from './MintDialog'
+import K1N0Studio, { toK1N0 } from './K1N0Studio'
+import { lookFromDesign, mintCheck } from '@/lib/lab/onchain'
+import { Zt } from './Zt'
 
 const PARTS: { id: PartId; name: string; hint: string }[] = [
   { id: 'bg', name: 'Background', hint: 'The field behind K1N0' },
@@ -28,9 +31,14 @@ export default function KEditor() {
   const [status, setStatus] = useState('')
   const [error, setError] = useState('')
   const file = useRef<HTMLInputElement>(null)
+  const lastLook = useRef<KDesign['look']>(null) // the K1N0 look, kept while the visitor tries a free remix
   const pixel = d.form === 'pixel'
 
   const patch = (fn: (x: KDesign) => void, key?: string) => set(x => { fn(x); return x }, key)
+  // K1N0 mode while the design is still exactly a K1N0 (another tool may have added effects,
+  // motion, a picture or pixels: then it is a free remix until the visitor switches back)
+  const check = useMemo(() => mintCheck(d), [d])
+  const k1 = !!d.look && check.changes.length === 0 && check.notMinted.length === 0 && check.problems.length === 0
 
   const pick = (p: PartId | 'pixels') => {
     if (p === 'pixels') return
@@ -66,6 +74,8 @@ export default function KEditor() {
   const visibleFor = (id: PartId) => d[id].visible
   const fillFor = (id: PartId): Fill => (id === 'head' && !d.head.useFill ? { kind: 'solid', a: d.head.cubes[3] } : d[id].fill)
 
+  if (k1) return <K1N0Studio onFree={() => { lastLook.current = d.look ?? null; set(x => ({ ...x, look: null })) }} />
+
   return (
     <div className="lab-tool">
       <div className="lab-tool__head">
@@ -97,6 +107,12 @@ export default function KEditor() {
       </div>
 
       <div className="lab-controls">
+        <Section title="Mode">
+          <Seg label="Mode" value="free" options={[{ value: 'k1n0', label: 'K1N0 · mintable' }, { value: 'free', label: 'Free remix' }]}
+            onChange={v => { if (v === 'k1n0') set(x => toK1N0(x, lastLook.current ?? lookFromDesign(x))) }} />
+          <p className="lab-note"><Zt>Free remix: everything can change, CC0, for your own work. K1N0 mode keeps the black X and blocks and the 16 colours, so the design can be minted exactly as shown (effects, motion and pictures stay here).</Zt></p>
+        </Section>
+
         <Section title="Layers">
           <div className="lab-layers">
             {[...PARTS].reverse().map(p => {

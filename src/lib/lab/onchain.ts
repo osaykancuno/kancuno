@@ -96,9 +96,12 @@ export function coloursFromDesign(d: KDesign): { colours: Colours; exact: boolea
 
 /** The minted look a design starts with: the 3D view it was framed in (effects are set after the mint) */
 export function lookFromDesign(d: KDesign): Look {
-  if (d.view !== '3d' || !d.cam || ![d.cam.yaw, d.cam.pitch, d.cam.zoom].every(Number.isFinite)) return { ...LOOK_DEFAULT }
+  // K1N0 mode: the effects and speed chosen in the editor; the view is where the design is turned
+  // to now (any tool may have moved the camera), as in every other case
+  const base: Look = d.look ? { ...d.look, fx: [...d.look.fx] as Look['fx'] } : { ...LOOK_DEFAULT, fx: [0, 0, 0, 0] }
+  if (d.view !== '3d' || !d.cam || ![d.cam.yaw, d.cam.pitch, d.cam.zoom].every(Number.isFinite)) return d.look ? base : { ...LOOK_DEFAULT }
   const yaw = ((((d.cam.yaw + 180) % 360) + 360) % 360) - 180
-  return { ...LOOK_DEFAULT, fx: [0, 0, 0, 0], yaw: Math.min(178, Math.round(yaw / 2) * 2), pitch: clamp(d.cam.pitch, 20, 89), zoom: clamp(d.cam.zoom * 100, 60, 190) }
+  return { ...base, yaw: Math.min(178, Math.round(yaw / 2) * 2), pitch: clamp(d.cam.pitch, 20, 89), zoom: clamp(d.cam.zoom * 100, 60, 190) }
 }
 
 export interface MintCheck {
@@ -169,6 +172,7 @@ export function designFromColours(c: Colours, base: KDesign, look: Look = LOOK_D
     anim: { ...base.anim, loops: [] },
     cam: { yaw: look.yaw, pitch: look.pitch, zoom: look.zoom / 100 },
     img: null,
+    look: { ...look, fx: [...look.fx] as Look['fx'] }, // K1N0 mode
   }
 }
 
@@ -190,6 +194,9 @@ export function dataHex(c: Colours, look: Look, looks = 1, title = ''): string {
   const th = Array.from(t, ch => ch.charCodeAt(0).toString(16).padStart(2, '0')).join('')
   return coloursHex(c) + encodeLook(look).slice(2) + looks.toString(16).padStart(4, '0') + t.length.toString(16).padStart(2, '0') + th
 }
+
+/** The Lab's own names for a design: never used as an on-chain title */
+export const isDefaultName = (n: string) => /^(Original K(1N0)?|Remix( of)? .*|Untitled|K1N0|Imported K)$/i.test(n.trim())
 
 /** The contract reserves the artist's name: "k4ncun0" in any case, 4/a and 0/o alike */
 export const hasArtistName = (t: string) => t.toLowerCase().replace(/4/g, 'a').replace(/0/g, 'o').includes('kancuno')
