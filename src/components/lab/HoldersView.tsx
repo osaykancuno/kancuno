@@ -117,7 +117,7 @@ export default function HoldersView() {
                 </div>
               ) : (
                 <p className="lab-note">
-                  No wallet found in this browser. On a phone, open this page in your wallet app: <a href="https://metamask.app.link/dapp/www.kancuno.com/klab/mine">MetaMask</a> · <a href={`https://go.cb-w.com/dapp?cb_url=${encodeURIComponent('https://www.kancuno.com/klab/mine')}`}>Coinbase</a>.
+                  No wallet found in this browser: install <a href="https://rabby.io/" target="_blank" rel="noopener noreferrer">Rabby</a> or <a href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer">MetaMask</a>, or paste your address below. On a phone, open this page in your wallet app: <a href="https://metamask.app.link/dapp/www.kancuno.com/klab/mine">MetaMask</a> · <a href={`https://go.cb-w.com/dapp?cb_url=${encodeURIComponent('https://www.kancuno.com/klab/mine')}`}>Coinbase</a>.
                 </p>
               )}
               <p className="lab-note">Connecting only reads which pieces you hold, through public Ethereum nodes: nothing is signed or sent.</p>

@@ -1,7 +1,6 @@
 'use client'
 // T.06 Image Wrap: choose a picture and wear it on the 3D K. The file stays in this browser
 // (decoded, scaled to 1024 px and kept in the design), so every tool and export sees it.
-import { Zt } from './Zt'
 import { useEffect, useRef, useState } from 'react'
 import { useLab } from '@/lib/lab/store'
 import { canvasToBlob, downloadBlob, exportGlb, exportJson, renderFrame, slug } from '@/lib/lab/export'
@@ -11,7 +10,7 @@ import { CAM_DEFAULT, isDefaultCam } from '@/lib/lab/orbit'
 import type { KDesign } from '@/lib/lab/design'
 import { KPreview } from './KArt'
 import { Range, Section, Seg } from './controls'
-import { MintButton } from './MintDialog'
+import { MintPanel } from './MintDialog'
 
 const TARGETS = [
   { value: 'head', label: 'Head' },
@@ -186,10 +185,7 @@ export default function ImageWrap() {
                 })}>GLB</button>
                 <button type="button" className="lab-btn" onClick={() => exportJson(d)}>JSON</button>
               </div>
-              <div className="lab-row" style={{ borderTop: '1px solid var(--lab-line)', paddingTop: 12 }}>
-                <MintButton />
-                <span className="lab-note">The picture stays yours, off-chain: the <Zt>K1N0</Zt> keeps the colours under it.</span>
-              </div>
+              <MintPanel note="The picture stays yours, off-chain" />
               <p className="lab-note">The design JSON carries the picture, so it opens the same in any tool. The flat SVG keeps the original colours.</p>
               <p className="lab-status" role="status">{status}</p>
               {error && <p className="lab-error" role="alert">{error}</p>}

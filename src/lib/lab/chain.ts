@@ -113,10 +113,10 @@ export async function readMintState(): Promise<MintState> {
   const [p, s, o] = await Promise.all([call('0x' + SEL.price), call('0x' + SEL.totalSupply), call('0x' + SEL.mintOpen)])
   return { price: decUint(p), supply: Number(decUint(s)), open: decUint(o) === BigInt(1) }
 }
-/** 0 when these colours are free, else the K1N0 that has them */
-export async function coloursTaken(c: Colours): Promise<number | 0> {
+/** false when these colours are free, else the number of the K1N0 that has them (#0 included) */
+export async function coloursTaken(c: Colours): Promise<number | false> {
   const h = await call('0x' + SEL.coloursTaken + left(coloursHex(c)))
-  return decUint(h, 0) === BigInt(1) ? Number(decUint(h, 1)) : 0
+  return decUint(h, 0) === BigInt(1) ? Number(decUint(h, 1)) : false
 }
 // usedMap() is a uint256[] of about 33 words (8,363 bits): never trust a bigger length from an RPC
 const usedWords = (h: string) => Math.min(Number(BigInt('0x' + h.slice(64, 128))), 40)
@@ -223,22 +223,64 @@ export async function canSetLook(id: number, who: string): Promise<boolean> {
 export interface Eip1193 { request(a: { method: string; params?: unknown[] }): Promise<unknown> }
 export interface WalletInfo { id: string; name: string; icon: string; provider: Eip1193 }
 
+// Wallets the Lab does not list (user choice): Magic Eden
+const HIDDEN = /magic\s*eden|magiceden/i
+// Rabby first, then MetaMask, then the rest; WalletConnect (any phone wallet, by QR or link) last
+const rank = (w: WalletInfo) => (w.id === 'walletconnect' ? 9 : /rabby/i.test(w.id + w.name) ? 0 : /metamask/i.test(w.id + w.name) ? 1 : 5)
+
+/** WalletConnect's project id (Reown Cloud). It is public by design (it ships in every page that uses
+ *  it); Reown only accepts it from the domains allowed in the project. An env var can override it. */
+const WC_PROJECT_ID = process.env.NEXT_PUBLIC_WC_PROJECT_ID || '82db0c8408bdc54d6b20f2d19597af03'
+export const hasWalletConnect = /^[0-9a-f]{32}$/i.test(WC_PROJECT_ID)
+
+// WalletConnect, loaded only when chosen (it is a large library): an EIP-1193 provider like the others
+let wcProvider: Promise<Eip1193 & { connect(): Promise<void>; session?: unknown }> | null = null
+function walletConnect(): WalletInfo {
+  const load = () => (wcProvider ??= import('@walletconnect/ethereum-provider').then(m => m.EthereumProvider.init({
+    projectId: WC_PROJECT_ID,
+    chains: [KLAB.chainId],
+    showQrModal: true,
+    rpcMap: { [KLAB.chainId]: KLAB.chain.rpcs[0] },
+    metadata: { name: 'THE K.LAB', description: 'K1N0 on Ethereum', url: 'https://www.kancuno.com', icons: ['https://www.kancuno.com/apple-icon.png'] },
+  }) as unknown as Promise<Eip1193 & { connect(): Promise<void>; session?: unknown }>).catch(e => { wcProvider = null; throw e }))
+  return {
+    id: 'walletconnect',
+    name: 'WalletConnect',
+    icon: '',
+    provider: {
+      async request(a) {
+        const p = await load()
+        if (a.method === 'eth_requestAccounts' && !p.session) await p.connect() // opens the QR code / wallet list
+        return p.request(a)
+      },
+    },
+  }
+}
+
 export function discoverWallets(onChange: (w: WalletInfo[]) => void): () => void {
   const found = new Map<string, WalletInfo>()
-  const emit = () => onChange([...found.values()])
+  if (hasWalletConnect) found.set('walletconnect', walletConnect())
+  let ready = false
+  const emit = () => { ready = true; onChange([...found.values()].sort((a, b) => rank(a) - rank(b))) }
   const onAnnounce = (e: Event) => {
     const d = (e as CustomEvent).detail as { info: { uuid: string; name: string; icon: string; rdns: string }; provider: Eip1193 }
     if (!d?.info || !d.provider) return
+    if (HIDDEN.test(`${d.info.rdns} ${d.info.name}`)) return
     found.delete('injected') // a late announcement replaces the window.ethereum fallback
     found.set(d.info.rdns || d.info.uuid, { id: d.info.rdns || d.info.uuid, name: d.info.name, icon: d.info.icon, provider: d.provider })
-    emit()
+    if (ready) emit()
   }
   window.addEventListener('eip6963:announceProvider', onAnnounce)
   window.dispatchEvent(new Event('eip6963:requestProvider'))
-  // older wallets only inject window.ethereum
+  // older wallets only inject window.ethereum. The list is first shown after the installed wallets
+  // have had time to announce, so a quick click never picks WalletConnect over an installed wallet.
   const t = setTimeout(() => {
-    const eth = (window as unknown as { ethereum?: Eip1193 & { isMetaMask?: boolean } }).ethereum
-    if (!found.size && eth) { found.set('injected', { id: 'injected', name: eth.isMetaMask ? 'MetaMask' : 'Browser wallet', icon: '', provider: eth }); emit() }
+    const eth = (window as unknown as { ethereum?: Eip1193 & { isMetaMask?: boolean; isRabby?: boolean; isMagicEden?: boolean } }).ethereum
+    const injectedOnly = [...found.keys()].every(k => k === 'walletconnect')
+    if (injectedOnly && eth && !eth.isMagicEden) {
+      found.set('injected', { id: 'injected', name: eth.isRabby ? 'Rabby' : eth.isMetaMask ? 'MetaMask' : 'Browser wallet', icon: '', provider: eth })
+    }
+    emit()
   }, 350)
   return () => { clearTimeout(t); window.removeEventListener('eip6963:announceProvider', onAnnounce) }
 }
@@ -269,7 +311,11 @@ async function send(w: Eip1193, tx: { from: string; to: string; data: string; va
   } catch (e) {
     throw Object.assign(new Error(explain(e)), { explained: true })
   }
-  return (await w.request({ method: 'eth_sendTransaction', params: [tx] })) as string
+  // the wallet may have changed network since ensureChain: check again, and name the chain in the
+  // transaction so a wallet on another network refuses it instead of sending the ETH there
+  const now = (await w.request({ method: 'eth_chainId' })) as string
+  if (parseInt(now, 16) !== KLAB.chainId) throw Object.assign(new Error(`Your wallet moved to another network. Switch it back to ${KLAB.chain.name} and try again.`), { explained: true })
+  return (await w.request({ method: 'eth_sendTransaction', params: [{ ...tx, chainId: KLAB.chain.hex }] })) as string
 }
 export const sendMint = (w: Eip1193, from: string, c: Colours, title: string, look: Look, id: number, price: bigint) =>
   send(w, { from, to: KLAB.address, data: encMint(c, title, look, id), value: '0x' + price.toString(16) })
@@ -293,7 +339,8 @@ export async function waitTx(hash: string, signal?: AbortSignal): Promise<{ logs
 // Waits for the transaction; returns the new token id
 export async function waitMinted(hash: string, signal?: AbortSignal): Promise<number> {
   const r = await waitTx(hash, signal)
-  const log = r.logs.find(l => l.address.toLowerCase() === KLAB.address && l.topics[0] === TRANSFER)
+  // the mint's own Transfer: from the K1N0 contract, from the zero address
+  const log = r.logs.find(l => l.address.toLowerCase() === KLAB.address && l.topics[0] === TRANSFER && BigInt(l.topics[1] ?? '0x1') === BigInt(0))
   if (!log) throw new Error('Minted, but the token id was not found.')
   return Number(BigInt(log.topics[3]))
 }
@@ -311,6 +358,7 @@ export function explain(e: unknown): string {
   const m = err?.message ?? ''
   if (/insufficient funds/i.test(m)) return 'Not enough ETH in this wallet for the price and the gas.'
   if (/user rejected|denied/i.test(m)) return 'You cancelled in your wallet. Nothing changed.'
+  if (/request reset|modal closed|proposal expired/i.test(m)) return 'The connection was closed before a wallet joined. Nothing changed: try again when you are ready.'
   return m ? m.replace(/^.*?:\s*/, '').slice(0, 160) : 'Something went wrong. Nothing changed.'
 }
 

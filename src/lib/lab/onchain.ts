@@ -26,7 +26,8 @@ export interface Look { fx: [number, number, number, number]; speed: number; yaw
 export const LOOK_DEFAULT: Look = { fx: [0, 0, 0, 0], speed: 1, yaw: 0, pitch: 74, zoom: 100 }
 export const LOGO_COLOURS: Colours = [0, 3, 2, 2]
 
-const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, Math.round(v)))
+// a value that is not a number (a corrupted design) falls to the low end, never NaN in the calldata
+const clamp = (v: number, a: number, b: number) => (Number.isFinite(v) ? Math.min(b, Math.max(a, Math.round(v))) : a)
 const hexRgb = (h: string): [number, number, number] => {
   const v = /^#[0-9a-fA-F]{6}$/.test(h) ? parseInt(h.slice(1), 16) : 0
   return [(v >> 16) & 255, (v >> 8) & 255, v & 255]
@@ -87,10 +88,69 @@ export function coloursFromDesign(d: KDesign): { colours: Colours; exact: boolea
   const colours = src.map(nearestIndex) as Colours
   const exact = src.every(inPalette)
   const problems: string[] = []
-  if (colours[0] === INK) problems.push('The background cannot be black: the K is.')
+  if (colours[0] === INK) problems.push('The background cannot be black: the X and the head blocks are.')
   const same = colours.slice(1).map((v, i) => (v === colours[0] ? SLOTS[i + 1] : '')).filter(Boolean)
   if (same.length) problems.push(`${same.join(' and ')} ${same.length > 1 ? 'are' : 'is'} the same colour as the background.`)
   return { colours, exact, problems }
+}
+
+/** The minted look a design starts with: the 3D view it was framed in (effects are set after the mint) */
+export function lookFromDesign(d: KDesign): Look {
+  if (d.view !== '3d' || !d.cam || ![d.cam.yaw, d.cam.pitch, d.cam.zoom].every(Number.isFinite)) return { ...LOOK_DEFAULT }
+  const yaw = ((((d.cam.yaw + 180) % 360) + 360) % 360) - 180
+  return { ...LOOK_DEFAULT, fx: [0, 0, 0, 0], yaw: Math.min(178, Math.round(yaw / 2) * 2), pitch: clamp(d.cam.pitch, 20, 89), zoom: clamp(d.cam.zoom * 100, 60, 190) }
+}
+
+export interface MintCheck {
+  colours: Colours
+  /** mintable exactly as it looks (colours, shape and fills) */
+  exact: boolean
+  /** what the mint will change on its own */
+  changes: string[]
+  /** what the visitor must change first (the contract would refuse it) */
+  problems: string[]
+  /** made in the Lab but not part of a K1N0 (it can come back as a look after the mint) */
+  notMinted: string[]
+}
+
+const isInk = (c: string) => c.toLowerCase() === K1N0[INK]
+const fillName = (k: string) => (k === 'gradient' ? 'gradient' : 'pattern')
+
+/** The mint rules, checked against a Lab design: what carries over, what changes, what blocks */
+export function mintCheck(d: KDesign): MintCheck {
+  const { colours, problems } = coloursFromDesign(d)
+  const changes: string[] = []
+  const notMinted: string[] = []
+  if (d.form === 'pixel') changes.push('Pixel form: a K1N0 is minted as the clay figure. The painted pixels are not used: its colours come from the head of the vector figure, shown here.')
+  if (!d.bg.visible) changes.push('The background is hidden: it mints as Yellow.')
+  else if (d.bg.fill.kind !== 'solid') changes.push(`Background ${fillName(d.bg.fill.kind)}: it mints as one solid colour.`)
+  if (!d.body.visible || d.body.line || d.body.fill.kind !== 'solid' || !isInk(d.body.fill.a)) changes.push('The X is always solid black.')
+  const headSrc = (i: number) => (d.head.useFill ? d.head.fill.a : d.head.cubes[i] ?? K1N0[INK])
+  const otherBlocks = [0, 1, 2, 4].some(i => !isInk(headSrc(i)))
+  if (!d.head.visible || d.head.line) changes.push('The head is always solid blocks.')
+  if (otherBlocks) changes.push('The back row and the two side blocks of the head are always black.')
+  if (d.head.useFill && d.head.fill.kind !== 'solid') changes.push(`Head ${fillName(d.head.fill.kind)}: the coloured blocks mint as solid colours.`)
+  const src = [d.bg.visible ? d.bg.fill.a : K1N0[0], headSrc(3), headSrc(5), headSrc(6)]
+  src.forEach((c, i) => { if (!inPalette(c)) changes.push(`${SLOTS[i]} ${c.toUpperCase()} becomes ${NAMES[colours[i]]}, the nearest K1N0 colour.`) })
+  const fx = d.fx
+  if (fx.glow || fx.glitch || fx.pixel || fx.grain || fx.scan || fx.depth) notMinted.push('Effects')
+  if (d.anim.loops.length) notMinted.push('Motion')
+  if (d.img) notMinted.push('Picture')
+  return { colours, exact: !changes.length && !problems.length, changes, problems, notMinted }
+}
+
+/** The same design, changed only where the mint would change it: what you see is what you mint */
+export function mintReady(d: KDesign): KDesign {
+  const { colours } = coloursFromDesign(d)
+  const [bg, centre, frontL, frontR] = colours.map(i => K1N0[i])
+  const ink = K1N0[INK]
+  return {
+    ...d,
+    form: 'vector',
+    bg: { ...d.bg, visible: true, fill: { kind: 'solid', a: bg } },
+    body: { ...d.body, visible: true, line: false, fill: { kind: 'solid', a: ink } },
+    head: { ...d.head, visible: true, line: false, useFill: false, fill: { kind: 'solid', a: ink }, cubes: [ink, ink, ink, centre, ink, frontL, frontR] },
+  }
 }
 
 /** A Lab design that shows a K1N0: the black X and blocks, and its four colours */

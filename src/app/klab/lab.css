@@ -459,8 +459,27 @@ a.lab-label:hover { color: var(--lab-text); }
 @media (prefers-reduced-motion: reduce) { .mint__spin { animation: none; } }
 
 /* K1N0 token page */
-.tv-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: start; }
-.tv-side { display: flex; flex-direction: column; gap: 14px; }
+.tv, .hv { grid-template-columns: minmax(0, 1fr); } /* one full-width column: the page lays out its own grid */
+.tv { width: 100%; max-width: 1360px; margin-inline: auto; }
+.tv-head { align-items: center; }
+.tv-head__go { margin-left: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tv-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, 520px); gap: 28px; align-items: start; }
+.tv-main { position: sticky; top: 76px; }
+.tv-side { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.tv-card { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.tv-you { color: #27e07a; font-weight: 700; }
+.tv-tabs { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--lab-line); border-radius: 999px; background: var(--lab-panel); }
+.tv-tab { flex: 1; height: 36px; border: 0; border-radius: 999px; background: transparent; color: var(--lab-dim); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+.tv-tab[aria-selected='true'] { background: var(--k-yellow); color: var(--k-ink); }
+.tv-tab:focus-visible { outline: 2px solid var(--lab-acc); outline-offset: 2px; }
+.tv-badge { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(15, 13, 10, 0.82); color: var(--k-yellow); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; pointer-events: none; }
+.tv-hint { text-align: center; }
+.tv-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.tv-save { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid var(--lab-line); }
+.tv-linkbtn { align-self: flex-start; border: 0; padding: 0; background: none; color: var(--lab-acc); font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
+.tv-details { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: start; }
+.tv-details .tv-onchain img { width: 160px; height: 160px; }
+.tv-details .tv-onchain .lab-btn { align-self: flex-start; }
 .tv-onchain { margin: 0; display: flex; flex-direction: column; gap: 6px; }
 .tv-onchain img { width: 220px; height: 220px; border: 1px solid var(--lab-line); border-radius: var(--lab-r); }
 .tv-colours { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -470,7 +489,13 @@ a.lab-label:hover { color: var(--lab-text); }
 .tv-traits span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lab-faint); }
 .tv-input { width: 84px; height: 34px; padding: 0 10px; border: 1px solid var(--lab-line-2); border-radius: var(--lab-r); background: var(--lab-panel-2); color: var(--lab-text); font-family: var(--font-mono); }
 .tv .lab-tool__head + .lab-panel { max-width: 640px; }
-@media (max-width: 860px) { .tv-grid { grid-template-columns: 1fr; } }
+@media (max-width: 960px) {
+  .tv-grid { grid-template-columns: 1fr; }
+  .tv-main { position: static; }
+  .tv-stage { width: 100%; }
+  .tv-head__go { margin-left: 0; }
+}
+@media (max-width: 520px) { .tv-details { grid-template-columns: 1fr; } .tv-fx__row { grid-template-columns: 1fr 1.2fr; } }
 
 .mint__num { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 18px; color: var(--lab-text); }
 .mint__num input { width: 88px; height: 38px; padding: 0 10px; border: 1px solid var(--lab-line-2); border-radius: var(--lab-r); background: var(--lab-bg); color: var(--lab-text); font: inherit; }
@@ -489,10 +514,11 @@ a.lab-label:hover { color: var(--lab-text); }
 .k1-sw:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .k1-title { width: 100%; height: 36px; padding: 0 10px; border: 1px solid var(--lab-line-2); border-radius: var(--lab-r); background: var(--lab-bg); color: var(--lab-text); font: inherit; }
 .tv-main { display: flex; flex-direction: column; gap: 8px; }
-.tv-stage { aspect-ratio: 1; }
+.tv-stage { aspect-ratio: 1; width: min(100%, calc(100vh - 210px)); min-width: min(100%, 320px); margin-inline: auto; }
 .tv-stage .k1-piece { height: 100%; }
 .tv-col { display: inline-flex; align-items: center; gap: 6px; margin-right: 12px; font-size: 13px; color: var(--lab-dim); }
 .tv-col i, .tv-fx__row i { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--lab-line-2); display: inline-block; }
+.tv-fieldset { display: contents; }
 .tv-fx { display: grid; gap: 8px; }
 .tv-fx__row { display: grid; grid-template-columns: 1fr 1.3fr; gap: 10px; align-items: center; font-size: 14px; }
 .tv-fx__row span { display: inline-flex; align-items: center; gap: 8px; }
@@ -519,3 +545,14 @@ a.lab-label:hover { color: var(--lab-text); }
 .hv-can dt { font-weight: 700; font-size: 14px; }
 .hv-can dd { margin: 2px 0 0; font-size: 13px; line-height: 1.5; color: var(--lab-dim); }
 @media (max-width: 860px) { .hv-grid { grid-template-columns: 1fr; } }
+
+/* ── Mint check (next to every "Mint this K1N0") ── */
+.mcheck { display: flex; flex-direction: column; gap: 10px; padding: 12px; margin-top: 4px; border: 1px solid var(--lab-line); border-radius: var(--lab-r); background: var(--lab-panel-2); }
+.mcheck__title { margin: 0; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: var(--lab-text); }
+.mcheck__title i { width: 10px; height: 10px; border-radius: 999px; background: var(--lab-faint); flex-shrink: 0; }
+.mcheck[data-state='ok'] .mcheck__title i { background: #27e07a; }
+.mcheck[data-state='warn'] .mcheck__title i { background: var(--k-yellow); }
+.mcheck[data-state='bad'] .mcheck__title i, .mcheck[data-state='taken'] .mcheck__title i { background: #ff3b30; }
+.mcheck__list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.45; color: var(--lab-dim); }
+.mcheck__list--bad { color: #ff8a80; }
+.mcheck .lab-btn--sm { align-self: flex-start; }

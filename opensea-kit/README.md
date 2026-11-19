@@ -15,7 +15,7 @@ Everything for the collection page. Images in this folder: `logo.png` (Logo, 350
 
 ## Description (OpenSea, markdown)
 
-**One symbol, infinite variations.** K1N0 is a symbol of crypto and pop culture, and it belongs to everyone: take it, remix it, make it yours.
+**One symbol, infinite variations.** K1N0 is an open character with no owner: take it, remix it, make it yours.
 
 K1N0 in clay-like 3D: seven blocks for a head over an X. The X and four blocks of the head are always black; the other four colours are its own: the background, the centre block and the two front blocks. 16 colours in the palette, and **every combination can be minted only once.** You pick its number, from 1 to 8,362, or press Random.
 
@@ -43,17 +43,18 @@ kancuno.com/klab
 
 ## Thread (X)
 
-1/ K1N0 is a symbol for everyone: seven blocks for a head over an X, in clay-like 3D. In THE K.LAB anyone makes their own, no wallet needed. As a K1N0 the X and four blocks stay black, and it takes four colours of its own: background, centre, two front blocks.
+1/ K1N0 is an open character with no owner, CC0: seven blocks for a head over an X, in clay-like 3D. In THE K.LAB anyone makes their own, no wallet needed. As a K1N0 the X and four blocks stay black, and it takes four colours of its own: background, centre, two front blocks.
 
 2/ Every combination of the four can be minted once. When it is yours, nobody can mint it again. You also pick your number from 1 to 8,362, or press Random.
 
-3/ The look is alive. Glow, pulse, float, neon, metal… one effect per colour, plus speed and 3D view. Gas only, as often as you like, every look on-chain with your name. When it changes hands, the story goes on.
+3/ The look is alive. Glow, pulse, float, neon, metal… one effect per colour, plus speed and 3D view. Gas only, as often as you like, every look on-chain with your name. Anyone can propose a look with a link; only the holder saves it. When it changes hands, the story goes on.
 
 4/ Nothing sits off-chain: the contract draws the 3D image and the interactive piece you turn on OpenSea. No IPFS, no server. 0.0024 ETH. kancuno.com/klab
 
 ## Notes for collectors (FAQ, optional)
 
 - **Before buying,** check the token page (kancuno.com/klab/token?id=…): its looks are listed with dates. A holder can change the look until the sale; the colours never change.
+- **Holders:** find your pieces at kancuno.com/klab/mine (Rabby, MetaMask, any installed wallet or WalletConnect), or paste an address.
 - **What a holder can change:** only the look (an effect per colour, speed, 3D view). The image and the 3D piece here always show the latest look; OpenSea refreshes on its own (the contract signals every change, EIP-4906). A holder can also let an app set looks for them (looks only, never transfers); a marketplace approved to sell a K1N0 cannot touch its look.
 - **What can evolve, and what never will:** the number, the four colours, every look already set and the cap of 8,362 (plus #0) are permanent. The artist can add new effects and new artwork through a new renderer until it is locked, and new ways to mint the remaining numbers through public extensions (same rules: unique colours, same cap). Every such change is an on-chain event.
 - **Minting busy moments:** the number and the colours are public while a transaction waits. If someone takes them first, the mint simply fails (only gas is spent). A private RPC such as Flashbots Protect avoids that.

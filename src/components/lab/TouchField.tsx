@@ -8,7 +8,7 @@ import type { KRenderer, TouchMode, TouchOptions } from '@/lib/lab/k3d'
 import { attachOrbit, CAM_DEFAULT, isDefaultCam, keyCam, type Cam, type Orbit } from '@/lib/lab/orbit'
 import { Range, Section, Seg } from './controls'
 import { useReducedMotion } from './KArt'
-import { MintButton } from './MintDialog'
+import { MintPanel } from './MintDialog'
 
 const KEY = 'klab:touch:v1'
 const DEFAULT: TouchOptions = { mode: 'push', radius: 1.9, strength: 1.1, ease: 6, parts: 'all', field: true }
@@ -270,7 +270,7 @@ export default function TouchField() {
           </div>
           <p className="lab-status" role="status">{status}</p>
           <p className="lab-note">K1N0 comes from your current design: change it in the K Editor or Pixel Forge (pixels become voxels here).</p>
-          <div className="lab-row"><MintButton /></div>
+          <MintPanel />
         </Section>
       </div>
     </div>

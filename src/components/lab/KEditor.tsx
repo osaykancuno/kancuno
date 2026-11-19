@@ -9,7 +9,7 @@ import { CAM_DEFAULT, isDefaultCam } from '@/lib/lab/orbit'
 import { useLab } from '@/lib/lab/store'
 import { KPreview, KThumb } from './KArt'
 import { ColorPick, FillEditor, Range, Section, Seg } from './controls'
-import { MintButton } from './MintDialog'
+import { MintPanel } from './MintDialog'
 
 const PARTS: { id: PartId; name: string; hint: string }[] = [
   { id: 'bg', name: 'Background', hint: 'The field behind K1N0' },
@@ -223,10 +223,7 @@ export default function KEditor() {
           </div>
           <p className="lab-status" aria-live="polite">{status}</p>
           {error && <p className="lab-error" role="alert">{error}</p>}
-          <div className="lab-row" style={{ borderTop: '1px solid var(--lab-line)', paddingTop: 12 }}>
-            <MintButton />
-            <span className="lab-note">Optional · K1N0 on Ethereum, your colours alone</span>
-          </div>
+          <MintPanel />
           <p className="lab-note">PNG and GIF follow the view (3D or flat). Your K1N0 is saved in this browser.</p>
         </Section>
       </div>

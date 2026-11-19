@@ -7,7 +7,7 @@ import './lab.css'
 
 const TITLE = 'THE K.LAB · KANCUNO'
 const DESCRIPTION =
-  'K1N0 is an open symbol of crypto and pop culture, public domain under CC0: it belongs to everyone. One symbol, infinite variations: create, remix and animate your own K1N0 in the browser, no wallet needed.'
+  'K1N0 is an open character with no owner, public domain under CC0. One symbol, infinite variations: create, remix and animate your own K1N0 in the browser, no wallet needed.'
 
 export const metadata: Metadata = {
   title: { default: TITLE, template: '%s · THE K.LAB' },

@@ -5,7 +5,7 @@ import { useLab } from '@/lib/lab/store'
 import { canvasToBlob, downloadBlob, exportJson, renderFrame, slug } from '@/lib/lab/export'
 import { KPreview, useReducedMotion } from './KArt'
 import { CAM_DEFAULT, isDefaultCam } from '@/lib/lab/orbit'
-import { MintButton } from './MintDialog'
+import { MintPanel } from './MintDialog'
 
 const LABELS: Record<AnimLoop, string> = {
   pulse: 'Pulse glow', bounce: 'Bounce', float: 'Float', wave: 'Head wave', blink: 'Blink',
@@ -200,10 +200,7 @@ export function AnimationBench() {
           {busy && busy !== 'png' && <div className="ab-progress" role="progressbar" aria-label={busy === 'gif' ? 'GIF export' : 'Video export'} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)}><span style={{ width: `${Math.round(progress * 100)}%` }} /></div>}
           <p className="lab-status" role="status">{status}</p>
           <p className="lab-note">GIF and video are one seamless loop; video plays it twice. The PNG uses the scrubber position.</p>
-          <div className="lab-row" style={{ borderTop: '1px solid var(--lab-line)', paddingTop: 12 }}>
-            <MintButton />
-            <span className="lab-note">The loops play in the on-chain artwork too.</span>
-          </div>
+          <MintPanel />
         </section>
       </div>
     </div>

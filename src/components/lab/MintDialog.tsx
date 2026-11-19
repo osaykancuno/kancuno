@@ -7,7 +7,7 @@ import { Zt } from './Zt'
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
-  coloursFromDesign, cleanName, dataHex, hasArtistName, INK, K1N0, LOOK_DEFAULT, MAX_SUPPLY, NAMES, SLOTS, validColours, type Colours,
+  coloursFromDesign, cleanName, dataHex, hasArtistName, INK, K1N0, lookFromDesign, MAX_SUPPLY, MINT_PRICE_ETH, mintCheck, mintReady, NAMES, SLOTS, validColours, type Colours,
 } from '@/lib/lab/onchain'
 import {
   coloursTaken, connect, contractUrl, discoverWallets, ensureChain, eth, explain, freeNumbers, KLAB, readMintState, sendMint,
@@ -28,6 +28,62 @@ export function MintButton({ className = 'lab-btn lab-btn--primary' }: { classNa
   )
 }
 
+/** The mint rules, live, next to every "Mint this K1N0" button: whether the design can be minted as
+ *  it is, what the mint would change, what must change first, and whether its colours are still free. */
+export function MintPanel({ note }: { note?: string }) {
+  const { design, set } = useLab()
+  const check = useMemo(() => mintCheck(design), [design])
+  const valid = validColours(check.colours) && !check.problems.length
+  const [taken, setTaken] = useState<number | false | null>(null) // false free, n = K1N0 #n, null unknown
+  const [net, setNet] = useState(false)
+  const [retry, setRetry] = useState(0)
+  const key = check.colours.join('.')
+  useEffect(() => {
+    setTaken(null)
+    setNet(false)
+    if (!KLAB.live || !valid) return
+    let alive = true
+    const t = setTimeout(() => coloursTaken(check.colours).then(n => { if (alive) setTaken(n) }, () => { if (alive) setNet(true) }), 400)
+    return () => { alive = false; clearTimeout(t) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key, valid, retry])
+
+  const state = !valid ? 'bad' : typeof taken === 'number' ? 'taken' : check.changes.length ? 'warn' : taken === false || !KLAB.live ? 'ok' : 'wait'
+  const freeLine = !valid || typeof taken === 'number' || !KLAB.live ? '' : taken === false ? 'These four colours are still free.' : net ? '' : 'Checking whether these colours are still free…'
+  const title =
+    state === 'bad' ? 'Not mintable yet'
+      : state === 'taken' ? `These colours are already K1N0 #${taken}`
+        : state === 'warn' ? `Mintable, with ${check.changes.length} ${check.changes.length === 1 ? 'change' : 'changes'}`
+          : state === 'ok' ? 'Mint-ready: what you see is what you mint'
+            : net ? 'The colours could not be checked' : 'Checking the colours…'
+
+  return (
+    <div className="mcheck" data-state={state}>
+      <p className="mcheck__title" aria-live="polite"><i aria-hidden="true" /><span><Zt>{title}</Zt></span></p>
+      <div className="mint__swaps" aria-label="The four colours it mints with">
+        {check.colours.map((c, i) => <span key={i} className="mint__swap"><i style={{ background: K1N0[c] }} />{SLOTS[i]}: {NAMES[c]}</span>)}
+      </div>
+      {freeLine && state !== 'ok' && <p className="lab-note">{freeLine}</p>}
+      {net && <p className="lab-note">Ethereum could not be read. <button type="button" className="tv-linkbtn" onClick={() => setRetry(r => r + 1)}>Try again</button></p>}
+      {check.problems.length > 0 && <ul className="mcheck__list mcheck__list--bad">{check.problems.map(p => <li key={p}>{p}</li>)}</ul>}
+      {state === 'taken' && <p className="lab-note">Each combination can be minted once. Change one of the four colours to make your own, or <Link href={`/klab/token?id=${taken}`}><Zt>{`see K1N0 #${taken}`}</Zt></Link>.</p>}
+      {check.changes.length > 0 && (
+        <>
+          <ul className="mcheck__list">{check.changes.map(c => <li key={c}>{c}</li>)}</ul>
+          <button type="button" className="lab-btn lab-btn--sm" onClick={() => set(mintReady(design))}>Make it mint-ready</button>
+        </>
+      )}
+      {check.notMinted.length > 0 && (
+        <p className="lab-note"><Zt>{`${check.notMinted.join(', ')}: not part of the mint. After minting, give your K1N0 a look on its page: an effect for each colour (glow, pulse, float, neon, metal…), the speed and the view.`}</Zt></p>
+      )}
+      <div className="lab-row">
+        <MintButton />
+        <span className="lab-note">{note ?? `Optional · ${MINT_PRICE_ETH} ETH · the 3D view comes with it`}</span>
+      </div>
+    </div>
+  )
+}
+
 export default function MintDialog({ onClose }: { onClose: () => void }) {
   const { design } = useLab()
   const ref = useRef<HTMLDialogElement>(null)
@@ -44,10 +100,11 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
     const c = colours
     if (validColours(c)) coloursTaken(c).then(n => { if (nowColours.current === c) setTaken(n) }, onError)
   }
-  const data = useMemo(() => dataHex(colours, LOOK_DEFAULT, 1, title), [colours, title])
+  const look = useMemo(() => lookFromDesign(design), [design]) // the 3D view the design was framed in
+  const data = useMemo(() => dataHex(colours, look, 1, title), [colours, look, title])
 
   const [state, setState] = useState<MintState | null>(null)
-  const [taken, setTaken] = useState<number | null>(null) // 0 free, n = K1N0 #n, null = unknown
+  const [taken, setTaken] = useState<number | false | null>(null) // false free, n = K1N0 #n, null = unknown
   const [wallets, setWallets] = useState<WalletInfo[]>([])
   const [account, setAccount] = useState<WalletInfo | null>(null)
   const [phase, setPhase] = useState<Phase>('check')
@@ -99,7 +156,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
   }, [colours, valid])
 
   const busy = phase === 'connecting' || phase === 'signing' || phase === 'pending'
-  const ready = KLAB.live && valid && !titleBad && taken === 0 && !!state?.open && numFree && !!free
+  const ready = KLAB.live && valid && !titleBad && taken === false && !!state?.open && numFree && !!free
 
   const follow = async (h: string) => {
     setError('')
@@ -117,6 +174,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
 
   const mintWith = async (w: WalletInfo) => {
     setError('')
+    if (!ready) return // colours, number or title changed since: the checks must pass again first
     try {
       setPhase('connecting')
       const addr = await connect(w.provider) // every time: the account in the wallet may have changed
@@ -124,8 +182,14 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
       await ensureChain(w.provider)
       const fresh = await readMintState() // the current price
       setState(fresh)
+      if (state && fresh.price !== state.price) {
+        // never charge a price the visitor has not seen on the button
+        setError(`The price is now ${eth(fresh.price)}. Press the button again to mint at this price.`)
+        setPhase('check')
+        return
+      }
       setPhase('signing')
-      const h = await sendMint(w.provider, addr, colours, title, LOOK_DEFAULT, num, fresh.price)
+      const h = await sendMint(w.provider, addr, colours, title, look, num, fresh.price)
       setHash(h)
       await follow(h)
     } catch (e) {
@@ -219,12 +283,12 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
                   </div>
                   {!valid && <span>The background cannot be black, and the coloured blocks need colours apart from the background.</span>}
                 </li>
-                <li data-ok={taken === 0 || undefined} data-bad={!!taken || undefined}>
+                <li data-ok={taken === false || undefined} data-bad={typeof taken === 'number' || undefined}>
                   <strong>Yours alone</strong>
                   {!valid ? <span>Checked once the colours work.</span>
                     : !KLAB.live ? <span>When the mint opens, the Lab checks that nobody owns these four colours yet.</span>
                       : taken === null ? <span>Checking these colours…</span>
-                        : taken === 0 ? <span>Free. Mint them and they are yours: nobody can mint these four colours again.</span>
+                        : taken === false ? <span>Free. Mint them and they are yours: nobody can mint these four colours again.</span>
                           : <span>Already <Link href={`/klab/token?id=${taken}`} onClick={onClose}><Zt>{`K1N0 #${taken}`}</Zt></Link>. Change one colour to make your own.</span>}
                 </li>
                 <li data-ok={(numFree && !!free) || undefined} data-bad={(numValid && !numFree) || undefined}>
@@ -258,7 +322,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
               {phase === 'pick' && (
                 <div className="mint__wallets" role="group" aria-label="Choose a wallet">
                   {wallets.map(w => (
-                    <button key={w.id} type="button" className="lab-btn" onClick={() => mintWith(w)}>
+                    <button key={w.id} type="button" className="lab-btn" onClick={() => mintWith(w)} disabled={!ready}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       {w.icon && <img src={w.icon} alt="" width={18} height={18} />} {w.name}
                     </button>
@@ -272,7 +336,7 @@ export default function MintDialog({ onClose }: { onClose: () => void }) {
 
               {KLAB.live && wallets.length === 0 && (
                 <p className="lab-note">
-                  To mint you need an Ethereum wallet: <a href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer">MetaMask</a>, <a href="https://www.coinbase.com/wallet" target="_blank" rel="noopener noreferrer">Coinbase Wallet</a> or <a href="https://rainbow.me/" target="_blank" rel="noopener noreferrer">Rainbow</a>.
+                  To mint you need an Ethereum wallet: <a href="https://rabby.io/" target="_blank" rel="noopener noreferrer">Rabby</a>, <a href="https://metamask.io/download/" target="_blank" rel="noopener noreferrer">MetaMask</a>, <a href="https://www.coinbase.com/wallet" target="_blank" rel="noopener noreferrer">Coinbase Wallet</a> or <a href="https://rainbow.me/" target="_blank" rel="noopener noreferrer">Rainbow</a>.
                   On a phone, open this page in your wallet app: <a href={`https://metamask.app.link/dapp/www.kancuno.com/klab/editor${carry}`}>MetaMask</a> · <a href={`https://go.cb-w.com/dapp?cb_url=${encodeURIComponent(`https://www.kancuno.com/klab/editor${carry}`)}`}>Coinbase</a>. Your colours come along.
                 </p>
               )}

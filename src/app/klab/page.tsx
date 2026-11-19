@@ -45,9 +45,9 @@ export default function LabHome() {
             <span>Infinite variations.</span>
           </h1>
           <p className="kl-lead">
-            <Zt>K1N0 is a symbol of crypto and pop culture, and it belongs to everyone.</Zt>
+            <Zt>K1N0 is an open character: seven blocks, one X, no owner.</Zt>
             <br />Take it, remix it, animate it and make it yours, with tools that run in the browser.
-            <br />No wallet needed. Mint yours on-chain only if you want.
+            <br />CC0, no wallet needed. Mint yours on-chain only if you want.
           </p>
           <div className="kl-cta">
             <Link href="/klab/editor" className="lab-btn lab-btn--primary">Enter the Lab <span aria-hidden="true">→</span></Link>
@@ -67,8 +67,7 @@ export default function LabHome() {
         <div className="kl-two">
           <div className="kl-text">
             <p><Zt>K1N0 is a simple, strong figure: seven blocks for a head, an X for a body.</Zt></p>
-            <p>It is not one person’s mark: it is a shared symbol, made to be reinvented.</p>
-            <p><Zt>K1N0 is </Zt><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0<span className="lab-sr"> (opens in a new tab)</span></a>: public domain, free for anyone to use, remix and sell, with no permission needed.</p>
+            <p>Nobody owns it. It is <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0<span className="lab-sr"> (opens in a new tab)</span></a>: public domain, free for anyone to use, remix and sell, with no permission needed.</p>
             <p>The figure stays the same; every version tells a new story.</p>
             <p>Keep it recognisable, then make it yours.</p>
             <p>It lives in 3D and in a flat version for vector files.</p>
@@ -171,8 +170,8 @@ export default function LabHome() {
         <ol className="kl-steps kl-steps--four">
           <li><span className="kl-steps__n">01</span><strong>Create</strong><span><Zt>Make your K1N0 in any tool of the Lab. No wallet needed.</Zt></span></li>
           <li><span className="kl-steps__n">02</span><strong>Four colours</strong><span>The background, the centre block and the two front blocks, from the 16 below; the X and four blocks stay black. Each combination can be minted once.</span></li>
-          <li><span className="kl-steps__n">03</span><strong><Zt>Mint this K1N0</Zt></strong><span>Pick your number or press Random. One confirmation; the Lab tells you first if the colours are still free.</span></li>
-          <li><span className="kl-steps__n">04</span><strong>Give it a look</strong><span>An effect for each colour, the speed, the view; the colours stay as minted. Gas only, as often as you like. The new look shows on-chain and on OpenSea, every look stays in its story, and the story goes on with the next holder.</span></li>
+          <li><span className="kl-steps__n">03</span><strong><Zt>Mint this K1N0</Zt></strong><span>Pick your number or press Random. The Lab checks the rules while you design, so you know before paying that it can be minted and its colours are free.</span></li>
+          <li><span className="kl-steps__n">04</span><strong>Give it a look</strong><span>An effect for each colour, the speed, the view; the colours stay as minted. Gas only, as often as you like. Anyone can propose a look with a link; only the holder saves it. Every look stays in its story, and the story goes on with the next holder.</span></li>
         </ol>
         <div className="kl-palette" aria-label="The K1N0 palette: 16 colours">
           {K1N0.map(c => <i key={c} style={{ background: c }} title={c} />)}
